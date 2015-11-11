@@ -1,1 +1,1 @@
-# african-tusk-quote
+# African Tusk Quote WordPress Plugin
