@@ -16,11 +16,11 @@ class staff_member extends ATQ	 {
         <table class="wp-list-table widefat fixed striped pages">
             <thead>
                 <tr>
-                    <th width="45%">Name</th>
-                    <th width="45%">Email</th>
-                    <th width="45%">Position</th>
-                    <th width="45%">Contact NO</th>
-                    <th width="10%" class="actions">Actions</th>
+                    <th width="22%">Name</th>
+                    <th width="22%">Email</th>
+                    <th width="22%">Position</th>
+                    <th width="22%">Contact NO</th>
+                    <th width="12%" class="actions">Actions</th>
                 </tr>
             </thead>
 
@@ -62,4 +62,79 @@ class staff_member extends ATQ	 {
         </table>
         <?php
     }
+    // Add new or edit staff member
+    public function form() {
+
+        // Getting staff member data if user requests to edit
+        $id = filter_input(INPUT_GET, 'id');
+        $row = $this->wpdb->get_row("SELECT * FROM $this->staff_member_tbl WHERE staff_id = $id");
+        ?>
+
+        <h1><?php echo isset($id) ? 'Edit Category' : 'Add New Category'; ?></h1>
+
+        <div class="col-left">
+            <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save'); ?>">
+                <input type="hidden" name="staff_id" value="<?php echo $id; ?>">
+                <div class="form-field">
+                    <label for="staff_name">Name <span>*</span></label><br>
+                    <input name="staff_name" id="staff_name" type="text" value="<?php echo $row->staff_name; ?>" required>
+                </div>
+                <div class="form-field">
+                    <label for="staff_email">Email <span>*</span></label><br>
+                    <input type="text" name="staff_email" id="staff_email" value="<?php echo $row->staff_email; ?>" required> 
+                </div>
+                 <div class="form-field">
+                    <label for="staff_position">Position <span>*</span></label><br>
+                    <input type="text" name="staff_position" id="staff_position" value="<?php echo $row->staff_position; ?>" required> 
+                </div
+                 <div class="form-field">
+                    <label for="staff_contactno">Contact NO <span>*</span></label><br>
+                    <input type="text" name="staff_contactno" id="staff_contactno" value="<?php echo $row->staff_contactno; ?>" required> 
+                </div>
+                <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Category' : 'Add New Category'; ?>"></p>
+            </form>
+        </div>
+
+        <?php
+    }
+
+    // Save Staff members
+    public function save() {
+
+        // Getting submitted data
+        $id = filter_input(INPUT_POST, 'staff_id');
+        $staff_name = filter_input(INPUT_POST, 'staff_name', FILTER_SANITIZE_STRING);
+        $staff_email = filter_input(INPUT_POST, 'staff_email', FILTER_SANITIZE_STRING);
+        $staff_position = filter_input(INPUT_POST, 'staff_position', FILTER_SANITIZE_STRING);
+        $staff_contactno = filter_input(INPUT_POST, 'staff_contactno', FILTER_SANITIZE_STRING);
+
+        if (!empty($id)) {
+
+            $this->wpdb->update($this->staff_member_tbl, array('staff_name' => $staff_name, 'staff_email' => $staff_email, 'staff_position' => $staff_position, 'staff_contactno' => $staff_contactno), array('staff_id' => $id));
+
+            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
+
+            exit;
+        } else {
+
+            $this->wpdb->insert($this->staff_member_tbl, array('staff_name' => $staff_name, 'staff_email' => $staff_email, 'staff_position' => $staff_position, 'staff_contactno' => $staff_contactno));
+
+            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
+
+            exit;
+        }
+    }
+     // Delete staff members
+    public function del() {
+
+        // Getting staff id
+        $id = filter_input(INPUT_GET, 'id');
+
+        $this->wpdb->delete($this->staff_member_tbl, array('staff_id' => $id));
+
+        wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=deleted'));
+
+        exit;
+    }
+
 }
