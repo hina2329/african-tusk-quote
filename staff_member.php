@@ -70,7 +70,7 @@ class staff_member extends ATQ	 {
         $row = $this->wpdb->get_row("SELECT * FROM $this->staff_member_tbl WHERE staff_id = $id");
         ?>
 
-        <h1><?php echo isset($id) ? 'Edit Category' : 'Add New Category'; ?></h1>
+        <h1><?php echo isset($id) ? 'Edit Staff Members' : 'Add New Member'; ?></h1>
 
         <div class="col-left">
             <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save'); ?>">
@@ -86,12 +86,12 @@ class staff_member extends ATQ	 {
                  <div class="form-field">
                     <label for="staff_position">Position <span>*</span></label><br>
                     <input type="text" name="staff_position" id="staff_position" value="<?php echo $row->staff_position; ?>" required> 
-                </div
+                </div>
                  <div class="form-field">
                     <label for="staff_contactno">Contact NO <span>*</span></label><br>
                     <input type="text" name="staff_contactno" id="staff_contactno" value="<?php echo $row->staff_contactno; ?>" required> 
                 </div>
-                <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Category' : 'Add New Category'; ?>"></p>
+                <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update staff Member' : 'Add New Member'; ?>"></p>
             </form>
         </div>
 

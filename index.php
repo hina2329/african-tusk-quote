@@ -27,6 +27,8 @@
   		add_action('plugins_loaded', array($this, 'install_tables'));
           // Adding the main page
   		add_action('admin_menu', array($this,'atq_menu'));
+  		// Loading plugin resources for admin
+        add_action('admin_head', array($this, 'register_admin_resources'));
   	}
 
   	function atq_menu() {
@@ -42,7 +44,7 @@
 
   	function atq_main() {
   		?>
-  		<div class="wrap">
+  		<div class="wrap" id="atq-wrap">
   			<?php
 
   			if ($this->page == 'atq_main') {
@@ -67,8 +69,15 @@
 
   		</div>
   		<?php
-  		
+
   	}
+  	// Registering plugin admin resources
+    public function register_admin_resources() {
+        // Admin Stylesheet
+        wp_register_style('atq-admin-style', plugins_url('african-tusk-quote/css/atq-admin-style.css'));
+        wp_enqueue_style('atq-admin-style');
+        wp_enqueue_style('thickbox');
+}
   	// Notifications
   	public function notify($module) {
   		$msg = filter_input(INPUT_GET, 'update');
