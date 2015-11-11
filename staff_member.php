@@ -51,7 +51,7 @@ class staff_member extends ATQ	 {
                 } else {
                     ?>
                     <tr>
-                        <td colspan="3" style="text-align: center;"><strong>No Records Found</strong></td>
+                        <td colspan="4" style="text-align: center;"><strong>No Records Found</strong></td>
                     </tr>
                     <?php
                 }
