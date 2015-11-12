@@ -15,6 +15,7 @@ class ATQ {
  protected $wpdb;
  protected $page;
  protected $staff_member_tbl;
+ protected $clients_tbl;
 
  function __construct() {
   		  // Globalizing $wpdb variable
@@ -24,6 +25,7 @@ class ATQ {
   $this->page = filter_input(INPUT_GET, 'page');
          // Table names
   $this->staff_member_tbl = $this->wpdb->prefix . 'atq_staff_member';
+  $this->clients_tbl = $this->wpdb->prefix . 'atq_clients';
          // Installing new tables in the database
   add_action('plugins_loaded', array($this, 'install_tables'));
           // Adding the main page
@@ -97,14 +99,26 @@ public function install_tables() {
   $staff_member_table = "CREATE TABLE $this->staff_member_tbl (
    staff_id INT(5) NOT NULL AUTO_INCREMENT,
    staff_name VARCHAR(100) NOT NULL,
-   staff_email VARCHAR(256) NOT NULL,
-   staff_position VARCHAR(256) NOT NULL,
-   staff_contactno INT(50) NOT NULL,
+   staff_email VARCHAR(100) NOT NULL,
+   staff_position VARCHAR(100) NOT NULL,
+   staff_contactno VARCHAR(100) NOT NULL,
    PRIMARY KEY (staff_id)
+   ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
+
+ $clients_table = "CREATE TABLE $this->clients_tbl (
+   client_id INT(5) NOT NULL AUTO_INCREMENT,
+   client_fname VARCHAR(100) NOT NULL,
+   client_lname VARCHAR(100) NOT NULL,
+   client_email VARCHAR(100) NOT NULL,
+   client_contactno VARCHAR(100) NOT NULL,
+   client_cellno VARCHAR(100) NOT NULL,
+   client_companyname VARCHAR(100) NOT NULL,
+   PRIMARY KEY (client_id)
    ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
 
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 dbDelta($staff_member_table);
+dbDelta($clients_table);
 }
 }
 
