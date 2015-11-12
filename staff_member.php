@@ -11,7 +11,7 @@ class staff_member extends ATQ	{
     public function init() {
         ?>
 
-        <h1><?php echo get_admin_page_title(); ?> <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form'); ?>" class="page-title-action">Add Staff Member</a></h1>
+        <h1><?php echo get_admin_page_title(); ?> <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form'); ?>" class="page-title-action">Add New Staff Member</a></h1>
 
         <?php $this->notify('staff'); ?>
 
