@@ -1,13 +1,15 @@
 <?php
+
 /**
-* Client Class
-*/
-class clients extends ATQ	{
+ * Client Class
+ */
+class clients extends ATQ {
 
     public function __construct() {
         parent::__construct();
     }
-     // Iniating main method to display clients
+
+    // Iniating main method to display clients
     public function init() {
         ?>
 
@@ -68,6 +70,7 @@ class clients extends ATQ	{
         </table>
         <?php
     }
+
     // Add new or edit client
     public function form() {
 
@@ -92,8 +95,8 @@ class clients extends ATQ	{
                 <div class="form-field">
                     <label for="client_email">Email <span>*</span></label><br>
                     <input type="text" name="client_email" id="client_email" value="<?php echo $row->client_email; ?>" required>
-                    </div>
-                    <div class="form-field">
+                </div>
+                <div class="form-field">
                     <label for="client_contactno">Contact No<span>*</span></label><br>
                     <input type="text" name="client_contactno" id="client_contactno" value="<?php echo $row->client_contactno; ?>" required> 
                 </div>
@@ -109,8 +112,8 @@ class clients extends ATQ	{
 
 
 
-                
-                
+
+
                 <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Client' : 'Add New Client'; ?>"></p>
             </form>
         </div>
@@ -146,7 +149,8 @@ class clients extends ATQ	{
             exit;
         }
     }
-     // Delete client
+
+    // Delete client
     public function del() {
 
         // Getting client id
