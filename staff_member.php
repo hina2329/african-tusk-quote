@@ -1,6 +1,8 @@
 <?php
-// Staff Member Class
-class staff_member extends ATQ	 {
+/**
+* Staff Members Class
+*/
+class staff_member extends ATQ	{
 
     public function __construct() {
         parent::__construct();
@@ -83,11 +85,11 @@ class staff_member extends ATQ	 {
                     <label for="staff_email">Email <span>*</span></label><br>
                     <input type="text" name="staff_email" id="staff_email" value="<?php echo $row->staff_email; ?>" required> 
                 </div>
-                 <div class="form-field">
+                <div class="form-field">
                     <label for="staff_position">Position <span>*</span></label><br>
                     <input type="text" name="staff_position" id="staff_position" value="<?php echo $row->staff_position; ?>" required> 
                 </div>
-                 <div class="form-field">
+                <div class="form-field">
                     <label for="staff_contactno">Contact NO <span>*</span></label><br>
                     <input type="text" name="staff_contactno" id="staff_contactno" value="<?php echo $row->staff_contactno; ?>" required> 
                 </div>
