@@ -1,4 +1,5 @@
 <?php
+
 /*
   Plugin Name: African Tusk Quote
   Plugin URI: https://www.freelancer.com/u/hina2329.html
@@ -25,24 +26,19 @@ class ATQ {
         global $wpdb;
         $this->wpdb = $wpdb;
 
-
         // User HTTP request for class
         $this->page = filter_input(INPUT_GET, 'page');
-
 
         // Table names
         $this->staff_member_tbl = $this->wpdb->prefix . 'atq_staff_member';
         $this->fabrics_tbl = $this->wpdb->prefix . 'atq_fabrics';
         $this->clients_tbl = $this->wpdb->prefix . 'atq_clients';
 
-
         // Installing new tables in the database
         add_action('plugins_loaded', array($this, 'install_tables'));
 
-
         // Adding the main page
         add_action('admin_menu', array($this, 'atq_menu'));
-
 
         // Loading plugin resources for admin
         add_action('admin_head', array($this, 'register_admin_resources'));
@@ -61,29 +57,28 @@ class ATQ {
 
     // Main Page
     function atq_main() {
-        ?>
-        <div class="wrap" id="atq-wrap">
-            <?php
-            if ($this->page == 'atq_main') {
-                
-            } else {
-                //Requestig Appropriate object
-                require_once $this->page . '.php';
-                $obj = new $this->page;
 
-                // User HTTP request for method
-                $action = filter_input(INPUT_GET, 'action');
+        echo '<div class="wrap" id="atq-wrap">';
 
-                if (!isset($action)) {
-                    $action = 'init';
-                }
+        if ($this->page == 'atq_main') {
+            
+        } else {
+            //Requestig Appropriate object
+            require_once $this->page . '.php';
+            $obj = new $this->page;
 
-                $obj->$action();
+            // User HTTP request for method
+            $action = filter_input(INPUT_GET, 'action');
+
+            if (!isset($action)) {
+                $action = 'init';
             }
-            ?>
 
-        </div>
-        <?php
+            $obj->$action();
+        }
+
+        echo '</div>';
+        
     }
 
     // Registering plugin admin resources
@@ -113,7 +108,7 @@ class ATQ {
             fab_id INT(5) NOT NULL AUTO_INCREMENT,
             fab_name VARCHAR(100) NOT NULL,
             fab_suffix VARCHAR(100) NOT NULL,
-            fab_colors VARCHAR(500) NOT NULL,
+            fab_colors VARCHAR(500) NULL,
             PRIMARY KEY (fab_id)
             ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
 
@@ -137,7 +132,7 @@ class ATQ {
             PRIMARY KEY (client_id)
             ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
 
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         dbDelta($fabrics_table);
         dbDelta($staff_member_table);
         dbDelta($clients_table);
