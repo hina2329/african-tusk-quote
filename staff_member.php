@@ -21,7 +21,7 @@ class staff_member extends ATQ	{
                     <th width="22%">Name</th>
                     <th width="22%">Email</th>
                     <th width="22%">Position</th>
-                    <th width="22%">Contact NO</th>
+                    <th width="22%">Contact No</th>
                     <th width="12%" class="actions">Actions</th>
                 </tr>
             </thead>
@@ -40,9 +40,9 @@ class staff_member extends ATQ	{
                             <td class="column-title">
                                 <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->staff_id); ?>"><?php echo $row->staff_name; ?></a></strong>
                             </td>
-                            <td><?php echo $row->staff_email; ?>%</td>
-                            <td><?php echo $row->staff_position; ?>%</td>
-                            <td><?php echo $row->staff_contactno; ?>%</td>
+                            <td><?php echo $row->staff_email; ?></td>
+                            <td><?php echo $row->staff_position; ?></td>
+                            <td><?php echo $row->staff_contactno; ?></td>
                             <td class="actions">
                                 <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->staff_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a> 
                                 <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $row->staff_id); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
