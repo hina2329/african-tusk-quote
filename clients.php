@@ -59,7 +59,7 @@ class clients extends ATQ {
                 } else {
                     ?>
                     <tr>
-                        <td colspan="6" style="text-align: center;"><strong>No Records Found</strong></td>
+                        <td colspan="7" style="text-align: center;"><strong>No Records Found</strong></td>
                     </tr>
                     <?php
                 }
