@@ -19,6 +19,7 @@ class ATQ {
     protected $staff_member_tbl;
     protected $fabric_tbl;
     protected $clients_tbl;
+    protected $categories_tbl;
 
     function __construct() {
 
@@ -33,6 +34,7 @@ class ATQ {
         $this->staff_member_tbl = $this->wpdb->prefix . 'atq_staff_member';
         $this->fabrics_tbl = $this->wpdb->prefix . 'atq_fabrics';
         $this->clients_tbl = $this->wpdb->prefix . 'atq_clients';
+        $this->categories_tbl = $this->wpdb->prefix . 'atq_categories';
 
         // Installing new tables in the database
         add_action('plugins_loaded', array($this, 'install_tables'));
@@ -78,7 +80,6 @@ class ATQ {
         }
 
         echo '</div>';
-        
     }
 
     // Registering plugin admin resources
@@ -105,37 +106,48 @@ class ATQ {
 
         // Queries to create tables
         $fabrics_table = "CREATE TABLE $this->fabrics_tbl (
-            fab_id INT(5) NOT NULL AUTO_INCREMENT,
-            fab_name VARCHAR(100) NOT NULL,
-            fab_suffix VARCHAR(100) NOT NULL,
-            fab_colors VARCHAR(500) NULL,
-            PRIMARY KEY (fab_id)
-            ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
+        fab_id INT(5) NOT NULL AUTO_INCREMENT,
+        fab_name VARCHAR(100) NOT NULL,
+        fab_suffix VARCHAR(100) NOT NULL,
+        fab_colors VARCHAR(500) NULL,
+        PRIMARY KEY (fab_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
+        ";
 
         $staff_member_table = "CREATE TABLE $this->staff_member_tbl (
-            staff_id INT(5) NOT NULL AUTO_INCREMENT,
-            staff_name VARCHAR(100) NOT NULL,
-            staff_email VARCHAR(100) NOT NULL,
-            staff_position VARCHAR(100) NOT NULL,
-            staff_contactno VARCHAR(100) NOT NULL,
-            PRIMARY KEY (staff_id)
-            ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
+        staff_id INT(5) NOT NULL AUTO_INCREMENT,
+        staff_name VARCHAR(100) NOT NULL,
+        staff_email VARCHAR(100) NOT NULL,
+        staff_position VARCHAR(100) NOT NULL,
+        staff_contactno VARCHAR(100) NOT NULL,
+        PRIMARY KEY (staff_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
+        ";
 
         $clients_table = "CREATE TABLE $this->clients_tbl (
-            client_id INT(5) NOT NULL AUTO_INCREMENT,
-            client_fname VARCHAR(100) NOT NULL,
-            client_lname VARCHAR(100) NOT NULL,
-            client_email VARCHAR(100) NOT NULL,
-            client_contactno VARCHAR(100) NOT NULL,
-            client_cellno VARCHAR(100) NOT NULL,
-            client_companyname VARCHAR(100) NOT NULL,
-            PRIMARY KEY (client_id)
-            ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
+        client_id INT(5) NOT NULL AUTO_INCREMENT,
+        client_fname VARCHAR(100) NOT NULL,
+        client_lname VARCHAR(100) NOT NULL,
+        client_email VARCHAR(100) NOT NULL,
+        client_contactno VARCHAR(100) NOT NULL,
+        client_cellno VARCHAR(100) NOT NULL,
+        client_companyname VARCHAR(100) NOT NULL,
+        PRIMARY KEY (client_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
+        ";
+
+        $categories_table = "CREATE TABLE $this->categories_tbl (
+        cat_id INT(5) NOT NULL AUTO_INCREMENT,
+        cat_name VARCHAR(100) NOT NULL,
+        PRIMARY KEY (cat_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
+        ";
 
         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         dbDelta($fabrics_table);
         dbDelta($staff_member_table);
         dbDelta($clients_table);
+        dbDelta($categories_table);
     }
 
 }
