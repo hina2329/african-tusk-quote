@@ -11,7 +11,15 @@ class clients extends ATQ {
 
 	// Iniating main method to display clients
 	public function init() {
+		$search = filter_input(INPUT_POST, 's');
 		?>
+        <h1>
+            <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=init&search=true');?>" class="search-box">
+                <label class="screen-reader-text" for="search-input">Search Clients:</label>
+                <input type="search" id="search-input" name="s" value="">
+                <input type="submit" id="search-submit" class="button" value="Search Clients">
+            </form>
+            </h1>
 
         <h1><?php echo get_admin_page_title();?> <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form');?>" class="page-title-action">Add New Client</a></h1>
 
@@ -34,9 +42,12 @@ class clients extends ATQ {
 
                 <?php
 // Getting clients
-		$results = $this->wpdb->get_results("SELECT * FROM $this->clients_tbl");
+		if (isset($search)) {
+			$results = $this->wpdb->get_results("SELECT * FROM $this->clients_tbl WHERE client_fname LIKE '%$search%' OR client_lname LIKE '%$search%' OR client_email LIKE '%$search%' OR client_contactno LIKE '%$search%' OR client_cellno LIKE '%$search%' OR client_companyname LIKE '%$search%' ");
 
-		if ($results) {
+		} else {
+			$results = $this->wpdb->get_results("SELECT * FROM $this->clients_tbl");
+		}if ($results) {
 
 			foreach ($results as $row) {
 				?>
