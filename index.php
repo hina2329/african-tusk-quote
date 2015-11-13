@@ -20,6 +20,7 @@ class ATQ {
     protected $fabrics_tbl;
     protected $clients_tbl;
     protected $categories_tbl;
+    protected $products_tbl;
 
     function __construct() {
 
@@ -35,6 +36,7 @@ class ATQ {
         $this->fabrics_tbl = $this->wpdb->prefix . 'atq_fabrics';
         $this->clients_tbl = $this->wpdb->prefix . 'atq_clients';
         $this->categories_tbl = $this->wpdb->prefix . 'atq_categories';
+        $this->products_tbl = $this->wpdb->prefix . 'atq_products';
 
         // Installing new tables in the database
         add_action('plugins_loaded', array($this, 'install_tables'));
@@ -44,10 +46,10 @@ class ATQ {
 
         // Loading plugin resources for admin
         add_action('admin_head', array($this, 'register_admin_resources'));
-        
+
         // Loading plugin resources for front end
         add_action('wp_head', array($this, 'register_frontend_resources'));
-        
+
         // Allow redirection
         ob_start();
     }
@@ -87,24 +89,22 @@ class ATQ {
 
         echo '</div>';
     }
-    
 
     // Registering plugin admin resources
     function register_admin_resources() {
-        
+
         // Admin Stylesheet
         wp_register_style('atq-admin-style', plugins_url('african-tusk-quote/css/atq-admin-style.css'));
         wp_enqueue_style('atq-admin-style');
         wp_enqueue_style('thickbox');
-        
+
         // Admin JavaScript
         wp_register_script('atq-script-admin', plugins_url('african-tusk-quote/js/atq-script-admin.js'));
         wp_enqueue_script('atq-script-admin');
         wp_enqueue_script('media-upload');
         wp_enqueue_script('thickbox');
     }
-    
-    
+
     // Registering plugin front end resources
     public function register_frontend_resources() {
         // Stylesheet
@@ -165,11 +165,28 @@ class ATQ {
         ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
         ";
 
+        $products_table = "CREATE TABLE $this->products_tbl(
+         	prod_id INT(5) NOT NULL AUTO_INCREMENT,
+         	prod_unique_id VARCHAR(100) NOT NULL,
+         	prod_name VARCHAR(100) NOT NULL,
+         	prod_desc VARCHAR(100) NOT NULL,
+         	prod_price VARCHAR(100) NOT NULL,
+         	prod_image VARCHAR(100) NOT NULL,
+         	prod_code VARCHAR(100) NOT NULL,
+         	prod_cat VARCHAR(100) NOT NULL,
+         	prod_size VARCHAR(100) NOT NULL,
+         	prod_fab VARCHAR(100) NOT NULL,
+         	prod_sale VARCHAR(50) NOT NULL,
+         	prod_featured VARCHAR(50) NOT NULL,
+         	PRIMARY KEY(prod_id)
+         	) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
+
         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         dbDelta($fabrics_table);
         dbDelta($staff_member_table);
         dbDelta($clients_table);
         dbDelta($categories_table);
+        dbDelta($products_table);
     }
 
 }
