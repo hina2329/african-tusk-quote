@@ -44,6 +44,9 @@ class ATQ {
 
         // Loading plugin resources for admin
         add_action('admin_head', array($this, 'register_admin_resources'));
+        
+        // Loading plugin resources for front end
+        add_action('wp_head', array($this, 'register_frontend_resources'));
     }
 
     // WP Menu
@@ -81,13 +84,29 @@ class ATQ {
 
         echo '</div>';
     }
+    
 
     // Registering plugin admin resources
     function register_admin_resources() {
+        
         // Admin Stylesheet
         wp_register_style('atq-admin-style', plugins_url('african-tusk-quote/css/atq-admin-style.css'));
         wp_enqueue_style('atq-admin-style');
         wp_enqueue_style('thickbox');
+        
+        // Admin JavaScript
+        wp_register_script('atq-script-admin', plugins_url('african-tusk-quote/js/atq-script-admin.js'));
+        wp_enqueue_script('atq-script-admin');
+        wp_enqueue_script('media-upload');
+        wp_enqueue_script('thickbox');
+    }
+    
+    
+    // Registering plugin front end resources
+    public function register_frontend_resources() {
+        // Stylesheet
+        wp_register_style('atq-style', plugins_url('african-tusk-quote/css/atq-style.css'));
+        wp_enqueue_style('atq-style');
     }
 
     // Notifications
