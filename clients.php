@@ -13,9 +13,9 @@ class clients extends ATQ {
 	public function init() {
 		?>
 
-        <h1><?php echo get_admin_page_title();?> <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form');?>" class="page-title-action">Add New Clients</a></h1>
+        <h1><?php echo get_admin_page_title();?> <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form');?>" class="page-title-action">Add New Client</a></h1>
 
-        <?php $this->notify('clients');?>
+        <?php $this->notify('Clients');?>
 
         <table class="wp-list-table widefat fixed striped pages">
             <thead>
