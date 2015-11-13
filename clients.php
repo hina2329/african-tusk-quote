@@ -19,9 +19,8 @@ class clients extends ATQ {
                 <input type="search" id="search-input" name="s" value="">
                 <input type="submit" id="search-submit" class="button" value="Search Clients">
             </form>
-            </h1>
 
-        <h1><?php echo get_admin_page_title();?> <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form');?>" class="page-title-action">Add New Client</a></h1>
+        <?php echo get_admin_page_title();?> <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form');?>" class="page-title-action">Add New Client</a></h1>
 
         <?php $this->notify('Clients');?>
 
