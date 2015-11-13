@@ -19,6 +19,7 @@ class ATQ {
 	protected $fabric_tbl;
 	protected $clients_tbl;
 	protected $categories_tbl;
+	protected $products_tbl;
 
 	function __construct() {
 
@@ -34,6 +35,7 @@ class ATQ {
 		$this->fabrics_tbl = $this->wpdb->prefix . 'atq_fabrics';
 		$this->clients_tbl = $this->wpdb->prefix . 'atq_clients';
 		$this->categories_tbl = $this->wpdb->prefix . 'atq_categories';
+		$this->products_tbl = $this->wpdb->prefix . 'atq_products';
 
 		// Installing new tables in the database
 		add_action('plugins_loaded', array($this, 'install_tables'));
@@ -48,7 +50,7 @@ class ATQ {
 	// WP Menu
 	function atq_menu() {
 		add_menu_page('African Tusk Qoute', 'African Tusk Qoute', 'manage_options', 'atq_main', array($this, 'atq_main'), 'dashicons-format-aside');
-		add_submenu_page('atq_main', 'Products', 'Products', 'manage_options', 'atq_main', array($this, 'atq_main'));
+		add_submenu_page('atq_main', 'Products', 'Products', 'manage_options', 'products', array($this, 'atq_main'));
 		add_submenu_page('atq_main', 'Categories', 'Categories', 'manage_options', 'categories', array($this, 'atq_main'));
 		add_submenu_page('atq_main', ' Fabrics', 'Fabrics', 'manage_options', 'fabrics', array($this, 'atq_main'));
 		add_submenu_page('atq_main', 'Quotes', 'Quotes', 'manage_options', 'quotes', array($this, 'atq_main'));
@@ -87,6 +89,12 @@ class ATQ {
 		wp_register_style('atq-admin-style', plugins_url('african-tusk-quote/css/atq-admin-style.css'));
 		wp_enqueue_style('atq-admin-style');
 		wp_enqueue_style('thickbox');
+
+		// Admin JavaScript
+		wp_register_script('atq-script-admin', plugins_url('african-tusk-quote/js/atq-script-admin.js'));
+		wp_enqueue_script('atq-script-admin');
+		wp_enqueue_script('media-upload');
+		wp_enqueue_script('thickbox');
 	}
 
 	// Notifications
@@ -137,12 +145,28 @@ class ATQ {
             cat_name VARCHAR(100) NOT NULL,
             PRIMARY KEY (cat_id)
             ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
+		$products_table = "CREATE TABLE $this->products_tbl(
+         	prod_id INT(5) NOT NULL AUTO_INCREMENT,
+         	prod_unique_id VARCHAR(100) NOT NULL,
+         	prod_name VARCHAR(100) NOT NULL,
+         	prod_desc VARCHAR(100) NOT NULL,
+         	prod_price VARCHAR(100) NOT NULL,
+         	prod_image VARCHAR(100) NOT NULL,
+         	prod_code VARCHAR(100) NOT NULL,
+         	prod_cat VARCHAR(100) NOT NULL,
+         	prod_size VARCHAR(100) NOT NULL,
+         	prod_fab VARCHAR(100) NOT NULL,
+         	prod_sale VARCHAR(50) NOT NULL,
+         	prod_featured VARCHAR(50) NOT NULL,
+         	PRIMARY KEY(prod_id)
+         	) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
 
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		dbDelta($fabrics_table);
 		dbDelta($staff_member_table);
 		dbDelta($clients_table);
 		dbDelta($categories_table);
+		dbDelta($products_table);
 	}
 
 }
