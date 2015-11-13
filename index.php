@@ -17,7 +17,7 @@ class ATQ {
     protected $wpdb;
     protected $page;
     protected $staff_member_tbl;
-    protected $fabric_tbl;
+    protected $fabrics_tbl;
     protected $clients_tbl;
     protected $categories_tbl;
 
@@ -47,6 +47,9 @@ class ATQ {
         
         // Loading plugin resources for front end
         add_action('wp_head', array($this, 'register_frontend_resources'));
+        
+        // Allow redirection
+        ob_start();
     }
 
     // WP Menu

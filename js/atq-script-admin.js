@@ -14,17 +14,19 @@ jQuery(document).ready(function() {
     };
 
     // Add multi fabric fields
-    jQuery('.atq-plus-fields').click(function () {
-        var fieldset = jQuery('.atq-multi-fields-container .screen-reader-text').clone();
+    jQuery('.add-color').click(function () {
+        var fieldset = jQuery('#atq-wrap .screen-reader-text').clone();
         var cloned_fieldset = fieldset.removeClass('screen-reader-text');
-        jQuery('.atq-multi-fields-container').prepend(cloned_fieldset);
+        jQuery('.atq-multi-fields-container').append(cloned_fieldset);
 
         return false;
     });
     
     // Remove fields
-    jQuery('.atq-no-fields').live('click', function(){
+    jQuery('.remove-color').live('click', function(){
         jQuery(this).parent('.fab-color').remove();
+        
+        return false;
     });
     
 });
