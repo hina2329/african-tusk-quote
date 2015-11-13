@@ -1,4 +1,5 @@
 <?php
+
 /*
 Plugin Name: African Tusk Quote
 Plugin URI: https://www.freelancer.com/u/hina2329.html
@@ -45,12 +46,15 @@ class ATQ {
 
 		// Loading plugin resources for admin
 		add_action('admin_head', array($this, 'register_admin_resources'));
+
+		// Loading plugin resources for front end
+		add_action('wp_head', array($this, 'register_frontend_resources'));
 	}
 
 	// WP Menu
 	function atq_menu() {
 		add_menu_page('African Tusk Qoute', 'African Tusk Qoute', 'manage_options', 'atq_main', array($this, 'atq_main'), 'dashicons-format-aside');
-		add_submenu_page('atq_main', 'Products', 'Products', 'manage_options', 'products', array($this, 'atq_main'));
+		add_submenu_page('atq_main', 'Products', 'Products', 'manage_options', 'atq_main', array($this, 'atq_main'));
 		add_submenu_page('atq_main', 'Categories', 'Categories', 'manage_options', 'categories', array($this, 'atq_main'));
 		add_submenu_page('atq_main', ' Fabrics', 'Fabrics', 'manage_options', 'fabrics', array($this, 'atq_main'));
 		add_submenu_page('atq_main', 'Quotes', 'Quotes', 'manage_options', 'quotes', array($this, 'atq_main'));
@@ -85,6 +89,7 @@ class ATQ {
 
 	// Registering plugin admin resources
 	function register_admin_resources() {
+
 		// Admin Stylesheet
 		wp_register_style('atq-admin-style', plugins_url('african-tusk-quote/css/atq-admin-style.css'));
 		wp_enqueue_style('atq-admin-style');
@@ -95,6 +100,13 @@ class ATQ {
 		wp_enqueue_script('atq-script-admin');
 		wp_enqueue_script('media-upload');
 		wp_enqueue_script('thickbox');
+	}
+
+	// Registering plugin front end resources
+	public function register_frontend_resources() {
+		// Stylesheet
+		wp_register_style('atq-style', plugins_url('african-tusk-quote/css/atq-style.css'));
+		wp_enqueue_style('atq-style');
 	}
 
 	// Notifications
@@ -113,38 +125,43 @@ class ATQ {
 
 		// Queries to create tables
 		$fabrics_table = "CREATE TABLE $this->fabrics_tbl (
-            fab_id INT(5) NOT NULL AUTO_INCREMENT,
-            fab_name VARCHAR(100) NOT NULL,
-            fab_suffix VARCHAR(100) NOT NULL,
-            fab_colors VARCHAR(500) NOT NULL,
-            PRIMARY KEY (fab_id)
-            ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
+        fab_id INT(5) NOT NULL AUTO_INCREMENT,
+        fab_name VARCHAR(100) NOT NULL,
+        fab_suffix VARCHAR(100) NOT NULL,
+        fab_colors VARCHAR(500) NULL,
+        PRIMARY KEY (fab_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
+        ";
 
 		$staff_member_table = "CREATE TABLE $this->staff_member_tbl (
-            staff_id INT(5) NOT NULL AUTO_INCREMENT,
-            staff_name VARCHAR(100) NOT NULL,
-            staff_email VARCHAR(100) NOT NULL,
-            staff_position VARCHAR(100) NOT NULL,
-            staff_contactno VARCHAR(100) NOT NULL,
-            PRIMARY KEY (staff_id)
-            ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
+        staff_id INT(5) NOT NULL AUTO_INCREMENT,
+        staff_name VARCHAR(100) NOT NULL,
+        staff_email VARCHAR(100) NOT NULL,
+        staff_position VARCHAR(100) NOT NULL,
+        staff_contactno VARCHAR(100) NOT NULL,
+        PRIMARY KEY (staff_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
+        ";
 
 		$clients_table = "CREATE TABLE $this->clients_tbl (
-            client_id INT(5) NOT NULL AUTO_INCREMENT,
-            client_fname VARCHAR(100) NOT NULL,
-            client_lname VARCHAR(100) NOT NULL,
-            client_email VARCHAR(100) NOT NULL,
-            client_contactno VARCHAR(100) NOT NULL,
-            client_cellno VARCHAR(100) NOT NULL,
-            client_companyname VARCHAR(100) NOT NULL,
-            PRIMARY KEY (client_id)
-            ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
+        client_id INT(5) NOT NULL AUTO_INCREMENT,
+        client_fname VARCHAR(100) NOT NULL,
+        client_lname VARCHAR(100) NOT NULL,
+        client_email VARCHAR(100) NOT NULL,
+        client_contactno VARCHAR(100) NOT NULL,
+        client_cellno VARCHAR(100) NOT NULL,
+        client_companyname VARCHAR(100) NOT NULL,
+        PRIMARY KEY (client_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
+        ";
 
 		$categories_table = "CREATE TABLE $this->categories_tbl (
-            cat_id INT(5) NOT NULL AUTO_INCREMENT,
-            cat_name VARCHAR(100) NOT NULL,
-            PRIMARY KEY (cat_id)
-            ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
+        cat_id INT(5) NOT NULL AUTO_INCREMENT,
+        cat_name VARCHAR(100) NOT NULL,
+        PRIMARY KEY (cat_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
+        ";
+
 		$products_table = "CREATE TABLE $this->products_tbl(
          	prod_id INT(5) NOT NULL AUTO_INCREMENT,
          	prod_unique_id VARCHAR(100) NOT NULL,

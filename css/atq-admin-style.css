@@ -49,23 +49,26 @@
     text-decoration: none;
     margin: 0 5px;
 }
-/*.hq-pager a.active-page {
-    background: #0073AA;
-    color: #fff;
-}*/
-@media print {
-    body, .actions a {
-        visibility: hidden;
-    }
-    #adminmenumain {
-        display: none;
-    }
-    #wpcontent, #wpfooter {
-        margin-left: 0;
-    }
-    .print-this {
-        visibility: visible;
-        width: 100%;
-        margin: -0.9in 0 0 0;
-    }
+.fab-color {
+    position: relative;
+    margin-bottom: 20px;
+}
+.atq-plus-fields,
+.atq-no-fields {
+    position: absolute;
+    right: -15px;
+    top: 22px;
+    text-decoration: none;
+}
+.atq-plus-fields,
+.atq-plus-fields:hover,
+.atq-plus-fields:focus {
+    color: #3BC405;
+    box-shadow: none;
+}
+.atq-no-fields,
+.atq-no-fields:hover,
+.atq-no-fields:focus {
+    color: red;
+    box-shadow: none;
 }
