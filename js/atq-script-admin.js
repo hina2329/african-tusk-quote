@@ -3,6 +3,8 @@ jQuery(document).ready(function() {
     // Image upload field for products
     jQuery('.upload_image_button').live('click', function() {
         formfield = jQuery(this).prev('.fab_img');
+        f= jQuery(this).prev('#prod_image');
+
         tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
         return false;
     });
@@ -10,6 +12,7 @@ jQuery(document).ready(function() {
     window.send_to_editor = function (html) {
         imgurl = jQuery('img', html).attr('src');
         jQuery(formfield).val(imgurl);
+        jQuery(f).val(imgurl);
         tb_remove();
     };
 

@@ -30,7 +30,7 @@ class products extends ATQ {
             <tbody id="the-list">
 
                 <?php
-// Getting products & categories
+// Getting products & categories & fabric types
 		$results = $this->wpdb->get_results("SELECT prod.*, cat.*, fab.*  FROM $this->products_tbl AS prod INNER JOIN $this->categories_tbl AS cat ON prod.prod_cat = cat.cat_id INNER JOIN $this->fabrics_tbl AS fab ON prod.prod_fab= fab.fab_id");
 
 		if ($results) {
@@ -96,7 +96,7 @@ class products extends ATQ {
                  <div class="form-field">
                     <label for="prod_image">Image <span>*</span></label><br>
                     <input name="prod_image" id="prod_image" type="text" size="20"  value="<?php echo $row->prod_image;?>" required>
-                    <input id="upload_image_button" type="button" value="Upload Image">
+                    <input class="upload_image_button" type="button" value="Upload Image">
                 </div>
                 <div class="form-field">
                     <label for="prod_code">Code<span>*</span></label><br>
