@@ -45,8 +45,8 @@ class products extends ATQ {
 
                             <td><?php echo $row->prod_code;?></td>
                             <td><?php echo $row->prod_name;?></td>
-                            <td><?php echo $row->prod_cat;?></td>
-                            <td><?php echo $row->prod_fab;?></td>
+                            <td><?php echo $row->cat_name;?></td>
+                            <td><?php echo $row->fab_name;?></td>
                             <td class="actions">
                                 <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->prod_id);?>" class="dashicons-before dashicons-edit" title="Edit"></a>
                                 <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $row->prod_id);?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
@@ -142,7 +142,7 @@ class products extends ATQ {
 
 			selected($fab->fab_id, $row->fab_id);
 
-			echo '>' . $fab->fab_suffix . '</option>';
+			echo '>' . $fab->fab_name . '</option>';
 		}
 		?>
                     </select>
@@ -150,11 +150,11 @@ class products extends ATQ {
 
                 <div class="form-field">
                     <label for="prod_featured">Featured <span>*</span></label>
-                    <input name="prod_featured" id="prod_featured" type="radio" value="1" >
+                    <input name="prod_featured" id="prod_featured" type="checkbox"  value="1" >
                 </div>
                 <div class="form-field">
                     <label for="prod_sale">Sale <span>*</span></label>
-                    <input name="prod_sale" id="prod_sale" type="radio" value="1" >
+                    <input name="prod_sale" id="prod_sale" type="checkbox"  value="1" >
                 </div>
                 <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Product' : 'Add New Product';?>"></p>
             </form>
