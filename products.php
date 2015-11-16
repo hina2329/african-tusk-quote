@@ -107,8 +107,8 @@ class products extends ATQ {
                     </div>
                     <div class="form-field">
                         <label for="prod_cat">Category <span>*</span></label><br>
-                        <select name="prod_cat" id="prod_cat" required>
-                            <option value="">Please select...</option>
+                        <small style="line-height: 1em !important;">Hold down the Ctrl (windows) / Command (Mac) button to select multiple categories.</small><br>
+                        <select name="prod_cat[]" id="prod_cat" multiple required>
                             <?php
                             // Getting categories list
                             $cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl");
@@ -124,7 +124,6 @@ class products extends ATQ {
                             ?>
                         </select>
                     </div>
-
 
                     <div class="form-field">
                         <label for="prod_size">Size<span>*</span></label><br>
@@ -178,21 +177,25 @@ class products extends ATQ {
         $prod_fab = filter_input(INPUT_POST, 'prod_fab');
         $prod_featured = filter_input(INPUT_POST, 'prod_featured');
         $prod_sale = filter_input(INPUT_POST, 'prod_sale');
-
-        if (!empty($id)) {
-
-            $this->wpdb->update($this->products_tbl, array('prod_name' => $prod_name, 'prod_desc' => $prod_desc, 'prod_price' => $prod_price, 'prod_image' => $prod_image, 'prod_code' => $prod_code, 'prod_cat' => $prod_cat, 'prod_size' => $prod_size, 'prod_fab' => $prod_fab, 'prod_featured' => $prod_featured, 'prod_sale' => $prod_sale), array('prod_id' => $id));
-
-            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
-
-            exit;
-        } else {
-
-            $this->wpdb->insert($this->products_tbl, array('prod_name' => $prod_name, 'prod_desc' => $prod_desc, 'prod_price' => $prod_price, 'prod_image' => $prod_image, 'prod_code' => $prod_code, 'prod_cat' => $prod_cat, 'prod_size' => $prod_size, 'prod_fab' => $prod_fab, 'prod_featured' => $prod_featured, 'prod_sale' => $prod_sale));
-            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
-
-            exit;
-        }
+        
+        echo '<pre>';
+        print_r($prod_cat);
+        echo '</pre>';
+        
+//        if (!empty($id)) {
+//
+//            $this->wpdb->update($this->products_tbl, array('prod_name' => $prod_name, 'prod_desc' => $prod_desc, 'prod_price' => $prod_price, 'prod_image' => $prod_image, 'prod_code' => $prod_code, 'prod_cat' => $prod_cat, 'prod_size' => $prod_size, 'prod_fab' => $prod_fab, 'prod_featured' => $prod_featured, 'prod_sale' => $prod_sale), array('prod_id' => $id));
+//
+//            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
+//
+//            exit;
+//        } else {
+//
+//            $this->wpdb->insert($this->products_tbl, array('prod_name' => $prod_name, 'prod_desc' => $prod_desc, 'prod_price' => $prod_price, 'prod_image' => $prod_image, 'prod_code' => $prod_code, 'prod_cat' => $prod_cat, 'prod_size' => $prod_size, 'prod_fab' => $prod_fab, 'prod_featured' => $prod_featured, 'prod_sale' => $prod_sale));
+//            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
+//
+//            exit;
+//        }
     }
 
     // Delete product
