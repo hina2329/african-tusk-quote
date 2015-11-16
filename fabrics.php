@@ -46,9 +46,9 @@ class fabrics extends ATQ {
                             <td>
                                 <?php
                                 $fab_colors = unserialize($row->fab_colors);
-                                $color_count = count($fab_colors['fab_colors']);
+                                $color_count = count($fab_colors);
                                 for ($i = 0; $i < $color_count; $i++) {
-                                    echo $fab_colors['fab_colors'][$i];
+                                    echo $fab_colors[$i]['fab_color'];
                                     if (($i + 1) != $color_count) {
                                         echo ', ';
                                     }
@@ -113,14 +113,14 @@ class fabrics extends ATQ {
                                     <input name="fab_img[]" class="fab_img" type="text" value="<?php echo $color['fab_img']; ?>" placeholder="Fabric Thumbnail">
                                     <input class="upload_image_button" type="button" value="Upload Image"><a href="#" class="btn-color remove-color">X remove</a>
                                 </div>
-                            <?php
+                                <?php
                             }
                         }
                         ?> 
 
                     </div>
                 </div>
-                <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Edit Fabric' : 'Add New Fabric'; ?>"></p>
+                <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Fabric' : 'Add New Fabric'; ?>"></p>
             </form>
             <div class="fab-color screen-reader-text">
                 <input name="fab_color[]" class="fab_color" type="text" value="" placeholder="Fabric Color Name">
@@ -139,10 +139,15 @@ class fabrics extends ATQ {
         $id = filter_input(INPUT_POST, 'fab_id');
         $fab_name = filter_input(INPUT_POST, 'fab_name');
         $fab_suffix = filter_input(INPUT_POST, 'fab_suffix');
-        $fab_colors_raw = array(
-            'fab_colors' => filter_input(INPUT_POST, 'fab_color', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY),
-            'fab_img' => filter_input(INPUT_POST, 'fab_img', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY)
-        );
+        $fab_colors_count = count(filter_input(INPUT_POST, 'fab_color', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY));
+        $fab_colors_raw = [];
+        for ($i = 0; $i < $fab_colors_count; $i++) {
+            $fab_colors_raw[$i] = [
+                'fab_color' => $_POST['fab_color'][$i],
+                'fab_img' => $_POST['fab_img'][$i]
+            ];
+        }
+
         $fab_colors = serialize($fab_colors_raw);
 
         if (!empty($id)) {
@@ -155,12 +160,11 @@ class fabrics extends ATQ {
 
             $this->wpdb->insert($this->fabrics_tbl, array('fab_name' => $fab_name, 'fab_suffix' => $fab_suffix, 'fab_colors' => $fab_colors));
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
-            
+
             exit;
         }
     }
-    
-    
+
     // Delete fabric
     public function del() {
 

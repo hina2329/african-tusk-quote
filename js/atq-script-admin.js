@@ -1,14 +1,14 @@
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
 
     // Image upload field for fabric and products
-    jQuery('.upload_image_button').live('click', function() {
+    jQuery('.upload_image_button').live('click', function () {
         formfield = jQuery(this).prev('.fab_img');
-        formfield_product= jQuery(this).prev('#prod_image');
+        formfield_product = jQuery(this).prev('#prod_image');
 
         tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
         return false;
     });
-    
+
     window.send_to_editor = function (html) {
         imgurl = jQuery('img', html).attr('src');
         jQuery(formfield).val(imgurl);
@@ -24,12 +24,12 @@ jQuery(document).ready(function() {
 
         return false;
     });
-    
+
     // Remove fields
-    jQuery('.remove-color').live('click', function(){
+    jQuery('.remove-color').live('click', function () {
         jQuery(this).parent('.fab-color').remove();
-        
+
         return false;
     });
-    
+
 });
