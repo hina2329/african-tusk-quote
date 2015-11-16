@@ -127,13 +127,25 @@ class products extends ATQ {
 
 
                     <div class="form-field">
-                        <label for="prod_size">Size<span>*</span></label>
+                        <label for="prod_size">Size<span>*</span></label><br>
                         <input name="prod_size" id="prod_size" type="text" value="<?php echo $row->prod_size; ?>" class="small-text" required>
                     </div>
 
                     <div class="form-field">
-                        <label for="prod_fab">Fabric Type<span>*</span></label>
-                        <input name="prod_fab" id="prod_fab" type="text" value="<?php echo $row->prod_fab; ?>" class="small-text" required>
+                        <label for="prod_fab">Fabric Type<span>*</span></label><br>
+                        <select name="prod_fab" id="prod_fab" required>
+                        <?php
+                        // Getting fabrics list
+                        $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
+
+                        // Listing all fabrics
+                        foreach ($fabs as $fab) {
+                            ?>
+                        <option value=" <?php echo $fab->fab_id; ?>" <?php selected($fab->fab_id, $row->prod_fab); ?>><?php echo $fab->fab_suffix; ?></option>
+                            <?php
+                        }
+                        ?>
+                        </select>
                     </div>
 
                     <div class="form-field">
