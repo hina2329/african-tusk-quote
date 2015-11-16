@@ -5,6 +5,9 @@
 #atq-wrap input[type=text] {
     width: 100%;
 }
+#atq-wrap input.small-text {
+    width: 30%;
+}
 #atq-wrap h1 {
     margin-bottom: 10px;
 }

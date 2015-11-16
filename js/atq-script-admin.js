@@ -3,7 +3,7 @@ jQuery(document).ready(function () {
     // Image upload field for fabric and products
     jQuery('.upload_image_button').live('click', function () {
         formfield = jQuery(this).prev('.fab_img');
-        formfield_product = jQuery(this).prev('#prod_image');
+        formfield_product = jQuery(this).prev('.prod_image');
 
         tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
         return false;

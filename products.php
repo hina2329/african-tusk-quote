@@ -30,8 +30,10 @@ class products extends ATQ {
             <tbody id="the-list">
 
                 <?php
-// Getting products & categories & fabric types
-                $results = $this->wpdb->get_results("SELECT prod.*, cat.*, fab.*  FROM $this->products_tbl AS prod INNER JOIN $this->categories_tbl AS cat ON prod.prod_cat = cat.cat_id INNER JOIN $this->fabrics_tbl AS fab ON prod.prod_fab= fab.fab_id");
+                // Getting products & categories & fabric types
+                $results = $this->wpdb->get_results("SELECT prod.*, cat.*, fab.*  FROM $this->products_tbl AS prod "
+                        . "INNER JOIN $this->categories_tbl AS cat ON prod.prod_cat = cat.cat_id "
+                        . "INNER JOIN $this->fabrics_tbl AS fab ON prod.prod_fab = fab.fab_id");
 
                 if ($results) {
 
@@ -96,19 +98,19 @@ class products extends ATQ {
                     </div>
                     <div class="form-field">
                         <label for="prod_image">Image <span>*</span></label><br>
-                        <input name="prod_image" id="prod_image" type="text" size="20"  value="<?php echo $row->prod_image; ?>" required>
+                        <input name="prod_image" class="prod_image" type="text" size="20"  value="<?php echo $row->prod_image; ?>" required>
                         <input class="upload_image_button" type="button" value="Upload Image">
                     </div>
                     <div class="form-field">
                         <label for="prod_code">Code<span>*</span></label><br>
-                        <input name="prod_code" id="prod_code" type="text" value="<?php echo $row->prod_code; ?>" required>
+                        <input name="prod_code" id="prod_code" type="text" value="<?php echo $row->prod_code; ?>" class="small-text" required>
                     </div>
                     <div class="form-field">
                         <label for="prod_cat">Category <span>*</span></label><br>
                         <select name="prod_cat" id="prod_cat" required>
                             <option value="">Please select...</option>
                             <?php
-// Getting categories list
+                            // Getting categories list
                             $cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl");
 
                             // Listing all categories
@@ -126,24 +128,17 @@ class products extends ATQ {
 
                     <div class="form-field">
                         <label for="prod_size">Size<span>*</span></label>
-                        <input name="prod_size" id="prod_size" type="text" value="<?php echo $row->prod_size; ?>" required>
+                        <input name="prod_size" id="prod_size" type="text" value="<?php echo $row->prod_size; ?>" class="small-text" required>
                     </div>
 
                     <div class="form-field">
                         <label for="prod_fab">Fabric Type<span>*</span></label>
-                        <input name="prod_fab" id="prod_fab" type="text" value="<?php echo $row->prod_fab; ?>" required>
+                        <input name="prod_fab" id="prod_fab" type="text" value="<?php echo $row->prod_fab; ?>" class="small-text" required>
                     </div>
 
                     <div class="form-field">
                         <label for="prod_featured">Mark this product as Featured: </label>
-
-                        <?php
-                        if ($row->prod_featured & $row->prod_sale) {
-                            $check = 'checked';
-                        }
-                        ?>
-
-                        <input name="prod_featured" id="prod_featured" type="checkbox" value="1" <?php echo $check; ?>>
+                        <input name="prod_featured" id="prod_featured" type="checkbox" value="1" <?php checked($row->prod_featured, '1'); ?>>
                     </div>
                     <div class="form-field">
                         <label for="prod_sale">Mark this product as Sale Product: </label>
