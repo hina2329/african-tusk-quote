@@ -142,7 +142,7 @@ class products extends ATQ {
                     </div>
                     <div class="form-field">
                         <label for="prod_sale">Mark this product as Sale Product: </label>
-                        <input name="prod_sale" id="prod_sale" type="checkbox"  value="1" <?php echo $check; ?> >
+                        <input name="prod_sale" id="prod_sale" type="checkbox"  value="1" <?php checked($row->prod_sale, '1'); ?>>
                     </div>
                     <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Product' : 'Add New Product'; ?>"></p>
             </form>

@@ -175,8 +175,8 @@ class ATQ {
         prod_cat VARCHAR(100) NOT NULL,
         prod_size VARCHAR(100) NOT NULL,
         prod_fab INT(5) NOT NULL,
-        prod_sale VARCHAR(50) NOT NULL,
-        prod_featured VARCHAR(50) NOT NULL,
+        prod_sale INT(1) NOT NULL,
+        prod_featured INT(1) NOT NULL,
         PRIMARY KEY(prod_id)
         ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
 
