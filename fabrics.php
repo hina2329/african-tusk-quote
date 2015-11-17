@@ -100,7 +100,7 @@ class fabrics extends ATQ {
                     <input name="fab_suffix" id="fab_suffix" type="text" value="<?php echo $row->fab_suffix; ?>" required>
                 </div>
                 <div class="form-field">
-                    <label>Fabric Colors <a href="#" class="btn-color add-color">+ Add Color</a></label>
+                    <label>Fabric Colors <a href="#" class="btn-fields add-fields">+ Add Color</a></label>
                     <div class="atq-multi-fields-container">
 
                        <?php
@@ -108,10 +108,10 @@ class fabrics extends ATQ {
                            $fab_colors = unserialize($row->fab_colors);
                          foreach ($fab_colors as $color) {
                                 ?>
-                                <div class="fab-color">
+                                <div class="multi-fields">
                                     <input name="fab_color[]" class="fab_color" type="text" value="<?php echo $color['fab_color']; ?>" placeholder="Fabric Color Name">
                                     <input name="fab_img[]" class="fab_img" type="text" value="<?php echo $color['fab_img']; ?>" placeholder="Fabric Thumbnail">
-                                    <input class="upload_image_button" type="button" value="Upload Image"><a href="#" class="btn-color remove-color">X remove</a>
+                                    <input class="upload_image_button" type="button" value="Upload Image"><a href="#" class="btn-fields remove-fields">X remove</a>
                                 </div>
                                 <?php
                             }
@@ -122,11 +122,13 @@ class fabrics extends ATQ {
                 </div>
                 <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Fabric' : 'Add New Fabric'; ?>"></p>
             </form>
-            <div class="fab-color screen-reader-text">
+            <!-- CLONE MULTIPLE FIELDS -->
+            <div class="multi-fields screen-reader-text">
                 <input name="fab_color[]" class="fab_color" type="text" value="" placeholder="Fabric Color Name">
                 <input name="fab_img[]" class="fab_img" type="text" value="" placeholder="Fabric Thumbnail">
-                <input class="upload_image_button" type="button" value="Upload Image"><a href="#" class="btn-color remove-color">X remove</a>
+                <input class="upload_image_button" type="button" value="Upload Image"><a href="#" class="btn-fields remove-fields">X remove</a>
             </div>
+            <!-- CLONE MULTIPLE FIELDS -->
         </div>
 
         <?php

@@ -17,7 +17,7 @@ jQuery(document).ready(function () {
     };
 
     // Add multi fabric fields
-    jQuery('.add-color').click(function () {
+    jQuery('.add-fields').click(function () {
         var fieldset = jQuery('#atq-wrap .screen-reader-text').clone();
         var cloned_fieldset = fieldset.removeClass('screen-reader-text');
         jQuery('.atq-multi-fields-container').append(cloned_fieldset);
@@ -26,8 +26,8 @@ jQuery(document).ready(function () {
     });
 
     // Remove fields
-    jQuery('.remove-color').live('click', function () {
-        jQuery(this).parent('.fab-color').remove();
+    jQuery('.remove-fields').live('click', function () {
+        jQuery(this).parent('.multi-fields').remove();
 
         return false;
     });
