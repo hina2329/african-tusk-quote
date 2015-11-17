@@ -27,7 +27,7 @@ class clients extends ATQ {
         <table class="wp-list-table widefat fixed striped pages">
             <thead>
                 <tr>
-                    <th width="15%"> First Name</th>
+                    <th width="15%">First Name</th>
                     <th width="15%">Lat Name</th>
                     <th width="15%">Email</th>
                     <th width="15%">Contact No</th>
@@ -95,7 +95,7 @@ class clients extends ATQ {
             <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save');?>">
                 <input type="hidden" name="client_id" value="<?php echo $id;?>">
                 <div class="form-field">
-                    <label for="client_fname"> FirstName <span>*</span></label><br>
+                    <label for="client_fname">First Name <span>*</span></label><br>
                     <input name="client_fname" id="client_fname" type="text" value="<?php echo $row->client_fname;?>" required>
                 </div>
                 <div class="form-field">
