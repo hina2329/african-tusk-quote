@@ -55,13 +55,13 @@
     text-decoration: none;
     margin: 0 5px;
 }
-.fab-color {
+.multi-fields {
     position: relative;
     margin-top: 10px;
     border: #CCC 2px solid;
     padding: 10px;
 }
-.fab-color.screen-reader-text {
+.multi-fields.screen-reader-text {
     padding: 0;
     border: 0;
 }
@@ -82,7 +82,7 @@
     color: red;
     box-shadow: none;
 }
-.btn-color {
+.btn-fields {
     font-weight: bold;
     float: right;
     text-transform: uppercase;
@@ -92,13 +92,13 @@
     font-size: 11px;
     padding: 0 5px;
 }
-.btn-color:focus {
+.btn-fields:focus {
     box-shadow: none;
 }
-.add-color {
+.add-fields {
     background: #45BF03;
 }
-.remove-color {
+.remove-fields {
     margin: 10px 0 0;
     background: red;
 }

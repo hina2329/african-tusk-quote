@@ -170,7 +170,7 @@ class ATQ {
         prod_name VARCHAR(100) NOT NULL,
         prod_desc VARCHAR(100) NOT NULL,
         prod_price VARCHAR(100) NOT NULL,
-        prod_image VARCHAR(100) NOT NULL,
+        prod_images VARCHAR(100) NOT NULL,
         prod_code VARCHAR(100) NOT NULL,
         prod_cat VARCHAR(100) NOT NULL,
         prod_size VARCHAR(100) NOT NULL,
