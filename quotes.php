@@ -51,13 +51,11 @@ class quotes extends ATQ {
                     <div class="form-field">
                     <select name="qoute_staff" id="qoute_staff"  required>
                         <?php
-                        
-                        
 
                         // Getting staff members list
                         $staffs= $this->wpdb->get_results("SELECT * FROM $this->staff_member_tbl");
 
-                        // Listing all categories
+                        // Listing all staff members
                         foreach ($staffs as $staff) {
                             echo '<option value="' . $staff->staff_id . '" ';
                             
