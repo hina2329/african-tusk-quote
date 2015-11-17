@@ -31,9 +31,11 @@ class products extends ATQ {
 
                 <?php
                 // Getting products & categories & fabric types
-                $results = $this->wpdb->get_results("SELECT prod.*, cat.*, fab.*  FROM $this->products_tbl AS prod "
-                        . "INNER JOIN $this->categories_tbl AS cat ON prod.prod_cat = cat.cat_id "
-                        . "INNER JOIN $this->fabrics_tbl AS fab ON prod.prod_fab = fab.fab_id");
+                
+
+                $results = $this->wpdb->get_results("SELECT prod.*, fab.*  FROM $this->products_tbl AS prod "
+
+                    . "INNER JOIN $this->fabrics_tbl AS fab ON prod.prod_fab = fab.fab_id");
 
                 if ($results) {
 
@@ -47,8 +49,22 @@ class products extends ATQ {
 
                             <td><?php echo $row->prod_code; ?></td>
                             <td><?php echo $row->prod_name; ?></td>
-                            <td><?php echo $row->cat_name; ?></td>
+                            <td><?php
+                               $prod_cats = unserialize($row->prod_cat);
+
+                               $cat_count = count($prod_cats);
+                               for ($i = 0; $i < $cat_count; $i++) {
+                                   $cat = $this->wpdb->get_row("SELECT *  FROM $this->categories_tbl WHERE cat_id = $prod_cats[$i] ");
+                                    echo $cat->cat_name;
+                                    if (($i + 1) != $cat_count) {
+                                        echo ', ';
+                                    }
+                                } 
+
+
+                            ?></td>
                             <td><?php echo $row->fab_name; ?></td>
+
                             <td class="actions">
                                 <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->prod_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
                                 <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $row->prod_id); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
@@ -64,6 +80,7 @@ class products extends ATQ {
                     <?php
                 }
                 ?>
+
 
             </tbody>
 
@@ -96,11 +113,13 @@ class products extends ATQ {
                         <label for="prod_price">Price<span>*</span></label><br>
                         $ <input name="prod_price" id="prod_price" type="text" value="<?php echo $row->prod_price; ?>" class="small-text" required>
                     </div>
+
                     <div class="form-field">
+                    
                         <label for="prod_image">Image <span>*</span></label><br>
-                        <input name="prod_image" class="prod_image" type="text" size="20"  value="<?php echo $row->prod_image; ?>" required>
+                        <input name="prod_image" class="prod_image" type="text" size="20"   required>
                         <input class="upload_image_button" type="button" value="Upload Image">
-                    </div>
+                        </div>
                     <div class="form-field">
                         <label for="prod_code">Code<span>*</span></label><br>
                         <input name="prod_code" id="prod_code" type="text" value="<?php echo $row->prod_code; ?>" class="small-text" required>
@@ -133,17 +152,17 @@ class products extends ATQ {
                     <div class="form-field">
                         <label for="prod_fab">Fabric Type<span>*</span></label><br>
                         <select name="prod_fab" id="prod_fab" required>
-                        <?php
+                            <?php
                         // Getting fabrics list
-                        $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
+                            $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
 
                         // Listing all fabrics
-                        foreach ($fabs as $fab) {
+                            foreach ($fabs as $fab) {
+                                ?>
+                                <option value=" <?php echo $fab->fab_id; ?>" <?php selected($fab->fab_id, $row->prod_fab); ?>><?php echo $fab->fab_suffix; ?></option>
+                                <?php
+                            }
                             ?>
-                        <option value=" <?php echo $fab->fab_id; ?>" <?php selected($fab->fab_id, $row->prod_fab); ?>><?php echo $fab->fab_suffix; ?></option>
-                            <?php
-                        }
-                        ?>
                         </select>
                     </div>
 
@@ -156,50 +175,52 @@ class products extends ATQ {
                         <input name="prod_sale" id="prod_sale" type="checkbox"  value="1" <?php checked($row->prod_sale, '1'); ?>>
                     </div>
                     <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Product' : 'Add New Product'; ?>"></p>
-            </form>
-        </div>
+                </form>
+            </div>
 
-        <?php
-    }
+            <?php
+        }
 
 // Save product
-    public function save() {
+        public function save() {
 
         // Getting submitted data
-        $id = filter_input(INPUT_POST, 'prod_id');
-        $prod_name = filter_input(INPUT_POST, 'prod_name', FILTER_SANITIZE_STRING);
-        $prod_desc = filter_input(INPUT_POST, 'prod_desc', FILTER_SANITIZE_STRING);
-        $prod_price = filter_input(INPUT_POST, 'prod_price');
-        $prod_image = filter_input(INPUT_POST, 'prod_image', FILTER_SANITIZE_STRING);
-        $prod_code = filter_input(INPUT_POST, 'prod_code', FILTER_SANITIZE_STRING);
-        $prod_cat = filter_input(INPUT_POST, 'prod_cat');
-        $prod_size = filter_input(INPUT_POST, 'prod_size', FILTER_SANITIZE_STRING);
-        $prod_fab = filter_input(INPUT_POST, 'prod_fab');
-        $prod_featured = filter_input(INPUT_POST, 'prod_featured');
-        $prod_sale = filter_input(INPUT_POST, 'prod_sale');
-        
-        echo '<pre>';
-        print_r($prod_cat);
-        echo '</pre>';
-        
-//        if (!empty($id)) {
-//
-//            $this->wpdb->update($this->products_tbl, array('prod_name' => $prod_name, 'prod_desc' => $prod_desc, 'prod_price' => $prod_price, 'prod_image' => $prod_image, 'prod_code' => $prod_code, 'prod_cat' => $prod_cat, 'prod_size' => $prod_size, 'prod_fab' => $prod_fab, 'prod_featured' => $prod_featured, 'prod_sale' => $prod_sale), array('prod_id' => $id));
-//
-//            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
-//
-//            exit;
-//        } else {
-//
-//            $this->wpdb->insert($this->products_tbl, array('prod_name' => $prod_name, 'prod_desc' => $prod_desc, 'prod_price' => $prod_price, 'prod_image' => $prod_image, 'prod_code' => $prod_code, 'prod_cat' => $prod_cat, 'prod_size' => $prod_size, 'prod_fab' => $prod_fab, 'prod_featured' => $prod_featured, 'prod_sale' => $prod_sale));
-//            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
-//
-//            exit;
-//        }
-    }
+            $id = filter_input(INPUT_POST, 'prod_id');
+            $prod_name = filter_input(INPUT_POST, 'prod_name', FILTER_SANITIZE_STRING);
+            $prod_desc = filter_input(INPUT_POST, 'prod_desc', FILTER_SANITIZE_STRING);
+            $prod_price = filter_input(INPUT_POST, 'prod_price');
+            $prod_image = filter_input(INPUT_POST, 'prod_image', FILTER_SANITIZE_STRING);
+            $prod_code = filter_input(INPUT_POST, 'prod_code', FILTER_SANITIZE_STRING);
+            $prod_cat_arr = filter_input(INPUT_POST, 'prod_cat', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+            $prod_size = filter_input(INPUT_POST, 'prod_size', FILTER_SANITIZE_STRING);
+            $prod_fab = filter_input(INPUT_POST, 'prod_fab');
+            $prod_featured = filter_input(INPUT_POST, 'prod_featured');
+            $prod_sale = filter_input(INPUT_POST, 'prod_sale');
+
+
+            $prod_cat = serialize($prod_cat_arr);
+
+
+
+
+            if (!empty($id)) {
+
+             $this->wpdb->update($this->products_tbl, array('prod_name' => $prod_name, 'prod_desc' => $prod_desc, 'prod_price' => $prod_price, 'prod_image' => $prod_image, 'prod_code' => $prod_code, 'prod_cat' => $prod_cat, 'prod_size' => $prod_size, 'prod_fab' => $prod_fab, 'prod_featured' => $prod_featured, 'prod_sale' => $prod_sale), array('prod_id' => $id));
+
+             wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
+
+             exit;
+         } else {
+
+             $this->wpdb->insert($this->products_tbl, array('prod_name' => $prod_name, 'prod_desc' => $prod_desc, 'prod_price' => $prod_price, 'prod_image' => $prod_image, 'prod_code' => $prod_code, 'prod_cat' => $prod_cat, 'prod_size' => $prod_size, 'prod_fab' => $prod_fab, 'prod_featured' => $prod_featured, 'prod_sale' => $prod_sale));
+             wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
+
+             exit;
+         }
+     }
 
     // Delete product
-    public function del() {
+     public function del() {
 
         // Getting category ID
         $id = filter_input(INPUT_GET, 'id');
