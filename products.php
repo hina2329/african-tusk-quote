@@ -1,7 +1,7 @@
 <?php
 
 // Products Class
-class products extends ATQ {
+class products extends ATQ { 
 
     public function __construct() {
         parent::__construct();
@@ -173,10 +173,7 @@ class products extends ATQ {
                                 <?php
                             }
                             ?>
-                            <option value=" <?php echo $fab->fab_id; ?>" <?php selected($fab->fab_id, $row->prod_fab); ?>><?php echo $fab->fab_suffix; ?></option>
-                            <?php
-                        }
-                        ?>
+                           
                     </select>
                 </div>
 
