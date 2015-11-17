@@ -142,7 +142,9 @@ class quotes extends ATQ {
         $client_companyname = filter_input(INPUT_POST, 'client_companyname', FILTER_SANITIZE_STRING);
 
             $this->wpdb->insert($this->clients_tbl, array('client_fname' => $client_fname, 'client_lname' => $client_lname, 'client_email' => $client_email, 'client_contactno' => $client_contactno, 'client_cellno' => $client_cellno, 'client_companyname' => $client_companyname));
-           $this->wpdb->insert($this->quotes_tbl, array('qoute_staff' => $qoute_staff, 'qoute_client' => $qoute_client));
+              $last_id = $this->wpdb->insert_id;
+
+           $this->wpdb->insert($this->quotes_tbl, array('qoute_staff' => $last_id, 'qoute_client' => $qoute_client));
 
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
 

@@ -188,7 +188,7 @@ class ATQ {
         quote_staff VARCHAR(100) NOT NULL,
         quote_client VARCHAR(100) NOT NULL,
         quote_subject VARCHAR(100) NOT NULL,
-        quote_comment VARCHAR(100) NOT NULL,
+        quote_comment LONGTEXT NOT NULL,
         quote_item VARCHAR(100) NOT NULL,
         PRIMARY KEY(quote_id)
         ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";

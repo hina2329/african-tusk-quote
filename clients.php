@@ -158,6 +158,7 @@ class clients extends ATQ {
 
 			exit;
 		}
+        
 	}
 
 	// Delete client
