@@ -1,7 +1,7 @@
 <?php
 
 // Products Class
-class products extends ATQ {
+class products extends ATQ { 
 
     public function __construct() {
         parent::__construct();
@@ -31,8 +31,10 @@ class products extends ATQ {
 
                 <?php
                 // Getting products & categories & fabric types
+
                 $results = $this->wpdb->get_results("SELECT prod.*, fab.*  FROM $this->products_tbl AS prod "
                         . "INNER JOIN $this->fabrics_tbl AS fab ON prod.prod_fab = fab.fab_id");
+
 
                 if ($results) {
 
@@ -60,6 +62,7 @@ class products extends ATQ {
                                 ?>
                             </td>
                             <td><?php echo $row->fab_name; ?></td>
+
                             <td class="actions">
                                 <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->prod_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
                                 <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $row->prod_id); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
@@ -75,6 +78,7 @@ class products extends ATQ {
                     <?php
                 }
                 ?>
+
 
             </tbody>
 
@@ -154,20 +158,22 @@ class products extends ATQ {
                     <input name="prod_size" id="prod_size" type="text" value="<?php echo $row->prod_size; ?>" class="small-text" required>
                 </div>
 
+
                 <div class="form-field">
                     <label for="prod_fab">Fabric Type<span>*</span></label><br>
                     <select name="prod_fab" id="prod_fab" required>
                         <?php
                         // Getting fabrics list
-                        $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
+                            $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
 
                         // Listing all fabrics
-                        foreach ($fabs as $fab) {
+                            foreach ($fabs as $fab) {
+                                ?>
+                                <option value=" <?php echo $fab->fab_id; ?>" <?php selected($fab->fab_id, $row->prod_fab); ?>><?php echo $fab->fab_suffix; ?></option>
+                                <?php
+                            }
                             ?>
-                            <option value=" <?php echo $fab->fab_id; ?>" <?php selected($fab->fab_id, $row->prod_fab); ?>><?php echo $fab->fab_suffix; ?></option>
-                            <?php
-                        }
-                        ?>
+                           
                     </select>
                 </div>
 
@@ -190,8 +196,8 @@ class products extends ATQ {
             <!-- CLONE MULTIPLE FIELDS -->
         </div>
 
-        <?php
-    }
+            <?php
+        }
 
     // Save product
     public function save() {
@@ -229,7 +235,7 @@ class products extends ATQ {
     }
 
     // Delete product
-    public function del() {
+     public function del() {
 
         // Getting category ID
         $id = filter_input(INPUT_GET, 'id');

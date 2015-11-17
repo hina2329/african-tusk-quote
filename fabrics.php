@@ -46,7 +46,7 @@ class fabrics extends ATQ {
                             <td>
                                 <?php
                                 $fab_colors = unserialize($row->fab_colors);
-                                $color_count = count($fab_colors);
+                                 $color_count = count($fab_colors);
                                 for ($i = 0; $i < $color_count; $i++) {
                                     echo $fab_colors[$i]['fab_color'];
                                     if (($i + 1) != $color_count) {
@@ -103,10 +103,10 @@ class fabrics extends ATQ {
                     <label>Fabric Colors <a href="#" class="btn-fields add-fields">+ Add Color</a></label>
                     <div class="atq-multi-fields-container">
 
-                        <?php
-                        if (!empty($id)) {
-                            $fab_colors = unserialize($row->fab_colors);
-                            foreach ($fab_colors as $color) {
+                       <?php
+                       if (!empty($id)) {
+                           $fab_colors = unserialize($row->fab_colors);
+                         foreach ($fab_colors as $color) {
                                 ?>
                                 <div class="multi-fields">
                                     <input name="fab_color[]" class="fab_color" type="text" value="<?php echo $color['fab_color']; ?>" placeholder="Fabric Color Name">
@@ -142,6 +142,7 @@ class fabrics extends ATQ {
         $fab_name = filter_input(INPUT_POST, 'fab_name');
         $fab_suffix = filter_input(INPUT_POST, 'fab_suffix');
         $fab_colors_count = count(filter_input(INPUT_POST, 'fab_color', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY));
+        
         $fab_colors_raw = [];
         for ($i = 0; $i < $fab_colors_count; $i++) {
             $fab_colors_raw[$i] = [
