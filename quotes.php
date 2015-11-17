@@ -86,7 +86,8 @@ class quotes extends ATQ {
                     </select>
                 </div>
 
-             <h1>Or New Client</h1>
+
+             <h1>Or New Client ?</h1>
                 <div class="form-field">
                     <label for="client_fname"> FirstName <span>*</span></label><br>
                     <input name="client_fname" id="client_fname" type="text"  required>
@@ -126,5 +127,25 @@ class quotes extends ATQ {
                 </div>
         <?php
     }
+    // Save Client
+    public function save() {
+
+        // Getting submitted data
+       
+        $qoute_staff = filter_input(INPUT_POST, 'qoute_staff', FILTER_SANITIZE_STRING);
+        $qoute_client = filter_input(INPUT_POST, 'qoute_client', FILTER_SANITIZE_STRING);
+        $client_fname = filter_input(INPUT_POST, 'client_fname', FILTER_SANITIZE_STRING);
+        $client_lname = filter_input(INPUT_POST, 'client_lname', FILTER_SANITIZE_STRING);
+        $client_email = filter_input(INPUT_POST, 'client_email', FILTER_SANITIZE_STRING);
+        $client_contactno = filter_input(INPUT_POST, 'client_contactno', FILTER_SANITIZE_STRING);
+        $client_cellno = filter_input(INPUT_POST, 'client_cellno', FILTER_SANITIZE_STRING);
+        $client_companyname = filter_input(INPUT_POST, 'client_companyname', FILTER_SANITIZE_STRING);
+
+            $this->wpdb->insert($this->clients_tbl, array('client_fname' => $client_fname, 'client_lname' => $client_lname, 'client_email' => $client_email, 'client_contactno' => $client_contactno, 'client_cellno' => $client_cellno, 'client_companyname' => $client_companyname));
+           $this->wpdb->insert($this->quotes_tbl, array('qoute_staff' => $qoute_staff, 'qoute_client' => $qoute_client));
+
+            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
+
+}
 }
 ?>
