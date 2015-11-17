@@ -21,6 +21,7 @@ class ATQ {
     protected $clients_tbl;
     protected $categories_tbl;
     protected $products_tbl;
+    protected $quotes_tbl;
 
     function __construct() {
 
@@ -37,6 +38,7 @@ class ATQ {
         $this->clients_tbl = $this->wpdb->prefix . 'atq_clients';
         $this->categories_tbl = $this->wpdb->prefix . 'atq_categories';
         $this->products_tbl = $this->wpdb->prefix . 'atq_products';
+        $this->quotes_tbl = $this->wpdb->prefix . 'atq_quotes';
 
         // Installing new tables in the database
         add_action('plugins_loaded', array($this, 'install_tables'));
@@ -179,6 +181,17 @@ class ATQ {
         prod_featured INT(1) NOT NULL,
         PRIMARY KEY(prod_id)
         ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
+        
+         $quotes_table = "CREATE TABLE $this->quotes_tbl(
+        quote_id INT(5) NOT NULL AUTO_INCREMENT,
+        quote_name VARCHAR(100) NOT NULL,
+        quote_staff VARCHAR(100) NOT NULL,
+        quote_client VARCHAR(100) NOT NULL,
+        quote_subject VARCHAR(100) NOT NULL,
+        quote_comment VARCHAR(100) NOT NULL,
+        quote_item VARCHAR(100) NOT NULL,
+        PRIMARY KEY(quote_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
 
         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         dbDelta($fabrics_table);
@@ -186,6 +199,7 @@ class ATQ {
         dbDelta($clients_table);
         dbDelta($categories_table);
         dbDelta($products_table);
+        dbDelta($quotes_table);
     }
 
 }

@@ -46,8 +46,8 @@ class quotes extends ATQ {
         
          <h1> Add New Quote</h1>
             <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save'); ?>">
+
                     <label for="qoute_staff">Staff Member<span>*</span></label><br>
-                    
                     <div class="form-field">
                     <select name="qoute_staff" id="qoute_staff"  required>
                         <?php
@@ -66,9 +66,64 @@ class quotes extends ATQ {
                         ?>
                     </select>
                 </div>
-                
+                <label for="qoute_client">Clients<span>*</span></label><br>
+                <div class="form-field">
+                    <select name="qoute_client" id="qoute_client"  required>
+                        <?php
+
+                        // Getting clients list
+                        $clients= $this->wpdb->get_results("SELECT * FROM $this->clients_tbl");
+
+                        // Listing clients members
+                        foreach ($clients as $client) {
+                            echo '<option value="' . $client->client_id . '" ';
+                            
+                                selected($client->client_id, $row->client_id);
+                            
+                            echo '>' . $client->client_fname . '</option>';
+                        }
+                        ?>
+                    </select>
                 </div>
+
+             <h1>Or New Client</h1>
+                <div class="form-field">
+                    <label for="client_fname"> FirstName <span>*</span></label><br>
+                    <input name="client_fname" id="client_fname" type="text"  required>
+                </div>
+                <div class="form-field">
+                    <label for="client_lname">Last Name <span>*</span></label><br>
+                    <input name="client_lname" id="client_lname" type="text"  required>
+                </div>
+                <div class="form-field">
+                    <label for="client_email">Email <span>*</span></label><br>
+                    <input type="text" name="client_email" id="client_email"  required>
+                </div>
+                <div class="form-field">
+                    <label for="client_contactno">Contact No<span>*</span></label><br>
+                    <input type="text" name="client_contactno" id="client_contactno"  required>
+                </div>
+                <div class="form-field">
+                    <label for="client_cellno">Cell No <span>*</span></label><br>
+                    <input type="text" name="client_cellno" id="client_cellno"  required>
+                </div>
+                <div class="form-field">
+                    <label for="client_companyname">Company Name<span>*</span></label><br>
+                    <input type="text" name="client_companyname" id="client_companyname"  required>
+                </div>
+
+
+
+
+
+
+                <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Add New Client"></p>
+
+
+
+                
                 </form>
+                </div>
         <?php
     }
 }
