@@ -41,13 +41,20 @@ class quotes extends ATQ {
     // Add new quote form
     public function form() {
 
+        
+        $row = $this->wpdb->get_row("SELECT * FROM $this->quotes_tbl ORDER BY quote_id DESC ");
+          $id=$row->quote_id+1;
+
         ?>
         <div class="col-left">
+
         
          <h1>Add New Quote</h1>
-            <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save'); ?>">
+            <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save&id=' . $id); ?>">
 
+                
                     <label for="qoute_staff">Staff Member<span>*</span></label><br>
+                    
                     <div class="form-field">
                     <select name="qoute_staff" id="qoute_staff" required>
                         <option value="">Please select...</option>
@@ -60,7 +67,7 @@ class quotes extends ATQ {
                         foreach ($staffs as $staff) {
                             echo '<option value="' . $staff->staff_id . '" ';
                             
-                                selected($staff->staff_id, $row->staff_id);
+                                selected($staff->staff_id);
                             
                             echo '>' . $staff->staff_name . '</option>';
                         }
@@ -70,18 +77,18 @@ class quotes extends ATQ {
                     <p>&nbsp;</p>
                     <h3>Existing Client</h3>
                 <div class="form-field">
-                    <select name="qoute_client" id="qoute_client"  required>
+                    <select name="qoute_client" id="qoute_client">
                         <option value="">Please select...</option>
                         <?php
 
                         // Getting clients list
-                        $clients= $this->wpdb->get_results("SELECT * FROM $this->clients_tbl");
+                        $clients= $this->wpdb->get_results("SELECT * FROM $this->clients_tbl ");
 
                         // Listing clients members
                         foreach ($clients as $client) {
                             echo '<option value="' . $client->client_id . '" ';
                             
-                                selected($client->client_id, $row->client_id);
+                                selected($client->client_id);
                             
                             echo '>' . $client->client_fname . '</option>';
                         }
@@ -92,31 +99,33 @@ class quotes extends ATQ {
                 <p>&nbsp;</p>
              <h3>Or New Client?</h3>
                 <div class="form-field">
-                    <label for="client_fname"> First Name <span>*</span></label><br>
-                    <input name="client_fname" id="client_fname" type="text"  required>
+                    <label for="client_fname"> First Name </label><br>
+                    <input name="client_fname" id="client_fname" type="text"  >
                 </div>
                 <div class="form-field">
-                    <label for="client_lname">Last Name <span>*</span></label><br>
-                    <input name="client_lname" id="client_lname" type="text"  required>
+                    <label for="client_lname">Last Name </label><br>
+                    <input name="client_lname" id="client_lname" type="text"  >
                 </div>
                 <div class="form-field">
-                    <label for="client_email">Email <span>*</span></label><br>
-                    <input type="text" name="client_email" id="client_email"  required>
+                    <label for="client_email">Email </label><br>
+                    <input type="text" name="client_email" id="client_email"  >
                 </div>
                 <div class="form-field">
-                    <label for="client_contactno">Contact No<span>*</span></label><br>
-                    <input type="text" name="client_contactno" id="client_contactno"  required>
+                    <label for="client_contactno">Contact No</label><br>
+                    <input type="text" name="client_contactno" id="client_contactno"  >
                 </div>
                 <div class="form-field">
-                    <label for="client_cellno">Cell No <span>*</span></label><br>
-                    <input type="text" name="client_cellno" id="client_cellno"  required>
+                    <label for="client_cellno">Cell No </label><br>
+                    <input type="text" name="client_cellno" id="client_cellno"  >
                 </div>
                 <div class="form-field">
-                    <label for="client_companyname">Company Name<span>*</span></label><br>
-                    <input type="text" name="client_companyname" id="client_companyname"  required>
+                    <label for="client_companyname">Company Name</label><br>
+                    <input type="text" name="client_companyname" id="client_companyname"  >
                 </div>
+                
 
                 <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Create Quote"></p>
+                
                 
                 </form>
                 </div>
@@ -126,7 +135,7 @@ class quotes extends ATQ {
     public function save() {
 
         // Getting submitted data
-        $qoute_staff = filter_input(INPUT_POST, 'qoute_staff', FILTER_SANITIZE_STRING);
+         $qoute_staff = filter_input(INPUT_POST, 'qoute_staff', FILTER_SANITIZE_STRING);
         $qoute_client = filter_input(INPUT_POST, 'qoute_client', FILTER_SANITIZE_STRING);
         
         
@@ -136,14 +145,39 @@ class quotes extends ATQ {
         $client_contactno = filter_input(INPUT_POST, 'client_contactno', FILTER_SANITIZE_STRING);
         $client_cellno = filter_input(INPUT_POST, 'client_cellno', FILTER_SANITIZE_STRING);
         $client_companyname = filter_input(INPUT_POST, 'client_companyname', FILTER_SANITIZE_STRING);
+        if(!empty($qoute_client)){
+            $this->wpdb->insert($this->quotes_tbl, array('quote_staff' => $qoute_staff, 'quote_client' => $qoute_client));
+        }
+        else{
 
             $this->wpdb->insert($this->clients_tbl, array('client_fname' => $client_fname, 'client_lname' => $client_lname, 'client_email' => $client_email, 'client_contactno' => $client_contactno, 'client_cellno' => $client_cellno, 'client_companyname' => $client_companyname));
+
               $last_id = $this->wpdb->insert_id;
 
-           $this->wpdb->insert($this->quotes_tbl, array('qoute_staff' => $last_id, 'qoute_client' => $qoute_client));
+         $this->wpdb->insert($this->quotes_tbl, array('quote_staff' => $qoute_staff, 'quote_client' => $last_id));
+         
 
-            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
+           
+      }
+
+
+       
+
+           // wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
+      ?>
+
+       <h1>Quote Detail</h1>
+       <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=quoteinfo'); ?>" class="page-title-action">Quote Info</a>
+       <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=heading'); ?>" class="page-title-action">Heading</a></h1>
+      <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=product'); ?>" class="page-title-action">Product Item</a>
+      <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=preview'); ?>" class="page-title-action">Preview </a>
+      <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=send');?>" class="page-title-action">Send</a> 
+        
+
+
+     <?php    
 
 }
+ 
 }
 ?>
