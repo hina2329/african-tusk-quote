@@ -96,81 +96,90 @@ class products extends ATQ {
             <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save'); ?>">
                 <input type="hidden" name="prod_id" value="<?php echo $id; ?>">
                 <div class="form-field">
-                    <div class="form-field">
-                        <label for="prod_name">Title<span>*</span></label>
-                        <input name="prod_name" id="prod_name" type="text" value="<?php echo $row->prod_name; ?>" required>
-                    </div>
-                    <div class="form-field">
-                        <label for="prod_desc">Description <span>*</span></label>
-                        <textarea name="prod_desc" id="prod_desc" rows="5" cols="40" required><?php echo $row->prod_desc; ?></textarea>
-                    </div>
-                    <div class="form-field">
-                        <label for="prod_price">Price<span>*</span></label><br>
-                        $ <input name="prod_price" id="prod_price" type="text" value="<?php echo $row->prod_price; ?>" class="small-text" required>
-                    </div>
-                    <div class="form-field">
-                        <label for="prod_image">Images<a href="#" class="btn-fields add-fields">+ Add Image</a></label><br>
-                        <div class="atq-multi-fields-container">
-                            <?php 
-                            $images = unserialize($row->prod_images);
-                            // MISBAH PLEASE WORK HERE!!!! :D
+                    <label for="prod_name">Title<span>*</span></label>
+                    <input name="prod_name" id="prod_name" type="text" value="<?php echo $row->prod_name; ?>" required>
+                </div>
+                <div class="form-field">
+                    <label for="prod_desc">Description <span>*</span></label>
+                    <textarea name="prod_desc" id="prod_desc" rows="5" cols="40" required><?php echo $row->prod_desc; ?></textarea>
+                </div>
+                <div class="form-field">
+                    <label for="prod_price">Price<span>*</span></label><br>
+                    $ <input name="prod_price" id="prod_price" type="text" value="<?php echo $row->prod_price; ?>" class="small-text" required>
+                </div>
+                <div class="form-field">
+                    <label for="prod_image">Images<a href="#" class="btn-fields add-fields">+ Add Image</a></label><br>
+                    <div class="atq-multi-fields-container">
+                        <?php
+                        $images = unserialize($row->prod_images);
+                        $images_count = count($images);
+
+                        for ($i = 0; $i < $images_count; $i++) {
                             ?>
-                        </div>
-                    </div>
-                    <div class="form-field">
-                        <label for="prod_code">Code<span>*</span></label><br>
-                        <input name="prod_code" id="prod_code" type="text" value="<?php echo $row->prod_code; ?>" class="small-text" required>
-                    </div>
-                    <div class="form-field">
-                        <label for="prod_cat">Category <span>*</span></label><br>
-                        <small style="line-height: 1em !important;">Hold down the Ctrl (windows) / Command (Mac) button to select multiple categories.</small><br>
-                        <select name="prod_cat[]" id="prod_cat" multiple required>
+                            <div class="multi-fields">
+                                <input name="prod_image[]" class="prod_image" type="text" size="20" value="<?php echo $images[$i]; ?>">
+                                <input class="upload_image_button" type="button" value="Upload Image">
+                                <a href="#" class="btn-fields remove-fields">X remove</a>
+                            </div>
                             <?php
-                            // Get this product cats
-                            $this_cats = unserialize($row->prod_cat);
+                        }
+                        ?>
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label for="prod_code">Code<span>*</span></label><br>
+                    <input name="prod_code" id="prod_code" type="text" value="<?php echo $row->prod_code; ?>" class="small-text" required>
+                </div>
+                <div class="form-field">
+                    <label for="prod_cat">Category <span>*</span></label><br>
+                    <small style="line-height: 1em !important;">Hold down the Ctrl (windows) / Command (Mac) button to select multiple categories.</small><br>
+                    <select name="prod_cat[]" id="prod_cat" multiple required>
+                        <?php
+                        // Get this product cats
+                        $this_cats = unserialize($row->prod_cat);
 
-                            // Getting categories list
-                            $cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl");
+                        // Getting categories list
+                        $cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl");
 
-                            // Listing all categories
-                            foreach ($cats as $cat) {
-                                echo '<option value="' . $cat->cat_id . '" ' . selected(true, in_array($cat->cat_id, $this_cats), false) . '>' . $cat->cat_name . '</option>';
-                            }
+                        // Listing all categories
+                        foreach ($cats as $cat) {
+                            echo '<option value="' . $cat->cat_id . '" ' . selected(true, in_array($cat->cat_id, $this_cats), false) . '>' . $cat->cat_name . '</option>';
+                        }
+                        ?>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="prod_size">Size<span>*</span></label><br>
+                    <input name="prod_size" id="prod_size" type="text" value="<?php echo $row->prod_size; ?>" class="small-text" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="prod_fab">Fabric Type<span>*</span></label><br>
+                    <select name="prod_fab" id="prod_fab" required>
+                        <?php
+                        // Getting fabrics list
+                        $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
+
+                        // Listing all fabrics
+                        foreach ($fabs as $fab) {
                             ?>
-                        </select>
-                    </div>
-
-                    <div class="form-field">
-                        <label for="prod_size">Size<span>*</span></label><br>
-                        <input name="prod_size" id="prod_size" type="text" value="<?php echo $row->prod_size; ?>" class="small-text" required>
-                    </div>
-
-                    <div class="form-field">
-                        <label for="prod_fab">Fabric Type<span>*</span></label><br>
-                        <select name="prod_fab" id="prod_fab" required>
+                            <option value=" <?php echo $fab->fab_id; ?>" <?php selected($fab->fab_id, $row->prod_fab); ?>><?php echo $fab->fab_suffix; ?></option>
                             <?php
-                            // Getting fabrics list
-                            $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
+                        }
+                        ?>
+                    </select>
+                </div>
 
-                            // Listing all fabrics
-                            foreach ($fabs as $fab) {
-                                ?>
-                                <option value=" <?php echo $fab->fab_id; ?>" <?php selected($fab->fab_id, $row->prod_fab); ?>><?php echo $fab->fab_suffix; ?></option>
-                                <?php
-                            }
-                            ?>
-                        </select>
-                    </div>
-
-                    <div class="form-field">
-                        <label for="prod_featured">Mark this product as Featured: </label>
-                        <input name="prod_featured" id="prod_featured" type="checkbox" value="1" <?php checked($row->prod_featured, '1'); ?>>
-                    </div>
-                    <div class="form-field">
-                        <label for="prod_sale">Mark this product as Sale Product: </label>
-                        <input name="prod_sale" id="prod_sale" type="checkbox"  value="1" <?php checked($row->prod_sale, '1'); ?>>
-                    </div>
-                    <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Product' : 'Add New Product'; ?>"></p>
+                <div class="form-field">
+                    <label for="prod_featured">Mark this product as Featured: </label>
+                    <input name="prod_featured" id="prod_featured" type="checkbox" value="1" <?php checked($row->prod_featured, '1'); ?>>
+                </div>
+                <div class="form-field">
+                    <label for="prod_sale">Mark this product as Sale Product: </label>
+                    <input name="prod_sale" id="prod_sale" type="checkbox"  value="1" <?php checked($row->prod_sale, '1'); ?>>
+                </div>
+                <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Product' : 'Add New Product'; ?>"></p>
             </form>
             <!-- CLONE MULTIPLE FIELDS -->
             <div class="multi-fields screen-reader-text">
