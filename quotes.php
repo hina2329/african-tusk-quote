@@ -117,7 +117,7 @@ class quotes extends ATQ {
 
 
 
-                <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Add New Client"></p>
+                <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Creat Quote"></p>
 
 
 
