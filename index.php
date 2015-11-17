@@ -58,13 +58,13 @@ class ATQ {
 
     // WP Menu
     function atq_menu() {
-        add_menu_page('African Tusk Qoute', 'African Tusk Qoute', 'manage_options', 'atq_main', array($this, 'atq_main'), 'dashicons-format-aside');
-        add_submenu_page('atq_main', 'Products', 'Products', 'manage_options', 'products', array($this, 'atq_main'));
-        add_submenu_page('atq_main', 'Categories', 'Categories', 'manage_options', 'categories', array($this, 'atq_main'));
-        add_submenu_page('atq_main', ' Fabrics', 'Fabrics', 'manage_options', 'fabrics', array($this, 'atq_main'));
-        add_submenu_page('atq_main', 'Quotes', 'Quotes', 'manage_options', 'quotes', array($this, 'atq_main'));
-        add_submenu_page('atq_main', 'Clients', 'Clients', 'manage_options', 'clients', array($this, 'atq_main'));
-        add_submenu_page('atq_main', 'Staff Member', 'Staff Member', 'manage_options', 'staff_member', array($this, 'atq_main'));
+        add_menu_page('African Tusk Qoute', 'African Tusk Qoute', 'manage_options', 'quotes', array($this, 'atq_main'), 'dashicons-format-aside');
+        add_submenu_page('quotes', 'Quotes', 'Quotes', 'manage_options', 'quotes', array($this, 'atq_main'));
+        add_submenu_page('quotes', 'Products', 'Products', 'manage_options', 'products', array($this, 'atq_main'));
+        add_submenu_page('quotes', 'Categories', 'Categories', 'manage_options', 'categories', array($this, 'atq_main'));
+        add_submenu_page('quotes', ' Fabrics', 'Fabrics', 'manage_options', 'fabrics', array($this, 'atq_main'));
+        add_submenu_page('quotes', 'Clients', 'Clients', 'manage_options', 'clients', array($this, 'atq_main'));
+        add_submenu_page('quotes', 'Staff Member', 'Staff Member', 'manage_options', 'staff_member', array($this, 'atq_main'));
     }
 
     // Main Page
@@ -182,7 +182,7 @@ class ATQ {
         PRIMARY KEY(prod_id)
         ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
         
-         $quotes_table = "CREATE TABLE $this->quotes_tbl(
+        $quotes_table = "CREATE TABLE $this->quotes_tbl(
         quote_id INT(5) NOT NULL AUTO_INCREMENT,
         quote_name VARCHAR(100) NOT NULL,
         quote_staff VARCHAR(100) NOT NULL,
