@@ -88,7 +88,6 @@ class ATQ {
 
             $obj->$action();
         }
-
         echo '</div>';
     }
 
@@ -100,11 +99,13 @@ class ATQ {
         wp_enqueue_style('atq-admin-style');
         wp_enqueue_style('thickbox');
 
-        // Admin JavaScript
-        wp_register_script('atq-script-admin', plugins_url('african-tusk-quote/js/atq-script-admin.js'));
-        wp_enqueue_script('atq-script-admin');
-        wp_enqueue_script('media-upload');
-        wp_enqueue_script('thickbox');
+        if ($this->page == 'fabrics' || $this->page == 'products') {
+            // Admin JavaScript
+            wp_register_script('atq-script-admin', plugins_url('african-tusk-quote/js/atq-script-admin.js'));
+            wp_enqueue_script('atq-script-admin');
+            wp_enqueue_script('media-upload');
+            wp_enqueue_script('thickbox');
+        }
     }
 
     // Registering plugin front end resources
@@ -181,13 +182,15 @@ class ATQ {
         prod_featured INT(1) NOT NULL,
         PRIMARY KEY(prod_id)
         ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
-        
+
         $quotes_table = "CREATE TABLE $this->quotes_tbl(
         quote_id INT(5) NOT NULL AUTO_INCREMENT,
         quote_staff VARCHAR(100) NOT NULL,
         quote_client VARCHAR(100) NOT NULL,
         quote_subject VARCHAR(100) NOT NULL,
         quote_comment LONGTEXT NOT NULL,
+        quote_date TIMESTAMP NOT NULL,
+        quote_status INT(1) DEFAULT 0,
         PRIMARY KEY(quote_id)
         ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
 

@@ -7,7 +7,7 @@ class quotes extends ATQ {
         parent:: __construct();
     }
 
-    // Iniating main method to display quotes
+// Iniating main method to display quotes
     public function init() {
         ?>
 
@@ -18,18 +18,63 @@ class quotes extends ATQ {
         <table class="wp-list-table widefat fixed striped pages">
             <thead>
                 <tr>
-                    <th width="10%">ID</th>
-                    <th width="20%">Subject</th>
+                    <th width="12%">ID</th>
+                    <th width="25%">Subject</th>
                     <th width="15%">Staff Member</th>
                     <th width="15%">Client</th>
                     <th width="15%">Date</th>
-                    <th width="15%">Status</th>
+                    <th width="8%">Status</th>
                     <th width="10%" class="actions">Actions</th>
                 </tr>
             </thead>
 
             <tbody id="the-list">
 
+                <?php
+                // Get all the quotes
+                $quotes = $this->wpdb->get_results("SELECT qt.*, cl.*, mb.* FROM $this->quotes_tbl AS qt "
+                        . "INNER JOIN $this->clients_tbl AS cl ON qt.quote_client = cl.client_id "
+                        . "INNER JOIN $this->staff_member_tbl AS mb ON qt.quote_staff = mb.staff_id");
+
+                if ($quotes) {
+
+                    foreach ($quotes as $row) {
+
+                        // Quote submitted date
+                        $date = date_create($row->quote_date)
+                        ?>
+                        <tr>
+                            <td>
+                                AT-<?php echo $row->quote_id . '-' . date_format($date, 'Y-m-d'); ?>
+                            </td>
+                            <td></td>
+                            <td><?php echo $row->staff_name; ?></td>
+                            <td><?php echo $row->client_fname . ' ' . $row->client_lname; ?></td>
+                            <td><?php echo date_format($date, 'Y-m-d'); ?></td>
+                            <td>
+                                <?php
+                                if ($row->quote_status == 0) {
+                                    echo '<span class="quote_status quote_new">New</span>';
+                                } else {
+                                    echo '<span class="quote_status quote_sent">Sent</span>';
+                                }
+                                ?>
+                            </td>
+                            <td class="actions">
+                                <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->quote_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
+                                <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $row->quote_id); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                } else {
+                    ?>
+                    <tr>
+                        <td colspan="7" style="text-align: center;"><strong>No Records Found</strong></td>
+                    </tr>
+                    <?php
+                }
+                ?>
 
             </tbody>
 
@@ -38,23 +83,121 @@ class quotes extends ATQ {
         <?php
     }
 
-    // Add new quote form
+// Add new quote form
     public function form() {
-        ?>
-        <div class="col-left">
 
-            <h1>Add New Quote</h1>
+        // Get ID
+        $id = filter_input(INPUT_GET, 'id');
+
+        echo isset($id) ? '<a href="#" class="send-quote button-primary">SEND QUOTE</a>' : '';
+        ?>
+
+        <h1><?php echo isset($id) ? 'Edit Quote' : 'Add New Quote'; ?></h1>
+
+        <?php
+        if (isset($id)) {
+
+            // Get quote data
+            $quote = $this->wpdb->get_row("SELECT * FROM $this->quotes_tbl WHERE quote_id = $id");
+
+            // Get client data
+            $client = $this->wpdb->get_row("SELECT * FROM $this->clients_tbl WHERE client_id = $quote->quote_client");
+            ?>
+
+            <div class="col-left">
+                <fieldset>
+                    <Legend>Client</legend>
+                    <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save&update=client'); ?>">
+                        <input type="hidden" name="quote_id" value="<?php echo $quote->quote_id; ?>">
+                        <input type="hidden" name="quote_client" value="<?php echo $quote->quote_client; ?>">
+                        <div class="form-field">
+                            <label for="client_fname">First Name</label><br>
+                            <input name="client_fname" id="client_fname" type="text" value="<?php echo $client->client_fname; ?>">
+                        </div>
+                        <div class="form-field">
+                            <label for="client_lname">Last Name</label><br>
+                            <input name="client_lname" id="client_lname" type="text" value="<?php echo $client->client_lname; ?>">
+                        </div>
+                        <div class="form-field">
+                            <label for="client_email">Email</label><br>
+                            <input type="text" name="client_email" id="client_email" value="<?php echo $client->client_email; ?>">
+                        </div>
+                        <div class="form-field">
+                            <label for="client_contactno">Contact No</label><br>
+                            <input type="text" name="client_contactno" id="client_contactno" value="<?php echo $client->client_contactno; ?>">
+                        </div>
+                        <div class="form-field">
+                            <label for="client_cellno">Cell No</label><br>
+                            <input type="text" name="client_cellno" id="client_cellno" value="<?php echo $client->client_cellno; ?>">
+                        </div>
+                        <div class="form-field">
+                            <label for="client_companyname">Company Name</label><br>
+                            <input type="text" name="client_companyname" id="client_companyname" value="<?php echo $client->client_companyname; ?>">
+                        </div>
+                        <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Update"></p>
+                    </form>
+                </fieldset>
+                <fieldset>
+                    <Legend>Member</legend>
+                    <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save&update=member'); ?>">
+                        <div class="form-field">
+                            <label for="quote_subject">Member</label><br>
+                            <select name="qoute_staff" id="qoute_staff" required>
+                                <option value="">Please select...</option>
+                                <?php
+                                // Getting staff members list
+                                $staffs = $this->wpdb->get_results("SELECT * FROM $this->staff_member_tbl");
+
+                                // Listing all staff members
+                                foreach ($staffs as $staff) {
+                                    echo '<option value="' . $staff->staff_id . '" ';
+
+                                    selected($staff->staff_id, $quote->quote_staff);
+
+                                    echo '>' . $staff->staff_name . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Update"></p>
+                    </form>
+                </fieldset>
+            </div>
+            <div class="col-right">
+                <fieldset>
+                    <Legend>Subject</legend>
+                    <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save&update=subject'); ?>">
+                        <div class="form-field">
+                            <label for="quote_subject">Subject</label><br>
+                            <input name="quote_subject" id="quote_subject" type="text" value="<?php echo $quote->quote_subject; ?>">
+                        </div>
+                        <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Update"></p>
+                    </form>
+                </fieldset>
+                <fieldset>
+                    <Legend>Comments</legend>
+                    <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save&update=comments'); ?>">
+                        <div class="form-field">
+                            <?php
+                            // WordPress WYSIWYG Editor
+                            wp_editor($quote->quote_comment, 'quote_comment', array('textarea_name' => 'quote_comment'));
+                            ?>
+                        </div>
+                        <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Update"></p>
+                    </form>
+                </fieldset>
+            </div>
 
             <?php
-            $quote_step = filter_input(INPUT_GET, 'quote_step');
-            if (!isset($quote_step)) {
-                ?>
-                <form method = "post" action = "<?php echo admin_url('admin.php?page=' . $this->page . '&action=save'); ?>">
+        } else {
+            ?>
+            <div class="col-left">
+                <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save'); ?>">
 
-                    <label for = "qoute_staff">Staff Member<span>*</span></label><br>
-                    <div class = "form-field">
-                        <select name = "qoute_staff" id = "qoute_staff" required>
-                            <option value = "">Please select...</option>
+                    <label for="qoute_staff">Staff Member<span>*</span></label><br>
+                    <div class="form-field">
+                        <select name="qoute_staff" id = "qoute_staff" required>
+                            <option value="">Please select...</option>
                             <?php
                             // Getting staff members list
                             $staffs = $this->wpdb->get_results("SELECT * FROM $this->staff_member_tbl");
@@ -121,26 +264,21 @@ class quotes extends ATQ {
                     <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Create Quote"></p>
 
                 </form>
-                <?php
-            } else {
-                ?>
-                       SECOND FORM HERE!!!
-                 
-                <?php
-            }
-            ?>
-        </div>
-        <?php
+            </div>
+            <?php
+        }
     }
 
     // Save Client
     public function save() {
 
-        // Getting submitted data
-        $qoute_staff = filter_input(INPUT_POST, 'qoute_staff', FILTER_SANITIZE_NUMBER_INT);
-        $qoute_client = filter_input(INPUT_POST, 'qoute_client', FILTER_SANITIZE_NUMBER_INT);
+        // Get param of updating
+        $update = filter_input(INPUT_GET, 'update');
 
+        // Get quote ID
+        $quote_id = filter_input(INPUT_POST, 'quote_id');
 
+        // Get new client data
         $client_fname = filter_input(INPUT_POST, 'client_fname', FILTER_SANITIZE_STRING);
         $client_lname = filter_input(INPUT_POST, 'client_lname', FILTER_SANITIZE_STRING);
         $client_email = filter_input(INPUT_POST, 'client_email', FILTER_SANITIZE_STRING);
@@ -148,39 +286,62 @@ class quotes extends ATQ {
         $client_cellno = filter_input(INPUT_POST, 'client_cellno', FILTER_SANITIZE_STRING);
         $client_companyname = filter_input(INPUT_POST, 'client_companyname', FILTER_SANITIZE_STRING);
 
-        if (empty($qoute_client)) {
+        // Get member and exisitng client IDs
+        $qoute_staff = filter_input(INPUT_POST, 'qoute_staff', FILTER_SANITIZE_NUMBER_INT);
+        $qoute_client = filter_input(INPUT_POST, 'qoute_client', FILTER_SANITIZE_NUMBER_INT);
 
-            // Get new client data
-            $client_data = array(
-                'client_fname' => $client_fname,
-                'client_lname' => $client_lname,
-                'client_email' => $client_email,
-                'client_contactno' => $client_contactno,
-                'client_cellno' => $client_cellno,
-                'client_companyname' => $client_companyname
+        // Get client data
+        $client_data = array(
+            'client_fname' => $client_fname,
+            'client_lname' => $client_lname,
+            'client_email' => $client_email,
+            'client_contactno' => $client_contactno,
+            'client_cellno' => $client_cellno,
+            'client_companyname' => $client_companyname
+        );
+        
+        // If update client
+        if (isset($update) && $update == 'client') {
+            
+            // Cclient ID
+            $client_id = array(
+                'client_id' => $qoute_client
+            );
+            
+            echo $qoute_client;
+            
+            // Update client data
+            //$this->wpdb->update($this->clients_tbl, $client_data, $client_id);
+            
+            //wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $qoute_client));
+        } else {
+
+            if (empty($qoute_client)) {
+
+                // Insert new client data
+                $this->wpdb->insert($this->clients_tbl, $client_data);
+
+                // Get new client ID
+                $qoute_client = $this->wpdb->insert_id;
+            }
+
+            // Get new quote data
+            $quote_data = array(
+                'quote_staff' => $qoute_staff,
+                'quote_client' => $qoute_client,
+                'quote_subject' => '',
+                'quote_comment' => ''
             );
 
-            // Insert new client data
-            $this->wpdb->insert($this->clients_tbl, $client_data);
+            // Insert new quote data
+            $this->wpdb->insert($this->quotes_tbl, $quote_data);
 
-            // Get new client ID
-            $qoute_client = $this->wpdb->insert_id;
+            // Get new quote ID
+            $qoute_id = $this->wpdb->insert_id;
+
+            // Redirect to next quote form
+            wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $qoute_id));
         }
-
-        // Get new quote data
-        $quote_data = array(
-            'quote_staff' => $qoute_staff,
-            'quote_client' => $qoute_client,
-            'quote_subject' => '',
-            'quote_comment' => ''
-        );
-
-        // Insert new quote data
-        $this->wpdb->insert($this->quotes_tbl, $quote_data);
-
-        // Redirect to next quote form
-        wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&quote_step=2'));
     }
 
 }
-

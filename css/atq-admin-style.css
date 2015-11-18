@@ -27,6 +27,10 @@
     width: 35%;
     float: left;
 }
+#atq-wrap .col-right {
+    width: 63%;
+    float: right;
+}
 #atq-wrap .form-field {
     margin-bottom: 10px;
 }
@@ -101,4 +105,39 @@
 .remove-fields {
     margin: 10px 0 0;
     background: red;
+}
+.quote_status {
+    text-transform: uppercase;
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 3px;
+    background: #000;
+    font-weight: bold;
+    font-size: 11px;
+    width: 50px;
+    text-align: center;
+    display: block;
+}
+.quote_new {
+    background: red;
+}
+.quote_sent {
+    background: #8BB211;
+}
+.send-quote {
+    float: right;
+    position: relative;
+    top: 10px;
+}
+#atq-wrap fieldset {
+    border: #BCB9B9 2px solid;
+    padding: 10px 10px 0;
+    margin: 0 0 20px;
+}
+#atq-wrap fieldset legend {
+    font-size: 16px;
+    font-weight: bold;
+}
+#quote_comment {
+    height: 250px;
 }

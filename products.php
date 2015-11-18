@@ -1,7 +1,7 @@
 <?php
 
 // Products Class
-class products extends ATQ { 
+class products extends ATQ {
 
     public function __construct() {
         parent::__construct();
@@ -164,16 +164,16 @@ class products extends ATQ {
                     <select name="prod_fab" id="prod_fab" required>
                         <?php
                         // Getting fabrics list
-                            $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
+                        $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
 
                         // Listing all fabrics
-                            foreach ($fabs as $fab) {
-                                ?>
-                                <option value=" <?php echo $fab->fab_id; ?>" <?php selected($fab->fab_id, $row->prod_fab); ?>><?php echo $fab->fab_suffix; ?></option>
-                                <?php
-                            }
+                        foreach ($fabs as $fab) {
                             ?>
-                           
+                            <option value=" <?php echo $fab->fab_id; ?>" <?php selected($fab->fab_id, $row->prod_fab); ?>><?php echo $fab->fab_suffix; ?></option>
+                            <?php
+                        }
+                        ?>
+
                     </select>
                 </div>
 
@@ -196,8 +196,8 @@ class products extends ATQ {
             <!-- CLONE MULTIPLE FIELDS -->
         </div>
 
-            <?php
-        }
+        <?php
+    }
 
     // Save product
     public function save() {
@@ -218,19 +218,21 @@ class products extends ATQ {
         $prod_sale = filter_input(INPUT_POST, 'prod_sale');
 
         if (!empty($id)) {
-            $prod_data =  array(
+
+            $prod_data = array(
                 'prod_name' => $prod_name,
-                'prod_desc' => $prod_desc, 
-                'prod_price' => $prod_price, 
-                'prod_images' => $prod_images, 
-                'prod_code' => $prod_code, 
+                'prod_desc' => $prod_desc,
+                'prod_price' => $prod_price,
+                'prod_images' => $prod_images,
+                'prod_code' => $prod_code,
                 'prod_cat' => $prod_cat,
-                'prod_size' => $prod_size, 
-                'prod_fab' => $prod_fab, 
-                'prod_featured' => $prod_featured, 
+                'prod_size' => $prod_size,
+                'prod_fab' => $prod_fab,
+                'prod_featured' => $prod_featured,
                 'prod_sale' => $prod_sale
-                ); 
-             $data_id = array(
+            );
+
+            $data_id = array(
                 'prod_id' => $id);
 
             $this->wpdb->update($this->products_tbl, $prod_data, $data_id);
@@ -241,17 +243,17 @@ class products extends ATQ {
         } else {
 
             $prod_data = array(
-                'prod_name' => $prod_name, 
-                'prod_desc' => $prod_desc, 
-                'prod_price' => $prod_price, 
-                'prod_images' => $prod_images, 
-                'prod_code' => $prod_code, 
-                'prod_cat' => $prod_cat, 
-                'prod_size' => $prod_size, 
-                'prod_fab' => $prod_fab, 
-                'prod_featured' => $prod_featured, 
+                'prod_name' => $prod_name,
+                'prod_desc' => $prod_desc,
+                'prod_price' => $prod_price,
+                'prod_images' => $prod_images,
+                'prod_code' => $prod_code,
+                'prod_cat' => $prod_cat,
+                'prod_size' => $prod_size,
+                'prod_fab' => $prod_fab,
+                'prod_featured' => $prod_featured,
                 'prod_sale' => $prod_sale
-                );
+            );
 
             $this->wpdb->insert($this->products_tbl, $prod_data);
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
@@ -261,15 +263,16 @@ class products extends ATQ {
     }
 
     // Delete product
-     public function del() {
+    public function del() {
 
         // Getting category ID
         $id = filter_input(INPUT_GET, 'id');
 
-        $prod_data =  array(
-            'prod_id' => $id);
+        $prod_data = array(
+            'prod_id' => $id
+        );
 
-        $this->wpdb->delete($this->products_tbl,$prod_data);
+        $this->wpdb->delete($this->products_tbl, $prod_data);
 
         wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=deleted'));
 
