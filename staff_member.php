@@ -112,14 +112,29 @@ class staff_member extends ATQ {
 
 		if (!empty($id)) {
 
-			$this->wpdb->update($this->staff_member_tbl, array('staff_name' => $staff_name, 'staff_email' => $staff_email, 'staff_position' => $staff_position, 'staff_contactno' => $staff_contactno), array('staff_id' => $id));
+			$staff_data = array(
+                'staff_name' => $staff_name, 
+                'staff_email' => $staff_email, 
+                'staff_position' => $staff_position, 
+                'staff_contactno' => $staff_contactno
+                );
+            $data_id = array(
+                'staff_id' => $id
+                ); 
+            $this->wpdb->update($this->staff_member_tbl,$staff_data,$data_id);
 
 			wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
 
 			exit;
 		} else {
 
-			$this->wpdb->insert($this->staff_member_tbl, array('staff_name' => $staff_name, 'staff_email' => $staff_email, 'staff_position' => $staff_position, 'staff_contactno' => $staff_contactno));
+            $staff_data = array(
+                'staff_name' => $staff_name, 
+                'staff_email' => $staff_email, 
+                'staff_position' => $staff_position, 
+                'staff_contactno' => $staff_contactno
+                );
+			$this->wpdb->insert($this->staff_member_tbl, $staff_data);
 
 			wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
 
@@ -132,7 +147,11 @@ class staff_member extends ATQ {
 		// Getting staff id
 		$id = filter_input(INPUT_GET, 'id');
 
-		$this->wpdb->delete($this->staff_member_tbl, array('staff_id' => $id));
+        $staff_data = array(
+            'staff_id' => $id
+            );
+
+		$this->wpdb->delete($this->staff_member_tbl,$staff_data);
 
 		wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=deleted'));
 

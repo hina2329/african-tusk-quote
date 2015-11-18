@@ -217,17 +217,43 @@ class products extends ATQ {
         $prod_featured = filter_input(INPUT_POST, 'prod_featured');
         $prod_sale = filter_input(INPUT_POST, 'prod_sale');
 
-
         if (!empty($id)) {
+            $prod_data =  array(
+                'prod_name' => $prod_name,
+                'prod_desc' => $prod_desc, 
+                'prod_price' => $prod_price, 
+                'prod_images' => $prod_images, 
+                'prod_code' => $prod_code, 
+                'prod_cat' => $prod_cat,
+                'prod_size' => $prod_size, 
+                'prod_fab' => $prod_fab, 
+                'prod_featured' => $prod_featured, 
+                'prod_sale' => $prod_sale
+                ); 
+             $data_id = array(
+                'prod_id' => $id);
 
-            $this->wpdb->update($this->products_tbl, array('prod_name' => $prod_name, 'prod_desc' => $prod_desc, 'prod_price' => $prod_price, 'prod_images' => $prod_images, 'prod_code' => $prod_code, 'prod_cat' => $prod_cat, 'prod_size' => $prod_size, 'prod_fab' => $prod_fab, 'prod_featured' => $prod_featured, 'prod_sale' => $prod_sale), array('prod_id' => $id));
+            $this->wpdb->update($this->products_tbl, $prod_data, $data_id);
 
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
 
             exit;
         } else {
 
-            $this->wpdb->insert($this->products_tbl, array('prod_name' => $prod_name, 'prod_desc' => $prod_desc, 'prod_price' => $prod_price, 'prod_images' => $prod_images, 'prod_code' => $prod_code, 'prod_cat' => $prod_cat, 'prod_size' => $prod_size, 'prod_fab' => $prod_fab, 'prod_featured' => $prod_featured, 'prod_sale' => $prod_sale));
+            $prod_data = array(
+                'prod_name' => $prod_name, 
+                'prod_desc' => $prod_desc, 
+                'prod_price' => $prod_price, 
+                'prod_images' => $prod_images, 
+                'prod_code' => $prod_code, 
+                'prod_cat' => $prod_cat, 
+                'prod_size' => $prod_size, 
+                'prod_fab' => $prod_fab, 
+                'prod_featured' => $prod_featured, 
+                'prod_sale' => $prod_sale
+                );
+
+            $this->wpdb->insert($this->products_tbl, $prod_data);
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
 
             exit;
@@ -240,7 +266,10 @@ class products extends ATQ {
         // Getting category ID
         $id = filter_input(INPUT_GET, 'id');
 
-        $this->wpdb->delete($this->products_tbl, array('prod_id' => $id));
+        $prod_data =  array(
+            'prod_id' => $id);
+
+        $this->wpdb->delete($this->products_tbl,$prod_data);
 
         wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=deleted'));
 

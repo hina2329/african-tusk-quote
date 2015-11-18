@@ -124,7 +124,8 @@ class quotes extends ATQ {
                 <?php
             } else {
                 ?>
-                SECOND FORM HERE!!!
+                       SECOND FORM HERE!!!
+                 
                 <?php
             }
             ?>
@@ -182,3 +183,4 @@ class quotes extends ATQ {
     }
 
 }
+

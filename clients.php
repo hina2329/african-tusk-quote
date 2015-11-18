@@ -119,11 +119,6 @@ class clients extends ATQ {
                     <input type="text" name="client_companyname" id="client_companyname" value="<?php echo $row->client_companyname;?>" required>
                 </div>
 
-
-
-
-
-
                 <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Client' : 'Add New Client';?>"></p>
             </form>
         </div>
@@ -144,21 +139,41 @@ class clients extends ATQ {
 		$client_companyname = filter_input(INPUT_POST, 'client_companyname', FILTER_SANITIZE_STRING);
 
 		if (!empty($id)) {
+            $client_data = array(
+                'client_fname' => $client_fname, 
+                'client_lname' => $client_lname, 
+                'client_email' => $client_email, 
+                'client_contactno' => $client_contactno, 
+                'client_cellno' => $client_cellno, 
+                'client_companyname' => $client_companyname
+                );
+            $data_id =  array(
+                'client_id' => $id
+                );
 
-			$this->wpdb->update($this->clients_tbl, array('client_fname' => $client_fname, 'client_lname' => $client_lname, 'client_email' => $client_email, 'client_contactno' => $client_contactno, 'client_cellno' => $client_cellno, 'client_companyname' => $client_companyname), array('client_id' => $id));
+			$this->wpdb->update($this->clients_tbl, $client_data, $data_id );
 
 			wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
 
 			exit;
 		} else {
 
-			$this->wpdb->insert($this->clients_tbl, array('client_fname' => $client_fname, 'client_lname' => $client_lname, 'client_email' => $client_email, 'client_contactno' => $client_contactno, 'client_cellno' => $client_cellno, 'client_companyname' => $client_companyname));
+            $client_data = array(
+                'client_fname' => $client_fname, 
+                'client_lname' => $client_lname, 
+                'client_email' => $client_email, 
+                'client_contactno' => $client_contactno, 
+                'client_cellno' => $client_cellno, 
+                'client_companyname' => $client_companyname
+            );
+
+			$this->wpdb->insert($this->clients_tbl, $client_data);
 
 			wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
 
 			exit;
 		}
-        
+  
 	}
 
 	// Delete client
@@ -167,7 +182,11 @@ class clients extends ATQ {
 		// Getting client id
 		$id = filter_input(INPUT_GET, 'id');
 
-		$this->wpdb->delete($this->clients_tbl, array('client_id' => $id));
+        $client_data = array(
+            'client_id' => $id,
+        );
+
+		$this->wpdb->delete($this->clients_tbl, $client_data);
 
 		wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=deleted'));
 

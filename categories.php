@@ -94,14 +94,24 @@ class categories extends ATQ {
 
 		if (!empty($id)) {
 
-			$this->wpdb->update($this->categories_tbl, array('cat_name' => $cat_name), array('cat_id' => $id));
+			$cat_data = array(
+				'cat_name' => $cat_name
+				); 
+			$data_id = array(
+				'cat_id' => $id
+				);
+
+			$this->wpdb->update($this->categories_tbl, $cat_data, $data_id );
 
 			wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
 
 			exit;
 		} else {
+			$cat_data = array(
+				'cat_name' => $cat_name
+				);
 
-			$this->wpdb->insert($this->categories_tbl, array('cat_name' => $cat_name));
+			$this->wpdb->insert($this->categories_tbl, $cat_data );
 
 			wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
 
@@ -114,8 +124,12 @@ class categories extends ATQ {
 
 		// Getting category ID
 		$id = filter_input(INPUT_GET, 'id');
+		
+		$cat_data = array(
+			'cat_id' => $id
+			);
 
-		$this->wpdb->delete($this->categories_tbl, array('cat_id' => $id));
+		$this->wpdb->delete($this->categories_tbl, $cat_data );
 
 		wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=deleted'));
 

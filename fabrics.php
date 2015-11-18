@@ -155,13 +155,27 @@ class fabrics extends ATQ {
 
         if (!empty($id)) {
 
-            $this->wpdb->update($this->fabrics_tbl, array('fab_name' => $fab_name, 'fab_suffix' => $fab_suffix, 'fab_colors' => $fab_colors), array('fab_id' => $id));
+            $fab_data = array(
+                'fab_name' => $fab_name, 
+                'fab_suffix' => $fab_suffix, 
+                'fab_colors' => $fab_colors
+                );
+            $data_id= array(
+                'fab_id' => $id
+                );
+
+            $this->wpdb->update($this->fabrics_tbl, $fab_data, $data_id);
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
 
             exit;
         } else {
+            $fab_data = array(
+                'fab_name' => $fab_name,
+                'fab_suffix' => $fab_suffix,
+                'fab_colors' => $fab_colors
+                );
 
-            $this->wpdb->insert($this->fabrics_tbl, array('fab_name' => $fab_name, 'fab_suffix' => $fab_suffix, 'fab_colors' => $fab_colors));
+            $this->wpdb->insert($this->fabrics_tbl,$fab_data );
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
 
             exit;
@@ -174,7 +188,10 @@ class fabrics extends ATQ {
         // Getting category ID
         $id = filter_input(INPUT_GET, 'id');
 
-        $this->wpdb->delete($this->fabrics_tbl, array('fab_id' => $id));
+        $fab_data = array(
+             'fab_id' => $id
+            );
+        $this->wpdb->delete($this->fabrics_tbl, $fab_data);
 
         wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=deleted'));
         exit;
