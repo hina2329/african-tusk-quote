@@ -109,7 +109,7 @@ class products extends ATQ {
                 </div>
                 <div class="form-field">
                     <label for="prod_price">Price<span>*</span></label><br>
-                    $ <input name="prod_price" id="prod_price" type="text" value="<?php echo $row->prod_price; ?>" class="small-text" required>
+                    R <input name="prod_price" id="prod_price" type="text" value="<?php echo $row->prod_price; ?>" class="small-text" required>
                 </div>
                 <div class="form-field">
                     <label for="prod_image">Images<a href="#" class="btn-fields add-fields">+ Add Image</a></label><br>

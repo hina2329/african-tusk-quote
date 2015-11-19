@@ -143,12 +143,12 @@ class fabrics extends ATQ {
         $fab_suffix = filter_input(INPUT_POST, 'fab_suffix');
         $fab_colors_count = count(filter_input(INPUT_POST, 'fab_color', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY));
 
-        $fab_colors_raw = [];
+        $fab_colors_raw = array();
         for ($i = 0; $i < $fab_colors_count; $i++) {
-            $fab_colors_raw[$i] = [
+            $fab_colors_raw[$i] = array(
                 'fab_color' => $_POST['fab_color'][$i],
                 'fab_img' => $_POST['fab_img'][$i]
-            ];
+            );
         }
 
         $fab_colors = serialize($fab_colors_raw);

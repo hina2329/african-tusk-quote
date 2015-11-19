@@ -6,7 +6,7 @@
     width: 100%;
 }
 #atq-wrap input.small-text {
-    width: 30%;
+    width: 100px;
 }
 #atq-wrap h1 {
     margin-bottom: 10px;
@@ -33,9 +33,6 @@
 }
 #atq-wrap .form-field {
     margin-bottom: 10px;
-}
-#atq-wrap .small-text {
-    width: 100px;
 }
 #atq-wrap .submit {
     clear: both;
