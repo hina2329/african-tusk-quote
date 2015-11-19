@@ -196,6 +196,7 @@ class quotes extends ATQ {
             <fieldset class="quote-products">
                 <legend>Quote Items</legend>
                 <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save&update=quote'); ?>">
+                    <p>Simply specify the first 3 characthers of a product code, e.g. AT1. It will then give you options, select one and click "Add Product". <input type="text" class="large-text"><a href="#" class="button">Add Product</a></p>
                     <table class="wp-list-table widefat fixed striped pages">
                         <thead>
                             <tr>

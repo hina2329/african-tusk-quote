@@ -7,6 +7,10 @@
 }
 #atq-wrap input.small-text {
     width: 100px;
+    padding: 1px 6px;
+}
+#atq-wrap input.large-text {
+    width: 244px;
 }
 #atq-wrap h1 {
     margin-bottom: 10px;
