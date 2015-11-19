@@ -222,7 +222,6 @@ class ATQ {
         PRIMARY KEY(quote_id)
         ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
         
-
         $quote_items_table = "CREATE TABLE $this->quote_items_tbl(
         item_id INT(5) NOT NULL AUTO_INCREMENT,
         Item_qid VARCHAR(100) NOT NULL,
