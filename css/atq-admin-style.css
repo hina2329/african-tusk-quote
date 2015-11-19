@@ -142,3 +142,29 @@
 #quote_comment {
     height: 250px;
 }
+.quote-item-search {
+    position: relative;
+    padding: 0 0 20px;
+}
+.quote-item-search ul {
+    margin: 0;
+    padding: 0;
+    border: #DDDDDD 1px solid;
+    width: 242px;
+    position: absolute;
+    top: 28px;
+    right: 100px;
+    border-bottom: none;
+}
+.quote-item-search ul li {
+    border-bottom: #DDDDDD 1px solid;
+    margin: 0;
+    display: none;
+}
+.quote-item-search ul li a {
+    background: #fff;
+    display: block;
+    padding: 6px;
+    font-weight: bold;
+    text-decoration: none;
+}

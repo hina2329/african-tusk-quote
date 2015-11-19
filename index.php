@@ -106,6 +106,32 @@ class ATQ {
             wp_enqueue_script('media-upload');
             wp_enqueue_script('thickbox');
         }
+        ?>
+        <script>
+            jQuery(document).ready(function ($) {
+                $(".quote-item-search input[type=text]").keyup(function () {
+
+                    var filter = $(this).val();
+                    if (!filter) {
+                        $(".quote-item-search ul li").hide();
+                        return;
+                    }
+
+                    var regex = new RegExp(filter, "i");
+                    $(".quote-item-search ul li").each(function () {
+
+                        if ($(this).text().search(regex) < 0) {
+                            $(this).hide();
+                        } else {
+                            $(this).show();
+                        }
+                    });
+
+                });
+            });
+        </script>
+        <?php
+
     }
 
     // Registering plugin front end resources
