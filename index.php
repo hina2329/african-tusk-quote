@@ -111,7 +111,9 @@ class ATQ {
         ?>
         <script>
             jQuery(document).ready(function ($) {
-                $(".quote-item-search input[type=text]").keyup(function () {
+                
+                // Search products
+                $(".quote-item-search input.prod-name").keyup(function () {
 
                     var filter = $(this).val();
                     if (!filter) {
@@ -130,6 +132,17 @@ class ATQ {
                     });
 
                 });
+                
+                // Add product info to field
+                $(".quote-item-search ul li").click(function(){
+                    var prod_text = $(this).text();
+                    var prod_id = $(this).data('prod-id');
+                    $(".quote-item-search input.prod-name").val(prod_text);
+                    $(".quote-item-search input.prod-id").val(prod_id);
+                    $(this).parent().hide();
+                    return false;
+                });
+                
             });
         </script>
         <?php

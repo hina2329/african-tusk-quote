@@ -142,6 +142,12 @@
 #quote_comment {
     height: 250px;
 }
+.quote-products {
+    clear: both;
+}
+.quote-products form {
+    display: inline;
+}
 .quote-item-search {
     position: relative;
     padding: 0 0 20px;

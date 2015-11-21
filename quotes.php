@@ -196,13 +196,16 @@ class quotes extends ATQ {
             <fieldset class="quote-products">
                 <legend>Quote Items</legend>
                 <div class="quote-item-search">
-                    Simply specify the first 3 characthers of a product code, e.g. AT1. It will then give you options, select one and click "Add Product". <input type="text" class="large-text"><button class="button">Add Product</button>
+                    Simply specify the first 3 characthers of a product code, e.g. AT1. It will then give you options, select one and click "Add Product".                   <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=add_product'); ?>">
+                        <input type="hidden" class="prod-id" name="prod_id">
+                        <input type="text" class="prod-name large-text" name="prod_name"><button class="button">Add Product</button>
+                    </form>
                     <ul>
                         <?php
                         $products = $this->wpdb->get_results("SELECT * FROM $this->products_tbl");
                         foreach ($products as $product) {
                             ?>
-                            <li><a href="#"><?php echo $product->prod_code . ' / ' . $product->prod_name; ?></a></li>
+                            <li data-prod-id="<?php echo $product->prod_id; ?>"><a href="#"><?php echo $product->prod_code . ' / ' . $product->prod_name; ?></a></li>
                             <?php
                         }
                         ?>
@@ -442,6 +445,12 @@ class quotes extends ATQ {
             // Redirect to next quote form
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $quote_id));
         }
+    }
+    
+    public function add_product() {
+        echo filter_input(INPUT_POST, 'prod_id');
+        echo filter_input(INPUT_POST, 'prod_name');
+       
     }
 
 }
