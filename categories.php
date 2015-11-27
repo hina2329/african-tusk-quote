@@ -15,10 +15,12 @@ class categories extends ATQ {
 
         <?php $this->notify('Category'); ?>
 
-        <table class="wp-list-table widefat fixed striped pages">
+        <table class="wp-list-table widefat striped sort-cat">
             <thead>
                 <tr>
-                    <th width="80%">Category Name</th>
+                    <th width="20%">Category Image</th>
+                    <th width="30%">Category Name</th>
+                    <th width="30%">Category Childs</th>
                     <th width="20%" class="actions">Actions</th>
                 </tr>
             </thead>
@@ -27,15 +29,44 @@ class categories extends ATQ {
 
                 <?php
                 // Getting categories
-                $results = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl");
+                $results = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl WHERE cat_parent = 0 ORDER BY cat_order ASC");
 
                 if ($results) {
 
                     foreach ($results as $row) {
                         ?>
-                        <tr>
+                <tr id="items_<?php echo $row->cat_id; ?>" class="sort-it">
+                            <td>
+                                <?php
+                                if ($row->cat_image) {
+                                    ?>
+                                    <img src="<?php echo $row->cat_image; ?>" width="80">
+                                    <?php
+                                } else {
+                                    ?>
+                                    <div class="no_img">NO IMAGE</div>
+                                    <?php
+                                }
+                                ?>
+                            </td>
                             <td class="column-title">
                                 <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->cat_id); ?>"><?php echo $row->cat_name; ?></a></strong>
+                            </td>
+                            <td>
+                                <?php
+                                $child_cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl WHERE cat_parent = $row->cat_id");
+                                $child_cat_count = count($child_cats);
+                                $i = 0;
+                                foreach ($child_cats as $child_cat) {
+                                    $i++;
+                                    ?>
+                                    <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>"><?php echo $child_cat->cat_name; ?></a></strong>
+                                    <?php
+                                    if ($i < $child_cat_count) {
+                                        echo ', ';
+                                    }
+                                }
+                                ?>
                             </td>
                             <td class="actions">
                                 <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->cat_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
@@ -47,7 +78,7 @@ class categories extends ATQ {
                 } else {
                     ?>
                     <tr>
-                        <td colspan="2" style="text-align: center;"><strong>No Records Found</strong></td>
+                        <td colspan="4" style="text-align: center;"><strong>No Records Found</strong></td>
                     </tr>
                     <?php
                 }
@@ -56,7 +87,8 @@ class categories extends ATQ {
             </tbody>
 
         </table>
-
+        
+        <p><em><strong>NOTE:</strong> Drag & drop the categories to rearrange them.</em></p>
 
         <?php
     }
@@ -73,10 +105,35 @@ class categories extends ATQ {
 
         <div class="col-left">
             <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save'); ?>">
-                <input type="hidden" name="cat_id" value="<?php echo $id; ?>">
+                <input type="hidden" name="cat_id" value="<?php echo $row->cat_id; ?>">
                 <div class="form-field">
                     <label for="cat_name">Category Name <span>*</span></label>
                     <input name="cat_name" id="cat_name" type="text" value="<?php echo $row->cat_name; ?>" required>
+                </div>
+                <div class="form-field">
+                    <label for="cat_desc">Category Description</label>
+                    <textarea name="cat_desc" id="cat_desc" rows="5" cols="40" ><?php echo $row->cat_desc; ?></textarea>
+                </div>
+                <div class="form-field">
+                    <label for="cat_image">Category Image</label>
+                    <input name="cat_image" id="cat_img" class="img_field" type="text" size="20" value="<?php echo $row->cat_image; ?>">
+                    <input class="upload_image_button" type="button" value="Upload Image">
+                </div>
+                <div class="form-field">
+                    <label for="cat_parent">Parent</label>
+                    <select name="cat_parent" id="cat_parent">
+                        <option value="0">Select Parent</option>
+                        <?php
+                        // Getting categories list
+                        $cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl WHERE cat_parent = 0");
+
+                        // Listing all categories
+                        foreach ($cats as $cat) {
+                            echo '<option value="' . $cat->cat_id . '" ' . selected($cat->cat_id, $row->cat_parent, false) . '>' . $cat->cat_name . '</option>';
+                        }
+                        ?>
+
+                    </select>
                 </div>
                 <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Category' : 'Add New Category'; ?>"></p>
             </form>
@@ -91,11 +148,17 @@ class categories extends ATQ {
         // Getting submitted data
         $id = filter_input(INPUT_POST, 'cat_id');
         $cat_name = filter_input(INPUT_POST, 'cat_name', FILTER_SANITIZE_STRING);
+        $cat_desc = filter_input(INPUT_POST, 'cat_desc');
+        $cat_image = filter_input(INPUT_POST, 'cat_image');
+        $cat_parent = filter_input(INPUT_POST, 'cat_parent');
 
         if (!empty($id)) {
 
             $cat_data = array(
-                'cat_name' => $cat_name
+                'cat_name' => $cat_name,
+                'cat_desc' => $cat_desc,
+                'cat_image' => $cat_image,
+                'cat_parent' => $cat_parent
             );
             $data_id = array(
                 'cat_id' => $id
@@ -107,9 +170,12 @@ class categories extends ATQ {
 
             exit;
         } else {
-            
+
             $cat_data = array(
-                'cat_name' => $cat_name
+                'cat_name' => $cat_name,
+                'cat_desc' => $cat_desc,
+                'cat_image' => $cat_image,
+                'cat_parent' => $cat_parent
             );
 
             $this->wpdb->insert($this->categories_tbl, $cat_data);

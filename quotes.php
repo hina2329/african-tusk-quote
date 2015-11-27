@@ -195,9 +195,18 @@ class quotes extends ATQ {
 
             <fieldset class="quote-products">
                 <legend>Quote Items</legend>
+                <div class="quote-item-heading">
+                    <strong>Add Heading</strong><br>
+                    <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=add_heading'); ?>">
+                        <input type="hidden" name="quote_id" value="<?php echo $quote->quote_id; ?>">
+                        <input type="text" name="add_heading" class="large-text"><input type="submit" value="Add Heading" class="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=add_sep&id=' . $quote->quote_id); ?>" class="button">Add Separator</a>
+                    </form>
+                </div>
                 <div class="quote-item-search">
-                    Simply specify the first 3 characthers of a product code, e.g. AT1. It will then give you options, select one and click "Add Product".                   <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=add_product'); ?>">
+                    Simply specify the first 3 characthers of a product code, e.g. AT1. It will then give you options, select one and click "Add Product".<br>                   
+                    <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=add_product'); ?>">
                         <input type="hidden" class="prod-id" name="prod_id">
+                        <input type="hidden" name="quote_id" value="<?php echo $quote->quote_id; ?>">
                         <input type="text" class="prod-name large-text" name="prod_name"><button class="button">Add Product</button>
                     </form>
                     <ul>
@@ -212,7 +221,7 @@ class quotes extends ATQ {
                     </ul>
                 </div>
                 <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save&update=quote'); ?>">
-                    <table class="wp-list-table widefat fixed striped pages">
+                    <table class="wp-list-table widefat fixed striped pages item-list">
                         <thead>
                             <tr>
                                 <th width="20%">Picture</th>
@@ -232,6 +241,93 @@ class quotes extends ATQ {
                         </tfoot>
 
                         <tbody id="the-list">
+                            <?php
+                            $quote_items = $this->wpdb->get_results("SELECT * FROM $this->quote_items_tbl");
+                            foreach ($quote_items as $item) {
+                                $images = unserialize($item->item_images);
+                                $fabrics_prices = unserialize($item->item_fab_price);
+                                $textarea_id = 'desc' . $item->item_id;
+                                if ($item->sep) {
+                                    ?>
+                                    <tr id="item_<?php echo $item->item_id; ?>" class="item">
+                                        <td colspan="6"><hr style="height: 3px; background: #666;"></td>
+                                        <td class="actions">
+                                            <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $item->item_id . '&quote_id=' . $item->item_qid); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm("Are you sure you want to delete this?");"></a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                } else
+                                    if ($item->heading) {
+                                    ?>
+                                    <tr id="item_<?php echo $item->item_id; ?>" class="item">
+                                        <td colspan="6"><h2><?php echo $item->heading; ?></h2></td>
+                                        <td class="actions">
+                                            <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $item->item_id . '&quote_id=' . $item->item_qid); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm("Are you sure you want to delete this?");"></a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <tr id="item_<?php echo $item->item_id; ?>" class="item">
+                                        <td>
+                                            <?php
+                                            if ($images) {
+                                                foreach ($images as $image) {
+                                                    echo '<img src="' . $image . '" alt="" width="auto" height="150"><br>';
+                                                }
+                                            }
+                                            ?>
+                                            <input type="text" name="item_name" value="<?php echo $item->item_name; ?>">
+                                        </td>
+                                        <td>
+                                            <?php
+                                            // WordPress WYSIWYG Editor
+                                            wp_editor($item->item_desc, $textarea_id, array('textarea_name' => 'text'));
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php
+                                            if ($fabrics_prices) {
+                                                echo '<select class="fabric-type">';
+                                                echo '<option value="0">Select Fabric</option>';
+                                                foreach ($fabrics_prices as $fp) {
+                                                    $fab_id = $fp['fab'];
+                                                    $fab = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_id = $fab_id");
+                                                    echo '<option data-fab-id="#fab_color_' . $fab_id . '" value="' . $fp['price'] . '">' . $fab->fab_name . '</option>';
+                                                }
+                                                echo '</select>';
+                                                foreach ($fabrics_prices as $fp) {
+                                                    $fab_id = $fp['fab'];
+                                                    $fab = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_id = $fab_id");
+                                                    $fab_colors = unserialize($fab->fab_colors);
+                                                    echo '<div id="fab_color_' . $fab_id . '" class="item-fab-colors">';
+                                                    echo '<select name="color-name" multiple>';
+                                                    foreach ($fab_colors as $color) {
+                                                        echo '<option>' . $color['fab_color'] . '</option>';
+                                                    }
+                                                    echo '</select>';
+                                                    echo '</div>';
+                                                }
+                                            }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="item_qty" value="<?php echo $item->item_qty; ?>" class="x-small-text item-qty">
+                                        </td>
+                                        <td>
+                                            R <input type="text" name="item_qty" value="" class="x-small-text unit-price">
+                                        </td>
+                                        <td>
+                                            R <input type="text" name="item_qty" value="" class="x-small-text sub-total">
+                                        </td>
+                                        <td class="actions">
+                                            <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $item->item_id . '&quote_id=' . $item->item_qid); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                            }
+                            ?>
                         </tbody>
 
                     </table>
@@ -446,11 +542,99 @@ class quotes extends ATQ {
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $quote_id));
         }
     }
-    
+
     public function add_product() {
-        echo filter_input(INPUT_POST, 'prod_id');
-        echo filter_input(INPUT_POST, 'prod_name');
-       
+
+        // Get product and quote id
+        $prod_id = filter_input(INPUT_POST, 'prod_id');
+        $quote_id = filter_input(INPUT_POST, 'quote_id');
+
+        // Get product data of db
+        $product = $this->wpdb->get_row("SELECT * FROM $this->products_tbl WHERE prod_id = $prod_id");
+
+        // Save existing product data into wp_atq_quote_items table
+        $product_data = array(
+            'item_qid' => $quote_id,
+            'item_images' => $product->prod_images,
+            'item_name' => $product->prod_name,
+            'item_desc' => $product->prod_desc,
+            'item_cat' => $product->prod_cat,
+            'item_fab_price' => $product->prod_fab_price
+        );
+
+        $this->wpdb->insert($this->quote_items_tbl, $product_data);
+
+        // Redirect to next quote form
+        wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $quote_id));
+    }
+
+    // Add separator in quote items listing
+    public function add_sep() {
+
+        // Get quote id
+        $quote_id = filter_input(INPUT_GET, 'id');
+
+        $item_sep = array(
+            'item_qid' => $quote_id,
+            'sep' => 1,
+        );
+
+        $this->wpdb->insert($this->quote_items_tbl, $item_sep);
+
+        // Redirect to next quote form
+        wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $quote_id));
+    }
+
+    // Add heading in quote items listing
+    public function add_heading() {
+
+        // Get quote id
+        $quote_id = filter_input(INPUT_POST, 'quote_id');
+        $heading = filter_input(INPUT_POST, 'add_heading');
+
+        $item_heading = array(
+            'item_qid' => $quote_id,
+            'heading' => $heading
+        );
+
+        $this->wpdb->insert($this->quote_items_tbl, $item_heading);
+
+        // Redirect to next quote form
+        wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $quote_id));
+    }
+
+    // Delete product
+    public function del() {
+
+        // Getting item & quote ID
+        $id = filter_input(INPUT_GET, 'id');
+        $quote_id = filter_input(INPUT_GET, 'quote_id');
+
+        if (!isset($quote_id)) {
+            // If delete quote
+            $quote_data = array(
+                'quote_id' => $id
+            );
+            $quote_id = array(
+                'item_qid' => $quote_id
+            );
+
+            $this->wpdb->delete($this->quotes_tbl, $quote_data);
+            $this->wpdb->delete($this->quote_items_tbl, $quote_id);
+
+            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=deleted'));
+        } else {
+            // If delete product with in the quote
+            $item_data = array(
+                'item_id' => $id
+            );
+
+            $this->wpdb->delete($this->quote_items_tbl, $item_data);
+
+            wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $quote_id . '&update=updated'));
+        }
+
+        exit;
     }
 
 }

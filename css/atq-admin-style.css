@@ -9,8 +9,12 @@
     width: 100px;
     padding: 1px 6px;
 }
+#atq-wrap input.x-small-text {
+    width: 70px;
+    padding: 1px 6px;
+}
 #atq-wrap input.large-text {
-    width: 244px;
+    width: 236px;
 }
 #atq-wrap h1 {
     margin-bottom: 10px;
@@ -100,8 +104,12 @@
 .btn-fields:focus {
     box-shadow: none;
 }
-.add-fields {
+.add-fields,
+.add-fabric {
     background: #45BF03;
+}
+.add-fabric {
+    margin: 4px 0 0;
 }
 .remove-fields {
     margin: 10px 0 0;
@@ -148,18 +156,24 @@
 .quote-products form {
     display: inline;
 }
+.quote-item-heading {
+    width: 48%;
+    float: left;
+}
 .quote-item-search {
     position: relative;
     padding: 0 0 20px;
+    width: 50%;
+    float: right;
 }
 .quote-item-search ul {
     margin: 0;
     padding: 0;
     border: #DDDDDD 1px solid;
-    width: 242px;
+    width: 234px;
     position: absolute;
-    top: 28px;
-    right: 100px;
+    top: 64px;
+    left: 1px;
     border-bottom: none;
 }
 .quote-item-search ul li {
@@ -173,4 +187,30 @@
     padding: 6px;
     font-weight: bold;
     text-decoration: none;
+}
+.no_img {
+    width: 80px;
+    line-height: 80px;
+    background: #DDDDDD;
+    color: #000000;
+    text-align: center;
+    font-size: 12px;
+}
+.sort-it, .item {
+    cursor: move;
+}
+.fabric-list {
+    background: #fff;
+    width: 100%;
+}
+.fabric-list a {
+    text-decoration: none;
+    float: right;
+}
+.fabric-list .fab-name {
+    width: 150px;
+    display: inline-block;
+}
+.item-fab-colors {
+    display: none;
 }

@@ -96,8 +96,8 @@ class fabrics extends ATQ {
                     <input name="fab_name" id="fab_name" type="text" value="<?php echo $row->fab_name; ?>" required>
                 </div>
                 <div class="form-field">
-                    <label for="fab_suffix">Suffix<span>*</span></label>
-                    <input name="fab_suffix" id="fab_suffix" type="text" value="<?php echo $row->fab_suffix; ?>" required>
+                    <label for="fab_suffix">Suffix</label>
+                    <input name="fab_suffix" id="fab_suffix" type="text" value="<?php echo $row->fab_suffix; ?>">
                 </div>
                 <div class="form-field">
                     <label>Fabric Colors <a href="#" class="btn-fields add-fields">+ Add Color</a></label>
@@ -110,7 +110,7 @@ class fabrics extends ATQ {
                                 ?>
                                 <div class="multi-fields">
                                     <input name="fab_color[]" class="fab_color" type="text" value="<?php echo $color['fab_color']; ?>" placeholder="Fabric Color Name">
-                                    <input name="fab_img[]" class="fab_img" type="text" value="<?php echo $color['fab_img']; ?>" placeholder="Fabric Thumbnail">
+                                    <input name="fab_img[]" class="img_field" type="text" value="<?php echo $color['fab_img']; ?>" placeholder="Fabric Thumbnail">
                                     <input class="upload_image_button" type="button" value="Upload Image"><a href="#" class="btn-fields remove-fields">X remove</a>
                                 </div>
                                 <?php
@@ -125,7 +125,7 @@ class fabrics extends ATQ {
             <!-- CLONE MULTIPLE FIELDS -->
             <div class="multi-fields screen-reader-text">
                 <input name="fab_color[]" class="fab_color" type="text" value="" placeholder="Fabric Color Name">
-                <input name="fab_img[]" class="fab_img" type="text" value="" placeholder="Fabric Thumbnail">
+                <input name="fab_img[]" class="img_field" type="text" value="" placeholder="Fabric Thumbnail">
                 <input class="upload_image_button" type="button" value="Upload Image"><a href="#" class="btn-fields remove-fields">X remove</a>
             </div>
             <!-- CLONE MULTIPLE FIELDS -->

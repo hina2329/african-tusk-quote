@@ -22,7 +22,7 @@ class products extends ATQ {
                     <th width="20%">Code</th>
                     <th width="25%">Title</th>
                     <th width="25%">Category</th>
-                    <th width="15%">Type</th>
+                    <th width="15%">Fabric Type</th>
                     <th width="15%" class="actions">Actions</th>
                 </tr>
             </thead>
@@ -32,8 +32,7 @@ class products extends ATQ {
                 <?php
                 // Getting products & categories & fabric types
 
-                $results = $this->wpdb->get_results("SELECT prod.*, fab.*  FROM $this->products_tbl AS prod "
-                        . "INNER JOIN $this->fabrics_tbl AS fab ON prod.prod_fab = fab.fab_id");
+                $results = $this->wpdb->get_results("SELECT * FROM $this->products_tbl");
 
 
                 if ($results) {
@@ -52,6 +51,7 @@ class products extends ATQ {
                                 <?php
                                 $cats = unserialize($row->prod_cat);
                                 $cat_count = count($cats);
+
                                 for ($i = 0; $i < $cat_count; $i++) {
                                     $cat_row = $this->wpdb->get_row("SELECT * FROM $this->categories_tbl WHERE cat_id = " . $cats[$i]);
                                     echo $cat_row->cat_name;
@@ -61,7 +61,24 @@ class products extends ATQ {
                                 }
                                 ?>
                             </td>
-                            <td><?php echo $row->fab_name; ?></td>
+                            <td>
+                                <?php
+                                $prod_fabs = unserialize($row->prod_fab_price);
+                                $fabs_count = count($prod_fabs);
+                                $i = 0;
+                                if ($prod_fabs) {
+                                    foreach ($prod_fabs as $prod_fab) {
+                                        $i++;
+                                        $fab_id = $prod_fab['fab'];
+                                        $fab = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_id = $fab_id");
+                                        echo $fab->fab_name;
+                                        if ($i < $fabs_count) {
+                                            echo ', ';
+                                        }
+                                    }
+                                }
+                                ?>
+                            </td>
 
                             <td class="actions">
                                 <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->prod_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
@@ -92,8 +109,7 @@ class products extends ATQ {
 
         // Getting product data if user requests to edit
         $id = filter_input(INPUT_GET, 'id');
-        $row = $this->wpdb->get_row("SELECT prod.*, fab.*  FROM $this->products_tbl AS prod "
-                . "INNER JOIN $this->fabrics_tbl AS fab ON prod.prod_fab= fab.fab_id WHERE prod.prod_id = $id");
+        $row = $this->wpdb->get_row("SELECT * FROM $this->products_tbl WHERE prod_id = $id");
         ?>
         <div class="col-left">
             <h1><?php echo isset($id) ? 'Edit Product' : 'Add New Product'; ?></h1>
@@ -104,12 +120,11 @@ class products extends ATQ {
                     <input name="prod_name" id="prod_name" type="text" value="<?php echo $row->prod_name; ?>" required>
                 </div>
                 <div class="form-field">
-                    <label for="prod_desc">Description <span>*</span></label>
-                    <textarea name="prod_desc" id="prod_desc" rows="5" cols="40" required><?php echo $row->prod_desc; ?></textarea>
-                </div>
-                <div class="form-field">
-                    <label for="prod_price">Price<span>*</span></label><br>
-                    R <input name="prod_price" id="prod_price" type="text" value="<?php echo $row->prod_price; ?>" class="small-text" required>
+                    <label for="prod_desc">Description</label>
+                    <?php
+                    // WordPress WYSIWYG Editor
+                    wp_editor($row->prod_desc, 'prod_desc', array('textarea_name' => 'prod_desc'));
+                    ?>
                 </div>
                 <div class="form-field">
                     <label for="prod_image">Images<a href="#" class="btn-fields add-fields">+ Add Image</a></label><br>
@@ -121,7 +136,7 @@ class products extends ATQ {
                         for ($i = 0; $i < $images_count; $i++) {
                             ?>
                             <div class="multi-fields">
-                                <input name="prod_image[]" class="prod_image" type="text" size="20" value="<?php echo $images[$i]; ?>">
+                                <input name="prod_image[]" class="img_field" type="text" size="20" value="<?php echo $images[$i]; ?>">
                                 <input class="upload_image_button" type="button" value="Upload Image">
                                 <a href="#" class="btn-fields remove-fields">X remove</a>
                             </div>
@@ -154,14 +169,15 @@ class products extends ATQ {
                 </div>
 
                 <div class="form-field">
-                    <label for="prod_size">Size<span>*</span></label><br>
-                    <input name="prod_size" id="prod_size" type="text" value="<?php echo $row->prod_size; ?>" class="small-text" required>
+                    <label for="prod_size">Size</label><br>
+                    <input name="prod_size" id="prod_size" type="text" value="<?php echo $row->prod_size; ?>" class="small-text">
                 </div>
 
 
                 <div class="form-field">
-                    <label for="prod_fab">Fabric Type<span>*</span></label><br>
-                    <select name="prod_fab" id="prod_fab" required>
+                    <label for="prod_fab">Fabric Type</label><br>
+                    <select name="prod_fab" id="prod_fab">
+                        <option value="0">Select Fabric...</option>
                         <?php
                         // Getting fabrics list
                         $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
@@ -169,13 +185,38 @@ class products extends ATQ {
                         // Listing all fabrics
                         foreach ($fabs as $fab) {
                             ?>
-                            <option value=" <?php echo $fab->fab_id; ?>" <?php selected($fab->fab_id, $row->prod_fab); ?>><?php echo $fab->fab_suffix; ?></option>
+                            <option value="<?php echo $fab->fab_id; ?>" <?php selected($fab->fab_id, $row->prod_fab); ?>><?php echo $fab->fab_name . ' / ' . $fab->fab_suffix; ?></option>
                             <?php
                         }
                         ?>
-
-                    </select>
+                    </select>&nbsp;&nbsp;&nbsp; R <input type="text" name="prod_fab_price" id="prod-fab-price" class="small-text"><a href="#" class="btn-fields add-fabric">+ Add Fabric</a>
                 </div>
+
+                <table class="fabric-list striped">
+                    <?php
+                    $fabs_prices = unserialize($row->prod_fab_price);
+                    $i = 0;
+                    if ($fabs_prices) {
+                        foreach ($fabs_prices as $fab_price) {
+                            $fab_id = $fab_price['fab'];
+                            $fab = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_id = $fab_id");
+                            ?>
+                            <tr>
+                                <td>
+                                    <input type="hidden" class="prod-fab" name="prod[<?php echo $i; ?>][fab]" value="<?php echo $fab_id ?>">
+                                    <input type="hidden" class="prod-price" name="prod[<?php echo $i; ?>][price]" value="<?php echo $fab_price['price']; ?>">
+                                    <span class="fab-name"><?php echo $fab->fab_name . ' / ' . $fab->fab_suffix; ?></span>
+                                    R <?php echo $fab_price['price']; ?>
+                                    <a href="#" class="dashicons-before dashicons-no remove-fab"></a>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    }
+                    ?>
+                </table>
+
+                <hr>
 
                 <div class="form-field">
                     <label for="prod_featured">Mark this product as Featured: </label>
@@ -189,7 +230,7 @@ class products extends ATQ {
             </form>
             <!-- CLONE MULTIPLE FIELDS -->
             <div class="multi-fields screen-reader-text">
-                <input name="prod_image[]" class="prod_image" type="text" size="20" value="">
+                <input name="prod_image[]" class="img_field" type="text" size="20" value="">
                 <input class="upload_image_button" type="button" value="Upload Image">
                 <a href="#" class="btn-fields remove-fields">X remove</a>
             </div>
@@ -205,29 +246,28 @@ class products extends ATQ {
         // Getting submitted data
         $id = filter_input(INPUT_POST, 'prod_id');
         $prod_name = filter_input(INPUT_POST, 'prod_name', FILTER_SANITIZE_STRING);
-        $prod_desc = filter_input(INPUT_POST, 'prod_desc', FILTER_SANITIZE_STRING);
-        $prod_price = filter_input(INPUT_POST, 'prod_price');
+        $prod_desc = filter_input(INPUT_POST, 'prod_desc');
         $prod_images_arr = filter_input(INPUT_POST, 'prod_image', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
         $prod_images = serialize($prod_images_arr);
         $prod_code = filter_input(INPUT_POST, 'prod_code', FILTER_SANITIZE_STRING);
         $prod_cat_arr = filter_input(INPUT_POST, 'prod_cat', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
         $prod_cat = serialize($prod_cat_arr);
         $prod_size = filter_input(INPUT_POST, 'prod_size', FILTER_SANITIZE_STRING);
-        $prod_fab = filter_input(INPUT_POST, 'prod_fab');
         $prod_featured = filter_input(INPUT_POST, 'prod_featured');
         $prod_sale = filter_input(INPUT_POST, 'prod_sale');
+        $prod_fab_price_arr = filter_input(INPUT_POST, 'prod', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+        $prod_fab_price = serialize($prod_fab_price_arr);
 
         if (!empty($id)) {
 
             $prod_data = array(
                 'prod_name' => $prod_name,
                 'prod_desc' => $prod_desc,
-                'prod_price' => $prod_price,
                 'prod_images' => $prod_images,
                 'prod_code' => $prod_code,
                 'prod_cat' => $prod_cat,
                 'prod_size' => $prod_size,
-                'prod_fab' => $prod_fab,
+                'prod_fab_price' => $prod_fab_price,
                 'prod_featured' => $prod_featured,
                 'prod_sale' => $prod_sale
             );
@@ -245,15 +285,15 @@ class products extends ATQ {
             $prod_data = array(
                 'prod_name' => $prod_name,
                 'prod_desc' => $prod_desc,
-                'prod_price' => $prod_price,
                 'prod_images' => $prod_images,
                 'prod_code' => $prod_code,
                 'prod_cat' => $prod_cat,
                 'prod_size' => $prod_size,
-                'prod_fab' => $prod_fab,
+                'prod_fab_price' => $prod_fab_price,
                 'prod_featured' => $prod_featured,
                 'prod_sale' => $prod_sale
             );
+            
 
             $this->wpdb->insert($this->products_tbl, $prod_data);
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
