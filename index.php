@@ -207,11 +207,12 @@ class ATQ {
         prod_name VARCHAR(100) NOT NULL,
         prod_desc LONGTEXT NULL,
         prod_images LONGTEXT NULL,
-        prod_code VARCHAR(100) NOT NULL,
+        prod_code VARCHAR(100) NOT NULL,  
         prod_cat LONGTEXT NOT NULL,
         prod_size VARCHAR(100) NULL,
+        prod_seller INT(1) DEFAULT 0,
         prod_sale INT(1) DEFAULT 0,
-        prod_featured INT(1) DEFAULT 0,
+        prod_new TINYINT DEFAULT 0,
         prod_fab_price LONGTEXT NULL,
         PRIMARY KEY(prod_id)
         ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
