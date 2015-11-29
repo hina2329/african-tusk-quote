@@ -235,6 +235,12 @@ class products extends ATQ {
                 <a href="#" class="btn-fields remove-fields">X remove</a>
             </div>
             <!-- CLONE MULTIPLE FIELDS -->
+            <!-- CLONE MULTIPLE FIELDS -->
+            <div class="multi-fields-fab-price screen-reader-text">
+                
+                <a href="#" class="btn-fields remove-fields">X remove</a>
+            </div>
+            <!-- CLONE MULTIPLE FIELDS -->
         </div>
 
         <?php
