@@ -219,12 +219,16 @@ class products extends ATQ {
                 <hr>
 
                 <div class="form-field">
-                    <label for="prod_featured">Mark this product as Featured: </label>
-                    <input name="prod_featured" id="prod_featured" type="checkbox" value="1" <?php checked($row->prod_featured, '1'); ?>>
+                    <label for="prod_seller">Mark this product as Best Seller: </label>
+                    <input name="prod_seller" id="prod_seller" type="checkbox" value="1" <?php checked($row->prod_seller, '1'); ?>>
                 </div>
                 <div class="form-field">
                     <label for="prod_sale">Mark this product as Sale Product: </label>
                     <input name="prod_sale" id="prod_sale" type="checkbox"  value="1" <?php checked($row->prod_sale, '1'); ?>>
+                </div>
+                <div class="form-field">
+                    <label for="prod_new">Mark this product as New: </label>
+                    <input name="prod_new" id="prod_new" type="checkbox" value="1" <?php checked($row->prod_new, '1'); ?>>
                 </div>
                 <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Product' : 'Add New Product'; ?>"></p>
             </form>
@@ -259,8 +263,9 @@ class products extends ATQ {
         $prod_cat_arr = filter_input(INPUT_POST, 'prod_cat', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
         $prod_cat = serialize($prod_cat_arr);
         $prod_size = filter_input(INPUT_POST, 'prod_size', FILTER_SANITIZE_STRING);
-        $prod_featured = filter_input(INPUT_POST, 'prod_featured');
+        $prod_seller = filter_input(INPUT_POST, 'prod_seller');
         $prod_sale = filter_input(INPUT_POST, 'prod_sale');
+        $prod_new = filter_input(INPUT_POST, 'prod_new');
         $prod_fab_price_arr = filter_input(INPUT_POST, 'prod', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
         $prod_fab_price = serialize($prod_fab_price_arr);
 
@@ -273,9 +278,10 @@ class products extends ATQ {
                 'prod_code' => $prod_code,
                 'prod_cat' => $prod_cat,
                 'prod_size' => $prod_size,
-                'prod_fab_price' => $prod_fab_price,
-                'prod_featured' => $prod_featured,
-                'prod_sale' => $prod_sale
+                'prod_seller' => $prod_seller,
+                'prod_sale' => $prod_sale,
+                'prod_new' => $prod_new,
+                'prod_fab_price' => $prod_fab_price
             );
 
             $data_id = array(
@@ -295,9 +301,10 @@ class products extends ATQ {
                 'prod_code' => $prod_code,
                 'prod_cat' => $prod_cat,
                 'prod_size' => $prod_size,
-                'prod_fab_price' => $prod_fab_price,
-                'prod_featured' => $prod_featured,
-                'prod_sale' => $prod_sale
+                'prod_seller' => $prod_seller,
+                'prod_sale' => $prod_sale,
+                'prod_new' => $prod_new,
+                'prod_fab_price' => $prod_fab_price
             );
             
 
