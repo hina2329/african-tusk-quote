@@ -18,10 +18,10 @@ class categories extends ATQ {
         <table class="wp-list-table widefat striped ">
             <thead>
                 <tr>
-                    <th width="20%">Category Image</th>
-                    <th width="20%">Category Name</th>
-                    <th width="45%">Order </th>
-                    <th width="15%" class="actions">Actions</th>
+                    <th width="15%">Category Image</th>
+                    <th width="60%">Category Name</th>
+                    <th width="15%">Order </th>
+                    <th width="10%" class="actions">Actions</th>
                 </tr>
 
             </thead>
@@ -54,8 +54,7 @@ class categories extends ATQ {
                                 <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->cat_id); ?>"><?php echo $row->cat_name; ?></a></strong>
                             </td>
                              <td>
-                            <input type="text" name="cat_order" id="cat_order" style="width:5%;" value="<?php echo  $row->cat_order ; ?> ">
-                           
+                                 <input type="text" name="cat_order" id="cat_order" style="width:30px; text-align: center;" value="<?php echo  $row->cat_order ; ?> ">
                             </td>
                             
                             <td class="actions">
@@ -91,7 +90,7 @@ class categories extends ATQ {
                         <td>
                                     <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>">-- <?php echo $child_cat->cat_name; ?></a></strong></td>
                                     <td>
-                            <input type="text" name="cat_order" id="cat_order" style="width:5%;" value="<?php echo  $child_cat->cat_order ; ?> ">
+                            <input type="text" name="cat_order" id="cat_order" style="width:30px; text-align: center;" value="<?php echo  $child_cat->cat_order ; ?> ">
                            
                             </td>
                                     <td class="actions">
