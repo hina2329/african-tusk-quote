@@ -93,30 +93,6 @@ jQuery(document).ready(function ($) {
         return false;
     });
 
-    // Sortable
-    $('.sort-cat').sortable({
-        items: '.sort-it',
-        cursor: 'move',
-        opacity: 0.6,
-        axis: 'y',
-        update: function () {
-            var order = $(this).sortable('serialize') + '&action=sort_cat';
-            $.post(ajaxurl, order);
-        }
-    });
-    $('.item-list').sortable({
-        items: '.item',
-        cursor: 'move',
-        opacity: 0.6,
-        axis: 'y',
-        update: function () {
-            var order = $(this).sortable('serialize') + '&action=sort_items';
-            //$.post(ajaxurl, order);
-            alert(order);
-        }
-    });
-
-
     // Remove fabric and price from product
     $('.remove-fab').live('click', function () {
         $(this).parents('tr').remove();
