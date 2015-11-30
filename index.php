@@ -54,8 +54,7 @@ class ATQ {
         // Loading plugin resources for front end
         add_action('wp_head', array($this, 'register_frontend_resources'));
 
-        // Category sorting
-        add_action('wp_ajax_sort_cat', array($this, 'atq_save_sorted_cat'));
+       
 
         // Allow redirection
         ob_start();

@@ -85,29 +85,7 @@ jQuery(document).ready(function ($) {
         return false;
     });
 
-    // Sortable
-    $('.sort-cat').sortable({
-        items: '.sort-it',
-        cursor: 'move',
-        opacity: 0.6,
-        axis: 'y',
-        update: function () {
-            var order = $(this).sortable('serialize') + '&action=sort_cat';
-            $.post(ajaxurl, order);
-        }
-    });
-    $('.item-list').sortable({
-        items: '.item',
-        cursor: 'move',
-        opacity: 0.6,
-        axis: 'y',
-        update: function () {
-            var order = $(this).sortable('serialize') + '&action=sort_items';
-            //$.post(ajaxurl, order);
-            alert(order);
-        }
-    });
-
+    
     // Add fabric and price in product
     var i = 0;
     $('.add-fabric').click(function () {

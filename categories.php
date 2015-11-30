@@ -15,14 +15,15 @@ class categories extends ATQ {
 
         <?php $this->notify('Category'); ?>
 
-        <table class="wp-list-table widefat striped sort-cat">
+        <table class="wp-list-table widefat striped ">
             <thead>
                 <tr>
-                    <th width="20%">Category Image</th>
-                    <th width="30%">Category Name</th>
-                    <th width="30%">Category Childs</th>
+                    <th width="40%">Category Image</th>
+                    <th width="40%">Category Name</th>
+                   
                     <th width="20%" class="actions">Actions</th>
                 </tr>
+
             </thead>
 
             <tbody id="the-list">
@@ -35,7 +36,7 @@ class categories extends ATQ {
 
                     foreach ($results as $row) {
                         ?>
-                <tr id="items_<?php echo $row->cat_id; ?>" class="sort-it">
+                <tr id="<?php echo $row->cat_id; ?>" >
                             <td>
                                 <?php
                                 if ($row->cat_image) {
@@ -52,7 +53,13 @@ class categories extends ATQ {
                             <td class="column-title">
                                 <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->cat_id); ?>"><?php echo $row->cat_name; ?></a></strong>
                             </td>
-                            <td>
+                            
+                            <td class="actions">
+                                <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->cat_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
+                                <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $row->cat_id); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this category, doing so will delete all the products belongs to this category as well?');"></a>
+                            </td>
+                        </tr>
+                        
                                 <?php
                                 $child_cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl WHERE cat_parent = $row->cat_id");
                                 $child_cat_count = count($child_cats);
@@ -60,25 +67,41 @@ class categories extends ATQ {
                                 foreach ($child_cats as $child_cat) {
                                     $i++;
                                     ?>
-                                    <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>"><?php echo $child_cat->cat_name; ?></a></strong>
+                                    <tr>
+                        <td>
+                        <?php
+                                if ($child_cat->cat_image) {
+                                    ?>
+                                    <img src="<?php echo $child_cat->cat_image; ?>" width="80">
                                     <?php
-                                    if ($i < $child_cat_count) {
-                                        echo ', ';
+                                } else {
+                                    ?>
+                                    <div class="no_img">NO IMAGE</div>
+                                    <?php
+                                }
+                                ?>
+                        </td>
+                        <td>
+                                    <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>">__<?php echo $child_cat->cat_name; ?></a></strong></td>
+                                    <td class="actions">
+                                <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
+                                <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $child_cat->cat_id); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this category, doing so will delete all the products belongs to this category as well?');"></a>
+                            </td>
+                                    <?php
+                                    if ($i > $child_cat_count) {
+                                        echo ' ';
                                     }
                                 }
                                 ?>
-                            </td>
-                            <td class="actions">
-                                <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->cat_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
-                                <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $row->cat_id); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this category, doing so will delete all the products belongs to this category as well?');"></a>
-                            </td>
+                            
+                            
                         </tr>
                         <?php
                     }
                 } else {
                     ?>
                     <tr>
-                        <td colspan="4" style="text-align: center;"><strong>No Records Found</strong></td>
+                        <td colspan="3" style="text-align: center;"><strong>No Records Found</strong></td>
                     </tr>
                     <?php
                 }
