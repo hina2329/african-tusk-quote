@@ -164,7 +164,7 @@ class ATQ {
         fab_id INT(5) NOT NULL AUTO_INCREMENT,
         fab_name VARCHAR(100) NOT NULL,
         fab_suffix VARCHAR(100) NULL,
-        fab_colors VARCHAR(500) NULL,
+        fab_colors LONGTEXT NULL,
         PRIMARY KEY (fab_id)
         ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
         ";
@@ -210,8 +210,8 @@ class ATQ {
         prod_code VARCHAR(100) NOT NULL,  
         prod_cat LONGTEXT NOT NULL,
         prod_size VARCHAR(100) NULL,
-        prod_seller INT(1) DEFAULT 0,
-        prod_sale INT(1) DEFAULT 0,
+        prod_seller TINYINT DEFAULT 0,
+        prod_sale TINYINT DEFAULT 0,
         prod_new TINYINT DEFAULT 0,
         prod_fab_price LONGTEXT NULL,
         PRIMARY KEY(prod_id)
