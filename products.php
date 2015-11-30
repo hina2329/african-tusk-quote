@@ -194,14 +194,14 @@ class products extends ATQ {
                                     $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
 
                                     // Listing all fabrics
-                                    foreach ($fabs as $fab) {
+                                    foreach ($fabs as $fabric) {
                                         ?>
-                                        <option value="<?php echo $fab->fab_id; ?>" <?php selected($fab_price['fab'], $fabs->fab_id); ?>><?php echo $fab->fab_name . ' / ' . $fab->fab_suffix; ?></option>
+                                        <option value="<?php echo $fabric->fab_id; ?>" <?php selected($fabric->fab_id, $fab_price['fab']); ?>><?php echo $fabric->fab_name . ' / ' . $fabric->fab_suffix; ?></option>
                                         <?php
                                     }
                                     ?>
                                 </select>&nbsp;&nbsp;&nbsp; R <input type="text" name="prod_price[]" id="prod-fab-price" class="small-text" value="<?php echo $fab_price['price']; ?>">
-                                <a href="#" class="btn-fields remove-fields">X remove</a>
+                                <a href="#" class="btn-fields remove-fields remove-fab">X remove</a>
                             </div>
                             <?php
                         }
@@ -240,12 +240,12 @@ class products extends ATQ {
                         // Listing all fabrics
                         foreach ($fabs as $fab) {
                             ?>
-                            <option value="<?php echo $fab->fab_id; ?>" <?php selected($fab->fab_id, $row->prod_fab); ?>><?php echo $fab->fab_name . ' / ' . $fab->fab_suffix; ?></option>
+                            <option value="<?php echo $fab->fab_id; ?>"><?php echo $fab->fab_name . ' / ' . $fab->fab_suffix; ?></option>
                             <?php
                         }
                         ?>
-                    </select>&nbsp;&nbsp;&nbsp; R <input type="text" name="prod_fab_price[]" id="prod-fab-price" class="small-text">
-                    <a href="#" class="btn-fields remove-fields">X remove</a>
+                    </select>&nbsp;&nbsp;&nbsp; R <input type="text" name="prod_price[]" id="prod-fab-price" class="small-text">
+                    <a href="#" class="btn-fields remove-fields remove-fab">X remove</a>
                 </div>
             </div>
             <!-- CLONE MULTIPLE FIELDS -->
@@ -271,65 +271,64 @@ class products extends ATQ {
         $prod_sale = filter_input(INPUT_POST, 'prod_sale');
         $prod_new = filter_input(INPUT_POST, 'prod_new');
         $prod_fab_arr = filter_input(INPUT_POST, 'prod_fab', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-        $prod_fab_price_arr = filter_input(INPUT_POST, 'prod_fab_price', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-        $prod_fab_price = array();
+        $prod_price_arr = filter_input(INPUT_POST, 'prod_price', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+        $prod_fab_price_arr = array();
         $prod_fab_count = count($prod_fab_arr);
         
         for ($i = 0; $i < $prod_fab_count; $i++) {
-            $prod_fab_price[$i] = array(
+            $prod_fab_price_arr[$i] = array(
                 'fab' => $prod_fab_arr[$i],
-                'price' => $prod_fab_price_arr[$i],
+                'price' => $prod_price_arr[$i],
             );
         }
+        
+        $prod_fab_price = serialize($prod_fab_price_arr);
 
-        echo '<pre>';
-        print_r($prod_fab_price);
-        echo '</pre>';
 
-//        if (!empty($id)) {
-//
-//            $prod_data = array(
-//                'prod_name' => $prod_name,
-//                'prod_desc' => $prod_desc,
-//                'prod_images' => $prod_images,
-//                'prod_code' => $prod_code,
-//                'prod_cat' => $prod_cat,
-//                'prod_size' => $prod_size,
-//                'prod_seller' => $prod_seller,
-//                'prod_sale' => $prod_sale,
-//                'prod_new' => $prod_new,
-//                'prod_fab_price' => $prod_fab_price
-//            );
-//
-//            $data_id = array(
-//                'prod_id' => $id);
-//
-//            $this->wpdb->update($this->products_tbl, $prod_data, $data_id);
-//
-//            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
-//
-//            exit;
-//        } else {
-//
-//            $prod_data = array(
-//                'prod_name' => $prod_name,
-//                'prod_desc' => $prod_desc,
-//                'prod_images' => $prod_images,
-//                'prod_code' => $prod_code,
-//                'prod_cat' => $prod_cat,
-//                'prod_size' => $prod_size,
-//                'prod_seller' => $prod_seller,
-//                'prod_sale' => $prod_sale,
-//                'prod_new' => $prod_new,
-//                'prod_fab_price' => $prod_fab_price
-//            );
-//
-//
-//            $this->wpdb->insert($this->products_tbl, $prod_data);
-//            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
-//
-//            exit;
-//        }
+        if (!empty($id)) {
+
+            $prod_data = array(
+                'prod_name' => $prod_name,
+                'prod_desc' => $prod_desc,
+                'prod_images' => $prod_images,
+                'prod_code' => $prod_code,
+                'prod_cat' => $prod_cat,
+                'prod_size' => $prod_size,
+                'prod_seller' => $prod_seller,
+                'prod_sale' => $prod_sale,
+                'prod_new' => $prod_new,
+                'prod_fab_price' => $prod_fab_price
+            );
+
+            $data_id = array(
+                'prod_id' => $id);
+
+            $this->wpdb->update($this->products_tbl, $prod_data, $data_id);
+
+            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
+
+            exit;
+        } else {
+
+            $prod_data = array(
+                'prod_name' => $prod_name,
+                'prod_desc' => $prod_desc,
+                'prod_images' => $prod_images,
+                'prod_code' => $prod_code,
+                'prod_cat' => $prod_cat,
+                'prod_size' => $prod_size,
+                'prod_seller' => $prod_seller,
+                'prod_sale' => $prod_sale,
+                'prod_new' => $prod_new,
+                'prod_fab_price' => $prod_fab_price
+            );
+
+
+            $this->wpdb->insert($this->products_tbl, $prod_data);
+            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
+
+            exit;
+        }
     }
 
     // Delete product

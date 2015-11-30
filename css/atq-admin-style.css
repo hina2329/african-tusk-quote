@@ -198,9 +198,6 @@
     text-align: center;
     font-size: 12px;
 }
-.sort-it, .item {
-    cursor: move;
-}
 .fabric-list {
     margin: 0 0 10px;
 }

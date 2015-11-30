@@ -95,7 +95,7 @@ jQuery(document).ready(function ($) {
 
     // Remove fabric and price from product
     $('.remove-fab').live('click', function () {
-        $(this).parents('tr').remove();
+        $(this).parents('.multi-fields-fab-price').remove();
 
         return false;
     });
