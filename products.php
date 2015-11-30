@@ -187,7 +187,7 @@ class products extends ATQ {
                             $fab_id = $fab_price['fab'];
                             $fab = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_id = $fab_id");
                             ?>
-                            <div class="multi-fields fab-price">
+                            <div class="multi-fields-fab-price fab-price">
                                 <select name="prod_fab[]" id="prod_fab">
                                     <?php
                                     // Getting fabrics list
@@ -207,44 +207,46 @@ class products extends ATQ {
                         }
                     }
                     ?>
-                    </div>
+                </div>
 
-                    <div class="form-field">
-                        <label for="prod_seller">Mark this product as Best Seller: </label>
-                        <input name="prod_seller" id="prod_seller" type="checkbox" value="1" <?php checked($row->prod_seller, '1'); ?>>
-                    </div>
-                    <div class="form-field">
-                        <label for="prod_sale">Mark this product as Sale Product: </label>
-                        <input name="prod_sale" id="prod_sale" type="checkbox"  value="1" <?php checked($row->prod_sale, '1'); ?>>
-                    </div>
-                    <div class="form-field">
-                        <label for="prod_new">Mark this product as New: </label>
-                        <input name="prod_new" id="prod_new" type="checkbox" value="1" <?php checked($row->prod_new, '1'); ?>>
-                    </div>
-                    <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Product' : 'Add New Product'; ?>"></p>
+                <div class="form-field">
+                    <label for="prod_seller">Mark this product as Best Seller: </label>
+                    <input name="prod_seller" id="prod_seller" type="checkbox" value="1" <?php checked($row->prod_seller, '1'); ?>>
+                </div>
+                <div class="form-field">
+                    <label for="prod_sale">Mark this product as Sale Product: </label>
+                    <input name="prod_sale" id="prod_sale" type="checkbox"  value="1" <?php checked($row->prod_sale, '1'); ?>>
+                </div>
+                <div class="form-field">
+                    <label for="prod_new">Mark this product as New: </label>
+                    <input name="prod_new" id="prod_new" type="checkbox" value="1" <?php checked($row->prod_new, '1'); ?>>
+                </div>
+                <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Product' : 'Add New Product'; ?>"></p>
             </form>
             <!-- CLONE MULTIPLE FIELDS -->
-            <div class="multi-fields screen-reader-text">
-                <input name="prod_image[]" class="img_field" type="text" size="20" value="">
-                <input class="upload_image_button" type="button" value="Upload Image">
-                <a href="#" class="btn-fields remove-fields">X remove</a>
-            </div>
-            <div class="multi-fields-fab-price screen-reader-text">
-                <select name="prod_fab" id="prod_fab">
-                    <option value="0">Select Fabric...</option>
-                    <?php
-                    // Getting fabrics list
-                    $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
-
-                    // Listing all fabrics
-                    foreach ($fabs as $fab) {
-                        ?>
-                        <option value="<?php echo $fab->fab_id; ?>" <?php selected($fab->fab_id, $row->prod_fab); ?>><?php echo $fab->fab_name . ' / ' . $fab->fab_suffix; ?></option>
+            <div class="cloner">
+                <div class="multi-fields screen-reader-text">
+                    <input name="prod_image[]" class="img_field" type="text" size="20" value="">
+                    <input class="upload_image_button" type="button" value="Upload Image">
+                    <a href="#" class="btn-fields remove-fields">X remove</a>
+                </div>
+                <div class="multi-fields-fab-price screen-reader-text">
+                    <select name="prod_fab[]" id="prod_fab">
+                        <option value="0">Select Fabric...</option>
                         <?php
-                    }
-                    ?>
-                </select>&nbsp;&nbsp;&nbsp; R <input type="text" name="prod_fab_price" id="prod-fab-price" class="small-text">
-                <a href="#" class="btn-fields remove-fields">X remove</a>
+                        // Getting fabrics list
+                        $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
+
+                        // Listing all fabrics
+                        foreach ($fabs as $fab) {
+                            ?>
+                            <option value="<?php echo $fab->fab_id; ?>" <?php selected($fab->fab_id, $row->prod_fab); ?>><?php echo $fab->fab_name . ' / ' . $fab->fab_suffix; ?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>&nbsp;&nbsp;&nbsp; R <input type="text" name="prod_fab_price[]" id="prod-fab-price" class="small-text">
+                    <a href="#" class="btn-fields remove-fields">X remove</a>
+                </div>
             </div>
             <!-- CLONE MULTIPLE FIELDS -->
         </div>
@@ -270,7 +272,7 @@ class products extends ATQ {
         $prod_new = filter_input(INPUT_POST, 'prod_new');
         $prod_fab_arr = filter_input(INPUT_POST, 'prod_fab', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
         $prod_fab_price_arr = filter_input(INPUT_POST, 'prod_fab_price', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-        
+
         echo '<pre>';
         print_r($prod_fab_arr);
         print_r($prod_fab_price_arr);

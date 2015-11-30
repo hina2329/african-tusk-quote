@@ -40,16 +40,16 @@ jQuery(document).ready(function ($) {
 
     // Add multi fabric fields
     $('.add-fields').click(function () {
-        var fieldset = $('#atq-wrap .multi-fields').clone();
+        var fieldset = $('.cloner .multi-fields').clone();
         var cloned_fieldset = fieldset.removeClass('screen-reader-text');
         $('.atq-multi-fields-container').append(cloned_fieldset);
 
         return false;
     });
     $('.add-fabric').click(function () {
-        var fieldset = $('#atq-wrap .multi-fields-fab-price').clone();
+        var fieldset = $('.cloner .multi-fields-fab-price').clone();
         var cloned_fieldset = fieldset.removeClass('screen-reader-text');
-        $('.atq-multi-fields-container').append(cloned_fieldset);
+        $('.fabric-list').append(cloned_fieldset);
 
         return false;
     });

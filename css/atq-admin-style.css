@@ -64,13 +64,15 @@
     text-decoration: none;
     margin: 0 5px;
 }
-.multi-fields {
+.multi-fields,
+.multi-fields-fab-price {
     position: relative;
     margin-top: 10px;
     border: #CCC 2px solid;
     padding: 10px;
 }
-.multi-fields.screen-reader-text {
+.multi-fields.screen-reader-text,
+.multi-fields-fab-price.screen-reader-text {
     padding: 0;
     border: 0;
 }
@@ -213,6 +215,6 @@
 .item-fab-colors {
     display: none;
 }
-.fab-price .remove-fields {
+.multi-fields-fab-price .remove-fields {
     margin: 5px 0 0;
 }
