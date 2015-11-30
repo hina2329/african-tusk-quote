@@ -54,7 +54,7 @@ class categories extends ATQ {
                                 <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->cat_id); ?>"><?php echo $row->cat_name; ?></a></strong>
                             </td>
                              <td>
-                            <input type="text" name="cat_order" id="cat_order" style="width:5%;" value="0">
+                            <input type="text" name="cat_order" id="cat_order" style="width:5%;" value="<?php echo  $row->cat_order ; ?> ">
                            
                             </td>
                             
@@ -91,7 +91,7 @@ class categories extends ATQ {
                         <td>
                                     <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>">-- <?php echo $child_cat->cat_name; ?></a></strong></td>
                                     <td>
-                            <input type="text" name="cat_order" id="cat_order" style="width:5%;" value="0">
+                            <input type="text" name="cat_order" id="cat_order" style="width:5%;" value="<?php echo  $child_cat->cat_order ; ?> ">
                            
                             </td>
                                     <td class="actions">
@@ -122,13 +122,15 @@ class categories extends ATQ {
        
 
         <div class="btn-right">
-       
-                <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Update Order"></p>
+        <p class="submit"><input type="button" name="submit" id="submit" class="button button-primary" value="Update Order"></p>
+
+                
                
                </div>
         
        
         <?php
+        
     }
 
     // Add new or edit category form
@@ -184,12 +186,13 @@ class categories extends ATQ {
     public function save() {
 
         // Getting submitted data
+        
         $id = filter_input(INPUT_POST, 'cat_id');
         $cat_name = filter_input(INPUT_POST, 'cat_name', FILTER_SANITIZE_STRING);
         $cat_desc = filter_input(INPUT_POST, 'cat_desc');
         $cat_image = filter_input(INPUT_POST, 'cat_image');
         $cat_parent = filter_input(INPUT_POST, 'cat_parent');
-
+        
         if (!empty($id)) {
 
             $cat_data = array(
@@ -222,6 +225,7 @@ class categories extends ATQ {
 
             exit;
         }
+       
     }
 
     // Delete category
