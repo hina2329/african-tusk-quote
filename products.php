@@ -274,6 +274,13 @@ class products extends ATQ {
         $prod_fab_price_arr = filter_input(INPUT_POST, 'prod_fab_price', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
         $prod_fab_price = array();
         $prod_fab_count = count($prod_fab_arr);
+        
+        for ($i = 0; $i < $prod_fab_count; $i++) {
+            $prod_fab_price[$i] = array(
+                'fab' => $prod_fab_arr[$i],
+                'price' => $prod_fab_price_arr[$i],
+            );
+        }
 
         echo '<pre>';
         print_r($prod_fab_price);
