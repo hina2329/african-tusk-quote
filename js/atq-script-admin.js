@@ -40,12 +40,20 @@ jQuery(document).ready(function ($) {
 
     // Add multi fabric fields
     $('.add-fields').click(function () {
-        var fieldset = $('#atq-wrap .screen-reader-text').clone();
+        var fieldset = $('#atq-wrap .multi-fields').clone();
         var cloned_fieldset = fieldset.removeClass('screen-reader-text');
         $('.atq-multi-fields-container').append(cloned_fieldset);
 
         return false;
     });
+    $('.add-fabric').click(function () {
+        var fieldset = $('#atq-wrap .multi-fields-fab-price').clone();
+        var cloned_fieldset = fieldset.removeClass('screen-reader-text');
+        $('.atq-multi-fields-container').append(cloned_fieldset);
+
+        return false;
+    });
+    
 
     // Remove fields
     $('.remove-fields').live('click', function () {
@@ -108,27 +116,6 @@ jQuery(document).ready(function ($) {
         }
     });
 
-    // Add fabric and price in product
-    var i = 0;
-    $('.add-fabric').click(function () {
-
-        var fab_id = $('#prod_fab').val();
-        var fab_text = $('#prod_fab option:selected').text();
-        var price = $('#prod-fab-price').val();
-
-        console.log(fab_id + ', ' + fab_text + ', ' + price);
-
-        $('#prod_fab').val(0);
-        $('#prod-fab-price').val('');
-
-        $('.fabric-list').append('<tr><td><input type="hidden" class="prod-fab" name="prod[' + i + '][fab]" value="' + fab_id + '"><input type="hidden" class="prod-price" name="prod[' + i + '][price]" value="' + price + '"><span class="fab-name">' + fab_text + '</span>R ' + price + '<a href="#" class="dashicons-before dashicons-no remove-fab"></a></td></tr>');
-
-        i++;
-
-        return false;
-    });
-
-    console.log($('.fabric-list tr').length);
 
     // Remove fabric and price from product
     $('.remove-fab').live('click', function () {

@@ -200,8 +200,7 @@
     cursor: move;
 }
 .fabric-list {
-    background: #fff;
-    width: 100%;
+    margin: 0 0 10px;
 }
 .fabric-list a {
     text-decoration: none;
@@ -213,4 +212,7 @@
 }
 .item-fab-colors {
     display: none;
+}
+.fab-price .remove-fields {
+    margin: 5px 0 0;
 }

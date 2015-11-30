@@ -175,24 +175,10 @@ class products extends ATQ {
 
 
                 <div class="form-field">
-                    <label for="prod_fab">Fabric Type</label><br>
-                    <select name="prod_fab" id="prod_fab">
-                        <option value="0">Select Fabric...</option>
-                        <?php
-                        // Getting fabrics list
-                        $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
-
-                        // Listing all fabrics
-                        foreach ($fabs as $fab) {
-                            ?>
-                            <option value="<?php echo $fab->fab_id; ?>" <?php selected($fab->fab_id, $row->prod_fab); ?>><?php echo $fab->fab_name . ' / ' . $fab->fab_suffix; ?></option>
-                            <?php
-                        }
-                        ?>
-                    </select>&nbsp;&nbsp;&nbsp; R <input type="text" name="prod_fab_price" id="prod-fab-price" class="small-text"><a href="#" class="btn-fields add-fabric">+ Add Fabric</a>
+                    <label for="prod_fab">Fabric Type<a href="#" class="btn-fields add-fabric">+ Add Fabric</a></label>
                 </div>
 
-                <table class="fabric-list striped">
+                <div class="fabric-list">
                     <?php
                     $fabs_prices = unserialize($row->prod_fab_price);
                     $i = 0;
@@ -201,36 +187,41 @@ class products extends ATQ {
                             $fab_id = $fab_price['fab'];
                             $fab = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_id = $fab_id");
                             ?>
-                            <tr>
-                                <td>
-                                    <input type="hidden" class="prod-fab" name="prod[<?php echo $i; ?>][fab]" value="<?php echo $fab_id ?>">
-                                    <input type="hidden" class="prod-price" name="prod[<?php echo $i; ?>][price]" value="<?php echo $fab_price['price']; ?>">
-                                    <span class="fab-name"><?php echo $fab->fab_name . ' / ' . $fab->fab_suffix; ?></span>
-                                    R <?php echo $fab_price['price']; ?>
-                                    <a href="#" class="dashicons-before dashicons-no remove-fab"></a>
-                                </td>
-                            </tr>
+                            <div class="multi-fields fab-price">
+                                <select name="prod_fab[]" id="prod_fab">
+                                    <?php
+                                    // Getting fabrics list
+                                    $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
+
+                                    // Listing all fabrics
+                                    foreach ($fabs as $fab) {
+                                        ?>
+                                        <option value="<?php echo $fab->fab_id; ?>" <?php selected($fab_price['fab'], $fabs->fab_id); ?>><?php echo $fab->fab_name . ' / ' . $fab->fab_suffix; ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>&nbsp;&nbsp;&nbsp; R <input type="text" name="prod_price[]" id="prod-fab-price" class="small-text" value="<?php echo $fab_price['price']; ?>">
+                                <a href="#" class="btn-fields remove-fields">X remove</a>
+                            </div>
                             <?php
                         }
                     }
                     ?>
-                </table>
+                    </div>
 
-                <hr>
-
-                <div class="form-field">
-                    <label for="prod_seller">Mark this product as Best Seller: </label>
-                    <input name="prod_seller" id="prod_seller" type="checkbox" value="1" <?php checked($row->prod_seller, '1'); ?>>
-                </div>
-                <div class="form-field">
-                    <label for="prod_sale">Mark this product as Sale Product: </label>
-                    <input name="prod_sale" id="prod_sale" type="checkbox"  value="1" <?php checked($row->prod_sale, '1'); ?>>
-                </div>
-                <div class="form-field">
-                    <label for="prod_new">Mark this product as New: </label>
-                    <input name="prod_new" id="prod_new" type="checkbox" value="1" <?php checked($row->prod_new, '1'); ?>>
-                </div>
-                <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Product' : 'Add New Product'; ?>"></p>
+                    <div class="form-field">
+                        <label for="prod_seller">Mark this product as Best Seller: </label>
+                        <input name="prod_seller" id="prod_seller" type="checkbox" value="1" <?php checked($row->prod_seller, '1'); ?>>
+                    </div>
+                    <div class="form-field">
+                        <label for="prod_sale">Mark this product as Sale Product: </label>
+                        <input name="prod_sale" id="prod_sale" type="checkbox"  value="1" <?php checked($row->prod_sale, '1'); ?>>
+                    </div>
+                    <div class="form-field">
+                        <label for="prod_new">Mark this product as New: </label>
+                        <input name="prod_new" id="prod_new" type="checkbox" value="1" <?php checked($row->prod_new, '1'); ?>>
+                    </div>
+                    <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Product' : 'Add New Product'; ?>"></p>
             </form>
             <!-- CLONE MULTIPLE FIELDS -->
             <div class="multi-fields screen-reader-text">
@@ -238,10 +229,21 @@ class products extends ATQ {
                 <input class="upload_image_button" type="button" value="Upload Image">
                 <a href="#" class="btn-fields remove-fields">X remove</a>
             </div>
-            <!-- CLONE MULTIPLE FIELDS -->
-            <!-- CLONE MULTIPLE FIELDS -->
             <div class="multi-fields-fab-price screen-reader-text">
-                
+                <select name="prod_fab" id="prod_fab">
+                    <option value="0">Select Fabric...</option>
+                    <?php
+                    // Getting fabrics list
+                    $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
+
+                    // Listing all fabrics
+                    foreach ($fabs as $fab) {
+                        ?>
+                        <option value="<?php echo $fab->fab_id; ?>" <?php selected($fab->fab_id, $row->prod_fab); ?>><?php echo $fab->fab_name . ' / ' . $fab->fab_suffix; ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>&nbsp;&nbsp;&nbsp; R <input type="text" name="prod_fab_price" id="prod-fab-price" class="small-text">
                 <a href="#" class="btn-fields remove-fields">X remove</a>
             </div>
             <!-- CLONE MULTIPLE FIELDS -->
@@ -266,53 +268,58 @@ class products extends ATQ {
         $prod_seller = filter_input(INPUT_POST, 'prod_seller');
         $prod_sale = filter_input(INPUT_POST, 'prod_sale');
         $prod_new = filter_input(INPUT_POST, 'prod_new');
-        $prod_fab_price_arr = filter_input(INPUT_POST, 'prod', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-        $prod_fab_price = serialize($prod_fab_price_arr);
+        $prod_fab_arr = filter_input(INPUT_POST, 'prod_fab', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+        $prod_fab_price_arr = filter_input(INPUT_POST, 'prod_fab_price', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+        
+        echo '<pre>';
+        print_r($prod_fab_arr);
+        print_r($prod_fab_price_arr);
+        echo '</pre>';
 
-        if (!empty($id)) {
-
-            $prod_data = array(
-                'prod_name' => $prod_name,
-                'prod_desc' => $prod_desc,
-                'prod_images' => $prod_images,
-                'prod_code' => $prod_code,
-                'prod_cat' => $prod_cat,
-                'prod_size' => $prod_size,
-                'prod_seller' => $prod_seller,
-                'prod_sale' => $prod_sale,
-                'prod_new' => $prod_new,
-                'prod_fab_price' => $prod_fab_price
-            );
-
-            $data_id = array(
-                'prod_id' => $id);
-
-            $this->wpdb->update($this->products_tbl, $prod_data, $data_id);
-
-            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
-
-            exit;
-        } else {
-
-            $prod_data = array(
-                'prod_name' => $prod_name,
-                'prod_desc' => $prod_desc,
-                'prod_images' => $prod_images,
-                'prod_code' => $prod_code,
-                'prod_cat' => $prod_cat,
-                'prod_size' => $prod_size,
-                'prod_seller' => $prod_seller,
-                'prod_sale' => $prod_sale,
-                'prod_new' => $prod_new,
-                'prod_fab_price' => $prod_fab_price
-            );
-            
-
-            $this->wpdb->insert($this->products_tbl, $prod_data);
-            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
-
-            exit;
-        }
+//        if (!empty($id)) {
+//
+//            $prod_data = array(
+//                'prod_name' => $prod_name,
+//                'prod_desc' => $prod_desc,
+//                'prod_images' => $prod_images,
+//                'prod_code' => $prod_code,
+//                'prod_cat' => $prod_cat,
+//                'prod_size' => $prod_size,
+//                'prod_seller' => $prod_seller,
+//                'prod_sale' => $prod_sale,
+//                'prod_new' => $prod_new,
+//                'prod_fab_price' => $prod_fab_price
+//            );
+//
+//            $data_id = array(
+//                'prod_id' => $id);
+//
+//            $this->wpdb->update($this->products_tbl, $prod_data, $data_id);
+//
+//            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
+//
+//            exit;
+//        } else {
+//
+//            $prod_data = array(
+//                'prod_name' => $prod_name,
+//                'prod_desc' => $prod_desc,
+//                'prod_images' => $prod_images,
+//                'prod_code' => $prod_code,
+//                'prod_cat' => $prod_cat,
+//                'prod_size' => $prod_size,
+//                'prod_seller' => $prod_seller,
+//                'prod_sale' => $prod_sale,
+//                'prod_new' => $prod_new,
+//                'prod_fab_price' => $prod_fab_price
+//            );
+//
+//
+//            $this->wpdb->insert($this->products_tbl, $prod_data);
+//            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
+//
+//            exit;
+//        }
     }
 
     // Delete product
