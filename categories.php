@@ -18,10 +18,10 @@ class categories extends ATQ {
         <table class="wp-list-table widefat striped ">
             <thead>
                 <tr>
-                    <th width="40%">Category Image</th>
-                    <th width="40%">Category Name</th>
+                    <th width="20%">Category Image</th>
+                    <th width="65%">Category Name</th>
                    
-                    <th width="20%" class="actions">Actions</th>
+                    <th width="15%" class="actions">Actions</th>
                 </tr>
 
             </thead>
@@ -82,7 +82,7 @@ class categories extends ATQ {
                                 ?>
                         </td>
                         <td>
-                                    <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>">__<?php echo $child_cat->cat_name; ?></a></strong></td>
+                                    <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>">-- <?php echo $child_cat->cat_name; ?></a></strong></td>
                                     <td class="actions">
                                 <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
                                 <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $child_cat->cat_id); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this category, doing so will delete all the products belongs to this category as well?');"></a>
