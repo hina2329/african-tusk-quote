@@ -19,8 +19,8 @@ class categories extends ATQ {
             <thead>
                 <tr>
                     <th width="20%">Category Image</th>
-                    <th width="65%">Category Name</th>
-                   
+                    <th width="20%">Category Name</th>
+                    <th width="45%">Order </th>
                     <th width="15%" class="actions">Actions</th>
                 </tr>
 
@@ -53,6 +53,10 @@ class categories extends ATQ {
                             <td class="column-title">
                                 <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->cat_id); ?>"><?php echo $row->cat_name; ?></a></strong>
                             </td>
+                             <td>
+                            <input type="text" name="cat_order" id="cat_order" style="width:5%;" value="<?php echo  $row->cat_order ; ?> ">
+                           
+                            </td>
                             
                             <td class="actions">
                                 <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->cat_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
@@ -61,6 +65,7 @@ class categories extends ATQ {
                         </tr>
                         
                                 <?php
+                                //getting child categories
                                 $child_cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl WHERE cat_parent = $row->cat_id");
                                 $child_cat_count = count($child_cats);
                                 $i = 0;
@@ -81,16 +86,20 @@ class categories extends ATQ {
                                 }
                                 ?>
                         </td>
+
+                        
                         <td>
                                     <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>">-- <?php echo $child_cat->cat_name; ?></a></strong></td>
+                                    <td>
+                            <input type="text" name="cat_order" id="cat_order" style="width:5%;" value="<?php echo  $child_cat->cat_order ; ?> ">
+                           
+                            </td>
                                     <td class="actions">
                                 <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
                                 <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $child_cat->cat_id); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this category, doing so will delete all the products belongs to this category as well?');"></a>
                             </td>
                                     <?php
-                                    if ($i > $child_cat_count) {
-                                        echo ' ';
-                                    }
+                                    
                                 }
                                 ?>
                             
@@ -101,7 +110,7 @@ class categories extends ATQ {
                 } else {
                     ?>
                     <tr>
-                        <td colspan="3" style="text-align: center;"><strong>No Records Found</strong></td>
+                        <td colspan="4" style="text-align: center;"><strong>No Records Found</strong></td>
                     </tr>
                     <?php
                 }
@@ -110,10 +119,18 @@ class categories extends ATQ {
             </tbody>
 
         </table>
-        
-        <p><em><strong>NOTE:</strong> Drag & drop the categories to rearrange them.</em></p>
+       
 
+        <div class="btn-right">
+        <p class="submit"><input type="button" name="submit" id="submit" class="button button-primary" value="Update Order"></p>
+
+                
+               
+               </div>
+        
+       
         <?php
+        
     }
 
     // Add new or edit category form
@@ -128,7 +145,7 @@ class categories extends ATQ {
 
         <div class="col-left">
             <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save'); ?>">
-                <input type="hidden" name="cat_id" value="<?php echo $row->cat_id; ?>">
+   me="cat_id" value="<?php echo $row->cat_id; ?>">
                 <div class="form-field">
                     <label for="cat_name">Category Name <span>*</span></label>
                     <input name="cat_name" id="cat_name" type="text" value="<?php echo $row->cat_name; ?>" required>
@@ -169,12 +186,13 @@ class categories extends ATQ {
     public function save() {
 
         // Getting submitted data
+        
         $id = filter_input(INPUT_POST, 'cat_id');
         $cat_name = filter_input(INPUT_POST, 'cat_name', FILTER_SANITIZE_STRING);
         $cat_desc = filter_input(INPUT_POST, 'cat_desc');
         $cat_image = filter_input(INPUT_POST, 'cat_image');
         $cat_parent = filter_input(INPUT_POST, 'cat_parent');
-
+        
         if (!empty($id)) {
 
             $cat_data = array(
@@ -207,6 +225,7 @@ class categories extends ATQ {
 
             exit;
         }
+       
     }
 
     // Delete category

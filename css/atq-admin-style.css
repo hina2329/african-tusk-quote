@@ -215,3 +215,6 @@
 .multi-fields-fab-price .remove-fields {
     margin: 5px 0 0;
 }
+.btn-right{
+    float: right;
+}
