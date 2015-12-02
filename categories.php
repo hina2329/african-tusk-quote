@@ -15,121 +15,116 @@ class categories extends ATQ {
 
         <?php $this->notify('Category'); ?>
 
-        <table class="wp-list-table widefat striped ">
-            <thead>
-                <tr>
-                    <th width="15%">Category Image</th>
-                    <th width="60%">Category Name</th>
-                    <th width="15%">Order </th>
-                    <th width="10%" class="actions">Actions</th>
-                </tr>
+        <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=cat_order'); ?>">
 
-            </thead>
+            <table class="wp-list-table widefat striped ">
+                <thead>
+                    <tr>
+                        <th width="15%">Category Image</th>
+                        <th width="60%">Category Name</th>
+                        <th width="15%">Order</th>
+                        <th width="10%" class="actions">Actions</th>
+                    </tr>
 
-            <tbody id="the-list">
+                </thead>
 
-                <?php
-                // Getting categories
-                $results = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl WHERE cat_parent = 0 ORDER BY cat_order ASC");
+                <tbody id="the-list">
 
-                if ($results) {
+                    <?php
+                    // Getting categories
+                    $results = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl WHERE cat_parent = 0 ORDER BY cat_order ASC");
 
-                    foreach ($results as $row) {
-                        ?>
-                <tr id="<?php echo $row->cat_id; ?>" >
-                            <td>
-                                <?php
-                                if ($row->cat_image) {
-                                    ?>
-                                    <img src="<?php echo $row->cat_image; ?>" width="80">
+                    if ($results) {
+
+                        foreach ($results as $row) {
+                            ?>
+                            <tr id="<?php echo $row->cat_id; ?>" >
+                                <td>
                                     <?php
-                                } else {
+                                    if ($row->cat_image) {
+                                        ?>
+                                        <img src="<?php echo $row->cat_image; ?>" width="80">
+                                        <?php
+                                    } else {
+                                        ?>
+                                        <div class="no_img">NO IMAGE</div>
+                                        <?php
+                                    }
                                     ?>
-                                    <div class="no_img">NO IMAGE</div>
-                                    <?php
-                                }
+                                </td>
+                                <td class="column-title">
+                                    <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->cat_id); ?>"><?php echo $row->cat_name; ?></a></strong>
+                                </td>
+                                <td>
+                                    <input type="text" name="cat_order[<?php echo $row->cat_id; ?>]" id="cat_order" style="width:30px; text-align: center;" value="<?php echo $row->cat_order; ?>">
+                                </td>
+
+                                <td class="actions">
+                                    <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->cat_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
+                                    <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $row->cat_id); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this category, doing so will delete all the products belongs to this category as well?');"></a>
+                                </td>
+                            </tr>
+
+                            <?php
+                            //getting child categories
+                            $child_cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl WHERE cat_parent = $row->cat_id");
+                            $child_cat_count = count($child_cats);
+                            $i = 0;
+                            foreach ($child_cats as $child_cat) {
+                                $i++;
                                 ?>
-                            </td>
-                            <td class="column-title">
-                                <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->cat_id); ?>"><?php echo $row->cat_name; ?></a></strong>
-                            </td>
-                             <td>
-                                 <input type="text" name="cat_order" id="cat_order" style="width:30px; text-align: center;" value="<?php echo  $row->cat_order ; ?> ">
-                            </td>
-                            
-                            <td class="actions">
-                                <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $row->cat_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
-                                <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $row->cat_id); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this category, doing so will delete all the products belongs to this category as well?');"></a>
-                            </td>
-                        </tr>
-                        
-                                <?php
-                                //getting child categories
-                                $child_cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl WHERE cat_parent = $row->cat_id");
-                                $child_cat_count = count($child_cats);
-                                $i = 0;
-                                foreach ($child_cats as $child_cat) {
-                                    $i++;
-                                    ?>
-                                    <tr>
-                        <td>
-                        <?php
-                                if ($child_cat->cat_image) {
-                                    ?>
-                                    <img src="<?php echo $child_cat->cat_image; ?>" width="80">
-                                    <?php
-                                } else {
-                                    ?>
-                                    <div class="no_img">NO IMAGE</div>
-                                    <?php
-                                }
-                                ?>
-                        </td>
-
-                        
-                        <td>
-                                    <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>">-- <?php echo $child_cat->cat_name; ?></a></strong></td>
+                                <tr>
                                     <td>
-                            <input type="text" name="cat_order" id="cat_order" style="width:30px; text-align: center;" value="<?php echo  $child_cat->cat_order ; ?> ">
-                           
-                            </td>
+                                        <?php
+                                        if ($child_cat->cat_image) {
+                                            ?>
+                                            <img src="<?php echo $child_cat->cat_image; ?>" width="80">
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <div class="no_img">NO IMAGE</div>
+                                            <?php
+                                        }
+                                        ?>
+                                    </td>
+
+
+                                    <td>
+                                        <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>">--- <?php echo $child_cat->cat_name; ?></a></strong></td>
+                                    <td>
+                                        <input type="text" name="cat_order[<?php echo $child_cat->cat_id; ?>]" id="cat_order" style="width:30px; text-align: center;" value="<?php echo $child_cat->cat_order; ?> ">
+
+                                    </td>
                                     <td class="actions">
-                                <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
-                                <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $child_cat->cat_id); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this category, doing so will delete all the products belongs to this category as well?');"></a>
-                            </td>
+                                        <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
+                                        <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $child_cat->cat_id); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this category, doing so will delete all the products belongs to this category as well?');"></a>
+                                    </td>
                                     <?php
-                                    
                                 }
                                 ?>
-                            
-                            
+
+
+                            </tr>
+                            <?php
+                        }
+                    } else {
+                        ?>
+                        <tr>
+                            <td colspan="4" style="text-align: center;"><strong>No Records Found</strong></td>
                         </tr>
                         <?php
                     }
-                } else {
                     ?>
-                    <tr>
-                        <td colspan="4" style="text-align: center;"><strong>No Records Found</strong></td>
-                    </tr>
-                    <?php
-                }
-                ?>
+                </tbody>
+            </table>
 
-            </tbody>
+            <div class="btn-right">
+                <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="Update Order"></p>
+            </div>
 
-        </table>
-       
+        </form>
 
-        <div class="btn-right">
-        <p class="submit"><input type="button" name="submit" id="submit" class="button button-primary" value="Update Order"></p>
-
-                
-               
-               </div>
-        
-       
         <?php
-        
     }
 
     // Add new or edit category form
@@ -144,7 +139,7 @@ class categories extends ATQ {
 
         <div class="col-left">
             <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save'); ?>">
-   me="cat_id" value="<?php echo $row->cat_id; ?>">
+                <input type="hidden" name="cat_id" value="<?php echo $row->cat_id; ?>">
                 <div class="form-field">
                     <label for="cat_name">Category Name <span>*</span></label>
                     <input name="cat_name" id="cat_name" type="text" value="<?php echo $row->cat_name; ?>" required>
@@ -185,13 +180,13 @@ class categories extends ATQ {
     public function save() {
 
         // Getting submitted data
-        
+
         $id = filter_input(INPUT_POST, 'cat_id');
         $cat_name = filter_input(INPUT_POST, 'cat_name', FILTER_SANITIZE_STRING);
         $cat_desc = filter_input(INPUT_POST, 'cat_desc');
         $cat_image = filter_input(INPUT_POST, 'cat_image');
         $cat_parent = filter_input(INPUT_POST, 'cat_parent');
-        
+
         if (!empty($id)) {
 
             $cat_data = array(
@@ -224,7 +219,30 @@ class categories extends ATQ {
 
             exit;
         }
-       
+    }
+
+    // Sort orders
+    public function cat_order() {
+        $orders = filter_input(INPUT_POST, 'cat_order', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+
+        foreach ($orders as $cat_id => $order) {
+            
+            $sort = array(
+                'cat_order' => $order
+            );
+
+            $cat = array(
+                'cat_id' => $cat_id
+            );
+            
+
+            $this->wpdb->update($this->categories_tbl, $sort, $cat);
+            
+            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
+            
+        }
+        
+        exit;
     }
 
     // Delete category

@@ -21,6 +21,7 @@ class ATQ {
     protected $clients_tbl;
     protected $categories_tbl;
     protected $products_tbl;
+    protected $products_fp_combos_tbl;
     protected $quotes_tbl;
     protected $quote_items_tbl;
 
@@ -39,6 +40,7 @@ class ATQ {
         $this->clients_tbl = $this->wpdb->prefix . 'atq_clients';
         $this->categories_tbl = $this->wpdb->prefix . 'atq_categories';
         $this->products_tbl = $this->wpdb->prefix . 'atq_products';
+        $this->products_fp_combos_tbl = $this->wpdb->prefix . 'atq_products_fp_combos';
         $this->quotes_tbl = $this->wpdb->prefix . 'atq_quotes';
         $this->quote_items_tbl = $this->wpdb->prefix . 'atq_quote_items';
 
@@ -54,8 +56,6 @@ class ATQ {
         // Loading plugin resources for front end
         add_action('wp_head', array($this, 'register_frontend_resources'));
 
-       
-
         // Allow redirection
         ob_start();
     }
@@ -66,9 +66,10 @@ class ATQ {
         add_submenu_page('quotes', 'Quotes', 'Quotes', 'edit_pages', 'quotes', array($this, 'atq_main'));
         add_submenu_page('quotes', 'Products', 'Products', 'edit_pages', 'products', array($this, 'atq_main'));
         add_submenu_page('quotes', 'Categories', 'Categories', 'edit_pages', 'categories', array($this, 'atq_main'));
-        add_submenu_page('quotes', ' Fabrics', 'Fabrics', 'edit_pages', 'fabrics', array($this, 'atq_main'));
+        add_submenu_page('quotes', 'Fabrics', 'Fabrics', 'edit_pages', 'fabrics', array($this, 'atq_main'));
         add_submenu_page('quotes', 'Clients', 'Clients', 'edit_pages', 'clients', array($this, 'atq_main'));
         add_submenu_page('quotes', 'Staff Member', 'Staff Member', 'edit_pages', 'staff_member', array($this, 'atq_main'));
+        add_submenu_page('quotes', 'CSV Price Update', 'CSV Price Update', 'edit_pages', 'csv_price_update', array($this, 'atq_main'));
     }
 
     // Main Page
@@ -132,28 +133,6 @@ class ATQ {
         }
     }
 
-    // Sort Categories
-    public function atq_save_sorted_cat() {
-
-        // Get sort order
-        $items = filter_input(INPUT_POST, 'items', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-
-        // Save sort order
-        foreach ($items as $key => $value) {
-
-            $cat_data = array(
-                'cat_order' => $key
-            );
-
-            $cat_id = array(
-                'cat_id' => $value
-            );
-
-            $this->wpdb->update($this->categories_tbl, $cat_data, $cat_id);
-        }
-
-        wp_die();
-    }
 
     // Tables queries for database
     public function install_tables() {
@@ -183,6 +162,7 @@ class ATQ {
         client_fname VARCHAR(100) NOT NULL,
         client_lname VARCHAR(100) NOT NULL,
         client_email VARCHAR(100) NOT NULL,
+        client_email_2 VARCHAR(100) NULL,
         client_contactno VARCHAR(100) NOT NULL,
         client_cellno VARCHAR(100) NOT NULL,
         client_companyname VARCHAR(100) NOT NULL,
@@ -212,8 +192,15 @@ class ATQ {
         prod_seller TINYINT DEFAULT 0,
         prod_sale TINYINT DEFAULT 0,
         prod_new TINYINT DEFAULT 0,
-        prod_fab_price LONGTEXT NULL,
         PRIMARY KEY(prod_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
+
+        $products_fp_combos_table = "CREATE TABLE $this->products_fp_combos_tbl(
+        combo_id INT(9) NOT NULL AUTO_INCREMENT,
+        combo_pid INT(9) NOT NULL,
+        combo_code VARCHAR(50) NOT NULL,
+        combo_price VARCHAR(50) NOT NULL,
+        PRIMARY KEY(combo_id)
         ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
 
         $quotes_table = "CREATE TABLE $this->quotes_tbl(
@@ -230,6 +217,7 @@ class ATQ {
         $quote_items_table = "CREATE TABLE $this->quote_items_tbl(
         item_id INT(5) NOT NULL AUTO_INCREMENT,
         item_qid VARCHAR(100) NULL,
+        item_code VARCHAR(100) NULL,
         item_images LONGTEXT NULL,
         item_name VARCHAR(100) NULL,
         item_desc LONGTEXT NULL,
@@ -249,6 +237,7 @@ class ATQ {
         dbDelta($clients_table);
         dbDelta($categories_table);
         dbDelta($products_table);
+        dbDelta($products_fp_combos_table);
         dbDelta($quotes_table);
         dbDelta($quote_items_table);
     }

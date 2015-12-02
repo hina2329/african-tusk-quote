@@ -123,10 +123,12 @@ class fabrics extends ATQ {
                 <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo isset($id) ? 'Update Fabric' : 'Add New Fabric'; ?>"></p>
             </form>
             <!-- CLONE MULTIPLE FIELDS -->
-            <div class="multi-fields screen-reader-text">
-                <input name="fab_color[]" class="fab_color" type="text" value="" placeholder="Fabric Color Name">
-                <input name="fab_img[]" class="img_field" type="text" value="" placeholder="Fabric Thumbnail">
-                <input class="upload_image_button" type="button" value="Upload Image"><a href="#" class="btn-fields remove-fields">X remove</a>
+            <div class="cloner">
+                <div class="multi-fields screen-reader-text">
+                    <input name="fab_color[]" class="fab_color" type="text" value="" placeholder="Fabric Color Name">
+                    <input name="fab_img[]" class="img_field" type="text" value="" placeholder="Fabric Thumbnail">
+                    <input class="upload_image_button" type="button" value="Upload Image"><a href="#" class="btn-fields remove-fields">X remove</a>
+                </div>
             </div>
             <!-- CLONE MULTIPLE FIELDS -->
         </div>
@@ -169,9 +171,8 @@ class fabrics extends ATQ {
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
 
             exit;
-            
         } else {
-            
+
             $fab_data = array(
                 'fab_name' => $fab_name,
                 'fab_suffix' => $fab_suffix,
@@ -194,7 +195,7 @@ class fabrics extends ATQ {
         $fab_data = array(
             'fab_id' => $id
         );
-        
+
         $this->wpdb->delete($this->fabrics_tbl, $fab_data);
 
         wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=deleted'));

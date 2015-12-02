@@ -106,6 +106,10 @@ class clients extends ATQ {
                     <input type="text" name="client_email" id="client_email" value="<?php echo $row->client_email; ?>" required>
                 </div>
                 <div class="form-field">
+                    <label for="client_email">Email 2</label><br>
+                    <input type="text" name="client_email_2" id="client_email_2" value="<?php echo $row->client_email_2; ?>">
+                </div>
+                <div class="form-field">
                     <label for="client_contactno">Contact No<span>*</span></label><br>
                     <input type="text" name="client_contactno" id="client_contactno" value="<?php echo $row->client_contactno; ?>" required>
                 </div>
@@ -133,6 +137,7 @@ class clients extends ATQ {
         $client_fname = filter_input(INPUT_POST, 'client_fname', FILTER_SANITIZE_STRING);
         $client_lname = filter_input(INPUT_POST, 'client_lname', FILTER_SANITIZE_STRING);
         $client_email = filter_input(INPUT_POST, 'client_email', FILTER_SANITIZE_STRING);
+        $client_email_2 = filter_input(INPUT_POST, 'client_email_2', FILTER_SANITIZE_STRING);
         $client_contactno = filter_input(INPUT_POST, 'client_contactno', FILTER_SANITIZE_STRING);
         $client_cellno = filter_input(INPUT_POST, 'client_cellno', FILTER_SANITIZE_STRING);
         $client_companyname = filter_input(INPUT_POST, 'client_companyname', FILTER_SANITIZE_STRING);
@@ -142,6 +147,7 @@ class clients extends ATQ {
                 'client_fname' => $client_fname,
                 'client_lname' => $client_lname,
                 'client_email' => $client_email,
+                'client_email_2' => $client_email_2,
                 'client_contactno' => $client_contactno,
                 'client_cellno' => $client_cellno,
                 'client_companyname' => $client_companyname
@@ -163,6 +169,7 @@ class clients extends ATQ {
                 'client_fname' => $client_fname,
                 'client_lname' => $client_lname,
                 'client_email' => $client_email,
+                'client_email_2' => $client_email_2,
                 'client_contactno' => $client_contactno,
                 'client_cellno' => $client_cellno,
                 'client_companyname' => $client_companyname

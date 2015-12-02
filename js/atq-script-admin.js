@@ -62,15 +62,13 @@ jQuery(document).ready(function ($) {
         return false;
     });
 
-    // Search products
+    // Search
     $(".quote-item-search input.prod-name").keyup(function () {
-
         var filter = $(this).val();
         if (!filter) {
             $(".quote-item-search ul li").hide();
             return;
         }
-
         var regex = new RegExp(filter, "i");
         $(".quote-item-search ul li").each(function () {
 
@@ -80,16 +78,40 @@ jQuery(document).ready(function ($) {
                 $(this).show();
             }
         });
-
     });
-
-    // Add product info to field
+    
     $(".quote-item-search ul li").click(function () {
         var prod_text = $(this).text();
         var prod_id = $(this).data('prod-id');
         $(".quote-item-search input.prod-name").val(prod_text);
         $(".quote-item-search input.prod-id").val(prod_id);
-        $(this).parent().hide();
+        $(this).hide();
+        return false;
+    });
+    
+    $(".client-holder").keyup(function () {
+        var filter = $(this).val();
+        if (!filter) {
+            $(".client-list ul li").hide();
+            return;
+        }
+        var regex = new RegExp(filter, "i");
+        $(".client-list ul li").each(function () {
+
+            if ($(this).text().search(regex) < 0) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        });
+    });
+    
+    $(".client-list ul li").click(function () {
+        var client_text = $(this).text();
+        var client_id = $(this).data('client-id');
+        $(".client-holder").val(client_text);
+        $(".quote-client").val(client_id);
+        $(this).hide();
         return false;
     });
 

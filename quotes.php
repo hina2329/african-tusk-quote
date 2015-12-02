@@ -1,13 +1,13 @@
 <?php
 
-//Quote Class
+// Quote Class
 class quotes extends ATQ {
 
     public function __construct() {
         parent:: __construct();
     }
 
-// Iniating main method to display quotes
+    // Iniating main method to display quotes
     public function init() {
         ?>
 
@@ -123,6 +123,10 @@ class quotes extends ATQ {
                         <div class="form-field">
                             <label for="client_email">Email</label><br>
                             <input type="text" name="client_email" id="client_email" value="<?php echo $client->client_email; ?>">
+                        </div>
+                        <div class="form-field">
+                            <label for="client_email_2">Email 2</label><br>
+                            <input type="text" name="client_email_2" id="client_email_2" value="<?php echo $client->client_email_2; ?>">
                         </div>
                         <div class="form-field">
                             <label for="client_contactno">Contact No</label><br>
@@ -256,8 +260,7 @@ class quotes extends ATQ {
                                         </td>
                                     </tr>
                                     <?php
-                                } else
-                                    if ($item->heading) {
+                                } else if ($item->heading) {
                                     ?>
                                     <tr id="item_<?php echo $item->item_id; ?>" class="item">
                                         <td colspan="6"><h2><?php echo $item->heading; ?></h2></td>
@@ -360,23 +363,20 @@ class quotes extends ATQ {
                     </div>
                     <p>&nbsp;</p>
                     <h3>Existing Client</h3>
-                    <div class="form-field">
-                        <select name="quote_client" id="quote_client">
-                            <option value="">Please select...</option>
+                    <div class="form-field client-list">
+                        <input type="hidden" name="quote_client" class="quote-client">
+                        <input type="text" class="client-holder">
+                        <ul>
                             <?php
                             // Getting clients list
                             $clients = $this->wpdb->get_results("SELECT * FROM $this->clients_tbl");
 
                             // Listing clients members
                             foreach ($clients as $client) {
-                                echo '<option value="' . $client->client_id . '" ';
-
-                                selected($client->client_id, $row->client_id);
-
-                                echo '>' . $client->client_fname . ' ' . $client->client_lname . '</option>';
+                                echo '<li data-client-id="' . $client->client_id . '"><strong>' . $client->client_fname . ' ' . $client->client_lname . '</strong> / ' . $client->client_email . ' / ' . $client->client_companyname . '</li>';
                             }
                             ?>
-                        </select>
+                        </ul>
                     </div>
 
                     <p>&nbsp;</p>
@@ -392,6 +392,10 @@ class quotes extends ATQ {
                     <div class="form-field">
                         <label for="client_email">Email</label><br>
                         <input type="text" name="client_email" id="client_email">
+                    </div>
+                    <div class="form-field">
+                        <label for="client_email_2">Email 2</label><br>
+                        <input type="text" name="client_email_2" id="client_email_2">
                     </div>
                     <div class="form-field">
                         <label for="client_contactno">Contact No</label><br>
@@ -427,6 +431,7 @@ class quotes extends ATQ {
         $client_fname = filter_input(INPUT_POST, 'client_fname', FILTER_SANITIZE_STRING);
         $client_lname = filter_input(INPUT_POST, 'client_lname', FILTER_SANITIZE_STRING);
         $client_email = filter_input(INPUT_POST, 'client_email', FILTER_SANITIZE_STRING);
+        $client_email_2 = filter_input(INPUT_POST, 'client_email_2', FILTER_SANITIZE_STRING);
         $client_contactno = filter_input(INPUT_POST, 'client_contactno', FILTER_SANITIZE_STRING);
         $client_cellno = filter_input(INPUT_POST, 'client_cellno', FILTER_SANITIZE_STRING);
         $client_companyname = filter_input(INPUT_POST, 'client_companyname', FILTER_SANITIZE_STRING);
@@ -447,6 +452,7 @@ class quotes extends ATQ {
             'client_fname' => $client_fname,
             'client_lname' => $client_lname,
             'client_email' => $client_email,
+            'client_email_2' => $client_email_2,
             'client_contactno' => $client_contactno,
             'client_cellno' => $client_cellno,
             'client_companyname' => $client_companyname
@@ -554,6 +560,7 @@ class quotes extends ATQ {
 
         // Save existing product data into wp_atq_quote_items table
         $product_data = array(
+            'item_code' => $product->proce_code,
             'item_qid' => $quote_id,
             'item_images' => $product->prod_images,
             'item_name' => $product->prod_name,

@@ -5,6 +5,8 @@ class products extends ATQ {
 
     public function __construct() {
         parent::__construct();
+
+        require_once 'products_fabric_price_combo.php';
     }
 
     // Iniating main method to display products
@@ -63,20 +65,26 @@ class products extends ATQ {
                             </td>
                             <td>
                                 <?php
-                                $prod_fabs = unserialize($row->prod_fab_price);
-                                $fabs_count = count($prod_fabs);
+                                $prod_fabs = $this->wpdb->get_results("SELECT * FROM $this->products_fp_combos_tbl WHERE combo_pid = $row->prod_id");
+                                $prod_fabs_count = count($prod_fabs);
                                 $i = 0;
-                                if ($prod_fabs) {
-                                    foreach ($prod_fabs as $prod_fab) {
-                                        $i++;
-                                        $fab_id = $prod_fab['fab'];
-                                        $fab = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_id = $fab_id");
-                                        echo $fab->fab_name;
-                                        if ($i < $fabs_count) {
-                                            echo ', ';
-                                        }
+                                
+                                foreach ($prod_fabs as $prod_fab) {
+                                    $i++;
+                                    $combo_code = explode('-', $prod_fab->combo_code);
+                                    $fab_code = $combo_code[1];
+                                    
+                                    // Get related fabrics
+                                    $fab = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_code'");
+                                    
+                                    echo $fab->fab_name;
+                                    
+                                    if ($i < $prod_fabs_count) {
+                                        echo ', ';
                                     }
+                                    
                                 }
+
                                 ?>
                             </td>
 
@@ -180,31 +188,31 @@ class products extends ATQ {
 
                 <div class="fabric-list">
                     <?php
-                    $fabs_prices = unserialize($row->prod_fab_price);
-                    $i = 0;
-                    if ($fabs_prices) {
-                        foreach ($fabs_prices as $fab_price) {
-                            $fab_id = $fab_price['fab'];
-                            $fab = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_id = $fab_id");
-                            ?>
-                            <div class="multi-fields-fab-price fab-price">
-                                <select name="prod_fab[]" id="prod_fab">
-                                    <?php
-                                    // Getting fabrics list
-                                    $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
+                    // Get combos related to this product
+                    $combos = $this->wpdb->get_results("SELECT * FROM $this->products_fp_combos_tbl WHERE combo_pid = $id");
+                    
+                    foreach ($combos as $combo) {
+                        ?>
+                        <div class="multi-fields-fab-price fab-price">
+                            <select name="prod_fab[]" id="prod_fab">
+                                <option value="0">Select Fabric...</option>
+                                <?php
+                                // Getting fabrics list
+                                $fabs = $this->wpdb->get_results("SELECT * FROM $this->fabrics_tbl");
 
-                                    // Listing all fabrics
-                                    foreach ($fabs as $fabric) {
-                                        ?>
-                                        <option value="<?php echo $fabric->fab_id; ?>" <?php selected($fabric->fab_id, $fab_price['fab']); ?>><?php echo $fabric->fab_name . ' / ' . $fabric->fab_suffix; ?></option>
-                                        <?php
-                                    }
+                                // Listing all fabrics
+                                foreach ($fabs as $fab) {
+                                    $fab_code = $row->prod_code . '-' . $fab->fab_suffix;
                                     ?>
-                                </select>&nbsp;&nbsp;&nbsp; R <input type="text" name="prod_price[]" id="prod-fab-price" class="small-text" value="<?php echo $fab_price['price']; ?>">
-                                <a href="#" class="btn-fields remove-fields remove-fab">X remove</a>
-                            </div>
-                            <?php
-                        }
+                                    <option value="<?php echo $fab->fab_suffix; ?>" <?php selected($fab_code, $combo->combo_code); ?>><?php echo $fab->fab_name . ' / ' . $fab->fab_suffix; ?></option>
+                                    <?php
+                                }
+                                ?>
+                            </select><br>
+                            R <input type="text" name="prod_price[]" id="prod-fab-price" class="small-text" value="<?php echo $combo->combo_price; ?>">
+                            <a href="#" class="btn-fields remove-fields remove-fab">X remove</a>
+                        </div>
+                        <?php
                     }
                     ?>
                 </div>
@@ -240,11 +248,12 @@ class products extends ATQ {
                         // Listing all fabrics
                         foreach ($fabs as $fab) {
                             ?>
-                            <option value="<?php echo $fab->fab_id; ?>"><?php echo $fab->fab_name . ' / ' . $fab->fab_suffix; ?></option>
+                            <option value="<?php echo $fab->fab_suffix; ?>"><?php echo $fab->fab_name . ' / ' . $fab->fab_suffix; ?></option>
                             <?php
                         }
                         ?>
-                    </select>&nbsp;&nbsp;&nbsp; R <input type="text" name="prod_price[]" id="prod-fab-price" class="small-text">
+                    </select><br>
+                    R <input type="text" name="prod_price[]" id="prod-fab-price" class="small-text">
                     <a href="#" class="btn-fields remove-fields remove-fab">X remove</a>
                 </div>
             </div>
@@ -272,18 +281,6 @@ class products extends ATQ {
         $prod_new = filter_input(INPUT_POST, 'prod_new');
         $prod_fab_arr = filter_input(INPUT_POST, 'prod_fab', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
         $prod_price_arr = filter_input(INPUT_POST, 'prod_price', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-        $prod_fab_price_arr = array();
-        $prod_fab_count = count($prod_fab_arr);
-        
-        for ($i = 0; $i < $prod_fab_count; $i++) {
-            $prod_fab_price_arr[$i] = array(
-                'fab' => $prod_fab_arr[$i],
-                'price' => $prod_price_arr[$i],
-            );
-        }
-        
-        $prod_fab_price = serialize($prod_fab_price_arr);
-
 
         if (!empty($id)) {
 
@@ -297,13 +294,14 @@ class products extends ATQ {
                 'prod_seller' => $prod_seller,
                 'prod_sale' => $prod_sale,
                 'prod_new' => $prod_new,
-                'prod_fab_price' => $prod_fab_price
             );
 
             $data_id = array(
                 'prod_id' => $id);
 
             $this->wpdb->update($this->products_tbl, $prod_data, $data_id);
+
+            new FPCombo($id, $prod_fab_arr, $prod_price_arr, $prod_code, 'update');
 
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
 
@@ -320,11 +318,15 @@ class products extends ATQ {
                 'prod_seller' => $prod_seller,
                 'prod_sale' => $prod_sale,
                 'prod_new' => $prod_new,
-                'prod_fab_price' => $prod_fab_price
             );
 
-
             $this->wpdb->insert($this->products_tbl, $prod_data);
+
+            // Get product ID
+            $prod_id = $this->wpdb->insert_id;
+
+            new FPCombo($prod_id, $prod_fab_arr, $prod_price_arr, $prod_code, 'insert');
+
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));
 
             exit;
