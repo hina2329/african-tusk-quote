@@ -24,6 +24,7 @@ class ATQ {
     protected $products_fp_combos_tbl;
     protected $quotes_tbl;
     protected $quote_items_tbl;
+    protected $ajax_handler;
 
     public function __construct() {
 
@@ -56,6 +57,9 @@ class ATQ {
         // Loading plugin resources for front end
         add_action('wp_head', array($this, 'register_frontend_resources'));
 
+        // Add heading action
+        add_action('wp_ajax_add_heading', array($this, 'add_heading'));
+
         // Allow redirection
         ob_start();
     }
@@ -69,8 +73,8 @@ class ATQ {
         add_submenu_page('quotes', 'Fabrics', 'Fabrics', 'edit_pages', 'fabrics', array($this, 'atq_main'));
         add_submenu_page('quotes', 'Clients', 'Clients', 'edit_pages', 'clients', array($this, 'atq_main'));
         add_submenu_page('quotes', 'Staff Member', 'Staff Member', 'edit_pages', 'staff_member', array($this, 'atq_main'));
-        add_submenu_page('quotes', 'CSV Price Update', 'CSV Price Update', 'edit_pages', 'csv_price_update', array($this, 'atq_main'));
-        add_submenu_page('quotes', 'Product CSV Import', 'Product CSV Import', 'edit_pages', 'product_csv_import', array($this, 'atq_main'));
+        add_submenu_page('quotes', 'CSV Prices Update', 'CSV Prices Update', 'edit_pages', 'csv_prices_update', array($this, 'atq_main'));
+        add_submenu_page('quotes', 'CSV Products Import', 'CSV Products Import', 'edit_pages', 'csv_products_import', array($this, 'atq_main'));
     }
 
     // Main Page
@@ -134,6 +138,29 @@ class ATQ {
         }
     }
 
+    // Add heading in quote items listing
+    public function add_heading() {
+
+        // Get quote id
+        $quote_id = filter_input(INPUT_POST, 'quote_id');
+        $heading = filter_input(INPUT_POST, 'add_heading');
+
+        $item_heading = array(
+            'item_qid' => $quote_id,
+            'heading' => $heading
+        );
+
+        $this->wpdb->insert($this->quote_items_tbl, $item_heading);
+
+        echo '<tr>';
+        echo '<td colspan="6"><h2>' . $heading . '</h2></td>';
+        echo '<td class="actions">';
+        echo '<a href="' . admin_url('admin.php?page=' . $this->page . '&action=del&id=1&quote_id=' . $quote_id) . '" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm("Are you sure you want to delete this?");"></a>';
+        echo '</td>';
+        echo '</tr>';
+
+        wp_die();
+    }
 
     // Tables queries for database
     public function install_tables() {
