@@ -18,7 +18,7 @@ class csv_fabric_price_combos_import extends ATQ {
 
 	 	}
 	 	if(isset($import) && $import == 'success'){
-	 		echo '<div id="message" class="updated notice notice-success is-dismissible"><p>Prices imported successfully</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
+	 		echo '<div id="message" class="updated notice notice-success is-dismissible"><p>file imported successfully</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
 
 	 	}
 

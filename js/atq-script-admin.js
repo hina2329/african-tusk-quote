@@ -138,5 +138,22 @@ jQuery(document).ready(function ($) {
         var unit = $(this).parents('tr').find('.unit-price').val();
         $(this).parents('tr').find('.sub-total').val(qty * unit);
     });
+    
+    // Add heading quote
+    $('.add-heading').click(function(){
+        var quote_id = $('#quote_id').val();
+        var heading = $('#add_heading').val();
+        var data = {
+          'action' : 'add_heading',
+          'add_heading' : heading,
+          'quote_id' : quote_id
+        };
+        
+        $.post(ajaxurl, data, function(result){
+            $('#add_heading').val('');
+            $('#the-list').append(result);
+        });
+    });
+    
 
 });

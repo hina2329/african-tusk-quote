@@ -85,7 +85,7 @@ class quotes extends ATQ {
 
     // Add new quote form
     public function form() {
-
+        
         // Get ID
         $id = filter_input(INPUT_GET, 'id');
 
@@ -201,10 +201,8 @@ class quotes extends ATQ {
                 <legend>Quote Items</legend>
                 <div class="quote-item-heading">
                     <strong>Add Heading</strong><br>
-                    <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=add_heading'); ?>">
-                        <input type="hidden" name="quote_id" value="<?php echo $quote->quote_id; ?>">
-                        <input type="text" name="add_heading" class="large-text"><input type="submit" value="Add Heading" class="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=add_sep&id=' . $quote->quote_id); ?>" class="button">Add Separator</a>
-                    </form>
+                    <input type="hidden" name="quote_id" id="quote_id" value="<?php echo $quote->quote_id; ?>">
+                        <input type="text" name="add_heading" id="add_heading" class="large-text"><input type="submit" value="Add Heading" class="add-heading button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=add_sep&id=' . $quote->quote_id); ?>" class="button">Add Separator</a>
                 </div>
                 <div class="quote-item-search">
                     Simply specify the first 3 characthers of a product code, e.g. AT1. It will then give you options, select one and click "Add Product".<br>                   
@@ -262,7 +260,7 @@ class quotes extends ATQ {
                                     <?php
                                 } else if ($item->heading) {
                                     ?>
-                                    <tr id="item_<?php echo $item->item_id; ?>" class="item">
+                                    <tr>
                                         <td colspan="6"><h2><?php echo $item->heading; ?></h2></td>
                                         <td class="actions">
                                             <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $item->item_id . '&quote_id=' . $item->item_qid); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm("Are you sure you want to delete this?");"></a>
@@ -587,24 +585,6 @@ class quotes extends ATQ {
         );
 
         $this->wpdb->insert($this->quote_items_tbl, $item_sep);
-
-        // Redirect to next quote form
-        wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $quote_id));
-    }
-
-    // Add heading in quote items listing
-    public function add_heading() {
-
-        // Get quote id
-        $quote_id = filter_input(INPUT_POST, 'quote_id');
-        $heading = filter_input(INPUT_POST, 'add_heading');
-
-        $item_heading = array(
-            'item_qid' => $quote_id,
-            'heading' => $heading
-        );
-
-        $this->wpdb->insert($this->quote_items_tbl, $item_heading);
 
         // Redirect to next quote form
         wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $quote_id));

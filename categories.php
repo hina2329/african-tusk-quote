@@ -90,7 +90,7 @@ class categories extends ATQ {
 
 
                                     <td>
-                                        <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>">--- <?php echo $child_cat->cat_name; ?></a></strong></td>
+                                        <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>">— <?php echo $child_cat->cat_name; ?></a></strong></td>
                                     <td>
                                         <input type="text" name="cat_order[<?php echo $child_cat->cat_id; ?>]" id="cat_order" style="width:30px; text-align: center;" value="<?php echo $child_cat->cat_order; ?> ">
 
@@ -99,56 +99,51 @@ class categories extends ATQ {
                                         <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $child_cat->cat_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
                                         <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $child_cat->cat_id); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this category, doing so will delete all the products belongs to this category as well?');"></a>
                                     </td>
-                                    
 
-                                    </tr>
-                            <?php
-                            //getting sub categories
-                            $sub_cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl WHERE cat_parent = $child_cat->cat_id");
-                            $sub_cat_count = count($sub_cats);
-                            $i = 0;
-                            foreach ($sub_cats as $sub_cat) {
-                                $i++;
-                                ?>
-                                <tr>
-                                    <td>
+
+                                </tr>
+                                <?php
+                                //getting sub categories
+                                $sub_cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl WHERE cat_parent = $child_cat->cat_id");
+                                $sub_cat_count = count($sub_cats);
+                                $i = 0;
+                                foreach ($sub_cats as $sub_cat) {
+                                    $i++;
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <?php
+                                            if ($sub_cat->cat_image) {
+                                                ?>
+                                                <img src="<?php echo $sub_cat->cat_image; ?>" width="80">
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <div class="no_img">NO IMAGE</div>
+                                                <?php
+                                            }
+                                            ?>
+                                        </td>
+
+
+                                        <td>
+                                            <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $sub_cat->cat_id); ?>">—— <?php echo $sub_cat->cat_name; ?></a></strong></td>
+                                        <td>
+                                            <input type="text" name="cat_order[<?php echo $sub_cat->cat_id; ?>]" id="cat_order" style="width:30px; text-align: center;" value="<?php echo $sub_cat->cat_order; ?> ">
+
+                                        </td>
+                                        <td class="actions">
+                                            <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $sub_cat->cat_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
+                                            <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $sub_cat->cat_id); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this category, doing so will delete all the products belongs to this category as well?');"></a>
+                                        </td>
                                         <?php
-                                        if ($sub_cat->cat_image) {
-                                            ?>
-                                            <img src="<?php echo $sub_cat->cat_image; ?>" width="80">
-                                            <?php
-                                        } else {
-                                            ?>
-                                            <div class="no_img">NO IMAGE</div>
-                                            <?php
-                                        }
-                                        ?>
-                                    </td>
+                                    }
+                                    ?>
 
 
-                                    <td>
-                                        <strong><a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $sub_cat->cat_id); ?>">------ <?php echo $sub_cat->cat_name; ?></a></strong></td>
-                                    <td>
-                                        <input type="text" name="cat_order[<?php echo $sub_cat->cat_id; ?>]" id="cat_order" style="width:30px; text-align: center;" value="<?php echo $sub_cat->cat_order; ?> ">
-
-                                    </td>
-                                    <td class="actions">
-                                        <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $sub_cat->cat_id); ?>" class="dashicons-before dashicons-edit" title="Edit"></a>
-                                        <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $sub_cat->cat_id); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this category, doing so will delete all the products belongs to this category as well?');"></a>
-                                    </td>
-                                    <?php
-                                }
-                                ?>
-
-
-                            </tr>
-                           <?php
-                                }
-                            
-
-
-                            
-                            
+                                </tr>
+                                <?php
+                            }
                         }
                     } else {
                         ?>
@@ -269,7 +264,7 @@ class categories extends ATQ {
         $orders = filter_input(INPUT_POST, 'cat_order', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 
         foreach ($orders as $cat_id => $order) {
-            
+
             $sort = array(
                 'cat_order' => $order
             );
@@ -277,14 +272,13 @@ class categories extends ATQ {
             $cat = array(
                 'cat_id' => $cat_id
             );
-            
+
 
             $this->wpdb->update($this->categories_tbl, $sort, $cat);
-            
+
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
-            
         }
-        
+
         exit;
     }
 
