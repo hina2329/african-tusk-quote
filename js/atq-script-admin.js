@@ -149,9 +149,12 @@ jQuery(document).ready(function ($) {
           'quote_id' : quote_id
         };
         
+        $('#update-msg').show();
+        
         $.post(ajaxurl, data, function(result){
             $('#add_heading').val('');
             $('#the-list').append(result);
+            $('#update-msg').hide();
         });
     });
     

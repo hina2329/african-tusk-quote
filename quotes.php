@@ -85,7 +85,7 @@ class quotes extends ATQ {
 
     // Add new quote form
     public function form() {
-        
+
         // Get ID
         $id = filter_input(INPUT_GET, 'id');
 
@@ -202,7 +202,7 @@ class quotes extends ATQ {
                 <div class="quote-item-heading">
                     <strong>Add Heading</strong><br>
                     <input type="hidden" name="quote_id" id="quote_id" value="<?php echo $quote->quote_id; ?>">
-                        <input type="text" name="add_heading" id="add_heading" class="large-text"><input type="submit" value="Add Heading" class="add-heading button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=add_sep&id=' . $quote->quote_id); ?>" class="button">Add Separator</a>
+                    <input type="text" name="add_heading" id="add_heading" class="large-text"><input type="submit" value="Add Heading" class="add-heading button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=add_sep&id=' . $quote->quote_id); ?>" class="button">Add Separator</a>
                 </div>
                 <div class="quote-item-search">
                     Simply specify the first 3 characthers of a product code, e.g. AT1. It will then give you options, select one and click "Add Product".<br>                   
@@ -414,6 +414,10 @@ class quotes extends ATQ {
             </div>
             <?php
         }
+        echo '<div id="update-msg">'
+        . '<img src="' . plugins_url('african-tusk-quote/images/') . 'loading.gif" width="24" height="24">'
+        . 'Updating...'
+        . '</div>';
     }
 
     // Save Client
