@@ -72,10 +72,14 @@ class ATQ {
         add_submenu_page('quotes', 'Categories', 'Categories', 'edit_pages', 'categories', array($this, 'atq_main'));
         add_submenu_page('quotes', 'Fabrics', 'Fabrics', 'edit_pages', 'fabrics', array($this, 'atq_main'));
         add_submenu_page('quotes', 'Clients', 'Clients', 'edit_pages', 'clients', array($this, 'atq_main'));
-        add_submenu_page('quotes', 'Staff Member', 'Staff Member', 'edit_pages', 'staff_member', array($this, 'atq_main'));
+        add_submenu_page('quotes', 'Staff Member', 'Staff Member', 'edit_pages', 'staff_member', array($this, 'atq_main'));\
         add_submenu_page('quotes', 'CSV Prices Update', 'CSV Prices Update', 'edit_pages', 'csv_prices_update', array($this, 'atq_main'));
         add_submenu_page('quotes', 'CSV Products Import', 'CSV Products Import', 'edit_pages', 'csv_products_import', array($this, 'atq_main'));
+        add_submenu_page('quotes', 'CSV Fabric Price Combos Import', 'CSV Fabric Price Combos Import', 'edit_pages', 'csv_fabric_price_combos_import', array($this, 'atq_main'));
+
+
     }
+
 
     // Main Page
     public function atq_main() {
