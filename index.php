@@ -57,7 +57,7 @@ class ATQ {
         // Loading plugin resources for front end
         add_action('wp_head', array($this, 'register_frontend_resources'));
 
-        // Add heading action
+          // Add heading action
         add_action('wp_ajax_add_heading', array($this, 'add_heading'));
 
         // Allow redirection
@@ -141,8 +141,7 @@ class ATQ {
             echo '<div id="message" class="updated notice notice-success is-dismissible"><p>' . $module . ' updated successfully!</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
         }
     }
-
-    // Add heading in quote items listing
+     // Add heading in quote items listing
     public function add_heading() {
 
         // Get quote id
@@ -155,16 +154,19 @@ class ATQ {
         );
 
         $this->wpdb->insert($this->quote_items_tbl, $item_heading);
+        $item_id = $this->wpdb->insert_id;
 
         echo '<tr>';
         echo '<td colspan="6"><h2>' . $heading . '</h2></td>';
         echo '<td class="actions">';
-        echo '<a href="' . admin_url('admin.php?page=' . $this->page . '&action=del&id=1&quote_id=' . $quote_id) . '" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm("Are you sure you want to delete this?");"></a>';
+        echo '<a href="#" data-item-id="$item_id" data-code-id= "$quote_id"  class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm("Are you sure you want to delete this?");"></a>';
         echo '</td>';
         echo '</tr>';
 
         wp_die();
     }
+
+   
 
     // Tables queries for database
     public function install_tables() {
