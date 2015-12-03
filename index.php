@@ -57,8 +57,14 @@ class ATQ {
         // Loading plugin resources for front end
         add_action('wp_head', array($this, 'register_frontend_resources'));
 
-          // Add heading action
+        // Add heading action
         add_action('wp_ajax_add_heading', array($this, 'add_heading'));
+
+        // Add delete item action
+        add_action('wp_ajax_del_item', array($this, 'del_quote_item'));
+
+        // Add separator action
+        add_action('wp_ajax_add_sep', array($this, 'add_separator'));
 
         // Allow redirection
         ob_start();
@@ -159,11 +165,48 @@ class ATQ {
         echo '<tr>';
         echo '<td colspan="6"><h2>' . $heading . '</h2></td>';
         echo '<td class="actions">';
-        echo '<a href="#" data-item-id="$item_id" data-code-id= "$quote_id"  class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm("Are you sure you want to delete this?");"></a>';
+        echo '<a href="#" data-item-id="' . $item_id . '" data-code-id="' . $quote_id . '"  class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?");"></a>';
         echo '</td>';
         echo '</tr>';
 
         wp_die();
+    }
+
+
+    // Delete quote item
+    public function del_quote_item() {
+       
+       $qid = filter_input(INPUT_POST, 'qid');
+       $iid = filter_input(INPUT_POST, 'iid');
+
+       // If delete product with in the quote
+            $item_data = array(
+                'item_id' => $iid
+            );
+
+            $this->wpdb->delete($this->quote_items_tbl, $item_data);
+
+        wp_die();
+    }
+    //separator
+    public function add_separator(){
+      $sid = filter_input(INPUT_POST, 'sid');  
+      $item_sep = array(
+            'item_qid' => $sid,
+            'sep' => 1,
+        );
+
+        $this->wpdb->insert($this->quote_items_tbl, $item_sep);
+        $item_id = $this->wpdb->insert_id;
+
+
+      echo      '<tr>';
+      echo      '<td colspan="6"><hr style="height: 3px; background: #666;"></td>';
+      echo      '<td class="actions">';
+      echo      '<a href="#" data-item-id="'.$sid.'" data-quote-id="'.$item_id.'" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?);"></a>';
+     echo        '</td>';
+     echo        '</tr>';
+      wp_die();
     }
 
    

@@ -157,6 +157,45 @@ jQuery(document).ready(function ($) {
             $('#update-msg').hide();
         });
     });
+
+
+    // Delete item row
+    $('.del-item-row').live('click', function(){
+        var quote_id = $(this).data('quote-id');
+        var item_id = $(this).data('item-id');
+
+        var data = {
+            action: 'del_item',
+            qid: quote_id,
+            iid: item_id
+        };
+
+
+        $.post(ajaxurl, data);
+
+
+        $(this).parents('tr').remove();
+
+        return false;
+    });
     
+    
+    $('.add-sep').live('click', function(){
+        var sep_id = $(this).data('sep-id');
+
+        var data = {
+            action: 'add_sep',
+            sid: sep_id
+        };
+
+        $('#update-msg').show();
+        
+        $.post(ajaxurl, data, function(result){
+           $('#the-list').append(result);
+           $('#update-msg').hide();
+        });
+
+        return false;
+    });
 
 });
