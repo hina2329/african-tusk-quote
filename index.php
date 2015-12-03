@@ -155,7 +155,7 @@ class ATQ {
         );
 
         $this->wpdb->insert($this->quote_items_tbl, $item_heading);
-
+        
         echo '<tr>';
         echo '<td colspan="6"><h2>' . $heading . '</h2></td>';
         echo '<td class="actions">';
