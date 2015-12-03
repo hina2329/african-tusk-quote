@@ -71,7 +71,9 @@ class ATQ {
         add_submenu_page('quotes', 'Staff Member', 'Staff Member', 'edit_pages', 'staff_member', array($this, 'atq_main'));
         add_submenu_page('quotes', 'CSV Price Update', 'CSV Price Update', 'edit_pages', 'csv_price_update', array($this, 'atq_main'));
         add_submenu_page('quotes', 'Product CSV Import', 'Product CSV Import', 'edit_pages', 'product_csv_import', array($this, 'atq_main'));
+         add_submenu_page('quotes', 'CSV Fabric Price Combos Import', 'CSV Fabric Price Combos Import', 'edit_pages', 'csv_fabric_price_combos_import', array($this, 'atq_main'));
     }
+
 
     // Main Page
     public function atq_main() {

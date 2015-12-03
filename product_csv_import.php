@@ -7,7 +7,7 @@ class product_csv_import extends ATQ{
 	 	parent:: __construct();
 	 }
 	 public function init(){
-	 echo 'hello';	
+	 	
 	 }
 	
 }
