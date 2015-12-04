@@ -197,5 +197,23 @@ jQuery(document).ready(function ($) {
 
         return false;
     });
+    $('.add-prod').live('click', function(){
+        
+        var quote_id = $('.quote-id').val();
+        var prod_id = $('.prod-id').val();
+        var data = {
+            action: 'add_prod',
+            qid: quote_id,
+            pid: prod_id
+        };
+        $('#update-msg').show();
+        
+        $.post(ajaxurl, data, function(result){
+        $('#the-list').append(result);
+        $('#update-msg').hide();
+        });
+
+        return false;
+    });
 
 });

@@ -207,11 +207,11 @@ class quotes extends ATQ {
                 </div>
                 <div class="quote-item-search">
                     Simply specify the first 3 characthers of a product code, e.g. AT1. It will then give you options, select one and click "Add Product".<br>                   
-                    <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=add_product'); ?>">
+                    
                         <input type="hidden" class="prod-id" name="prod_id">
-                        <input type="hidden" name="quote_id" value="<?php echo $quote->quote_id; ?>">
-                        <input type="text" class="prod-name large-text" name="prod_name"><button class="button">Add Product</button>
-                    </form>
+                        <input type="hidden" name="quote_id" value="<?php echo $quote->quote_id; ?>" class="quote-id">
+                        <input type="text" class="prod-name large-text " name="prod_name"><button class="button add-prod">Add Product</button>
+                    
                     <ul>
                         <?php
                         $products = $this->wpdb->get_results("SELECT * FROM $this->products_tbl");
@@ -294,6 +294,7 @@ class quotes extends ATQ {
                                                 echo '<option value="0">Select Fabric</option>';
                                                 foreach ($fabrics_prices as $fp) {
                                                     $fab_id = $fp['fab'];
+
                                                     $fab = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_id = $fab_id");
                                                     echo '<option data-fab-id="#fab_color_' . $fab_id . '" value="' . $fp['price'] . '">' . $fab->fab_name . '</option>';
                                                 }
