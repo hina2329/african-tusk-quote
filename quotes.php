@@ -5,6 +5,7 @@ class quotes extends ATQ {
 
     public function __construct() {
         parent:: __construct();
+      
     }
 
     // Iniating main method to display quotes
@@ -627,5 +628,6 @@ class quotes extends ATQ {
 
         exit;
     }
+    
 
 }

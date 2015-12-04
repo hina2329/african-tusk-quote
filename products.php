@@ -68,23 +68,21 @@ class products extends ATQ {
                                 $prod_fabs = $this->wpdb->get_results("SELECT * FROM $this->products_fp_combos_tbl WHERE combo_pid = $row->prod_id");
                                 $prod_fabs_count = count($prod_fabs);
                                 $i = 0;
-                                
+
                                 foreach ($prod_fabs as $prod_fab) {
                                     $i++;
                                     $combo_code = explode('-', $prod_fab->combo_code);
                                     $fab_code = $combo_code[1];
-                                    
+
                                     // Get related fabrics
                                     $fab = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_code'");
-                                    
+
                                     echo $fab->fab_name;
-                                    
+
                                     if ($i < $prod_fabs_count) {
                                         echo ', ';
                                     }
-                                    
                                 }
-
                                 ?>
                             </td>
 
@@ -190,7 +188,7 @@ class products extends ATQ {
                     <?php
                     // Get combos related to this product
                     $combos = $this->wpdb->get_results("SELECT * FROM $this->products_fp_combos_tbl WHERE combo_pid = $id");
-                    
+
                     foreach ($combos as $combo) {
                         ?>
                         <div class="multi-fields-fab-price fab-price">
@@ -282,25 +280,39 @@ class products extends ATQ {
         $prod_fab_arr = filter_input(INPUT_POST, 'prod_fab', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
         $prod_price_arr = filter_input(INPUT_POST, 'prod_price', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 
+        $prod_data = array(
+            'prod_name' => $prod_name,
+            'prod_desc' => $prod_desc,
+            'prod_images' => $prod_images,
+            'prod_code' => $prod_code,
+            'prod_cat' => $prod_cat,
+            'prod_size' => $prod_size,
+            'prod_seller' => $prod_seller,
+            'prod_sale' => $prod_sale,
+            'prod_new' => $prod_new,
+        );
+
         if (!empty($id)) {
 
-            $prod_data = array(
-                'prod_name' => $prod_name,
-                'prod_desc' => $prod_desc,
-                'prod_images' => $prod_images,
-                'prod_code' => $prod_code,
-                'prod_cat' => $prod_cat,
-                'prod_size' => $prod_size,
-                'prod_seller' => $prod_seller,
-                'prod_sale' => $prod_sale,
-                'prod_new' => $prod_new,
-            );
-
             $data_id = array(
-                'prod_id' => $id);
+                'prod_id' => $id
+            );
 
             $this->wpdb->update($this->products_tbl, $prod_data, $data_id);
 
+            /**
+             *
+             * Adding categories relationships with products
+             *  
+             */
+            // Delete existing stored relationships
+            $this->wpdb->delete($this->categories_relation_tbl, array('prod_id' => $id));
+
+            foreach ($prod_cat_arr as $cat) {
+                $this->wpdb->insert($this->categories_relation_tbl, array('prod_id' => $id, 'cat_id' => $cat));
+            }
+
+            // Adding combos
             new FPCombo($id, $prod_fab_arr, $prod_price_arr, $prod_code, 'update');
 
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=updated'));
@@ -308,23 +320,21 @@ class products extends ATQ {
             exit;
         } else {
 
-            $prod_data = array(
-                'prod_name' => $prod_name,
-                'prod_desc' => $prod_desc,
-                'prod_images' => $prod_images,
-                'prod_code' => $prod_code,
-                'prod_cat' => $prod_cat,
-                'prod_size' => $prod_size,
-                'prod_seller' => $prod_seller,
-                'prod_sale' => $prod_sale,
-                'prod_new' => $prod_new,
-            );
-
             $this->wpdb->insert($this->products_tbl, $prod_data);
 
             // Get product ID
             $prod_id = $this->wpdb->insert_id;
 
+            /**
+             *
+             * Adding categories relationships with products
+             *  
+             */
+            foreach ($prod_cat_arr as $cat) {
+                $this->wpdb->insert($this->categories_relation_tbl, array('prod_id' => $prod_id, 'cat_id' => $cat));
+            }
+
+            // Adding combos
             new FPCombo($prod_id, $prod_fab_arr, $prod_price_arr, $prod_code, 'insert');
 
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=added'));

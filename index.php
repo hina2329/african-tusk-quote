@@ -20,6 +20,7 @@ class ATQ {
     protected $fabrics_tbl;
     protected $clients_tbl;
     protected $categories_tbl;
+    protected $categories_relation_tbl;
     protected $products_tbl;
     protected $products_fp_combos_tbl;
     protected $quotes_tbl;
@@ -40,6 +41,7 @@ class ATQ {
         $this->fabrics_tbl = $this->wpdb->prefix . 'atq_fabrics';
         $this->clients_tbl = $this->wpdb->prefix . 'atq_clients';
         $this->categories_tbl = $this->wpdb->prefix . 'atq_categories';
+        $this->categories_relation_tbl = $this->wpdb->prefix . 'atq_categories_relation';
         $this->products_tbl = $this->wpdb->prefix . 'atq_products';
         $this->products_fp_combos_tbl = $this->wpdb->prefix . 'atq_products_fp_combos';
         $this->quotes_tbl = $this->wpdb->prefix . 'atq_quotes';
@@ -57,7 +59,7 @@ class ATQ {
         // Loading plugin resources for front end
         add_action('wp_head', array($this, 'register_frontend_resources'));
 
-        // Add heading action
+          // Add heading action
         add_action('wp_ajax_add_heading', array($this, 'add_heading'));
 
         // Allow redirection
@@ -141,8 +143,7 @@ class ATQ {
             echo '<div id="message" class="updated notice notice-success is-dismissible"><p>' . $module . ' updated successfully!</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
         }
     }
-
-    // Add heading in quote items listing
+     // Add heading in quote items listing
     public function add_heading() {
 
         // Get quote id
@@ -155,16 +156,20 @@ class ATQ {
         );
 
         $this->wpdb->insert($this->quote_items_tbl, $item_heading);
-        
+
+        $item_id = $this->wpdb->insert_id;
+
         echo '<tr>';
         echo '<td colspan="6"><h2>' . $heading . '</h2></td>';
         echo '<td class="actions">';
-        echo '<a href="' . admin_url('admin.php?page=' . $this->page . '&action=del&id=1&quote_id=' . $quote_id) . '" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm("Are you sure you want to delete this?");"></a>';
+        echo '<a href="#" data-item-id="$item_id" data-code-id= "$quote_id"  class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm("Are you sure you want to delete this?");"></a>';
         echo '</td>';
         echo '</tr>';
 
         wp_die();
     }
+
+   
 
     // Tables queries for database
     public function install_tables() {
@@ -210,6 +215,13 @@ class ATQ {
         cat_parent INT(3) DEFAULT 0,
         cat_order INT(2) DEFAULT 0,
         PRIMARY KEY (cat_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
+        ";
+        
+        $categories_rel_table = "CREATE TABLE $this->categories_relation_tbl (
+        prod_id INT(5) DEFAULT 0,
+        cat_id INT(5) DEFAULT 0,
+        PRIMARY KEY (prod_id)
         ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
         ";
 
@@ -268,6 +280,7 @@ class ATQ {
         dbDelta($staff_member_table);
         dbDelta($clients_table);
         dbDelta($categories_table);
+        dbDelta($categories_rel_table);
         dbDelta($products_table);
         dbDelta($products_fp_combos_table);
         dbDelta($quotes_table);
