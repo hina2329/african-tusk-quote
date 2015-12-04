@@ -87,7 +87,7 @@ class quotes extends ATQ {
     // Add new quote form
     public function form() {
 
-        // Get ID
+        // Get ID#
         $id = filter_input(INPUT_GET, 'id');
 
         $this->notify('Quote');
@@ -203,7 +203,7 @@ class quotes extends ATQ {
                 <div class="quote-item-heading">
                     <strong>Add Heading</strong><br>
                     <input type="hidden" name="quote_id" id="quote_id" value="<?php echo $quote->quote_id; ?>">
-                    <input type="text" name="add_heading" id="add_heading" class="large-text"><input type="submit" value="Add Heading" class="add-heading button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=add_sep&id=' . $quote->quote_id); ?>" class="button">Add Separator</a>
+                    <input type="text" name="add_heading" id="add_heading" class="large-text"><input type="submit" value="Add Heading" class="add-heading button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="button add-sep" data-sep-id="<?php echo $quote->quote_id; ?>">Add Separator</a>
                 </div>
                 <div class="quote-item-search">
                     Simply specify the first 3 characthers of a product code, e.g. AT1. It will then give you options, select one and click "Add Product".<br>                   
@@ -252,10 +252,10 @@ class quotes extends ATQ {
                                 $textarea_id = 'desc' . $item->item_id;
                                 if ($item->sep) {
                                     ?>
-                                    <tr id="item_<?php echo $item->item_id; ?>" class="item">
+                                    <tr>
                                         <td colspan="6"><hr style="height: 3px; background: #666;"></td>
                                         <td class="actions">
-                                            <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $item->item_id . '&quote_id=' . $item->item_qid); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm("Are you sure you want to delete this?");"></a>
+                                            <a href="#" data-item-id="<?php echo $item->item_id; ?>" data-quote-id="<?php echo $item->item_qid; ?>" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
                                         </td>
                                     </tr>
                                     <?php
@@ -264,13 +264,13 @@ class quotes extends ATQ {
                                     <tr>
                                         <td colspan="6"><h2><?php echo $item->heading; ?></h2></td>
                                         <td class="actions">
-                                            <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $item->item_id . '&quote_id=' . $item->item_qid); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm("Are you sure you want to delete this?");"></a>
+                                           <a href="#" data-item-id="<?php echo $item->item_id; ?>" data-quote-id="<?php echo $item->item_qid; ?>" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
                                         </td>
                                     </tr>
                                     <?php
                                 } else {
                                     ?>
-                                    <tr id="item_<?php echo $item->item_id; ?>" class="item">
+                                    <tr>
                                         <td>
                                             <?php
                                             if ($images) {
@@ -323,7 +323,7 @@ class quotes extends ATQ {
                                             R <input type="text" name="item_qty" value="" class="x-small-text sub-total">
                                         </td>
                                         <td class="actions">
-                                            <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=del&id=' . $item->item_id . '&quote_id=' . $item->item_qid); ?>" class="dashicons-before dashicons-trash" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
+                                            <a href="#" data-item-id=" <?php echo $item->item_id; ?>" data-quote-id="<?php echo $item->item_qid; ?>" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
                                         </td>
                                     </tr>
                                     <?php
@@ -578,23 +578,6 @@ class quotes extends ATQ {
         wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $quote_id));
     }
 
-    // Add separator in quote items listing
-    public function add_sep() {
-
-        // Get quote id
-        $quote_id = filter_input(INPUT_GET, 'id');
-
-        $item_sep = array(
-            'item_qid' => $quote_id,
-            'sep' => 1,
-        );
-
-        $this->wpdb->insert($this->quote_items_tbl, $item_sep);
-
-        // Redirect to next quote form
-        wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $quote_id));
-    }
-
     // Delete product
     public function del() {
 
@@ -602,7 +585,6 @@ class quotes extends ATQ {
         $id = filter_input(INPUT_GET, 'id');
         $quote_id = filter_input(INPUT_GET, 'quote_id');
 
-        if (!isset($quote_id)) {
             // If delete quote
             $quote_data = array(
                 'quote_id' => $id
@@ -615,16 +597,7 @@ class quotes extends ATQ {
             $this->wpdb->delete($this->quote_items_tbl, $quote_id);
 
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=deleted'));
-        } else {
-            // If delete product with in the quote
-            $item_data = array(
-                'item_id' => $id
-            );
-
-            $this->wpdb->delete($this->quote_items_tbl, $item_data);
-
-            wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $quote_id . '&update=updated'));
-        }
+        
 
         exit;
     }
