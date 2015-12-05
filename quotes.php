@@ -248,7 +248,7 @@ class quotes extends ATQ {
                             $quote_items = $this->wpdb->get_results("SELECT * FROM $this->quote_items_tbl");
                             foreach ($quote_items as $item) {
                                 $images = unserialize($item->item_images);
-                                $fabrics_prices = unserialize($item->item_fab_price);
+                                $item_pid = $item->item_pid;
                                 $textarea_id = 'desc' . $item->item_id;
                                 if ($item->sep) {
                                     ?>
@@ -288,31 +288,35 @@ class quotes extends ATQ {
                                             ?>
                                         </td>
                                         <td>
-                                            <?php
-                                            if ($fabrics_prices) {
-                                                echo '<select class="fabric-type">';
-                                                echo '<option value="0">Select Fabric</option>';
-                                                foreach ($fabrics_prices as $fp) {
-                                                    $fab_id = $fp['fab'];
-
-                                                    $fab = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_id = $fab_id");
-                                                    echo '<option data-fab-id="#fab_color_' . $fab_id . '" value="' . $fp['price'] . '">' . $fab->fab_name . '</option>';
-                                                }
-                                                echo '</select>';
-                                                foreach ($fabrics_prices as $fp) {
-                                                    $fab_id = $fp['fab'];
-                                                    $fab = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_id = $fab_id");
-                                                    $fab_colors = unserialize($fab->fab_colors);
-                                                    echo '<div id="fab_color_' . $fab_id . '" class="item-fab-colors">';
-                                                    echo '<select name="color-name" multiple>';
-                                                    foreach ($fab_colors as $color) {
-                                                        echo '<option>' . $color['fab_color'] . '</option>';
-                                                    }
-                                                    echo '</select>';
-                                                    echo '</div>';
-                                                }
+                                        <select name="fab_type" id="fab_type">
+                                        <option value="">Please Select...</option>
+                                         <?php
+                                    //getting fabric suffix
+                                    $prod_fps = $this->wpdb->get_results("SELECT * FROM $this->products_fp_combos_tbl WHERE combo_pid = $item_pid");
+                                            foreach ($prod_fps as $prod_fp) {
+                                                
+                                                 $combo_code = $prod_fp->combo_code; 
+                                                //breaking rows into $prod_code & $fab_suffix
+                                                   list($prod_code,$fab_suffix) = explode('-', $combo_code);
+                                                  $fab_suffix;
+                                                 
+                                      //getting fabric names             
+                              $fab_type = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_suffix'");
+                            
+                                 echo '<option value="' . $fab_type->fab_name . '" ';
+                           
+                                selected($fab_type->fab_name);
+                            
+                            echo '>' . $fab_type->fab_name . '</option>';
+                                
+                                 
+                                  
+                              
+                              
                                             }
                                             ?>
+                                            
+                                            </select>
                                         </td>
                                         <td>
                                             <input type="text" name="item_qty" value="<?php echo $item->item_qty; ?>" class="x-small-text item-qty">
@@ -561,16 +565,18 @@ class quotes extends ATQ {
 
         // Get product data of db
         $product = $this->wpdb->get_row("SELECT * FROM $this->products_tbl WHERE prod_id = $prod_id");
-
+         echo $product->prod_id;
+         echo $product->prod_code;
         // Save existing product data into wp_atq_quote_items table
         $product_data = array(
-            'item_code' => $product->proce_code,
             'item_qid' => $quote_id,
+            'item_pid' => $prod_id,
+            'item_code' => $product->prod_code,
             'item_images' => $product->prod_images,
             'item_name' => $product->prod_name,
             'item_desc' => $product->prod_desc,
-            'item_cat' => $product->prod_cat,
-            'item_fab_price' => $product->prod_fab_price
+            'item_cat' => $product->prod_cat
+            
         );
 
         $this->wpdb->insert($this->quote_items_tbl, $product_data);

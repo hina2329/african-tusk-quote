@@ -222,8 +222,9 @@ class ATQ {
 
         // Save existing product data into wp_atq_quote_items table
         $product_data = array(
-            'item_code' => $product->proce_code,
             'item_qid' => $quote_id,
+            'item_pid' => $prod_id,
+            'item_code' => $product->prod_code,
             'item_images' => $product->prod_images,
             'item_name' => $product->prod_name,
             'item_desc' => $product->prod_desc,
@@ -233,9 +234,8 @@ class ATQ {
         $this->wpdb->insert($this->quote_items_tbl, $product_data);
         $item_id = $this->wpdb->insert_id;
                
-                                $images = unserialize($product->prod_images);
-                                $fabrics_prices = unserialize($product->prod_fab_price);
-                                $textarea_id = 'desc' . $product->prod_id;
+        $images = unserialize($product->prod_images);
+        $textarea_id = 'desc' . $product->prod_id;
          echo '<tr>';
          echo '<td>';
         
@@ -255,29 +255,34 @@ class ATQ {
          echo '</td>';
          echo '<td>';
          
-              if ($fabrics_prices) {
-         echo '<select class="fabric-type">';
-         echo '<option value="0">Select Fabric</option>';
-                 foreach ($fabrics_prices as $fp) {
-                      $fab_id = $fp['fab'];
+                                                    
+         echo '<select name="fab_type" id="fab_type">';
+         echo '<option value="">Please Select...</option>';
+                                       
+                 //getting fabric suffix
+        $prod_fps = $this->wpdb->get_results("SELECT * FROM $this->products_fp_combos_tbl WHERE combo_pid = $prod_id");
+            foreach ($prod_fps as $prod_fp) {
+                                                
+             $combo_code = $prod_fp->combo_code; 
+            //breaking rows into $prod_code & $fab_suffix
+             list($prod_code,$fab_suffix) = explode('-', $combo_code);
+                             $fab_suffix;
+                                                 
+            //getting fabric names             
+        $fab_type = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_suffix'");
+                            
+        echo '<option value="' . $fab_type->fab_name . '" ';
+                           
+                        selected($fab_type->fab_name);
+                            
+         echo '>' . $fab_type->fab_name . '</option>';
+                                
+                             
+            }
 
-                  $fab = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_id = $fab_id");
-                   echo '<option data-fab-id="#fab_color_' . $fab_id . '" value="' . $fp['price'] . '">' . $fab->fab_name . '</option>';
-                 }
-                 echo '</select>';
-                 foreach ($fabrics_prices as $fp) {
-                     $fab_id = $fp['fab'];
-                     $fab = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_id = $fab_id");
-                     $fab_colors = unserialize($fab->fab_colors);
-        echo '<div id="fab_color_' . $fab_id . '" class="item-fab-colors">';
-        echo '<select name="color-name" multiple>';
-                     foreach ($fab_colors as $color) {
-         echo '<option>' . $color['fab_color'] . '</option>';
-                     }
-                      echo '</select>';
-                      echo '</div>';
-                 }
-             }
+            
+                                            
+        echo '</select>';
         echo '</td>';
 
             $item = $this->wpdb->get_row("SELECT * FROM $this->quote_items_tbl WHERE item_id = $item_id");
@@ -381,6 +386,7 @@ class ATQ {
         $quote_items_table = "CREATE TABLE $this->quote_items_tbl(
         item_id INT(5) NOT NULL AUTO_INCREMENT,
         item_qid VARCHAR(100) NULL,
+        item_pid VARCHAR(100) NULL,
         item_code VARCHAR(100) NULL,
         item_images LONGTEXT NULL,
         item_name VARCHAR(100) NULL,
@@ -388,7 +394,6 @@ class ATQ {
         item_cat LONGTEXT NULL,
         item_qty INT(3) DEFAULT 1,
         item_order INT(2) DEFAULT 0,
-        item_fab_price LONGTEXT NULL,
         heading VARCHAR(255) NULL,
         sep TINYINT DEFAULT 0,
         PRIMARY KEY(item_id)

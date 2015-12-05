@@ -20,8 +20,9 @@ class categories extends ATQ {
             <table class="wp-list-table widefat striped ">
                 <thead>
                     <tr>
+                        <th width="15%">Category ID</th>
                         <th width="15%">Category Image</th>
-                        <th width="60%">Category Name</th>
+                        <th width="45%">Category Name</th>
                         <th width="15%">Order</th>
                         <th width="10%" class="actions">Actions</th>
                     </tr>
@@ -39,6 +40,9 @@ class categories extends ATQ {
                         foreach ($results as $row) {
                             ?>
                             <tr id="<?php echo $row->cat_id; ?>" >
+                            <td>
+                            <?php echo $row->cat_id; ?>
+                            </td>
                                 <td>
                                     <?php
                                     if ($row->cat_image) {
@@ -74,6 +78,9 @@ class categories extends ATQ {
                                 $i++;
                                 ?>
                                 <tr>
+                                <td>
+                                <?php echo $child_cat->cat_id;?>
+                                </td>
                                     <td>
                                         <?php
                                         if ($child_cat->cat_image) {
@@ -111,6 +118,9 @@ class categories extends ATQ {
                                     $i++;
                                     ?>
                                     <tr>
+                                    <td>
+                                    <?php echo $sub_cat->cat_id;?>
+                                    </td>
                                         <td>
                                             <?php
                                             if ($sub_cat->cat_image) {
