@@ -53,7 +53,7 @@ jQuery(document).ready(function ($) {
 
         return false;
     });
-    
+
 
     // Remove fields
     $('.remove-fields').live('click', function () {
@@ -79,7 +79,7 @@ jQuery(document).ready(function ($) {
             }
         });
     });
-    
+
     $(".quote-item-search ul li").click(function () {
         var prod_text = $(this).text();
         var prod_id = $(this).data('prod-id');
@@ -88,7 +88,7 @@ jQuery(document).ready(function ($) {
         $(this).hide();
         return false;
     });
-    
+
     $(".client-holder").keyup(function () {
         var filter = $(this).val();
         if (!filter) {
@@ -105,7 +105,7 @@ jQuery(document).ready(function ($) {
             }
         });
     });
-    
+
     $(".client-list ul li").click(function () {
         var client_text = $(this).text();
         var client_id = $(this).data('client-id');
@@ -138,20 +138,20 @@ jQuery(document).ready(function ($) {
         var unit = $(this).parents('tr').find('.unit-price').val();
         $(this).parents('tr').find('.sub-total').val(qty * unit);
     });
-    
+
     // Add heading quote
-    $('.add-heading').click(function(){
+    $('.add-heading').click(function () {
         var quote_id = $('#quote_id').val();
         var heading = $('#add_heading').val();
         var data = {
-          'action' : 'add_heading',
-          'add_heading' : heading,
-          'quote_id' : quote_id
+            'action': 'add_heading',
+            'add_heading': heading,
+            'quote_id': quote_id
         };
-        
+
         $('#update-msg').show();
-        
-        $.post(ajaxurl, data, function(result){
+
+        $.post(ajaxurl, data, function (result) {
             $('#add_heading').val('');
             $('#the-list').append(result);
             $('#update-msg').hide();
@@ -160,7 +160,7 @@ jQuery(document).ready(function ($) {
 
 
     // Delete item row
-    $('.del-item-row').live('click', function(){
+    $('.del-item-row').live('click', function () {
         var quote_id = $(this).data('quote-id');
         var item_id = $(this).data('item-id');
 
@@ -178,9 +178,9 @@ jQuery(document).ready(function ($) {
 
         return false;
     });
-    
-    
-    $('.add-sep').live('click', function(){
+
+
+    $('.add-sep').live('click', function () {
         var sep_id = $(this).data('sep-id');
 
         var data = {
@@ -189,16 +189,16 @@ jQuery(document).ready(function ($) {
         };
 
         $('#update-msg').show();
-        
-        $.post(ajaxurl, data, function(result){
-           $('#the-list').append(result);
-           $('#update-msg').hide();
+
+        $.post(ajaxurl, data, function (result) {
+            $('#the-list').append(result);
+            $('#update-msg').hide();
         });
 
         return false;
     });
-    $('.add-prod').live('click', function(){
-        
+    $('.add-prod').live('click', function () {
+
         var quote_id = $('.quote-id').val();
         var prod_id = $('.prod-id').val();
         var data = {
@@ -207,10 +207,11 @@ jQuery(document).ready(function ($) {
             pid: prod_id
         };
         $('#update-msg').show();
-        
-        $.post(ajaxurl, data, function(result){
-        $('#the-list').append(result);
-        $('#update-msg').hide();
+
+        $.post(ajaxurl, data, function (result) {
+            $('#the-list').append(result);
+            $('#update-msg').hide();
+
         });
 
         return false;
