@@ -68,6 +68,9 @@ class ATQ {
         // Add separator action
         add_action('wp_ajax_add_sep', array($this, 'add_separator'));
 
+        // Add product item action
+        add_action('wp_ajax_add_prod', array($this, 'add_product'));
+
         // Allow redirection
         ob_start();
     }
@@ -206,15 +209,104 @@ class ATQ {
       echo      '<tr>';
       echo      '<td colspan="6"><hr style="height: 3px; background: #666;"></td>';
       echo      '<td class="actions">';
-      echo      '<a href="#" data-item-id="'.$sid.'" data-quote-id="'.$item_id.'" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?);"></a>';
+      echo      '<a href="#" data-item-id="'.$item_id.'" data-quote-id="'.$sid.'" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?);"></a>';
      echo        '</td>';
      echo        '</tr>';
       wp_die();
     }
+    public function add_product(){
+        // Get quote id &product id
+        $quote_id = filter_input(INPUT_POST, 'qid');
+        $prod_id = filter_input(INPUT_POST, 'pid');
+        // Get product data of db
+        $product= $this->wpdb->get_row("SELECT * FROM $this->products_tbl WHERE prod_id = $prod_id");
+        $fp_combos= $this->wpdb->get_row("SELECT * FROM $this->products_fp_combo_tbl WHERE combo_pid = $prod_id");
 
-   
 
-    // Tables queries for database
+        // Save existing product data into wp_atq_quote_items table
+        $product_data = array(
+            'item_qid' => $quote_id,
+            'item_pid' => $prod_id,
+            'item_code' => $product->prod_code,
+            'item_images' => $product->prod_images,
+            'item_name' => $product->prod_name,
+            'item_desc' => $product->prod_desc,
+            'item_cat' => $product->prod_cat
+        );
+
+        $this->wpdb->insert($this->quote_items_tbl, $product_data);
+        $item_id = $this->wpdb->insert_id;
+               
+        $images = unserialize($product->prod_images);
+        $textarea_id = 'desc' . $product->prod_id;
+         echo '<tr>';
+         echo '<td>';
+        
+              if ($images) {
+                 foreach ($images as $image) {
+                     echo '<img src="' . $image . '" alt="" width="auto" height="150"><br>';
+                  }
+            }
+          
+         echo '<input type="text" name="item_name" value=" '.$product->prod_name.'">';
+         echo '</td>';
+         echo '<td>';
+         
+             // WordPress WYSIWYG Editor
+             wp_editor($product->prod_desc, $textarea_id, array('textarea_name' => 'text'));
+            
+         echo '</td>';
+         echo '<td>';
+         
+                                                    
+         echo '<select name="fab_type" id="fab_type">';
+         echo '<option value="">Please Select...</option>';
+                                       
+                 //getting fabric suffix
+        $prod_fps = $this->wpdb->get_results("SELECT * FROM $this->products_fp_combos_tbl WHERE combo_pid = $prod_id");
+            foreach ($prod_fps as $prod_fp) {
+                                                
+             $combo_code = $prod_fp->combo_code; 
+            //breaking rows into $prod_code & $fab_suffix
+             list($prod_code,$fab_suffix) = explode('-', $combo_code);
+                             $fab_suffix;
+                                                 
+            //getting fabric names             
+        $fab_type = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_suffix'");
+                            
+        echo '<option value="' . $fab_type->fab_name . '" ';
+                           
+                        selected($fab_type->fab_name);
+                            
+         echo '>' . $fab_type->fab_name . '</option>';
+                                
+                             
+            }
+
+            
+                                            
+        echo '</select>';
+        echo '</td>';
+
+            $item = $this->wpdb->get_row("SELECT * FROM $this->quote_items_tbl WHERE item_id = $item_id");
+         
+         echo '<td>';
+         echo '<input type="text" name="item_qty" value="'.$item->item_qty.'" class="x-small-text item-qty">';
+         echo '</td>';
+         echo '<td>';
+         echo  'R <input type="text" name="item_qty" value="" class="x-small-text unit-price">';
+         echo '</td>';
+         echo '<td>';
+         echo  'R <input type="text" name="item_qty" value="" class="x-small-text sub-total">';
+         echo '</td>';
+         echo '<td class="actions">';
+        echo  '<a href="#" data-item-id="'.$item_id.'" data-quote-id="'.$qoute_id.'" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?);"></a>';
+     echo        '</td>';
+     echo        '</tr>';
+      wp_die();
+
+    }
+     // Tables queries for database
     public function install_tables() {
 
         // Queries to create tables
@@ -304,6 +396,7 @@ class ATQ {
         $quote_items_table = "CREATE TABLE $this->quote_items_tbl(
         item_id INT(5) NOT NULL AUTO_INCREMENT,
         item_qid VARCHAR(100) NULL,
+        item_pid VARCHAR(100) NULL,
         item_code VARCHAR(100) NULL,
         item_images LONGTEXT NULL,
         item_name VARCHAR(100) NULL,
@@ -311,7 +404,6 @@ class ATQ {
         item_cat LONGTEXT NULL,
         item_qty INT(3) DEFAULT 1,
         item_order INT(2) DEFAULT 0,
-        item_fab_price LONGTEXT NULL,
         heading VARCHAR(255) NULL,
         sep TINYINT DEFAULT 0,
         PRIMARY KEY(item_id)
