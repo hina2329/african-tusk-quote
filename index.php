@@ -169,6 +169,9 @@ class ATQ {
 
         echo '<tr>';
         echo '<td colspan="6"><h2>' . $heading . '</h2></td>';
+        echo '<td>';
+        echo '<input type="text" name="item[' . $item_id . '][order]" value="0" style="width:30px; text-align: center;" >';
+        echo '</td>';
         echo '<td class="actions">';
         echo '<a href="#" data-item-id="' . $item_id . '" data-code-id="' . $quote_id . '"  class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?");"></a>';
         echo '</td>';
@@ -207,6 +210,9 @@ class ATQ {
 
         echo '<tr>';
         echo '<td colspan="6"><hr style="height: 3px; background: #666;"></td>';
+        echo '<td>';
+        echo '<input type="text" name="item[' . $item_id . '][order]" value="0" style="width:30px; text-align: center;" >';
+        echo '</td>';
         echo '<td class="actions">';
         echo '<a href="#" data-item-id="' . $item_id . '" data-quote-id="' . $sid . '" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?);"></a>';
         echo '</td>';
@@ -216,11 +222,11 @@ class ATQ {
     }
 
     public function add_product() {
-        
+
         // Get quote id &product id
         $quote_id = filter_input(INPUT_POST, 'qid');
         $prod_id = filter_input(INPUT_POST, 'pid');
-        
+
         // Get product data of db
         $product = $this->wpdb->get_row("SELECT * FROM $this->products_tbl WHERE prod_id = $prod_id");
         $fp_combos = $this->wpdb->get_row("SELECT * FROM $this->products_fp_combo_tbl WHERE combo_pid = $prod_id");
@@ -256,10 +262,12 @@ class ATQ {
         echo '<td>';
 
         // WordPress WYSIWYG Editor
-        wp_editor($product->prod_desc, $textarea_id, array('textarea_name' => 'text'));
+        //wp_editor($product->prod_desc, $textarea_id, array('textarea_name' => 'text'));
 //        \_WP_Editors::enqueue_scripts();
 //        print_footer_scripts();
 //        \_WP_Editors::editor_js();
+
+        echo '<textarea name="text" rows="10">' . $product->prod_desc . '</textarea>';
 
         echo '</td>';
         echo '<td>';
@@ -304,7 +312,7 @@ class ATQ {
         echo 'R <input type="text" name="item_qty" value="" class="x-small-text sub-total">';
         echo '</td>';
         echo '<td>';
-        echo '<input type="text" name="item_order"  value="' . $item->item_order . '" style="width:30px; text-align: center;">';
+        echo '<input type="text" name="item_order[' . $item->item_id . ']"  value="' . $item->item_order . '" style="width:30px; text-align: center;">';
         echo '</td>';
 
         echo '<td class="actions">';
@@ -406,6 +414,7 @@ class ATQ {
         item_qid VARCHAR(100) NULL,
         item_pid VARCHAR(100) NULL,
         item_code VARCHAR(100) NULL,
+        item_fab VARCHAR(100) NULL,
         item_images LONGTEXT NULL,
         item_name VARCHAR(100) NULL,
         item_desc LONGTEXT NULL,

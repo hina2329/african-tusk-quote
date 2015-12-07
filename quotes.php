@@ -227,19 +227,19 @@ class quotes extends ATQ {
                         <thead>
                             <tr>
                                 <th width="15%">Picture</th>
-                                <th width="20%">Description</th>
+                                <th width="25%">Description</th>
                                 <th width="15%">Fabric Type</th>
                                 <th width="10%">Quantity</th>
                                 <th width="10%">Unit Price</th>
                                 <th width="10%">Sub Total</th>
-                                <th width="10%">Order</th>
-                                <th width="10%" class="actions">Actions</th>
+                                <th width="7%">Order</th>
+                                <th width="7%" class="actions">Actions</th>
                             </tr>
                         </thead>
 
                         <tfoot>
                             <tr>
-                                <th style="text-align: right;" colspan="7">Total R <input type="text" class="small-text"></th>
+                                <th style="text-align: right;" colspan="8">Total R <input type="text" class="small-text"></th>
                             </tr>
                         </tfoot>
 
@@ -254,6 +254,9 @@ class quotes extends ATQ {
                                     ?>
                                     <tr>
                                         <td colspan="6"><hr style="height: 3px; background: #666;"></td>
+                                        <td>
+                                            <input type="text" name="item[<?php echo $item->item_id; ?>][order]" value="<?php echo $item->item_order; ?>" style="width:30px; text-align: center;" >
+                                        </td>
                                         <td class="actions">
                                             <a href="#" data-item-id="<?php echo $item->item_id; ?>" data-quote-id="<?php echo $item->item_qid; ?>" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
                                         </td>
@@ -263,6 +266,9 @@ class quotes extends ATQ {
                                     ?>
                                     <tr>
                                         <td colspan="6"><h2><?php echo $item->heading; ?></h2></td>
+                                        <td>
+                                            <input type="text" name="item[<?php echo $item->item_id; ?>][order]" value="<?php echo $item->item_order; ?>" style="width:30px; text-align: center;" >
+                                        </td>
                                         <td class="actions">
                                             <a href="#" data-item-id="<?php echo $item->item_id; ?>" data-quote-id="<?php echo $item->item_qid; ?>" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
                                         </td>
@@ -279,16 +285,17 @@ class quotes extends ATQ {
                                                 }
                                             }
                                             ?>
-                                            <input type="text" name="item_name" value="<?php echo $item->item_name; ?>">
+                                            <input type="text" name="item[<?php echo $item->item_id; ?>][name]" value="<?php echo $item->item_name; ?>">
                                         </td>
                                         <td>
                                             <?php
                                             // WordPress WYSIWYG Editor
-                                            wp_editor($item->item_desc, $textarea_id, array('textarea_name' => 'text'));
+                                            //wp_editor($item->item_desc, $textarea_id, array('textarea_name' => 'text'));
                                             ?>
+                                            <textarea name="item[<?php echo $item->item_id; ?>][desc]" rows="10"><?php echo $item->item_desc; ?></textarea>
                                         </td>
                                         <td>
-                                            <select name="fab_type" id="fab_type">
+                                            <select name="item[<?php echo $item->item_id; ?>][fab]" id="fab_type">
                                                 <option value="">Please Select...</option>
                                                 <?php
                                                 //getting fabric suffix
@@ -314,25 +321,25 @@ class quotes extends ATQ {
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="text" name="item_qty" value="<?php echo $item->item_qty; ?>" class="x-small-text item-qty">
+                                            <input type="text" name="item[<?php echo $item->item_id; ?>][qty]" value="<?php echo $item->item_qty; ?>" class="x-small-text item-qty">
                                         </td>
                                         <td>
-                                            R <input type="text" name="item_qty" value="" class="x-small-text unit-price">
+                                            R <input type="text" name="item[<?php echo $item->item_id; ?>][unit_p]"" value="" class="x-small-text unit-price">
                                         </td>
                                         <td>
-                                            R <input type="text" name="item_qty" value="" class="x-small-text sub-total">
+                                            R <input type="text" name="item[<?php echo $item->item_id; ?>][sub_total]"" value="" class="x-small-text sub-total">
                                         </td>
                                         <td>
-                                            <input type="text" name="item_order[<?php echo $item->item_id; ?>]" value="<?php echo $item->item_order; ?>" style="width:30px; text-align: center;" >
+                                            <input type="text" name="item[<?php echo $item->item_id; ?>][order]" value="<?php echo $item->item_order; ?>" style="width:30px; text-align: center;" >
                                         </td>
                                         <td class="actions">
                                             <a href="#" data-item-id=" <?php echo $item->item_id; ?>" data-quote-id="<?php echo $item->item_qid; ?>" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
                                         </td>
                                     </tr>
-                    <?php
-                }
-            }
-            ?>
+                                    <?php
+                                }
+                            }
+                            ?>
                         </tbody>
 
                     </table>
@@ -349,19 +356,19 @@ class quotes extends ATQ {
                     <div class="form-field">
                         <select name="quote_staff" id = "quote_staff" required>
                             <option value="">Please select...</option>
-            <?php
-            // Getting staff members list
-            $staffs = $this->wpdb->get_results("SELECT * FROM $this->staff_member_tbl");
+                            <?php
+                            // Getting staff members list
+                            $staffs = $this->wpdb->get_results("SELECT * FROM $this->staff_member_tbl");
 
-            // Listing all staff members
-            foreach ($staffs as $staff) {
-                echo '<option value="' . $staff->staff_id . '" ';
+                            // Listing all staff members
+                            foreach ($staffs as $staff) {
+                                echo '<option value="' . $staff->staff_id . '" ';
 
-                selected($staff->staff_id, $row->staff_id);
+                                selected($staff->staff_id, $row->staff_id);
 
-                echo '>' . $staff->staff_name . '</option>';
-            }
-            ?>
+                                echo '>' . $staff->staff_name . '</option>';
+                            }
+                            ?>
                         </select>
                     </div>
                     <p>&nbsp;</p>
@@ -370,15 +377,15 @@ class quotes extends ATQ {
                         <input type="hidden" name="quote_client" class="quote-client">
                         <input type="text" class="client-holder">
                         <ul>
-            <?php
-            // Getting clients list
-            $clients = $this->wpdb->get_results("SELECT * FROM $this->clients_tbl");
+                            <?php
+                            // Getting clients list
+                            $clients = $this->wpdb->get_results("SELECT * FROM $this->clients_tbl");
 
-            // Listing clients members
-            foreach ($clients as $client) {
-                echo '<li data-client-id="' . $client->client_id . '"><strong>' . $client->client_fname . ' ' . $client->client_lname . '</strong> / ' . $client->client_email . ' / ' . $client->client_companyname . '</li>';
-            }
-            ?>
+                            // Listing clients members
+                            foreach ($clients as $client) {
+                                echo '<li data-client-id="' . $client->client_id . '"><strong>' . $client->client_fname . ' ' . $client->client_lname . '</strong> / ' . $client->client_email . ' / ' . $client->client_companyname . '</li>';
+                            }
+                            ?>
                         </ul>
                     </div>
 
@@ -454,7 +461,7 @@ class quotes extends ATQ {
         // Get quote comment
         $quote_comment = filter_input(INPUT_POST, 'quote_comment');
         // Get quote order item
-        $item_orders = filter_input(INPUT_POST, 'item_order', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+        $quote_item_arrs = filter_input(INPUT_POST, 'item', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
         // Get client data
         $client_data = array(
             'client_fname' => $client_fname,
@@ -527,17 +534,13 @@ class quotes extends ATQ {
             $this->wpdb->update($this->quotes_tbl, $comment_data, $comment_id);
 
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $quote_id . '&update=updated'));
-            // update order
         } else if (isset($update) && $update == 'quote') {
-            foreach ($item_orders as $item_id => $item_order) {
-                $item_data = array(
-                    'item_order' => $item_order
-                );
-                $data_id = array(
-                    'item_id' => $item_id
-                );
-                $this->wpdb->update($this->quote_items_tbl, $item_data, $data_id);
-            }
+
+            // Udate quote items
+
+            echo '<pre>';
+            print_r($quote_item_arrs);
+            echo "</pre>";
         } else {
 
             if (empty($quote_client)) {
