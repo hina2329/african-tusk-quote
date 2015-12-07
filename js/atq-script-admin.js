@@ -209,7 +209,7 @@ jQuery(document).ready(function ($) {
         $('#update-msg').show();
 
         $.post(ajaxurl, data, function (result) {
-            $('#the-list').append(result);
+            $('#the-list').prepend(result);
             $('#update-msg').hide();
 
         });
