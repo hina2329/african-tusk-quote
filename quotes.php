@@ -227,12 +227,13 @@ class quotes extends ATQ {
                     <table class="wp-list-table widefat fixed striped pages item-list">
                         <thead>
                             <tr>
-                                <th width="20%">Picture</th>
-                                <th width="25%">Description</th>
+                                <th width="15%">Picture</th>
+                                <th width="20%">Description</th>
                                 <th width="15%">Fabric Type</th>
                                 <th width="10%">Quantity</th>
                                 <th width="10%">Unit Price</th>
                                 <th width="10%">Sub Total</th>
+                                <th width="10%">Order</th>
                                 <th width="10%" class="actions">Actions</th>
                             </tr>
                         </thead>
@@ -245,7 +246,7 @@ class quotes extends ATQ {
 
                         <tbody id="the-list">
                             <?php
-                            $quote_items = $this->wpdb->get_results("SELECT * FROM $this->quote_items_tbl");
+                            $quote_items = $this->wpdb->get_results("SELECT * FROM $this->quote_items_tbl ORDER BY item_order ASC");
                             foreach ($quote_items as $item) {
                                 $images = unserialize($item->item_images);
                                 $item_pid = $item->item_pid;
@@ -327,6 +328,9 @@ class quotes extends ATQ {
                                         <td>
                                             R <input type="text" name="item_qty" value="" class="x-small-text sub-total">
                                         </td>
+                                        <td>
+                                        <input type="text" name="item_order[<?php echo $item->item_id;?>]" value="<?php echo $item->item_order; ?>" style="width:30px; text-align: center;" >
+                                        </td>
                                         <td class="actions">
                                             <a href="#" data-item-id=" <?php echo $item->item_id; ?>" data-quote-id="<?php echo $item->item_qid; ?>" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
                                         </td>
@@ -338,8 +342,9 @@ class quotes extends ATQ {
                         </tbody>
 
                     </table>
+                    <p class="submit" style="text-align: right;"><input type="submit" name="submit" id="submit" class="button button-primary" value="Update Quote"></p>
                 </form>
-                <p class="submit" style="text-align: right;"><input type="submit" name="submit" id="submit" class="button button-primary" value="Update Quote"></p>
+                
             </fieldset>
             <?php
         } else {
@@ -454,7 +459,8 @@ class quotes extends ATQ {
 
         // Get quote comment
         $quote_comment = filter_input(INPUT_POST, 'quote_comment');
-
+        // Get quote order item
+        $item_orders= filter_input(INPUT_POST, 'item_order', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
         // Get client data
         $client_data = array(
             'client_fname' => $client_fname,
@@ -527,6 +533,18 @@ class quotes extends ATQ {
             $this->wpdb->update($this->quotes_tbl, $comment_data, $comment_id);
 
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $quote_id . '&update=updated'));
+            // update order
+        } else if (isset($update) && $update=='quote'){
+        foreach ($item_orders as $item_id => $item_order) {
+            $item_data = array(
+                'item_order' => $item_order
+                );
+            $data_id = array(
+                'item_id'=> $item_id
+                );
+            $this->wpdb->update($this->quote_items_tbl, $item_data, $data_id );
+
+        }
         } else {
 
             if (empty($quote_client)) {

@@ -303,6 +303,10 @@ class ATQ {
         echo '<td>';
         echo 'R <input type="text" name="item_qty" value="" class="x-small-text sub-total">';
         echo '</td>';
+        echo '<td>';
+        echo '<input type="text" name="item_order"  value="' . $item->item_order . '" style="width:30px; text-align: center;">';
+        echo '</td>';
+
         echo '<td class="actions">';
         echo '<a href="#" data-item-id="' . $item_id . '" data-quote-id="' . $qoute_id . '" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?);"></a>';
         echo '</td>';
