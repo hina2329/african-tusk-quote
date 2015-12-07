@@ -215,6 +215,7 @@ class ATQ {
         // Get quote id &product id
         $quote_id = filter_input(INPUT_POST, 'qid');
         $prod_id = filter_input(INPUT_POST, 'pid');
+        
         // Get product data of db
         $product= $this->wpdb->get_row("SELECT * FROM $this->products_tbl WHERE prod_id = $prod_id");
         $fp_combos= $this->wpdb->get_row("SELECT * FROM $this->products_fp_combo_tbl WHERE combo_pid = $prod_id");
