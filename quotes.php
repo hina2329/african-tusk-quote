@@ -5,7 +5,6 @@ class quotes extends ATQ {
 
     public function __construct() {
         parent:: __construct();
-      
     }
 
     // Iniating main method to display quotes
@@ -207,11 +206,11 @@ class quotes extends ATQ {
                 </div>
                 <div class="quote-item-search">
                     Simply specify the first 3 characthers of a product code, e.g. AT1. It will then give you options, select one and click "Add Product".<br>                   
-                    
-                        <input type="hidden" class="prod-id" name="prod_id">
-                        <input type="hidden" name="quote_id" value="<?php echo $quote->quote_id; ?>" class="quote-id">
-                        <input type="text" class="prod-name large-text " name="prod_name"><button class="button add-prod">Add Product</button>
-                    
+
+                    <input type="hidden" class="prod-id" name="prod_id">
+                    <input type="hidden" name="quote_id" value="<?php echo $quote->quote_id; ?>" class="quote-id">
+                    <input type="text" class="prod-name large-text " name="prod_name"><button class="button add-prod">Add Product</button>
+
                     <ul>
                         <?php
                         $products = $this->wpdb->get_results("SELECT * FROM $this->products_tbl");
@@ -265,7 +264,7 @@ class quotes extends ATQ {
                                     <tr>
                                         <td colspan="6"><h2><?php echo $item->heading; ?></h2></td>
                                         <td class="actions">
-                                           <a href="#" data-item-id="<?php echo $item->item_id; ?>" data-quote-id="<?php echo $item->item_qid; ?>" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
+                                            <a href="#" data-item-id="<?php echo $item->item_id; ?>" data-quote-id="<?php echo $item->item_qid; ?>" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
                                         </td>
                                     </tr>
                                     <?php
@@ -289,34 +288,29 @@ class quotes extends ATQ {
                                             ?>
                                         </td>
                                         <td>
-                                        <select name="fab_type" id="fab_type">
-                                        <option value="">Please Select...</option>
-                                         <?php
-                                    //getting fabric suffix
-                                    $prod_fps = $this->wpdb->get_results("SELECT * FROM $this->products_fp_combos_tbl WHERE combo_pid = $item_pid");
-                                            foreach ($prod_fps as $prod_fp) {
-                                                
-                                                 $combo_code = $prod_fp->combo_code; 
-                                                //breaking rows into $prod_code & $fab_suffix
-                                                   list($prod_code,$fab_suffix) = explode('-', $combo_code);
-                                                  $fab_suffix;
-                                                 
-                                      //getting fabric names             
-                              $fab_type = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_suffix'");
-                            
-                                 echo '<option value="' . $fab_type->fab_name . '" ';
-                           
-                                selected($fab_type->fab_name);
-                            
-                            echo '>' . $fab_type->fab_name . '</option>';
-                                
-                                 
-                                  
-                              
-                              
-                                            }
-                                            ?>
-                                            
+                                            <select name="fab_type" id="fab_type">
+                                                <option value="">Please Select...</option>
+                                                <?php
+                                                //getting fabric suffix
+                                                $prod_fps = $this->wpdb->get_results("SELECT * FROM $this->products_fp_combos_tbl WHERE combo_pid = $item_pid");
+                                                foreach ($prod_fps as $prod_fp) {
+
+                                                    $combo_code = $prod_fp->combo_code;
+                                                    //breaking rows into $prod_code & $fab_suffix
+                                                    list($prod_code, $fab_suffix) = explode('-', $combo_code);
+                                                    $fab_suffix;
+
+                                                    //getting fabric names             
+                                                    $fab_type = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_suffix'");
+
+                                                    echo '<option value="' . $fab_type->fab_name . '" ';
+
+                                                    selected($fab_type->fab_name);
+
+                                                    echo '>' . $fab_type->fab_name . '</option>';
+                                                }
+                                                ?>
+
                                             </select>
                                         </td>
                                         <td>
@@ -329,22 +323,22 @@ class quotes extends ATQ {
                                             R <input type="text" name="item_qty" value="" class="x-small-text sub-total">
                                         </td>
                                         <td>
-                                        <input type="text" name="item_order[<?php echo $item->item_id;?>]" value="<?php echo $item->item_order; ?>" style="width:30px; text-align: center;" >
+                                            <input type="text" name="item_order[<?php echo $item->item_id; ?>]" value="<?php echo $item->item_order; ?>" style="width:30px; text-align: center;" >
                                         </td>
                                         <td class="actions">
                                             <a href="#" data-item-id=" <?php echo $item->item_id; ?>" data-quote-id="<?php echo $item->item_qid; ?>" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
                                         </td>
                                     </tr>
-                                    <?php
-                                }
-                            }
-                            ?>
+                    <?php
+                }
+            }
+            ?>
                         </tbody>
 
                     </table>
                     <p class="submit" style="text-align: right;"><input type="submit" name="submit" id="submit" class="button button-primary" value="Update Quote"></p>
                 </form>
-                
+
             </fieldset>
             <?php
         } else {
@@ -355,19 +349,19 @@ class quotes extends ATQ {
                     <div class="form-field">
                         <select name="quote_staff" id = "quote_staff" required>
                             <option value="">Please select...</option>
-                            <?php
-                            // Getting staff members list
-                            $staffs = $this->wpdb->get_results("SELECT * FROM $this->staff_member_tbl");
+            <?php
+            // Getting staff members list
+            $staffs = $this->wpdb->get_results("SELECT * FROM $this->staff_member_tbl");
 
-                            // Listing all staff members
-                            foreach ($staffs as $staff) {
-                                echo '<option value="' . $staff->staff_id . '" ';
+            // Listing all staff members
+            foreach ($staffs as $staff) {
+                echo '<option value="' . $staff->staff_id . '" ';
 
-                                selected($staff->staff_id, $row->staff_id);
+                selected($staff->staff_id, $row->staff_id);
 
-                                echo '>' . $staff->staff_name . '</option>';
-                            }
-                            ?>
+                echo '>' . $staff->staff_name . '</option>';
+            }
+            ?>
                         </select>
                     </div>
                     <p>&nbsp;</p>
@@ -376,15 +370,15 @@ class quotes extends ATQ {
                         <input type="hidden" name="quote_client" class="quote-client">
                         <input type="text" class="client-holder">
                         <ul>
-                            <?php
-                            // Getting clients list
-                            $clients = $this->wpdb->get_results("SELECT * FROM $this->clients_tbl");
+            <?php
+            // Getting clients list
+            $clients = $this->wpdb->get_results("SELECT * FROM $this->clients_tbl");
 
-                            // Listing clients members
-                            foreach ($clients as $client) {
-                                echo '<li data-client-id="' . $client->client_id . '"><strong>' . $client->client_fname . ' ' . $client->client_lname . '</strong> / ' . $client->client_email . ' / ' . $client->client_companyname . '</li>';
-                            }
-                            ?>
+            // Listing clients members
+            foreach ($clients as $client) {
+                echo '<li data-client-id="' . $client->client_id . '"><strong>' . $client->client_fname . ' ' . $client->client_lname . '</strong> / ' . $client->client_email . ' / ' . $client->client_companyname . '</li>';
+            }
+            ?>
                         </ul>
                     </div>
 
@@ -460,7 +454,7 @@ class quotes extends ATQ {
         // Get quote comment
         $quote_comment = filter_input(INPUT_POST, 'quote_comment');
         // Get quote order item
-        $item_orders= filter_input(INPUT_POST, 'item_order', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+        $item_orders = filter_input(INPUT_POST, 'item_order', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
         // Get client data
         $client_data = array(
             'client_fname' => $client_fname,
@@ -534,17 +528,16 @@ class quotes extends ATQ {
 
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $quote_id . '&update=updated'));
             // update order
-        } else if (isset($update) && $update=='quote'){
-        foreach ($item_orders as $item_id => $item_order) {
-            $item_data = array(
-                'item_order' => $item_order
+        } else if (isset($update) && $update == 'quote') {
+            foreach ($item_orders as $item_id => $item_order) {
+                $item_data = array(
+                    'item_order' => $item_order
                 );
-            $data_id = array(
-                'item_id'=> $item_id
+                $data_id = array(
+                    'item_id' => $item_id
                 );
-            $this->wpdb->update($this->quote_items_tbl, $item_data, $data_id );
-
-        }
+                $this->wpdb->update($this->quote_items_tbl, $item_data, $data_id);
+            }
         } else {
 
             if (empty($quote_client)) {
@@ -583,8 +576,8 @@ class quotes extends ATQ {
 
         // Get product data of db
         $product = $this->wpdb->get_row("SELECT * FROM $this->products_tbl WHERE prod_id = $prod_id");
-         echo $product->prod_id;
-         echo $product->prod_code;
+        echo $product->prod_id;
+        echo $product->prod_code;
         // Save existing product data into wp_atq_quote_items table
         $product_data = array(
             'item_qid' => $quote_id,
@@ -594,7 +587,6 @@ class quotes extends ATQ {
             'item_name' => $product->prod_name,
             'item_desc' => $product->prod_desc,
             'item_cat' => $product->prod_cat
-            
         );
 
         $this->wpdb->insert($this->quote_items_tbl, $product_data);
@@ -610,22 +602,21 @@ class quotes extends ATQ {
         $id = filter_input(INPUT_GET, 'id');
         $quote_id = filter_input(INPUT_GET, 'quote_id');
 
-            // If delete quote
-            $quote_data = array(
-                'quote_id' => $id
-            );
-            $quote_id = array(
-                'item_qid' => $quote_id
-            );
+        // If delete quote
+        $quote_data = array(
+            'quote_id' => $id
+        );
+        $quote_id = array(
+            'item_qid' => $quote_id
+        );
 
-            $this->wpdb->delete($this->quotes_tbl, $quote_data);
-            $this->wpdb->delete($this->quote_items_tbl, $quote_id);
+        $this->wpdb->delete($this->quotes_tbl, $quote_data);
+        $this->wpdb->delete($this->quote_items_tbl, $quote_id);
 
-            wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=deleted'));
-        
+        wp_redirect(admin_url('admin.php?page=' . $this->page . '&update=deleted'));
+
 
         exit;
     }
-    
 
 }
