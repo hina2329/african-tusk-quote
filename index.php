@@ -257,7 +257,9 @@ class ATQ {
 
         // WordPress WYSIWYG Editor
         wp_editor($product->prod_desc, $textarea_id, array('textarea_name' => 'text'));
+        \_WP_Editors::enqueue_scripts();
         print_footer_scripts();
+        \_WP_Editors::editor_js();
 
         echo '</td>';
         echo '<td>';

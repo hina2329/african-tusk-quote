@@ -201,6 +201,7 @@ jQuery(document).ready(function ($) {
 
         var quote_id = $('.quote-id').val();
         var prod_id = $('.prod-id').val();
+        var text_id = 'desc' + prod_id;
         var data = {
             action: 'add_prod',
             qid: quote_id,
@@ -211,6 +212,15 @@ jQuery(document).ready(function ($) {
         $.post(ajaxurl, data, function (result) {
             $('#the-list').append(result);
             $('#update-msg').hide();
+
+            var eid = 'text_id';
+            switchEditors.go(eid, 'tmce')
+            quicktags({id: eid});
+            //init tinymce
+            tinyMCEPreInit.mceInit[eid]['elements'] = eid;
+            tinyMCEPreInit.mceInit[eid]['body_class'] = eid;
+            tinyMCEPreInit.mceInit[eid]['succesful'] = false;
+            tinymce.init(tinyMCEPreInit.mceInit[eid]);
 
         });
 
