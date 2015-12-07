@@ -302,7 +302,7 @@ class ATQ {
         echo 'R <input type="text" name="item_qty" value="" class="x-small-text sub-total">';
         echo '</td>';
         echo '<td>';
-        echo '<input type="text" name="item_order"  value="' . $item->item_order . '" style="width:30px; text-align: center;">';
+        echo '<input type="text" name="item_order['.$item->item_id.']"  value="' . $item->item_order . '" style="width:30px; text-align: center;">';
         echo '</td>';
 
         echo '<td class="actions">';
@@ -404,6 +404,7 @@ class ATQ {
         item_qid VARCHAR(100) NULL,
         item_pid VARCHAR(100) NULL,
         item_code VARCHAR(100) NULL,
+        item_fab VARCHAR(100) NULL,
         item_images LONGTEXT NULL,
         item_name VARCHAR(100) NULL,
         item_desc LONGTEXT NULL,

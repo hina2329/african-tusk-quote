@@ -289,7 +289,7 @@ class quotes extends ATQ {
                                             ?>
                                         </td>
                                         <td>
-                                        <select name="fab_type" id="fab_type">
+                                        <select name="item[item_fab][<?php echo $item->item_id;?>]" id="fab_type">
                                         <option value="">Please Select...</option>
                                          <?php
                                     //getting fabric suffix
@@ -320,7 +320,7 @@ class quotes extends ATQ {
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="text" name="item_qty" value="<?php echo $item->item_qty; ?>" class="x-small-text item-qty">
+                                    <input type="text" name="item[qty][<?php echo $item->item_id;?>]" value="<?php echo $item->item_qty; ?>" class="x-small-text item-qty">
                                         </td>
                                         <td>
                                             R <input type="text" name="item_qty" value="" class="x-small-text unit-price">
@@ -329,7 +329,7 @@ class quotes extends ATQ {
                                             R <input type="text" name="item_qty" value="" class="x-small-text sub-total">
                                         </td>
                                         <td>
-                                        <input type="text" name="item_order[<?php echo $item->item_id;?>]" value="<?php echo $item->item_order; ?>" style="width:30px; text-align: center;" >
+                                        <input type="text" name="item[order][<?php echo $item->item_id;?>]" value="<?php echo $item->item_order; ?>" style="width:30px; text-align: center;" >
                                         </td>
                                         <td class="actions">
                                             <a href="#" data-item-id=" <?php echo $item->item_id; ?>" data-quote-id="<?php echo $item->item_qid; ?>" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
@@ -460,7 +460,7 @@ class quotes extends ATQ {
         // Get quote comment
         $quote_comment = filter_input(INPUT_POST, 'quote_comment');
         // Get quote order item
-        $item_orders= filter_input(INPUT_POST, 'item_order', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+        $quote_item_arrs= filter_input(INPUT_POST, 'item', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
         // Get client data
         $client_data = array(
             'client_fname' => $client_fname,
@@ -533,17 +533,31 @@ class quotes extends ATQ {
             $this->wpdb->update($this->quotes_tbl, $comment_data, $comment_id);
 
             wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $quote_id . '&update=updated'));
-            // update order
+            
         } else if (isset($update) && $update=='quote'){
-        foreach ($item_orders as $item_id => $item_order) {
-            $item_data = array(
-                'item_order' => $item_order
-                );
-            $data_id = array(
-                'item_id'=> $item_id
-                );
-            $this->wpdb->update($this->quote_items_tbl, $item_data, $data_id );
 
+             // Udate quote items
+           
+          echo '<pre>';
+           print_r($quote_item_arrs);
+           echo "helo";
+       foreach ($quote_item_arrs as $item_name => $quote_item_arr) {
+        foreach ($quote_item_arr as $item_id => $item_value){
+
+  //         $item_data = array(
+//             'item_fab' => $item_value,
+//             'item_qty' => $item_value,
+//             'item_order' => $item_value
+//              );
+//            $data_id = array(
+//              'item_id'=> $item_id
+//              );
+//         $this->wpdb->update($this->quote_items_tbl, $item_data, $data_id );
+echo  $item_id;
+echo '<br>';
+echo $item_value;
+echo '<br>';
+}
         }
         } else {
 
