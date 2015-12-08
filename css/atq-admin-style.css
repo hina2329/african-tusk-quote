@@ -177,7 +177,7 @@
     border: #DDDDDD 1px solid;
     width: 234px;
     position: absolute;
-    top: 64px;
+    top: 130px;
     left: 1px;
     border-bottom: none;
 }
@@ -264,6 +264,10 @@
 .search-cat {
     float: right;
     width: 28%;
+}
+.item-cat {
+    float: left;
+    margin: 0 10px 0 0;
 }
 .add-cat {
     float: left;
