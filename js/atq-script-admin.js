@@ -231,8 +231,19 @@ jQuery(document).ready(function ($) {
     $('.add-cat').live('click', function() {
      var quote_id = $('.quote-id').val();
      var item_cat = $('.item-cat').val();
-     alert(item_cat);
+     var data = {
+            action: 'add_cat',
+            qid: quote_id,
+            icat: item_cat
+        };
+        $('#update-msg').show();
+
+        $.post(ajaxurl, data, function (result) {
+            $('#the-list').prepend(result);
+            $('#update-msg').hide();
      
+     });
+
      
 });
 

@@ -272,7 +272,6 @@ class products extends ATQ {
         $prod_images = serialize($prod_images_arr);
         $prod_code = filter_input(INPUT_POST, 'prod_code', FILTER_SANITIZE_STRING);
         $prod_cat_arr = filter_input(INPUT_POST, 'prod_cat', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-        $prod_cat = serialize($prod_cat_arr);
         $prod_size = filter_input(INPUT_POST, 'prod_size', FILTER_SANITIZE_STRING);
         $prod_seller = filter_input(INPUT_POST, 'prod_seller');
         $prod_sale = filter_input(INPUT_POST, 'prod_sale');
@@ -285,7 +284,6 @@ class products extends ATQ {
             'prod_desc' => $prod_desc,
             'prod_images' => $prod_images,
             'prod_code' => $prod_code,
-            'prod_cat' => $prod_cat,
             'prod_size' => $prod_size,
             'prod_seller' => $prod_seller,
             'prod_sale' => $prod_sale,
@@ -310,6 +308,7 @@ class products extends ATQ {
 
             foreach ($prod_cat_arr as $cat) {
                 $this->wpdb->insert($this->categories_relation_tbl, array('prod_id' => $id, 'cat_id' => $cat));
+
             }
 
             // Adding combos
