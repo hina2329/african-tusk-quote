@@ -51,15 +51,28 @@ class products extends ATQ {
                             <td><?php echo $row->prod_name; ?></td>
                             <td>
                                 <?php
-                                $cats = unserialize($row->prod_cat);
-                                $cat_count = count($cats);
+                                
+                                $cat_rows = $this->wpdb->get_results("SELECT * FROM $this->categories_relation_tbl WHERE prod_id = $row->prod_id");
+                                 $i = 0;
+                                $cat_count = count($cat_rows);
+                                foreach ($cat_rows as $cat_row) {
+                                    $i++;
+                                    
+                                   // Get related gategories
+                                   
+                                 $cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl WHERE cat_id = $cat_row->cat_id");
+                                
+                                 
+                                foreach ($cats as $cat) {
+                                    
+                                    echo $cat->cat_name;
+                                   
+                                    if($i < $cat_count){
+                                        echo ',';
 
-                                for ($i = 0; $i < $cat_count; $i++) {
-                                    $cat_row = $this->wpdb->get_row("SELECT * FROM $this->categories_tbl WHERE cat_id = " . $cats[$i]);
-                                    echo $cat_row->cat_name;
-                                    if (($i + 1) != $cat_count) {
-                                        echo ', ';
                                     }
+
+                                }
                                 }
                                 ?>
                             </td>
