@@ -236,7 +236,7 @@ class quotes extends ATQ {
                         }
                         ?>
                     </select>
-                    <button class="button add-cat">Find Products</button>
+                    <button class="button add-cat">Add Products from Categories</button>
 
                 </div>
                 <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save&update=quote'); ?>">
