@@ -71,7 +71,7 @@ class ATQ {
         // Add product item action
         add_action('wp_ajax_add_prod', array($this, 'add_product'));
         //Add product item through Categories
-        add_action('wp_ajax_add_cat', array($this, 'add_category'));
+         add_action('wp_ajax_add_cat', array($this, 'add_category'));
 
         // Allow redirection
         ob_start();
@@ -329,7 +329,14 @@ class ATQ {
 
         // Get quote id &product id
         $quote_id = filter_input(INPUT_POST, 'qid');
-        $item_cat = filter_input(INPUT_POST, 'icat');
+
+        $item_cat_arr = filter_input(INPUT_POST, 'icat', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+
+
+
+
+
+
     }
 
     // Tables queries for database
@@ -393,7 +400,6 @@ class ATQ {
         prod_desc LONGTEXT NULL,
         prod_images LONGTEXT NULL,
         prod_code VARCHAR(100) NOT NULL,  
-        prod_cat LONGTEXT NOT NULL,
         prod_size VARCHAR(100) NULL,
         prod_seller TINYINT DEFAULT 0,
         prod_sale TINYINT DEFAULT 0,
