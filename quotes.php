@@ -205,8 +205,8 @@ class quotes extends ATQ {
                     <input type="text" name="add_heading" id="add_heading" class="large-text"><input type="submit" value="Add Heading" class="add-heading button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="button add-sep" data-sep-id="<?php echo $quote->quote_id; ?>">Add Separator</a>
                 </div>
                 <div class="quote-item-search">
-                 <p>
-                    Simply specify the first 3 characthers of a product code, e.g. AT1. It will then give you options, select one and click "Add Product".</p>                  
+                    <p>
+                        Simply specify the first 3 characthers of a product code, e.g. AT1. It will then give you options, select one and click "Add Product".</p>                  
 
                     <input type="hidden" class="prod-id" name="prod_id">
                     <input type="hidden" name="quote_id" value="<?php echo $quote->quote_id; ?>" class="quote-id">
@@ -221,16 +221,12 @@ class quotes extends ATQ {
                             <?php
                         }
                         ?>
-                        </ul>
-                        </div>
-                        <div class="search-cat">
-
-             <strong>Search Category</strong>
-              <p style="line-height: 1em !important;">Hold down the Ctrl (windows) / Command (Mac) button to select multiple categories.</p>
-
+                    </ul>
+                </div>
+                <div class="search-cat">
+                    <p style="line-height: 1em !important;">Hold down the Ctrl (windows) / Command (Mac) button to select multiple categories.</p>
                     <select name="item_cat[]" class="item-cat" multiple required>
                         <?php
-                        
                         // Getting categories list
                         $cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl");
 
@@ -240,8 +236,7 @@ class quotes extends ATQ {
                         }
                         ?>
                     </select>
-                    <br>
-                    <button class="button add-cat" style="float:right;">Find Products</button>
+                    <button class="button add-cat">Find Products</button>
 
                 </div>
                 <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save&update=quote'); ?>">
@@ -287,9 +282,11 @@ class quotes extends ATQ {
                                 } else if ($item->heading) {
                                     ?>
                                     <tr>
-                                        <td colspan="6"><h2><?php echo $item->heading; ?></h2></td>
+                                        <td colspan="6">
+                                            <h2><?php echo $item->heading; ?></h2>
+                                        </td>
                                         <td>
-                                            <input type="text" name="item[<?php echo $item->item_id; ?>][order]" value="<?php echo $item->item_order; ?>" style="width:30px; text-align: center;" >
+                                            <input type="text" name="item[<?php echo $item->item_id; ?>][order]" value="<?php echo $item->item_order; ?>" style="width:30px; text-align: center;">
                                         </td>
                                         <td class="actions">
                                             <a href="#" data-item-id="<?php echo $item->item_id; ?>" data-quote-id="<?php echo $item->item_qid; ?>" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
@@ -559,27 +556,24 @@ class quotes extends ATQ {
         } else if (isset($update) && $update == 'quote') {
 
             // Udate quote items
-            echo '<pre>';
-            print_r($quote_item_arrs);
-            echo "</pre>";
             foreach ($quote_item_arrs as $quote_item_id => $quote_item_arr) {
-        
-               $item_data = array(
-                'item_name' => $quote_item_arr['name'],
-                'item_desc'=> $quote_item_arr['desc'],
-                'item_fab' => $quote_item_arr['fab'],
-                'item_qty' => $quote_item_arr['qty'],
-                'item_price' => $quote_item_arr['unit_p'],
-                'item_order' => $quote_item_arr['order']
-                
-                    );
-                $item_id = array(
-                'item_id' => $quote_item_id
-                    );
-            $this->wpdb->update($this->quote_items_tbl, $item_data, $item_id);
-           
-            }
 
+                $item_data = array(
+                    'item_name' => $quote_item_arr['name'],
+                    'item_desc' => $quote_item_arr['desc'],
+                    'item_fab' => $quote_item_arr['fab'],
+                    'item_qty' => $quote_item_arr['qty'],
+                    'item_price' => $quote_item_arr['unit_p'],
+                    'item_order' => $quote_item_arr['order']
+                );
+                $item_id = array(
+                    'item_id' => $quote_item_id
+                );
+                $this->wpdb->update($this->quote_items_tbl, $item_data, $item_id);
+                
+            }
+            
+            wp_redirect(admin_url('admin.php?page=' . $this->page . '&action=form&id=' . $quote_id . '&update=updated'));
             
         } else {
 

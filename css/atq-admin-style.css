@@ -264,5 +264,7 @@
 .search-cat {
     float: right;
     width: 28%;
-
+}
+.add-cat {
+    float: left;
 }
