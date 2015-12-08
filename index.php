@@ -258,7 +258,7 @@ class ATQ {
                 echo '<img src="' . $image . '" alt="" width="auto" height="150"><br>';
             }
         }
-      $item = $this->wpdb->get_row("SELECT * FROM $this->quote_items_tbl WHERE item_id = $item_id");
+        $item = $this->wpdb->get_row("SELECT * FROM $this->quote_items_tbl WHERE item_id = $item_id");
         echo '<input type="text" name="item[' . $item_id . '][name]" value=" ' . $product->prod_name . '">';
         echo '</td>';
         echo '<td>';
@@ -302,7 +302,7 @@ class ATQ {
         echo '</select>';
         echo '</td>';
 
-        
+
 
         echo '<td>';
         echo '<input type="text" name="item[' . $item_id . '][qty]" value="' . $item->item_qty . '" class="x-small-text item-qty">';
@@ -323,14 +323,13 @@ class ATQ {
         echo '</tr>';
         wp_die();
     }
+
     // Search product through category
     public function add_category() {
 
         // Get quote id &product id
         $quote_id = filter_input(INPUT_POST, 'qid');
         $item_cat = filter_input(INPUT_POST, 'icat');
-
-
     }
 
     // Tables queries for database
@@ -381,9 +380,10 @@ class ATQ {
         ";
 
         $categories_rel_table = "CREATE TABLE $this->categories_relation_tbl (
+        rel_id INT(5) NOT NULL AUTO_INCREMENT,
         prod_id INT(5) DEFAULT 0,
         cat_id INT(5) DEFAULT 0,
-        PRIMARY KEY (prod_id)
+        PRIMARY KEY (rel_id)
         ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
         ";
 
