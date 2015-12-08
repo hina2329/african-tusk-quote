@@ -13,6 +13,9 @@
     width: 70px;
     padding: 1px 6px;
 }
+#atq-wrap input.medium-text {
+    width: 150px;
+}
 #atq-wrap input.large-text {
     width: 236px;
 }
@@ -159,14 +162,14 @@
     display: inline;
 }
 .quote-item-heading {
-    width: 48%;
+    width: 45%;
     float: left;
 }
 .quote-item-search {
     position: relative;
-    padding: 0 0 20px;
-    width: 50%;
-    float: right;
+    padding: 0 0 10px;
+    width: 23%;
+    float: left;
 }
 .quote-item-search ul {
     margin: 0;
@@ -257,4 +260,9 @@
 #update-msg img {
     float: left;
     margin-right: 7px;
+}
+.search-cat {
+    float: right;
+    width: 28%;
+
 }

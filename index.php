@@ -70,6 +70,8 @@ class ATQ {
 
         // Add product item action
         add_action('wp_ajax_add_prod', array($this, 'add_product'));
+        //Add product item through Categories
+        add_action('wp_ajax_add_cat', array($this, 'add_category'));
 
         // Allow redirection
         ob_start();
@@ -256,8 +258,8 @@ class ATQ {
                 echo '<img src="' . $image . '" alt="" width="auto" height="150"><br>';
             }
         }
-
-        echo '<input type="text" name="item_name" value=" ' . $product->prod_name . '">';
+      $item = $this->wpdb->get_row("SELECT * FROM $this->quote_items_tbl WHERE item_id = $item_id");
+        echo '<input type="text" name="item[' . $item_id . '][name]" value=" ' . $product->prod_name . '">';
         echo '</td>';
         echo '<td>';
 
@@ -267,13 +269,13 @@ class ATQ {
 //        print_footer_scripts();
 //        \_WP_Editors::editor_js();
 
-        echo '<textarea name="text" rows="10">' . $product->prod_desc . '</textarea>';
+        echo '<textarea name="item[' . $item_id . '][desc]" rows="10">' . $product->prod_desc . '</textarea>';
 
         echo '</td>';
         echo '<td>';
 
 
-        echo '<select name="fab_type" id="fab_type">';
+        echo '<select name="item[' . $item_id . '][fab]" id="fab_type">';
         echo '<option value="">Please Select...</option>';
 
         //getting fabric suffix
@@ -300,19 +302,19 @@ class ATQ {
         echo '</select>';
         echo '</td>';
 
-        $item = $this->wpdb->get_row("SELECT * FROM $this->quote_items_tbl WHERE item_id = $item_id");
+        
 
         echo '<td>';
-        echo '<input type="text" name="item_qty" value="' . $item->item_qty . '" class="x-small-text item-qty">';
+        echo '<input type="text" name="item[' . $item_id . '][qty]" value="' . $item->item_qty . '" class="x-small-text item-qty">';
         echo '</td>';
         echo '<td>';
-        echo 'R <input type="text" name="item_qty" value="" class="x-small-text unit-price">';
+        echo 'R <input type="text" name="item[' . $item_id . '][unit_p]" value="' . $item->item_price . '" class="x-small-text unit-price">';
         echo '</td>';
         echo '<td>';
         echo 'R <input type="text" name="item_qty" value="" class="x-small-text sub-total">';
         echo '</td>';
         echo '<td>';
-        echo '<input type="text" name="item_order[' . $item->item_id . ']"  value="' . $item->item_order . '" style="width:30px; text-align: center;">';
+        echo '<input type="text" name="item[' . $item_id . '][order]"  value="' . $item->item_order . '" style="width:30px; text-align: center;">';
         echo '</td>';
 
         echo '<td class="actions">';
@@ -320,6 +322,15 @@ class ATQ {
         echo '</td>';
         echo '</tr>';
         wp_die();
+    }
+    // Search product through category
+    public function add_category() {
+
+        // Get quote id &product id
+        $quote_id = filter_input(INPUT_POST, 'qid');
+        $item_cat = filter_input(INPUT_POST, 'icat');
+
+
     }
 
     // Tables queries for database
@@ -420,6 +431,7 @@ class ATQ {
         item_desc LONGTEXT NULL,
         item_cat LONGTEXT NULL,
         item_qty INT(3) DEFAULT 1,
+        item_price VARCHAR(100) NULL,
         item_order INT(2) DEFAULT 0,
         heading VARCHAR(255) NULL,
         sep TINYINT DEFAULT 0,

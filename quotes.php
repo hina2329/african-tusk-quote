@@ -205,11 +205,12 @@ class quotes extends ATQ {
                     <input type="text" name="add_heading" id="add_heading" class="large-text"><input type="submit" value="Add Heading" class="add-heading button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="button add-sep" data-sep-id="<?php echo $quote->quote_id; ?>">Add Separator</a>
                 </div>
                 <div class="quote-item-search">
-                    Simply specify the first 3 characthers of a product code, e.g. AT1. It will then give you options, select one and click "Add Product".<br>                   
+                 <p>
+                    Simply specify the first 3 characthers of a product code, e.g. AT1. It will then give you options, select one and click "Add Product".</p>                  
 
                     <input type="hidden" class="prod-id" name="prod_id">
                     <input type="hidden" name="quote_id" value="<?php echo $quote->quote_id; ?>" class="quote-id">
-                    <input type="text" class="prod-name large-text " name="prod_name"><button class="button add-prod">Add Product</button>
+                    <input type="text" class="prod-name medium-text" name="prod_name"><button class="button add-prod">Add Product</button>
 
                     <ul>
                         <?php
@@ -220,7 +221,28 @@ class quotes extends ATQ {
                             <?php
                         }
                         ?>
-                    </ul>
+                        </ul>
+                        </div>
+                        <div class="search-cat">
+
+             <strong>Search Category</strong>
+              <p style="line-height: 1em !important;">Hold down the Ctrl (windows) / Command (Mac) button to select multiple categories.</p>
+
+                    <select name="item_cat[]" class="item-cat" multiple required>
+                        <?php
+                        
+                        // Getting categories list
+                        $cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl");
+
+                        // Listing all categories
+                        foreach ($cats as $cat) {
+                            echo '<option value="' . $cat->cat_id . '" ' . selected(true, in_array($cat->cat_id, $this_cats), false) . '>' . $cat->cat_name . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <br>
+                    <button class="button add-cat" style="float:right;">Find Products</button>
+
                 </div>
                 <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=save&update=quote'); ?>">
                     <table class="wp-list-table widefat fixed striped pages item-list">
@@ -326,10 +348,10 @@ class quotes extends ATQ {
                                             <input type="text" name="item[<?php echo $item->item_id; ?>][qty]" value="<?php echo $item->item_qty; ?>" class="x-small-text item-qty">
                                         </td>
                                         <td>
-                                            R <input type="text" name="item[<?php echo $item->item_id; ?>][unit_p]"" value="" class="x-small-text unit-price">
+                                            R <input type="text" name="item[<?php echo $item->item_id; ?>][unit_p]"" value="<?php echo $item->item_price; ?>" class="x-small-text unit-price">
                                         </td>
                                         <td>
-                                            R <input type="text" name="item[<?php echo $item->item_id; ?>][sub_total]"" value="" class="x-small-text sub-total">
+                                            R <input type="text" name="total_p" value="" class="x-small-text sub-total">
                                         </td>
                                         <td>
                                             <input type="text" name="item[<?php echo $item->item_id; ?>][order]" value="<?php echo $item->item_order; ?>" style="width:30px; text-align: center;" >
@@ -539,10 +561,28 @@ class quotes extends ATQ {
         } else if (isset($update) && $update == 'quote') {
 
             // Udate quote items
-
             echo '<pre>';
             print_r($quote_item_arrs);
             echo "</pre>";
+            foreach ($quote_item_arrs as $quote_item_id => $quote_item_arr) {
+        
+               $item_data = array(
+                'item_name' => $quote_item_arr['name'],
+                'item_desc'=> $quote_item_arr['desc'],
+                'item_fab' => $quote_item_arr['fab'],
+                'item_qty' => $quote_item_arr['qty'],
+                'item_price' => $quote_item_arr['unit_p'],
+                'item_order' => $quote_item_arr['order']
+                
+                    );
+                $item_id = array(
+                'item_id' => $quote_item_id
+                    );
+            $this->wpdb->update($this->quote_items_tbl, $item_data, $item_id);
+           
+            }
+
+            
         } else {
 
             if (empty($quote_client)) {
