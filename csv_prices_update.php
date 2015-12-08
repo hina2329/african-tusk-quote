@@ -1,7 +1,7 @@
 <?php
 
 // CSV update class
-class csv_price_update extends ATQ {
+class csv_prices_update extends ATQ {
 
     // Contructor
     public function __construct() {

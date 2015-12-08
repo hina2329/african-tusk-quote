@@ -265,9 +265,11 @@ class quotes extends ATQ {
                                 } else if ($item->heading) {
                                     ?>
                                     <tr>
-                                        <td colspan="6"><h2><?php echo $item->heading; ?></h2></td>
+                                        <td colspan="6">
+                                            <h2><?php echo $item->heading; ?></h2>
+                                        </td>
                                         <td>
-                                            <input type="text" name="item[<?php echo $item->item_id; ?>][order]" value="<?php echo $item->item_order; ?>" style="width:30px; text-align: center;" >
+                                            <input type="text" name="item[<?php echo $item->item_id; ?>][order]" value="<?php echo $item->item_order; ?>" style="width:30px; text-align: center;">
                                         </td>
                                         <td class="actions">
                                             <a href="#" data-item-id="<?php echo $item->item_id; ?>" data-quote-id="<?php echo $item->item_qid; ?>" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm('Are you sure you want to delete this?');"></a>
