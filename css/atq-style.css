@@ -1,0 +1,72 @@
+#atq-products {
+}
+#atq-products ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#atq-products ul li {
+    width: 30%;
+    height: 350px;
+    float: left;
+    border: #ccc 1px solid;
+    margin: 1.5%;
+    box-sizing: border-box;
+    padding: 15px 20px;
+    font-size: 14px;
+}
+#atq-products ul li a {
+    text-decoration: none;
+    border: none;
+}
+.atq-product-title {
+    margin: 0 0 10px;
+}
+#atq-product-popup {
+    width: 800px;
+    height: 560px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -280px 0 0 -400px;
+    background: #fff;
+    z-index: 1001;
+    padding: 20px;
+    display: none;
+}
+#atq-product-popup .atq-product-content-wrap {
+    position: relative;
+    width: 760px;
+    height: 520px;
+}
+.atq-product-conten {
+    width: 760px;
+    height: 520px;
+    overflow-y: auto;
+}
+.atq-close {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    text-decoration: none;
+    border: none !important;
+}
+.atq-overlay {
+    background: #000;
+    opacity: 0.5;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+}
+.atq-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+    width: 40px;
+    height: 40px;
+}

@@ -20,9 +20,9 @@ class products extends ATQ {
         <table class="wp-list-table widefat fixed striped pages">
             <thead>
                 <tr>
-                    <th width="10%">ID</th>
-                    <th width="20%">Code</th>
-                    <th width="25%">Title</th>
+                    <th width="5%">ID</th>
+                    <th width="10%">Code</th>
+                    <th width="40%">Title</th>
                     <th width="25%">Category</th>
                     <th width="15%">Fabric Type</th>
                     <th width="15%" class="actions">Actions</th>

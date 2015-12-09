@@ -56,9 +56,6 @@ class ATQ {
         // Loading plugin resources for admin
         add_action('admin_head', array($this, 'register_admin_resources'));
 
-        // Loading plugin resources for front end
-        add_action('wp_head', array($this, 'register_frontend_resources'));
-
         // Add heading action
         add_action('wp_ajax_add_heading', array($this, 'add_heading'));
 
@@ -70,8 +67,9 @@ class ATQ {
 
         // Add product item action
         add_action('wp_ajax_add_prod', array($this, 'add_product'));
+
         //Add product item through Categories
-         add_action('wp_ajax_add_cat', array($this, 'add_category'));
+        add_action('wp_ajax_add_cat', array($this, 'add_category'));
 
         // Allow redirection
         ob_start();
@@ -86,7 +84,6 @@ class ATQ {
         add_submenu_page('quotes', 'Fabrics', 'Fabrics', 'edit_pages', 'fabrics', array($this, 'atq_main'));
         add_submenu_page('quotes', 'Clients', 'Clients', 'edit_pages', 'clients', array($this, 'atq_main'));
         add_submenu_page('quotes', 'Staff Member', 'Staff Member', 'edit_pages', 'staff_member', array($this, 'atq_main'));
-        \
         add_submenu_page('quotes', 'CSV Prices Update', 'CSV Prices Update', 'edit_pages', 'csv_prices_update', array($this, 'atq_main'));
         add_submenu_page('quotes', 'CSV Products Import', 'CSV Products Import', 'edit_pages', 'csv_products_import', array($this, 'atq_main'));
         add_submenu_page('quotes', 'CSV Fabric Price Combos Import', 'CSV Fabric Price Combos Import', 'edit_pages', 'csv_fabric_price_combos_import', array($this, 'atq_main'));
@@ -133,13 +130,6 @@ class ATQ {
                 )
         );
         wp_enqueue_script('jquery-ui-sortable');
-    }
-
-    // Registering plugin front end resources
-    public function register_frontend_resources() {
-        // Stylesheet
-        wp_register_style('atq-style', plugins_url('african-tusk-quote/css/atq-style.css'));
-        wp_enqueue_style('atq-style');
     }
 
     // Notifications
@@ -296,15 +286,8 @@ class ATQ {
 
             echo '>' . $fab_type->fab_name . '</option>';
         }
-
-
-
         echo '</select>';
         echo '</td>';
-
-
-
-        echo '<td>';
         echo '<input type="text" name="item[' . $item_id . '][qty]" value="' . $item->item_qty . '" class="x-small-text item-qty">';
         echo '</td>';
         echo '<td>';
@@ -332,98 +315,89 @@ class ATQ {
 
         $item_cat_arrs = filter_input(INPUT_POST, 'icat', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 
-       foreach ($item_cat_arrs as $item_cat) {
-       $cats = $this->wpdb->get_results("SELECT cat.*, prod.* FROM $this->categories_relation_tbl AS cat INNER JOIN $this->products_tbl AS prod ON cat.prod_id = prod.prod_id WHERE cat.cat_id = $item_cat");
-       foreach ($cats as $cat) {
-          // Save existing product data into wp_atq_quote_items table
-        $product_data = array(
-            'item_qid' => $quote_id,
-            'item_pid' => $cat->prod_id,
-            'item_code' => $cat->prod_code,
-            'item_images' => $cat->prod_images,
-            'item_name' => $cat->prod_name,
-            'item_desc' => $cat->prod_desc
-         
-        );
+        foreach ($item_cat_arrs as $item_cat) {
+            $cats = $this->wpdb->get_results("SELECT cat.*, prod.* FROM $this->categories_relation_tbl AS cat INNER JOIN $this->products_tbl AS prod ON cat.prod_id = prod.prod_id WHERE cat.cat_id = $item_cat");
+            foreach ($cats as $cat) {
+                // Save existing product data into wp_atq_quote_items table
+                $product_data = array(
+                    'item_qid' => $quote_id,
+                    'item_pid' => $cat->prod_id,
+                    'item_code' => $cat->prod_code,
+                    'item_images' => $cat->prod_images,
+                    'item_name' => $cat->prod_name,
+                    'item_desc' => $cat->prod_desc
+                );
 
-        $this->wpdb->insert($this->quote_items_tbl, $product_data);
-        $item_id = $this->wpdb->insert_id;
-        $images = unserialize($cat->prod_images);
-        $textarea_id = 'desc' . $cat->prod_id;
-        echo '<tr>';
-        echo '<td>';
+                $this->wpdb->insert($this->quote_items_tbl, $product_data);
+                $item_id = $this->wpdb->insert_id;
+                $images = unserialize($cat->prod_images);
+                $textarea_id = 'desc' . $cat->prod_id;
+                echo '<tr>';
+                echo '<td>';
 
-        if ($images) {
-            foreach ($images as $image) {
-                echo '<img src="' . $image . '" alt="" width="auto" height="150"><br>';
+                if ($images) {
+                    foreach ($images as $image) {
+                        echo '<img src="' . $image . '" alt="" width="auto" height="150"><br>';
+                    }
+                }
+                $item = $this->wpdb->get_row("SELECT * FROM $this->quote_items_tbl WHERE item_id = $item_id");
+                echo '<input type="text" name="item[' . $item_id . '][name]" value=" ' . $cat->prod_name . '">';
+                echo '</td>';
+                echo '<td>';
+
+
+
+                echo '<textarea name="item[' . $item_id . '][desc]" rows="10">' . $cat->prod_desc . '</textarea>';
+
+                echo '</td>';
+                echo '<td>';
+
+
+                echo '<select name="item[' . $item_id . '][fab]" id="fab_type">';
+                echo '<option value="">Please Select...</option>';
+
+                //getting fabric suffix
+                $prod_fps = $this->wpdb->get_results("SELECT * FROM $this->products_fp_combos_tbl WHERE combo_pid = $cat->prod_id");
+                foreach ($prod_fps as $prod_fp) {
+
+                    $combo_code = $prod_fp->combo_code;
+                    //breaking rows into $prod_code & $fab_suffix
+                    list($prod_code, $fab_suffix) = explode('-', $combo_code);
+                    $fab_suffix;
+
+                    //getting fabric names             
+                    $fab_type = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_suffix'");
+
+                    echo '<option value="' . $fab_type->fab_name . '" ';
+
+                    selected($fab_type->fab_name);
+
+                    echo '>' . $fab_type->fab_name . '</option>';
+                }
+
+
+
+                echo '</select>';
+                echo '</td>';
+                echo '<td>';
+                echo '<input type="text" name="item[' . $item_id . '][qty]" value="' . $item->item_qty . '" class="x-small-text item-qty">';
+                echo '</td>';
+                echo '<td>';
+                echo 'R <input type="text" name="item[' . $item_id . '][unit_p]" value="' . $item->item_price . '" class="x-small-text unit-price">';
+                echo '</td>';
+                echo '<td>';
+                echo 'R <input type="text" name="item_qty" value="" class="x-small-text sub-total">';
+                echo '</td>';
+                echo '<td>';
+                echo '<input type="text" name="item[' . $item_id . '][order]"  value="' . $item->item_order . '" style="width:30px; text-align: center;">';
+                echo '</td>';
+                echo '<td class="actions">';
+                echo '<a href="#" data-item-id="' . $item_id . '" data-quote-id="' . $qoute_id . '" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?);"></a>';
+                echo '</td>';
+                echo '</tr>';
             }
         }
-        $item = $this->wpdb->get_row("SELECT * FROM $this->quote_items_tbl WHERE item_id = $item_id");
-        echo '<input type="text" name="item[' . $item_id . '][name]" value=" ' . $cat->prod_name . '">';
-        echo '</td>';
-        echo '<td>';
-
-      
-
-        echo '<textarea name="item[' . $item_id . '][desc]" rows="10">' . $cat->prod_desc . '</textarea>';
-
-        echo '</td>';
-        echo '<td>';
-
-
-        echo '<select name="item[' . $item_id . '][fab]" id="fab_type">';
-        echo '<option value="">Please Select...</option>';
-
-        //getting fabric suffix
-        $prod_fps = $this->wpdb->get_results("SELECT * FROM $this->products_fp_combos_tbl WHERE combo_pid = $cat->prod_id");
-        foreach ($prod_fps as $prod_fp) {
-
-            $combo_code = $prod_fp->combo_code;
-            //breaking rows into $prod_code & $fab_suffix
-            list($prod_code, $fab_suffix) = explode('-', $combo_code);
-            $fab_suffix;
-
-            //getting fabric names             
-            $fab_type = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_suffix'");
-
-            echo '<option value="' . $fab_type->fab_name . '" ';
-
-            selected($fab_type->fab_name);
-
-            echo '>' . $fab_type->fab_name . '</option>';
-        }
-
-
-
-        echo '</select>';
-        echo '</td>';
-
-
-
-        echo '<td>';
-        echo '<input type="text" name="item[' . $item_id . '][qty]" value="' . $item->item_qty . '" class="x-small-text item-qty">';
-        echo '</td>';
-        echo '<td>';
-        echo 'R <input type="text" name="item[' . $item_id . '][unit_p]" value="' . $item->item_price . '" class="x-small-text unit-price">';
-        echo '</td>';
-        echo '<td>';
-        echo 'R <input type="text" name="item_qty" value="" class="x-small-text sub-total">';
-        echo '</td>';
-        echo '<td>';
-        echo '<input type="text" name="item[' . $item_id . '][order]"  value="' . $item->item_order . '" style="width:30px; text-align: center;">';
-        echo '</td>';
-
-        echo '<td class="actions">';
-        echo '<a href="#" data-item-id="' . $item_id . '" data-quote-id="' . $qoute_id . '" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?);"></a>';
-        echo '</td>';
-        echo '</tr>';
-      
-
-   
-}
-}
-  wp_die();
-
+        wp_die();
     }
 
     // Tables queries for database
@@ -547,3 +521,10 @@ class ATQ {
 }
 
 new ATQ;
+
+
+/**
+ * Shortcode
+ */
+require_once 'shortcode.php';
+new atq_shortcode;
