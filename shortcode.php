@@ -86,29 +86,29 @@ class atq_shortcode {
                 });
 
             });
-        </script>        
-        <?php
-    }
+</script>        
+<?php
+}
 
-    public function atq_code() {
-        ?>
+public function atq_code() {
+    ?>
 
-        <div id="atq-products">
-            <ul>
-                <?php
+    <div id="atq-products">
+        <ul>
+            <?php
                 // Get products
-                $products = $this->wpdb->get_results("SELECT * FROM $this->products_tbl");
+            $products = $this->wpdb->get_results("SELECT * FROM $this->products_tbl");
 
                 // Display products
-                foreach ($products as $product) {
-                    $images = unserialize($product->prod_images);
-                    ?>
-                    <li>
-                        <a href="#" data-product-id="<?php echo $product->prod_id; ?>" class="product-link">
-                            <div class="atq-product-title"><strong><?php echo $product->prod_code; ?></strong> - <?php echo $product->prod_name; ?></div>
-                            <div class="atq-product-image"><img src="<?php echo $images[0]; ?>" width="100%" height="auto"></div>
-                        </a>
-                    </li>
+            foreach ($products as $product) {
+                $images = unserialize($product->prod_images);
+                ?>
+                <li>
+                    <a href="#" data-product-id="<?php echo $product->prod_id; ?>" class="product-link">
+                        <div class="atq-product-title"><strong><?php echo $product->prod_code; ?></strong> - <?php echo $product->prod_name; ?></div>
+                        <div class="atq-product-image"><img src="<?php echo $images[0]; ?>" width="100%" height="auto"></div>
+                    </a>
+                </li>
                 <?php }
                 ?>
             </ul>
@@ -118,7 +118,8 @@ class atq_shortcode {
             <div class="atq-product-content-wrap">
                 <a href="#" class="atq-close"><img src="<?php echo plugins_url('african-tusk-quote/images/x.png'); ?>"></a>
                 <img src="<?php echo plugins_url('african-tusk-quote/images/loading.gif'); ?>" class="atq-loader">
-                <div class="atq-product-content"></div>
+                <div class="atq-product-content">
+                </div>
             </div>
         </div>
         <div class="atq-overlay"></div>
@@ -130,8 +131,116 @@ class atq_shortcode {
     public function load_product() {
 
         $pid = filter_input(INPUT_POST, 'prod_id');
+        //Get Products
+        $product = $this->wpdb->get_row("SELECT * FROM $this->products_tbl WHERE prod_id = $pid"); 
+        $images = unserialize($product->prod_images);
+        ?>
+        <div class="atq-left-col">
+         <?php
+         if ($images){
+            foreach ($images as $image_id => $image) {
 
-        echo $pid;
-    }
+                if($image_id == 0){
+                    ?>
+                    <img src="<?php echo $image;?>" >
 
+
+                    <?php }
+                    else{
+                     ?>
+                     <img src="<?php echo $image;?>" width="80px;" >
+
+                     <?php   } ?>
+
+                     <?php 
+
+                 }
+             } 
+
+             ?>
+         </div>
+
+         <div class="atq-right-col">
+             <h1><?php echo $product->prod_name;?></h1>
+             <h3><?php echo $product->prod_code;?></h3>
+             <ul>
+                <?php echo $product->prod_desc;?>
+            </ul>
+            <p>
+                <strong>Product size:</strong>
+                <?php echo $product->prod_size;?>
+            </p>
+            <?php
+              $fab_combos = $this->wpdb->get_results("SELECT * FROM $this->products_fp_combos_tbl WHERE combo_pid = $pid");
+                    foreach ($fab_combos as $fab_combo) {
+                        $fab_code = $fab_combo->combo_code;
+                        list($code, $fab_suffix) = explode('-', $fab_code);
+                        $fab_name = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_suffix ='$fab_suffix'");
+
+                      
+                        ?>  
+                        <div class="atq-fabric">
+            <span style="float: left;"><?php echo $fab_name->fab_name; ?>
+           
+                        
+
+            </span>
+            <span style="float: right;">
+            <select>
+                    <option>Select a Colour</option>
+            <?php
+             $fab_colors = unserialize($fab_name->fab_colors);
+                       foreach ( $fab_colors as $fab_color) {
+                          
+                         
+                        
+                            ?>
+                            <option value="<?php echo $fab_color['fab_color'];?>" <?php selected($fab_color['fab_color']); ?>>
+                                <?php echo $fab_color['fab_color'];?></option>>
+
+
+
+<?php
 }
+?>
+
+                </select>
+                    <button class="">Add Quotes</button>
+                </span>
+            </div>
+            <div class="atq-item-colors">
+            <?php
+            $fab_colors = unserialize($fab_name->fab_colors);
+                    foreach ( $fab_colors as $fab_id => $fab_color) {
+
+                        ?>
+
+                        <img src="<?php echo $fab_color['fab_img'];?>" width="30px;" >
+
+                        <?php
+
+
+                    }
+                    ?>
+            </div>
+                        
+                        
+<?php
+                    }
+
+                        
+            ?>
+            
+</div>
+
+           
+          
+            <?php
+            
+      
+
+
+   
+}
+}
+
