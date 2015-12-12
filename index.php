@@ -77,7 +77,7 @@ class ATQ {
 
     // WP Menu
     public function atq_menu() {
-        add_menu_page('African Tusk Qoute', 'African Tusk Qoute', 'edit_pages', 'quotes', array($this, 'atq_main'), 'dashicons-format-aside');
+        add_menu_page('African Tusk Quote', 'African Tusk Quote', 'edit_pages', 'quotes', array($this, 'atq_main'), 'dashicons-format-aside');
         add_submenu_page('quotes', 'Quotes', 'Quotes', 'edit_pages', 'quotes', array($this, 'atq_main'));
         add_submenu_page('quotes', 'Products', 'Products', 'edit_pages', 'products', array($this, 'atq_main'));
         add_submenu_page('quotes', 'Categories', 'Categories', 'edit_pages', 'categories', array($this, 'atq_main'));

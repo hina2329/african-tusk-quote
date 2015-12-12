@@ -129,6 +129,8 @@ class products extends ATQ {
         // Getting product data if user requests to edit
         $id = filter_input(INPUT_GET, 'id');
         $row = $this->wpdb->get_row("SELECT * FROM $this->products_tbl WHERE prod_id = $id");
+
+
         ?>
         <div class="col-left">
             <h1><?php echo isset($id) ? 'Edit Product' : 'Add New Product'; ?></h1>
@@ -170,21 +172,49 @@ class products extends ATQ {
                 </div>
                 <div class="form-field">
                     <label for="prod_cat">Category <span>*</span></label><br>
+                    
                     <small style="line-height: 1em !important;">Hold down the Ctrl (windows) / Command (Mac) button to select multiple categories.</small><br>
                     <select name="prod_cat[]" id="prod_cat" multiple required>
+                    
+                    
                         <?php
-                        // Get this product cats
-                        $this_cats = unserialize($row->prod_cat);
+
+                     
+                       // echo $cat_rel->prod_id;
+                       // echo $cat_rel->cat_id;
+                   
+                        
 
                         // Getting categories list
-                        $cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl");
+         $cat_rels = $this->wpdb->get_results("SELECT * FROM $this->categories_relation_tbl WHERE prod_id = $id");
+          $cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl");
 
                         // Listing all categories
+                          
+                        foreach ($cat_rels as $cat_rel) {
+  
+                
+                    
+            
                         foreach ($cats as $cat) {
-                            echo '<option value="' . $cat->cat_id . '" ' . selected(true, in_array($cat->cat_id, $this_cats), false) . '>' . $cat->cat_name . '</option>';
-                        }
+                            
+                        
+                    
+
+                            
+                        echo '<option value="' . $cat->cat_id . '"'
+                        . selected($cat->cat_id, $cat_rel->cat_id, false) . 
+                        ' >' 
+                        . $cat->cat_name . '</option>';
+                        
+                      
+                  
+                    
+            }
+        }
                         ?>
-                    </select>
+                         </select>
+                   
                 </div>
 
                 <div class="form-field">

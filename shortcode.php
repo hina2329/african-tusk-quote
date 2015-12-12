@@ -44,6 +44,9 @@ class atq_shortcode {
 
         // Register ajax
         add_action('wp_ajax_atq_load_product', array($this, 'load_product'));
+        
+        // Register ajax
+        add_action('wp_ajax_nopriv_atq_load_product', array($this, 'load_product'));
     }
 
     // Registering plugin front end resources
@@ -163,9 +166,9 @@ public function atq_code() {
          <div class="atq-right-col">
              <h1><?php echo $product->prod_name;?></h1>
              <h3><?php echo $product->prod_code;?></h3>
-             <ul>
+             
                 <?php echo $product->prod_desc;?>
-            </ul>
+            
             <p>
                 <strong>Product size:</strong>
                 <?php echo $product->prod_size;?>
@@ -239,7 +242,7 @@ public function atq_code() {
             
       
 
-
+wp_die();
    
 }
 }
