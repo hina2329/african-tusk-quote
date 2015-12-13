@@ -18,6 +18,7 @@ class clients extends ATQ {
                 <label class="screen-reader-text" for="search-input">Search Clients:</label>
                 <input type="search" id="search-input" name="s" value="">
                 <input type="submit" id="search-submit" class="button" value="Search Clients">
+                <a class="button button-primary" href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=init'); ?>">Reset Search</a>
             </form>
 
             <?php echo get_admin_page_title(); ?> <a href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=form'); ?>" class="page-title-action">Add New Client</a></h1>

@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/quotes.php" line="627" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="76021e52-713f-46f8-a012-2065b0375214" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/categories.php" afterPath="$PROJECT_DIR$/categories.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clients.php" afterPath="$PROJECT_DIR$/clients.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/atq-script-admin.js" afterPath="$PROJECT_DIR$/js/atq-script-admin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/products.php" afterPath="$PROJECT_DIR$/products.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quotes.php" afterPath="$PROJECT_DIR$/quotes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shortcode.php" afterPath="$PROJECT_DIR$/shortcode.php" />
+    </list>
+    <ignored path="african-tusk-quote.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="MySQL - hire_quote@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="african-tusk-quote" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="FrameworkCommandLineHistory">
+    <commandsHistory>
+      <command text="git status" />
+    </commandsHistory>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.txt" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/js/atq-script-admin.js" />
+        <option value="$PROJECT_DIR$/shortcode.php" />
+        <option value="$PROJECT_DIR$/products.php" />
+        <option value="$PROJECT_DIR$/clients.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0f8e57c2-2ef2-493c-8ec2-587aac0d4b00/console.sql" />
+        <option value="$PROJECT_DIR$/quotes.php" />
+        <option value="$PROJECT_DIR$/categories.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-7" />
+    <option name="width" value="1378" />
+    <option name="height" value="735" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="1" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="african-tusk-quote" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="african-tusk-quote" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hire-quote" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="african-tusk-quote" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hire-quote" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="african-tusk-quote" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hire-quote" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="african-tusk-quote">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="js-jscs-nodeInterpreter" value="C:\Program Files (x86)\nodejs\node.exe" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="134" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="162" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="163" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="836" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="155" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="154" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="156" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="830" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="SearchEverywhereHistoryKey" value="quo&#9;FILE&#9;file://D:/xampp/htdocs/hire-quote/wp-content/plugins/african-tusk-quote/quotes.php" />
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.products.php">
+    <configuration default="false" name="products.php" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/african-tusk-quote/products.php">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <envs />
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.products.php" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.products.php" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="76021e52-713f-46f8-a012-2065b0375214" name="Default" comment="" />
+      <created>1450003363688</created>
+      <option name="number" value="Default" />
+      <updated>1450003363688</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34219268" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33279485" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32724252" sideWeight="0.49335548" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17462687" sideWeight="0.49335548" order="1" side_tool="false" content_ui="combo" x="526" y="27" width="311" height="658" />
+      <window_info id="Database" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22014925" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15746269" sideWeight="0.4900332" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17462687" sideWeight="0.50664455" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3986711" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20558003" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="WordPressConfiguration" enabled="true">
+    <wordpressPath>D:\xampp\htdocs\hire-quote</wordpressPath>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="6" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/js/atq-script-admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45561138">
+          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shortcode.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1449998473975" expanded="true" signature="3414:3428" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1449998473975" expanded="true" signature="4844:4894" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1449998473975" expanded="true" signature="5911:5973" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1449998473975" expanded="true" signature="6201:6265" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3485114">
+          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+          <folding>
+            <marker date="1449998346816" expanded="true" signature="7715:7745" placeholder="..." />
+            <marker date="1449998346816" expanded="true" signature="8511:8561" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1449998346816" expanded="true" signature="8616:8677" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combo_tbl}" />
+            <marker date="1449998346816" expanded="true" signature="9591:9644" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
+            <marker date="1449998346816" expanded="true" signature="10419:10481" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1449998346816" expanded="true" signature="10833:10898" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1449998346816" expanded="true" signature="12496:12648" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1449998346816" expanded="true" signature="13701:13754" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
+            <marker date="1449998346816" expanded="true" signature="14362:14424" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1449998346816" expanded="true" signature="14837:14902" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1449998346816" expanded="true" signature="16501:16779" placeholder="CREATE TABLE... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1449998346816" expanded="true" signature="16824:17177" placeholder="CREATE TABLE... ${$this-&gt;staff_member_tbl}" />
+            <marker date="1449998346816" expanded="true" signature="17217:17706" placeholder="CREATE TABLE... ${$this-&gt;clients_tbl}" />
+            <marker date="1449998346816" expanded="true" signature="17749:18104" placeholder="CREATE TABLE... ${$this-&gt;categories_tbl}" />
+            <marker date="1449998346816" expanded="true" signature="18151:18396" placeholder="CREATE TABLE... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1449998346816" expanded="true" signature="18437:18905" placeholder="CREATE TABLE... ${$this-&gt;products_tbl}" />
+            <marker date="1449998346816" expanded="true" signature="18947:19244" placeholder="CREATE TABLE... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1449998346816" expanded="true" signature="19274:19692" placeholder="CREATE TABLE... ${$this-&gt;quotes_tbl}" />
+            <marker date="1449998346816" expanded="true" signature="19727:20355" placeholder="CREATE TABLE... ${$this-&gt;quote_items_tbl}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/AT787-251x300.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/products.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.031021899">
+          <caret line="131" column="20" selection-start-line="131" selection-start-column="20" selection-end-line="131" selection-end-column="20" />
+          <folding>
+            <marker date="1450010028392" expanded="true" signature="253:3307" placeholder="..." />
+            <marker date="1450010028392" expanded="true" signature="926:940" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450010028392" expanded="true" signature="1423:1484" placeholder="SELECT * FRO... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450010028392" expanded="true" signature="1702:1753" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450010028392" expanded="true" signature="2028:2090" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1450010028392" expanded="true" signature="2414:2477" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450010028392" expanded="true" signature="3150:3246" placeholder="..." />
+            <marker date="1450010028392" expanded="true" signature="3495:3545" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450010028392" expanded="true" signature="5631:5652" placeholder="SELECT * FRO... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450010028392" expanded="true" signature="5631:5687" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450010028392" expanded="true" signature="5801:5889" placeholder="SELECT * FRO... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450010028392" expanded="true" signature="6115:6170" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450010028392" expanded="true" signature="6278:6366" placeholder="SELECT * FRO... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450010028392" expanded="true" signature="6601:6656" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450010028392" expanded="true" signature="6782:6870" placeholder="SELECT * FRO... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450010028392" expanded="true" signature="7621:7683" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1450010028392" expanded="true" signature="7980:7994" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450010028392" expanded="true" signature="9999:10635" placeholder="..." />
+            <marker date="1450010028392" expanded="true" signature="10180:10194" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://DATABASE/98570f37-72d9-4d41-b9f2-b39993baf452">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>98570f37-72d9-4d41-b9f2-b39993baf452</OriginalElement>
+          <nodes />
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="553.0" y="-66.5" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Columns</Category>
+            <Category>Key columns</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f8e57c2-2ef2-493c-8ec2-587aac0d4b00/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="31" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../wp-includes/link-template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34854016">
+          <caret line="2936" column="9" selection-start-line="2936" selection-start-column="9" selection-end-line="2936" selection-end-column="9" />
+          <folding>
+            <marker date="1435349006000" expanded="true" signature="48064:48112" placeholder="SELECT p.ID wp_posts" />
+            <marker date="1435349006000" expanded="true" signature="74888:74975" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quotes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36313868">
+          <caret line="539" column="14" selection-start-line="539" selection-start-column="14" selection-end-line="539" selection-end-column="14" />
+          <folding>
+            <element signature="e#2430#2457#0#HTML" expanded="false" />
+            <element signature="e#9286#9322#0#HTML" expanded="false" />
+            <element signature="e#11257#11283#0#HTML" expanded="false" />
+            <element signature="e#11760#11798#0#HTML" expanded="false" />
+            <element signature="e#11983#12022#0#HTML" expanded="false" />
+            <element signature="e#12726#12765#0#HTML" expanded="false" />
+            <element signature="e#15530#15569#0#HTML" expanded="false" />
+            <marker date="1450020288516" expanded="true" signature="857:1140" placeholder="SELECT qt.*,... ${$this-&gt;quotes_tbl}" />
+            <marker date="1450020288516" expanded="true" signature="2959:3008" placeholder="SELECT * FRO... ${$this-&gt;quotes_tbl}" />
+            <marker date="1450020288516" expanded="true" signature="3075:3126" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
+            <marker date="1450020288516" expanded="true" signature="5933:5947" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
+            <marker date="1450020288516" expanded="true" signature="8953:8967" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450020288516" expanded="true" signature="9569:9578" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450020288516" expanded="true" signature="9569:9583" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450020288516" expanded="true" signature="9569:9590" placeholder="SELECT * FRO... ${$this}" />
+            <marker date="1450020288516" expanded="true" signature="9569:9625" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450020288516" expanded="true" signature="9917:9972" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450020288516" expanded="true" signature="10180:10235" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450020288516" expanded="true" signature="11472:11532" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
+            <marker date="1450020288516" expanded="true" signature="14140:14202" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1450020288516" expanded="true" signature="14553:14618" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450020288516" expanded="true" signature="16693:16707" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
+            <marker date="1450020288516" expanded="true" signature="17333:17347" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
+            <marker date="1450020288516" expanded="true" signature="24586:24636" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clients.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.290146">
+          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+          <folding>
+            <marker date="1450016524697" expanded="true" signature="1799:2043" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
+            <marker date="1450016524697" expanded="true" signature="2130:2144" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
+            <marker date="1450016524697" expanded="true" signature="4109:4160" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/categories.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48722628">
+          <caret line="259" column="27" selection-start-line="259" selection-start-column="27" selection-end-line="259" selection-end-column="27" />
+          <folding>
+            <marker date="1450024296013" expanded="true" signature="1197:1276" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450024296013" expanded="true" signature="3641:3696" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450024296013" expanded="true" signature="6281:6336" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450024296013" expanded="true" signature="9864:9915" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450024296013" expanded="true" signature="11494:11550" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450024296013" expanded="true" signature="11920:11975" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450024296013" expanded="true" signature="12304:12359" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

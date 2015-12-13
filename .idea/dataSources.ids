@@ -1,0 +1,1084 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - hire_quote@localhost" uuid="0f8e57c2-2ef2-493c-8ec2-587aac0d4b00">
+    <database-info product="MySQL" version="5.5.34" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.4">
+      <schema id="1" name="hire_quote"/>
+      <table id="2" parent="1" name="wp_atq_categories"/>
+      <table id="3" parent="1" name="wp_atq_categories_relation"/>
+      <table id="4" parent="1" name="wp_atq_clients"/>
+      <table id="5" parent="1" name="wp_atq_fabrics"/>
+      <table id="6" parent="1" name="wp_atq_products"/>
+      <table id="7" parent="1" name="wp_atq_products_fp_combos"/>
+      <table id="8" parent="1" name="wp_atq_quote_items"/>
+      <table id="9" parent="1" name="wp_atq_quotes"/>
+      <table id="10" parent="1" name="wp_atq_staff_member"/>
+      <table id="11" parent="1" name="wp_commentmeta"/>
+      <table id="12" parent="1" name="wp_comments"/>
+      <table id="13" parent="1" name="wp_hq_categories"/>
+      <table id="14" parent="1" name="wp_hq_coupons"/>
+      <table id="15" parent="1" name="wp_hq_customers"/>
+      <table id="16" parent="1" name="wp_hq_options"/>
+      <table id="17" parent="1" name="wp_hq_orders"/>
+      <table id="18" parent="1" name="wp_hq_postcodes"/>
+      <table id="19" parent="1" name="wp_hq_products"/>
+      <table id="20" parent="1" name="wp_links"/>
+      <table id="21" parent="1" name="wp_options"/>
+      <table id="22" parent="1" name="wp_postmeta"/>
+      <table id="23" parent="1" name="wp_posts"/>
+      <table id="24" parent="1" name="wp_term_relationships"/>
+      <table id="25" parent="1" name="wp_term_taxonomy"/>
+      <table id="26" parent="1" name="wp_terms"/>
+      <table id="27" parent="1" name="wp_usermeta"/>
+      <table id="28" parent="1" name="wp_users"/>
+      <column id="29" parent="2" name="cat_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="30" parent="2" name="cat_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="31" parent="2" name="cat_desc">
+        <data-type>varchar(500)</data-type>
+      </column>
+      <column id="32" parent="2" name="cat_image">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="33" parent="2" name="cat_parent">
+        <data-type>int(3)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="34" parent="2" name="cat_order">
+        <data-type>int(2)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <key id="35" parent="2" name="PRIMARY">
+        <columns>cat_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="36" parent="3" name="rel_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="37" parent="3" name="prod_id">
+        <data-type>int(5)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="38" parent="3" name="cat_id">
+        <data-type>int(5)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <key id="39" parent="3" name="PRIMARY">
+        <columns>rel_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="40" parent="4" name="client_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="41" parent="4" name="client_fname">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="42" parent="4" name="client_lname">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="43" parent="4" name="client_email">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="44" parent="4" name="client_email_2">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="45" parent="4" name="client_contactno">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="46" parent="4" name="client_cellno">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="47" parent="4" name="client_companyname">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <key id="48" parent="4" name="PRIMARY">
+        <columns>client_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="49" parent="5" name="fab_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="50" parent="5" name="fab_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="51" parent="5" name="fab_suffix">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="52" parent="5" name="fab_colors">
+        <data-type>longtext</data-type>
+      </column>
+      <key id="53" parent="5" name="PRIMARY">
+        <columns>fab_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="54" parent="6" name="prod_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="55" parent="6" name="prod_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="56" parent="6" name="prod_desc">
+        <data-type>longtext</data-type>
+      </column>
+      <column id="57" parent="6" name="prod_images">
+        <data-type>longtext</data-type>
+      </column>
+      <column id="58" parent="6" name="prod_code">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="59" parent="6" name="prod_size">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="60" parent="6" name="prod_seller">
+        <data-type>tinyint(4)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="61" parent="6" name="prod_sale">
+        <data-type>tinyint(4)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="62" parent="6" name="prod_new">
+        <data-type>tinyint(4)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <key id="63" parent="6" name="PRIMARY">
+        <columns>prod_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="64" parent="7" name="combo_id">
+        <mandatory>1</mandatory>
+        <data-type>int(9)</data-type>
+      </column>
+      <column id="65" parent="7" name="combo_pid">
+        <mandatory>1</mandatory>
+        <data-type>int(9)</data-type>
+      </column>
+      <column id="66" parent="7" name="combo_code">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="67" parent="7" name="combo_price">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <key id="68" parent="7" name="PRIMARY">
+        <columns>combo_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="69" parent="8" name="item_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="70" parent="8" name="item_qid">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="71" parent="8" name="item_pid">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="72" parent="8" name="item_code">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="73" parent="8" name="item_fab">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="74" parent="8" name="item_images">
+        <data-type>longtext</data-type>
+      </column>
+      <column id="75" parent="8" name="item_name">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="76" parent="8" name="item_desc">
+        <data-type>longtext</data-type>
+      </column>
+      <column id="77" parent="8" name="item_cat">
+        <data-type>longtext</data-type>
+      </column>
+      <column id="78" parent="8" name="item_qty">
+        <data-type>int(3)</data-type>
+        <default-expression>&apos;1&apos;</default-expression>
+      </column>
+      <column id="79" parent="8" name="item_price">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="80" parent="8" name="item_order">
+        <data-type>int(2)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="81" parent="8" name="heading">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="82" parent="8" name="sep">
+        <data-type>tinyint(4)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <key id="83" parent="8" name="PRIMARY">
+        <columns>item_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="84" parent="9" name="quote_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="85" parent="9" name="quote_staff">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="86" parent="9" name="quote_client">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="87" parent="9" name="quote_subject">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="88" parent="9" name="quote_comment">
+        <mandatory>1</mandatory>
+        <data-type>longtext</data-type>
+      </column>
+      <column id="89" parent="9" name="quote_date">
+        <mandatory>1</mandatory>
+        <data-type>timestamp</data-type>
+        <default-expression>&apos;CURRENT_TIMESTAMP&apos;</default-expression>
+      </column>
+      <column id="90" parent="9" name="quote_status">
+        <data-type>int(1)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <key id="91" parent="9" name="PRIMARY">
+        <columns>quote_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="92" parent="10" name="staff_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="93" parent="10" name="staff_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="94" parent="10" name="staff_email">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="95" parent="10" name="staff_position">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="96" parent="10" name="staff_contactno">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <key id="97" parent="10" name="PRIMARY">
+        <columns>staff_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="98" parent="11" name="meta_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+      </column>
+      <column id="99" parent="11" name="comment_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="100" parent="11" name="meta_key">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="101" parent="11" name="meta_value">
+        <data-type>longtext</data-type>
+      </column>
+      <index id="102" parent="11" name="comment_id">
+        <columns>comment_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="103" parent="11" name="meta_key">
+        <columns>meta_key</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="104" parent="11" name="PRIMARY">
+        <columns>meta_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="105" parent="12" name="comment_ID">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+      </column>
+      <column id="106" parent="12" name="comment_post_ID">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="107" parent="12" name="comment_author">
+        <mandatory>1</mandatory>
+        <data-type>tinytext</data-type>
+      </column>
+      <column id="108" parent="12" name="comment_author_email">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="109" parent="12" name="comment_author_url">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="110" parent="12" name="comment_author_IP">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="111" parent="12" name="comment_date">
+        <mandatory>1</mandatory>
+        <data-type>datetime</data-type>
+        <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
+      </column>
+      <column id="112" parent="12" name="comment_date_gmt">
+        <mandatory>1</mandatory>
+        <data-type>datetime</data-type>
+        <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
+      </column>
+      <column id="113" parent="12" name="comment_content">
+        <mandatory>1</mandatory>
+        <data-type>text</data-type>
+      </column>
+      <column id="114" parent="12" name="comment_karma">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="115" parent="12" name="comment_approved">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+        <default-expression>&apos;1&apos;</default-expression>
+      </column>
+      <column id="116" parent="12" name="comment_agent">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="117" parent="12" name="comment_type">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="118" parent="12" name="comment_parent">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="119" parent="12" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <index id="120" parent="12" name="comment_approved_date_gmt">
+        <columns>comment_approved
+comment_date_gmt</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="121" parent="12" name="comment_author_email">
+        <columns>comment_author_email</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="122" parent="12" name="comment_date_gmt">
+        <columns>comment_date_gmt</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="123" parent="12" name="comment_parent">
+        <columns>comment_parent</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="124" parent="12" name="comment_post_ID">
+        <columns>comment_post_ID</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="125" parent="12" name="PRIMARY">
+        <columns>comment_ID</columns>
+        <primary>1</primary>
+      </key>
+      <column id="126" parent="13" name="cat_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="127" parent="13" name="cat_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="128" parent="13" name="cat_allowed">
+        <mandatory>1</mandatory>
+        <data-type>varchar(256)</data-type>
+      </column>
+      <column id="129" parent="13" name="cat_not_allowed">
+        <mandatory>1</mandatory>
+        <data-type>varchar(256)</data-type>
+      </column>
+      <key id="130" parent="13" name="PRIMARY">
+        <columns>cat_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="131" parent="14" name="copn_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="132" parent="14" name="copn_code">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="133" parent="14" name="copn_discount">
+        <mandatory>1</mandatory>
+        <data-type>float</data-type>
+      </column>
+      <key id="134" parent="14" name="PRIMARY">
+        <columns>copn_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="135" parent="15" name="cust_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="136" parent="15" name="cust_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="137" parent="15" name="cust_address">
+        <mandatory>1</mandatory>
+        <data-type>varchar(256)</data-type>
+      </column>
+      <column id="138" parent="15" name="cust_suburb">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="139" parent="15" name="cust_postcode">
+        <mandatory>1</mandatory>
+        <data-type>int(8)</data-type>
+      </column>
+      <column id="140" parent="15" name="cust_phone">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="141" parent="15" name="cust_email">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <key id="142" parent="15" name="PRIMARY">
+        <columns>cust_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="143" parent="16" name="opt_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="144" parent="16" name="opt_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="145" parent="16" name="opt_price">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <key id="146" parent="16" name="PRIMARY">
+        <columns>opt_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="147" parent="17" name="odr_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="148" parent="17" name="odr_cust_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="149" parent="17" name="odr_prod_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="150" parent="17" name="odr_cat_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="151" parent="17" name="odr_options">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="152" parent="17" name="odr_d_date">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="153" parent="17" name="odr_c_date">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="154" parent="17" name="odr_pfr_time">
+        <mandatory>1</mandatory>
+        <data-type>varchar(2)</data-type>
+      </column>
+      <column id="155" parent="17" name="odr_postcode">
+        <mandatory>1</mandatory>
+        <data-type>int(8)</data-type>
+      </column>
+      <column id="156" parent="17" name="odr_status">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="157" parent="17" name="odr_full">
+        <mandatory>1</mandatory>
+        <data-type>longtext</data-type>
+      </column>
+      <index id="158" parent="17" name="odr_cust_id">
+        <columns>odr_cust_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="159" parent="17" name="PRIMARY">
+        <columns>odr_id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="160" parent="17" name="wp_hq_orders_ibfk_1">
+        <columns>odr_cust_id</columns>
+        <ref-key>~.wp_hq_customers.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="161" parent="18" name="pc_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="162" parent="18" name="pc_code">
+        <mandatory>1</mandatory>
+        <data-type>int(8)</data-type>
+      </column>
+      <column id="163" parent="18" name="pc_suburb">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="164" parent="18" name="pc_state">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <key id="165" parent="18" name="PRIMARY">
+        <columns>pc_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="166" parent="19" name="prod_id">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="167" parent="19" name="prod_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(256)</data-type>
+      </column>
+      <column id="168" parent="19" name="prod_img">
+        <mandatory>1</mandatory>
+        <data-type>varchar(256)</data-type>
+      </column>
+      <column id="169" parent="19" name="prod_cat">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="170" parent="19" name="prod_desc">
+        <mandatory>1</mandatory>
+        <data-type>longtext</data-type>
+      </column>
+      <column id="171" parent="19" name="prod_rate">
+        <mandatory>1</mandatory>
+        <data-type>varchar(10)</data-type>
+      </column>
+      <column id="172" parent="19" name="prod_width">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="173" parent="19" name="prod_height">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="174" parent="19" name="prod_length">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <index id="175" parent="19" name="wp_hq_products_ibfk_1">
+        <columns>prod_cat</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="176" parent="19" name="PRIMARY">
+        <columns>prod_id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="177" parent="19" name="wp_hq_products_ibfk_1">
+        <columns>prod_cat</columns>
+        <ref-key>~.wp_hq_categories.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="178" parent="20" name="link_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+      </column>
+      <column id="179" parent="20" name="link_url">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="180" parent="20" name="link_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="181" parent="20" name="link_image">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="182" parent="20" name="link_target">
+        <mandatory>1</mandatory>
+        <data-type>varchar(25)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="183" parent="20" name="link_description">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="184" parent="20" name="link_visible">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+        <default-expression>&apos;Y&apos;</default-expression>
+      </column>
+      <column id="185" parent="20" name="link_owner">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+        <default-expression>&apos;1&apos;</default-expression>
+      </column>
+      <column id="186" parent="20" name="link_rating">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="187" parent="20" name="link_updated">
+        <mandatory>1</mandatory>
+        <data-type>datetime</data-type>
+        <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
+      </column>
+      <column id="188" parent="20" name="link_rel">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="189" parent="20" name="link_notes">
+        <mandatory>1</mandatory>
+        <data-type>mediumtext</data-type>
+      </column>
+      <column id="190" parent="20" name="link_rss">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <index id="191" parent="20" name="link_visible">
+        <columns>link_visible</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="192" parent="20" name="PRIMARY">
+        <columns>link_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="193" parent="21" name="option_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+      </column>
+      <column id="194" parent="21" name="option_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(64)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="195" parent="21" name="option_value">
+        <mandatory>1</mandatory>
+        <data-type>longtext</data-type>
+      </column>
+      <column id="196" parent="21" name="autoload">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+        <default-expression>&apos;yes&apos;</default-expression>
+      </column>
+      <index id="197" parent="21" name="option_name">
+        <columns>option_name</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="198" parent="21" name="option_name">
+        <columns>option_name</columns>
+        <underlying-index>option_name</underlying-index>
+      </key>
+      <key id="199" parent="21" name="PRIMARY">
+        <columns>option_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="200" parent="22" name="meta_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+      </column>
+      <column id="201" parent="22" name="post_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="202" parent="22" name="meta_key">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="203" parent="22" name="meta_value">
+        <data-type>longtext</data-type>
+      </column>
+      <index id="204" parent="22" name="meta_key">
+        <columns>meta_key</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="205" parent="22" name="post_id">
+        <columns>post_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="206" parent="22" name="PRIMARY">
+        <columns>meta_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="207" parent="23" name="ID">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+      </column>
+      <column id="208" parent="23" name="post_author">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="209" parent="23" name="post_date">
+        <mandatory>1</mandatory>
+        <data-type>datetime</data-type>
+        <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
+      </column>
+      <column id="210" parent="23" name="post_date_gmt">
+        <mandatory>1</mandatory>
+        <data-type>datetime</data-type>
+        <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
+      </column>
+      <column id="211" parent="23" name="post_content">
+        <mandatory>1</mandatory>
+        <data-type>longtext</data-type>
+      </column>
+      <column id="212" parent="23" name="post_title">
+        <mandatory>1</mandatory>
+        <data-type>text</data-type>
+      </column>
+      <column id="213" parent="23" name="post_excerpt">
+        <mandatory>1</mandatory>
+        <data-type>text</data-type>
+      </column>
+      <column id="214" parent="23" name="post_status">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+        <default-expression>&apos;publish&apos;</default-expression>
+      </column>
+      <column id="215" parent="23" name="comment_status">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+        <default-expression>&apos;open&apos;</default-expression>
+      </column>
+      <column id="216" parent="23" name="ping_status">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+        <default-expression>&apos;open&apos;</default-expression>
+      </column>
+      <column id="217" parent="23" name="post_password">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="218" parent="23" name="post_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="219" parent="23" name="to_ping">
+        <mandatory>1</mandatory>
+        <data-type>text</data-type>
+      </column>
+      <column id="220" parent="23" name="pinged">
+        <mandatory>1</mandatory>
+        <data-type>text</data-type>
+      </column>
+      <column id="221" parent="23" name="post_modified">
+        <mandatory>1</mandatory>
+        <data-type>datetime</data-type>
+        <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
+      </column>
+      <column id="222" parent="23" name="post_modified_gmt">
+        <mandatory>1</mandatory>
+        <data-type>datetime</data-type>
+        <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
+      </column>
+      <column id="223" parent="23" name="post_content_filtered">
+        <mandatory>1</mandatory>
+        <data-type>longtext</data-type>
+      </column>
+      <column id="224" parent="23" name="post_parent">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="225" parent="23" name="guid">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="226" parent="23" name="menu_order">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="227" parent="23" name="post_type">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+        <default-expression>&apos;post&apos;</default-expression>
+      </column>
+      <column id="228" parent="23" name="post_mime_type">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="229" parent="23" name="comment_count">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <index id="230" parent="23" name="post_author">
+        <columns>post_author</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="231" parent="23" name="post_name">
+        <columns>post_name</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="232" parent="23" name="post_parent">
+        <columns>post_parent</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="233" parent="23" name="type_status_date">
+        <columns>post_type
+post_status
+post_date
+ID</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="234" parent="23" name="PRIMARY">
+        <columns>ID</columns>
+        <primary>1</primary>
+      </key>
+      <column id="235" parent="24" name="object_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="236" parent="24" name="term_taxonomy_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="237" parent="24" name="term_order">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <index id="238" parent="24" name="term_taxonomy_id">
+        <columns>term_taxonomy_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="239" parent="24" name="PRIMARY">
+        <columns>object_id
+term_taxonomy_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="240" parent="25" name="term_taxonomy_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+      </column>
+      <column id="241" parent="25" name="term_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="242" parent="25" name="taxonomy">
+        <mandatory>1</mandatory>
+        <data-type>varchar(32)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="243" parent="25" name="description">
+        <mandatory>1</mandatory>
+        <data-type>longtext</data-type>
+      </column>
+      <column id="244" parent="25" name="parent">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="245" parent="25" name="count">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <index id="246" parent="25" name="taxonomy">
+        <columns>taxonomy</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="247" parent="25" name="term_id_taxonomy">
+        <columns>term_id
+taxonomy</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="248" parent="25" name="PRIMARY">
+        <columns>term_taxonomy_id</columns>
+        <primary>1</primary>
+      </key>
+      <key id="249" parent="25" name="term_id_taxonomy">
+        <columns>term_id
+taxonomy</columns>
+        <underlying-index>term_id_taxonomy</underlying-index>
+      </key>
+      <column id="250" parent="26" name="term_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+      </column>
+      <column id="251" parent="26" name="name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="252" parent="26" name="slug">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="253" parent="26" name="term_group">
+        <mandatory>1</mandatory>
+        <data-type>bigint(10)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <index id="254" parent="26" name="name">
+        <columns>name</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="255" parent="26" name="slug">
+        <columns>slug</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="256" parent="26" name="PRIMARY">
+        <columns>term_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="257" parent="27" name="umeta_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+      </column>
+      <column id="258" parent="27" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="259" parent="27" name="meta_key">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="260" parent="27" name="meta_value">
+        <data-type>longtext</data-type>
+      </column>
+      <index id="261" parent="27" name="meta_key">
+        <columns>meta_key</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="262" parent="27" name="user_id">
+        <columns>user_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="263" parent="27" name="PRIMARY">
+        <columns>umeta_id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="264" parent="28" name="ID">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20) unsigned</data-type>
+      </column>
+      <column id="265" parent="28" name="user_login">
+        <mandatory>1</mandatory>
+        <data-type>varchar(60)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="266" parent="28" name="user_pass">
+        <mandatory>1</mandatory>
+        <data-type>varchar(64)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="267" parent="28" name="user_nicename">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="268" parent="28" name="user_email">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="269" parent="28" name="user_url">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="270" parent="28" name="user_registered">
+        <mandatory>1</mandatory>
+        <data-type>datetime</data-type>
+        <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
+      </column>
+      <column id="271" parent="28" name="user_activation_key">
+        <mandatory>1</mandatory>
+        <data-type>varchar(60)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="272" parent="28" name="user_status">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="273" parent="28" name="display_name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(250)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <index id="274" parent="28" name="user_login_key">
+        <columns>user_login</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="275" parent="28" name="user_nicename">
+        <columns>user_nicename</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="276" parent="28" name="PRIMARY">
+        <columns>ID</columns>
+        <primary>1</primary>
+      </key>
+    </database-model>
+  </data-source>
+</component>

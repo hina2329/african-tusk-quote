@@ -88,7 +88,7 @@ jQuery(document).ready(function ($) {
         $(this).hide();
         return false;
     });
-   
+
     $(".client-holder").keyup(function () {
         var filter = $(this).val();
         if (!filter) {
@@ -157,7 +157,6 @@ jQuery(document).ready(function ($) {
             $('#update-msg').hide();
         });
     });
-   
 
 
     // Delete item row
@@ -228,10 +227,10 @@ jQuery(document).ready(function ($) {
         return false;
     });
     // Categories
-    $('.add-cat').live('click', function() {
-     var quote_id = $('.quote-id').val();
-     var item_cat = $('.item-cat').val();
-     var data = {
+    $('.add-cat').live('click', function () {
+        var quote_id = $('.quote-id').val();
+        var item_cat = $('.item-cat').val();
+        var data = {
             action: 'add_cat',
             qid: quote_id,
             icat: item_cat
@@ -241,10 +240,10 @@ jQuery(document).ready(function ($) {
         $.post(ajaxurl, data, function (result) {
             $('#the-list').prepend(result);
             $('#update-msg').hide();
-     
-     });
 
-     
-});
+        });
+
+
+    });
 
 });

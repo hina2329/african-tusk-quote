@@ -40,9 +40,9 @@ class categories extends ATQ {
                         foreach ($results as $row) {
                             ?>
                             <tr id="<?php echo $row->cat_id; ?>" >
-                            <td>
-                            <?php echo $row->cat_id; ?>
-                            </td>
+                                <td>
+                                    <?php echo $row->cat_id; ?>
+                                </td>
                                 <td>
                                     <?php
                                     if ($row->cat_image) {
@@ -78,9 +78,9 @@ class categories extends ATQ {
                                 $i++;
                                 ?>
                                 <tr>
-                                <td>
-                                <?php echo $child_cat->cat_id;?>
-                                </td>
+                                    <td>
+                                        <?php echo $child_cat->cat_id; ?>
+                                    </td>
                                     <td>
                                         <?php
                                         if ($child_cat->cat_image) {
@@ -118,9 +118,9 @@ class categories extends ATQ {
                                     $i++;
                                     ?>
                                     <tr>
-                                    <td>
-                                    <?php echo $sub_cat->cat_id;?>
-                                    </td>
+                                        <td>
+                                            <?php echo $sub_cat->cat_id; ?>
+                                        </td>
                                         <td>
                                             <?php
                                             if ($sub_cat->cat_image) {
@@ -207,11 +207,24 @@ class categories extends ATQ {
                         <option value="0">Select Parent</option>
                         <?php
                         // Getting categories list
-                        $cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl");
+                        $cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl WHERE cat_parent = 0");
 
                         // Listing all categories
                         foreach ($cats as $cat) {
-                            echo '<option value="' . $cat->cat_id . '" ' . selected($cat->cat_id, $row->cat_parent, false) . '>' . $cat->cat_name . '</option>';
+                            echo "<option value=\"" . $cat->cat_id . '" ' . selected($cat->cat_id, $row->cat_id, false) . '>' . $cat->cat_name . '</option>';
+
+                            // Sub cats
+                            $sub_cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl WHERE cat_parent = $cat->cat_id");
+
+                            foreach ($sub_cats as $sub_cat) {
+                                echo '<option value="' . $sub_cat->cat_id . '" ' . selected($sub_cat->cat_id, $row->cat_id, false) . '>— ' . $sub_cat->cat_name . '</option>';
+
+                                $sub_sub_cats = $this->wpdb->get_results("SELECT * FROM $this->categories_tbl WHERE cat_parent = $sub_cat->cat_id");
+
+                                foreach ($sub_sub_cats as $sub_sub_cat) {
+                                    echo '<option value="' . $sub_sub_cat->cat_id . '" ' . selected($sub_sub_cat->cat_id, $row->cat_id, false) . '>—— ' . $sub_sub_cat->cat_name . '</option>';
+                                }
+                            }
                         }
                         ?>
 
