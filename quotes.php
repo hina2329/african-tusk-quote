@@ -276,11 +276,33 @@ class quotes extends ATQ {
 							}
 
 						}
+
 						?>
 					</select>
-					<button class="button add-cat">Add Products</button>
+					<button class="button add-cat">Find Products</button>
 
 				</div>
+
+				<div id="cat-selective">
+					<h3>Products from categories</h3>
+					<table class="wp-list-table widefat fixed striped pages cat-selective-list">
+						<thead>
+						<tr>
+							<th width="10%">#</th>
+							<th width="20%">Code</th>
+							<th width="15%">Picture</th>
+							<th width="40%">Name</th>
+							<th width="15%" class="actions">Category</th>
+						</tr>
+						</thead>
+						<tbody id="the-selective-list">
+						</tbody>
+					</table>
+					<p class="submit" style="float: right;">
+						<a href="#" class="button button-primary">Add Selected Products</a>
+					</p>
+				</div>
+
 				<form method="post"
 				      action="<?php echo admin_url( 'admin.php?page=' . $this->page . '&action=save&update=quote' ); ?>">
 					<input type="hidden" name="quote_id" id="quote_id" value="<?php echo $quote->quote_id; ?>">
@@ -676,33 +698,6 @@ class quotes extends ATQ {
 			// Redirect to next quote form
 			wp_redirect( admin_url( 'admin.php?page=' . $this->page . '&action=form&id=' . $quote_id ) );
 		}
-	}
-
-	public function add_product() {
-
-		// Get product and quote id
-		$prod_id  = filter_input( INPUT_POST, 'prod_id' );
-		$quote_id = filter_input( INPUT_POST, 'quote_id' );
-
-		// Get product data of db
-		$product = $this->wpdb->get_row( "SELECT * FROM $this->products_tbl WHERE prod_id = $prod_id" );
-		echo $product->prod_id;
-		echo $product->prod_code;
-		// Save existing product data into wp_atq_quote_items table
-		$product_data = array(
-			'item_qid'    => $quote_id,
-			'item_pid'    => $prod_id,
-			'item_code'   => $product->prod_code,
-			'item_images' => $product->prod_images,
-			'item_name'   => $product->prod_name,
-			'item_desc'   => $product->prod_desc,
-			'item_cat'    => $product->prod_cat
-		);
-
-		$this->wpdb->insert( $this->quote_items_tbl, $product_data );
-
-		// Redirect to next quote form
-		wp_redirect( admin_url( 'admin.php?page=' . $this->page . '&action=form&id=' . $quote_id ) );
 	}
 
 	// Delete product

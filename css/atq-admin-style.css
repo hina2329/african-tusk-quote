@@ -2,62 +2,80 @@
 #atq-wrap {
 
 }
+
 #atq-wrap input[type=text] {
     width: 100%;
 }
+
 #atq-wrap input.small-text {
     width: 100px;
     padding: 1px 6px;
 }
+
 #atq-wrap input.x-small-text {
     width: 70px;
     padding: 1px 6px;
 }
+
 #atq-wrap input.medium-text {
     width: 150px;
 }
+
 #atq-wrap input.large-text {
     width: 236px;
 }
+
 #atq-wrap h1 {
     margin-bottom: 10px;
 }
+
 #atq-wrap a {
     outline: none;
 }
+
 #atq-wrap label span {
     color: red;
 }
+
 #atq-wrap .wp-list-table td {
     display: table-cell;
 }
+
 #atq-wrap .wp-list-table .actions {
     text-align: right;
 }
+
 #atq-wrap .col-left {
     width: 35%;
     float: left;
 }
+
 #atq-wrap .col-right {
     width: 63%;
     float: right;
 }
+
 #atq-wrap .form-field {
     margin-bottom: 10px;
 }
+
 #atq-wrap .submit {
     clear: both;
 }
+
 #atq-wrap .search-box {
     float: right;
 }
+
 .atq-final {
     overflow: hidden;
 }
+
 .atq-pager {
     text-align: center;
     padding: 20px 0;
 }
+
 .atq-pager a {
     display: inline-block;
     line-height: 30px;
@@ -67,6 +85,7 @@
     text-decoration: none;
     margin: 0 5px;
 }
+
 .multi-fields,
 .multi-fields-fab-price {
     position: relative;
@@ -74,52 +93,62 @@
     border: #CCC 2px solid;
     padding: 10px;
 }
+
 .multi-fields.screen-reader-text,
 .multi-fields-fab-price.screen-reader-text {
     padding: 0;
     border: 0;
 }
+
 .atq-no-fields {
     position: absolute;
     right: -10px;
     top: -10px;
     text-decoration: none;
 }
+
 .atq-no-fields:before {
     border-radius: 50%;
     background: #fff;
     font-size: 20px;
 }
+
 .atq-no-fields,
 .atq-no-fields:hover,
 .atq-no-fields:focus {
     color: red;
     box-shadow: none;
 }
+
 .btn-fields {
     font-weight: bold;
     float: right;
     text-transform: uppercase;
     color: #fff !important;
     border-radius: 5px;
-    text-decoration:  none;
+    text-decoration: none;
     font-size: 11px;
     padding: 0 5px;
 }
+
 .btn-fields:focus {
     box-shadow: none;
 }
+
 .add-fields,
 .add-fabric {
     background: #45BF03;
 }
+
 .add-fabric {
     margin: 4px 0 0;
 }
+
 .remove-fields {
     margin: 10px 0 0;
     background: red;
 }
+
 .quote_status {
     text-transform: uppercase;
     color: #fff;
@@ -132,45 +161,56 @@
     text-align: center;
     display: block;
 }
+
 .quote_new {
     background: red;
 }
+
 .quote_sent {
     background: #8BB211;
 }
+
 .send-quote {
     float: right;
     position: relative;
     top: 10px;
 }
+
 #atq-wrap fieldset {
     border: #BCB9B9 2px solid;
     padding: 10px 10px 0;
     margin: 0 0 20px;
 }
+
 #atq-wrap fieldset legend {
     font-size: 16px;
     font-weight: bold;
 }
+
 #quote_comment {
     height: 307px;
 }
+
 .quote-products {
     clear: both;
 }
+
 .quote-products form {
     display: inline;
 }
+
 .quote-item-heading {
     width: 45%;
     float: left;
 }
+
 .quote-item-search {
     position: relative;
     padding: 0 0 10px;
     width: 23%;
     float: left;
 }
+
 .quote-item-search ul {
     margin: 0;
     padding: 0;
@@ -181,11 +221,13 @@
     left: 1px;
     border-bottom: none;
 }
+
 .quote-item-search ul li {
     border-bottom: #DDDDDD 1px solid;
     margin: 0;
     display: none;
 }
+
 .quote-item-search ul li a {
     background: #fff;
     display: block;
@@ -193,6 +235,7 @@
     font-weight: bold;
     text-decoration: none;
 }
+
 .no_img {
     width: 80px;
     line-height: 80px;
@@ -201,29 +244,37 @@
     text-align: center;
     font-size: 12px;
 }
+
 .fabric-list {
     margin: 0 0 10px;
 }
+
 .fabric-list a {
     text-decoration: none;
     float: right;
 }
+
 .fabric-list .fab-name {
     width: 150px;
     display: inline-block;
 }
+
 .item-fab-colors {
     display: none;
 }
+
 .multi-fields-fab-price .remove-fields {
     margin: 5px 0 0;
 }
-.btn-right{
+
+.btn-right {
     float: right;
 }
+
 .client-list {
     position: relative;
 }
+
 .client-list ul {
     margin: 0;
     padding: 0;
@@ -234,6 +285,7 @@
     border-bottom: none;
     width: 100%;
 }
+
 .client-list ul li {
     border-bottom: #DDDDDD 1px solid;
     margin: 0;
@@ -242,6 +294,7 @@
     padding: 6px;
     display: none;
 }
+
 #update-msg {
     width: 100px;
     background: #fff;
@@ -257,18 +310,27 @@
     display: none;
     margin: -15px 0 0 -50px;
 }
+
 #update-msg img {
     float: left;
     margin-right: 7px;
 }
+
 .search-cat {
     float: right;
     width: 28%;
 }
+
 .item-cat {
     float: left;
     margin: 0 10px 0 0;
 }
+
 .add-cat {
     float: left;
+}
+
+#cat-selective {
+    padding: 30px 0;
+    clear: both;
 }
