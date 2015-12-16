@@ -27,12 +27,16 @@ class FPCombo extends ATQ {
 
         foreach ($combos as $combo) {
 
+            // Extracting Fab Code and ID
+	        list( $fab_code, $fab_id ) = explode(';', $combo['fab']);
+
             // Combo relation product code
-            $combo_code = $combo_rel_code . '-' . $combo['fab'];
+            $combo_code = $combo_rel_code . '-' . $fab_code;
 
             // Prep combo data
             $combo_data = array(
                 'combo_pid' => $combo_rel,
+                'combo_fid' => $fab_id,
                 'combo_code' => $combo_code,
                 'combo_price' => $combo['price']
             );

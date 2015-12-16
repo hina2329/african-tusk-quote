@@ -228,7 +228,7 @@ jQuery(document).ready(function ($) {
         return false;
     });
 
-    // Categories
+    // Find Categories
     $('.add-cat').live('click', function () {
         var quote_id = $('.quote-id').val();
         var item_cat = $('.item-cat').val();
@@ -245,6 +245,23 @@ jQuery(document).ready(function ($) {
             $('#update-msg').hide();
         });
 
+    });
+
+    // Add products from categories to quote
+    $('.add-selective').click(function () {
+
+        var ids = $('.selective-prod:checked').serialize();
+
+        var data = {
+            action: 'add_sel_prod',
+            prod_ids: ids
+        };
+
+        $.post(ajaxurl, data, function(result){
+            alert(result);
+        });
+
+        return false;
     });
 
 });
