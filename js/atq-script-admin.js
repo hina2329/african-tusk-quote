@@ -246,5 +246,6 @@ jQuery(document).ready(function ($) {
         });
 
     });
+    // products
 
 });

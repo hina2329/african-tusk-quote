@@ -345,7 +345,7 @@ class ATQ {
 				echo '<tr>';
 
 				echo '<td>
-						<input type="checkbox" name="" value="prod[' . $cat->prod_id . ']">
+						<input type="checkbox" name="prod_id[]" value="prod[' . $cat->prod_id . ']">
 					</td>';
 
 				echo '<td>';
