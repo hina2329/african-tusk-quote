@@ -86,11 +86,10 @@ class products extends ATQ {
 
 							foreach ( $prod_fabs as $prod_fab ) {
 								$i ++;
-								$combo_code = explode( '-', $prod_fab->combo_code );
-								$fab_code   = $combo_code[1];
 
 								// Get related fabrics
-								$fab = $this->wpdb->get_row( "SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_code'" );
+								$fab = $this->wpdb->get_row( "SELECT * FROM $this->fabrics_tbl WHERE fab_id =
+								$prod_fab->combo_fid" );
 
 								echo $fab->fab_name;
 
@@ -294,7 +293,9 @@ class products extends ATQ {
 						foreach ( $fabs as $fab ) {
 							?>
 							<option
-								value="<?php echo $fab->fab_suffix; ?>"><?php echo $fab->fab_name . ' / ' . $fab->fab_suffix; ?></option>
+								value="<?php echo $fab->fab_suffix; ?>;<?php echo $fab->fab_id; ?>">
+								<?php echo $fab->fab_name . ' / ' . $fab->fab_suffix; ?>
+							</option>
 							<?php
 						}
 						?>

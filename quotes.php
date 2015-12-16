@@ -299,7 +299,9 @@ class quotes extends ATQ {
 						</tbody>
 					</table>
 					<p class="submit" style="float: right;">
-						<a href="#" class="button button-primary add-sel=prod">Add Selected Products</a>
+
+						<a href="#" class="button button-primary add-selective">Add Selected Products</a>
+
 					</p>
 				</div>
 

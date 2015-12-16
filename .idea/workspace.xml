@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76021e52-713f-46f8-a012-2065b0375214" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/atq-admin-style.css" afterPath="$PROJECT_DIR$/css/atq-admin-style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csv_fabric_price_combos_import.php" afterPath="$PROJECT_DIR$/csv_fabric_price_combos_import.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/atq-script-admin.js" afterPath="$PROJECT_DIR$/js/atq-script-admin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/products.php" afterPath="$PROJECT_DIR$/products.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/products_fabric_price_combo.php" afterPath="$PROJECT_DIR$/products_fabric_price_combo.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quotes.php" afterPath="$PROJECT_DIR$/quotes.php" />
     </list>
     <ignored path="african-tusk-quote.iws" />
@@ -73,7 +74,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
-    <favorites_list name="african-tusk-quote" />
+    <favorites_list name="African Tusk WP Plugin" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -81,68 +82,17 @@
         <entry file="file://$PROJECT_DIR$/js/atq-script-admin.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="239" column="41" selection-start-line="239" selection-start-column="41" selection-end-line="239" selection-end-column="41" />
+              <caret line="263" column="21" selection-start-line="263" selection-start-column="21" selection-end-line="263" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quotes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/quotes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.153846">
-              <caret line="291" column="24" selection-start-line="291" selection-start-column="24" selection-end-line="291" selection-end-column="24" />
-              <folding>
-                <element signature="n#__construct#0;n#quotes#0;n#!!top" expanded="true" />
-                <element signature="n#init#0;n#quotes#0;n#!!top" expanded="true" />
-                <element signature="n#save#0;n#quotes#0;n#!!top" expanded="true" />
-                <element signature="n#del#0;n#quotes#0;n#!!top" expanded="true" />
-                <marker date="1450099074589" expanded="true" signature="857:1140" placeholder="SELECT qt.*,... ${$this-&gt;quotes_tbl}" />
-                <marker date="1450099074589" expanded="true" signature="2959:3008" placeholder="SELECT * FRO... ${$this-&gt;quotes_tbl}" />
-                <marker date="1450099074589" expanded="true" signature="3075:3126" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
-                <marker date="1450099074589" expanded="true" signature="5933:5947" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
-                <marker date="1450099074589" expanded="true" signature="8953:8967" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
-                <marker date="1450099074589" expanded="true" signature="9569:9578" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-                <marker date="1450099074589" expanded="true" signature="9569:9583" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-                <marker date="1450099074589" expanded="true" signature="9569:9590" placeholder="SELECT * FRO... ${$this}" />
-                <marker date="1450099074589" expanded="true" signature="9569:9625" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-                <marker date="1450099074589" expanded="true" signature="9917:9972" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-                <marker date="1450099074589" expanded="true" signature="10180:10235" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-                <marker date="1450099074589" expanded="true" signature="12071:12131" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
-                <marker date="1450099074589" expanded="true" signature="14739:14801" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
-                <marker date="1450099074589" expanded="true" signature="15152:15217" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
-                <marker date="1450099074589" expanded="true" signature="17292:17306" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
-                <marker date="1450099074589" expanded="true" signature="17932:17946" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="atq-admin-style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/atq-admin-style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="334" column="16" selection-start-line="334" selection-start-column="16" selection-end-line="334" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="366" column="40" selection-start-line="366" selection-start-column="40" selection-end-line="366" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.45519713">
+              <caret line="385" column="18" selection-start-line="385" selection-start-column="18" selection-end-line="385" selection-end-column="18" />
               <folding>
                 <element signature="e#7#324#0#PHP" expanded="true" />
                 <element signature="n#__construct#0;n#ATQ#0;n#!!top" expanded="true" />
@@ -154,63 +104,70 @@
                 <element signature="n#del_quote_item#0;n#ATQ#0;n#!!top" expanded="true" />
                 <element signature="n#add_separator#0;n#ATQ#0;n#!!top" expanded="true" />
                 <element signature="n#add_product#0;n#ATQ#0;n#!!top" expanded="true" />
+                <element signature="n#find_products#0;n#ATQ#0;n#!!top" expanded="true" />
                 <element signature="n#install_tables#0;n#ATQ#0;n#!!top" expanded="true" />
-                <marker date="1450098669083" expanded="true" signature="7131:7161" placeholder="..." />
-                <marker date="1450098669083" expanded="true" signature="7852:7902" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="7953:8014" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combo_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="8793:8846" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="9533:9595" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="9882:9947" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="11388:11540" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="11388:11550" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="11388:11558" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="11388:11564" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="11388:11570" placeholder="SELECT DISTI... ${$this-&gt;categories_relation_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="11388:11571" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="11625:12201" placeholder="..." />
-                <marker date="1450098669083" expanded="true" signature="11639:11724" placeholder="..." />
-                <marker date="1450098669083" expanded="true" signature="11944:11988" placeholder="..." />
-                <marker date="1450098669083" expanded="true" signature="12064:12077" placeholder="SELECT * FRO... " />
-                <marker date="1450098669083" expanded="true" signature="12064:12078" placeholder="SELECT * FRO... ${$this}" />
-                <marker date="1450098669083" expanded="true" signature="12064:12085" placeholder="SELECT * FRO... ${$this}" />
-                <marker date="1450098669083" expanded="true" signature="12064:12110" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="12064:12115" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="12064:12121" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="12342:12620" placeholder="CREATE TABLE... ${$this-&gt;fabrics_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="12659:13012" placeholder="CREATE TABLE... ${$this-&gt;staff_member_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="13046:13535" placeholder="CREATE TABLE... ${$this-&gt;clients_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="13572:13927" placeholder="CREATE TABLE... ${$this-&gt;categories_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="13968:14213" placeholder="CREATE TABLE... ${$this-&gt;categories_relation_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="14248:14716" placeholder="CREATE TABLE... ${$this-&gt;products_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="14752:15049" placeholder="CREATE TABLE... ${$this-&gt;products_fp_combos_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="15073:15491" placeholder="CREATE TABLE... ${$this-&gt;quotes_tbl}" />
-                <marker date="1450098669083" expanded="true" signature="15520:16148" placeholder="CREATE TABLE... ${$this-&gt;quote_items_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="7224:7254" placeholder="..." />
+                <marker date="1450257838806" expanded="true" signature="7945:7995" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="8046:8107" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combo_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="8886:8939" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="9626:9688" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="9975:10040" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="11447:11599" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="11447:11609" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="11447:11617" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="11447:11623" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="11447:11629" placeholder="SELECT DISTI... ${$this-&gt;categories_relation_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="11447:11630" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="11684:12284" placeholder="..." />
+                <marker date="1450257838806" expanded="true" signature="11698:11807" placeholder="..." />
+                <marker date="1450257838806" expanded="true" signature="12027:12071" placeholder="..." />
+                <marker date="1450257838806" expanded="true" signature="12147:12160" placeholder="SELECT * FRO... " />
+                <marker date="1450257838806" expanded="true" signature="12147:12161" placeholder="SELECT * FRO... ${$this}" />
+                <marker date="1450257838806" expanded="true" signature="12147:12168" placeholder="SELECT * FRO... ${$this}" />
+                <marker date="1450257838806" expanded="true" signature="12147:12193" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="12147:12198" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="12147:12204" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="12581:12859" placeholder="CREATE TABLE... ${$this-&gt;fabrics_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="12898:13251" placeholder="CREATE TABLE... ${$this-&gt;staff_member_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="13285:13774" placeholder="CREATE TABLE... ${$this-&gt;clients_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="13811:14166" placeholder="CREATE TABLE... ${$this-&gt;categories_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="14207:14452" placeholder="CREATE TABLE... ${$this-&gt;categories_relation_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="14487:14955" placeholder="CREATE TABLE... ${$this-&gt;products_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="14991:15323" placeholder="CREATE TABLE... ${$this-&gt;products_fp_combos_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="15347:15765" placeholder="CREATE TABLE... ${$this-&gt;quotes_tbl}" />
+                <marker date="1450257838806" expanded="true" signature="15794:16422" placeholder="CREATE TABLE... ${$this-&gt;quote_items_tbl}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hire_quote.wp_atq_categories_relation" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/325d2b12/0f8e57c2-2ef2-493c-8ec2-587aac0d4b00/hire_quote.wp_atq_categories_relation">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f8e57c2-2ef2-493c-8ec2-587aac0d4b00/console.sql">
+      <file leaf-file-name="quotes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/quotes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="124" selection-start-line="0" selection-start-column="124" selection-end-line="0" selection-end-column="124" />
-              <folding />
+            <state vertical-scroll-proportion="-11.115385">
+              <caret line="301" column="65" selection-start-line="301" selection-start-column="65" selection-end-line="301" selection-end-column="78" />
+              <folding>
+                <element signature="n#__construct#0;n#quotes#0;n#!!top" expanded="true" />
+                <element signature="n#init#0;n#quotes#0;n#!!top" expanded="true" />
+                <element signature="n#save#0;n#quotes#0;n#!!top" expanded="true" />
+                <element signature="n#del#0;n#quotes#0;n#!!top" expanded="true" />
+                <marker date="1450254964421" expanded="true" signature="857:1140" placeholder="SELECT qt.*,... ${$this-&gt;quotes_tbl}" />
+                <marker date="1450254964421" expanded="true" signature="2959:3008" placeholder="SELECT * FRO... ${$this-&gt;quotes_tbl}" />
+                <marker date="1450254964421" expanded="true" signature="3075:3126" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
+                <marker date="1450254964421" expanded="true" signature="5933:5947" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
+                <marker date="1450254964421" expanded="true" signature="8953:8967" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+                <marker date="1450254964421" expanded="true" signature="9569:9578" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+                <marker date="1450254964421" expanded="true" signature="9569:9583" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+                <marker date="1450254964421" expanded="true" signature="9569:9590" placeholder="SELECT * FRO... ${$this}" />
+                <marker date="1450254964421" expanded="true" signature="9569:9625" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+                <marker date="1450254964421" expanded="true" signature="9917:9972" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+                <marker date="1450254964421" expanded="true" signature="10180:10235" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+                <marker date="1450254964421" expanded="true" signature="12085:12145" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
+                <marker date="1450254964421" expanded="true" signature="14753:14815" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+                <marker date="1450254964421" expanded="true" signature="15166:15231" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+                <marker date="1450254964421" expanded="true" signature="17306:17320" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
+                <marker date="1450254964421" expanded="true" signature="17946:17960" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -229,7 +186,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/shortcode.php" />
-        <option value="$PROJECT_DIR$/products.php" />
         <option value="$PROJECT_DIR$/clients.php" />
         <option value="$PROJECT_DIR$/categories.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
@@ -240,10 +196,14 @@
         <option value="/HTML Fragment (index.php:11698).html" />
         <option value="dbtable:/325d2b12/0f8e57c2-2ef2-493c-8ec2-587aac0d4b00/hire_quote.wp_atq_products" />
         <option value="/HTML Fragment (index.php:11805).html" />
-        <option value="$PROJECT_DIR$/js/atq-script-admin.js" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0f8e57c2-2ef2-493c-8ec2-587aac0d4b00/console.sql" />
-        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/csv_products_import.php" />
+        <option value="$PROJECT_DIR$/products_fabric_price_combo.php" />
+        <option value="$PROJECT_DIR$/products.php" />
+        <option value="$PROJECT_DIR$/csv_fabric_price_combos_import.php" />
         <option value="$PROJECT_DIR$/quotes.php" />
+        <option value="$PROJECT_DIR$/js/atq-script-admin.js" />
+        <option value="$PROJECT_DIR$/index.php" />
       </list>
     </option>
   </component>
@@ -259,8 +219,24 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1378" />
+    <option name="width" value="1382" />
     <option name="height" value="744" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>General</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -310,6 +286,132 @@
         </subPane>
         <subPane subId="Tests" />
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="African Tusk WP Plugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="African Tusk WP Plugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hire-quote" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="African Tusk WP Plugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hire-quote" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="African Tusk WP Plugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hire-quote" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="African Tusk WP Plugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hire-quote" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="african-tusk-quote" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="African Tusk WP Plugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hire-quote" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="african-tusk-quote" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="African Tusk WP Plugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hire-quote" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="african-tusk-quote" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scratches">
         <subPane>
           <PATH>
@@ -338,139 +440,13 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="african-tusk-quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="african-tusk-quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hire-quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="african-tusk-quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hire-quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wp-content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="african-tusk-quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hire-quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wp-content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="african-tusk-quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hire-quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wp-content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="african-tusk-quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="african-tusk-quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hire-quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wp-content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="african-tusk-quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="african-tusk-quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hire-quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wp-content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="african-tusk-quote" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files (x86)\nodejs\node.exe" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.deploy.options" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="134" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
@@ -559,29 +535,29 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19104478" sideWeight="0.48671097" order="1" side_tool="false" content_ui="combo" x="526" y="27" width="311" height="658" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1904762" sideWeight="0.47954175" order="1" side_tool="false" content_ui="combo" x="526" y="27" width="311" height="658" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34219268" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33279485" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21949404" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33224222" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20238096" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32733223" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15746269" sideWeight="0.4900332" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32569557" sideWeight="0.49335548" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3986711" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17462687" sideWeight="0.51328903" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15699404" sideWeight="0.4900332" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3251634" sideWeight="0.49335548" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1904762" sideWeight="0.5204583" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="29" y="152" width="1182" height="544" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32569557" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3986711" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34219268" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -637,28 +613,268 @@
     <entry file="file://$PROJECT_DIR$/quotes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="291" column="24" selection-start-line="291" selection-start-column="24" selection-end-line="291" selection-end-column="24" />
+          <folding>
+            <element signature="n#__construct#0;n#quotes#0;n#!!top" expanded="true" />
+            <element signature="n#init#0;n#quotes#0;n#!!top" expanded="true" />
+            <element signature="n#save#0;n#quotes#0;n#!!top" expanded="true" />
+            <element signature="n#del#0;n#quotes#0;n#!!top" expanded="true" />
+            <marker date="1450254964421" expanded="true" signature="857:1140" placeholder="SELECT qt.*,... ${$this-&gt;quotes_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="2959:3008" placeholder="SELECT * FRO... ${$this-&gt;quotes_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="3075:3126" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="5933:5947" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="8953:8967" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="9569:9578" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="9569:9583" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="9569:9590" placeholder="SELECT * FRO... ${$this}" />
+            <marker date="1450254964421" expanded="true" signature="9569:9625" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="9917:9972" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="10180:10235" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="12085:12145" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="14753:14815" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="15166:15231" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="17306:17320" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="17946:17960" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csv_products_import.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding>
+            <element signature="n#__construct#0;n#csv_products_import#0;n#!!top" expanded="true" />
+            <element signature="n#init#0;n#csv_products_import#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csv_fabric_price_combos_import.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#__construct#0;n#csv_fabric_price_combos_import#0;n#!!top" expanded="true" />
+            <element signature="n#init#0;n#csv_fabric_price_combos_import#0;n#!!top" expanded="true" />
+            <marker date="1450197049532" expanded="true" signature="1888:1902" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450197049532" expanded="true" signature="1888:1937" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450197049532" expanded="true" signature="1888:1938" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450197049532" expanded="true" signature="2020:2033" placeholder="SELECT * FRO... " />
+            <marker date="1450197049532" expanded="true" signature="2020:2034" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450197049532" expanded="true" signature="2020:2041" placeholder="SELECT * FRO... ${$this}" />
+            <marker date="1450197049532" expanded="true" signature="2020:2082" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/products.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="90" column="107" selection-start-line="90" selection-start-column="107" selection-end-line="90" selection-end-column="107" />
+          <folding>
+            <element signature="n#__construct#0;n#products#0;n#!!top" expanded="true" />
+            <element signature="n#form#0;n#products#0;n#!!top" expanded="true" />
+            <element signature="n#save#0;n#products#0;n#!!top" expanded="true" />
+            <element signature="n#del#0;n#products#0;n#!!top" expanded="true" />
+            <marker date="1450191322466" expanded="true" signature="926:940" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="1423:1484" placeholder="SELECT * FRO... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="1702:1753" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="2028:2090" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="2315:2371" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="2315:2382" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="3409:3459" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="5545:5601" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="5715:5803" placeholder="SELECT * FRO... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="6029:6084" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="6192:6280" placeholder="SELECT * FRO... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="6515:6570" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="6696:6784" placeholder="SELECT * FRO... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="7535:7597" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="7894:7908" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="10094:10108" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/products_fabric_price_combo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="40" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/atq-admin-style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="334" column="16" selection-start-line="334" selection-start-column="16" selection-end-line="334" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/atq-script-admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="239" column="41" selection-start-line="239" selection-start-column="41" selection-end-line="239" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quotes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="291" column="24" selection-start-line="291" selection-start-column="24" selection-end-line="291" selection-end-column="24" />
+          <folding>
+            <element signature="n#__construct#0;n#quotes#0;n#!!top" expanded="true" />
+            <element signature="n#init#0;n#quotes#0;n#!!top" expanded="true" />
+            <element signature="n#save#0;n#quotes#0;n#!!top" expanded="true" />
+            <element signature="n#del#0;n#quotes#0;n#!!top" expanded="true" />
+            <marker date="1450254964421" expanded="true" signature="857:1140" placeholder="SELECT qt.*,... ${$this-&gt;quotes_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="2959:3008" placeholder="SELECT * FRO... ${$this-&gt;quotes_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="3075:3126" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="5933:5947" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="8953:8967" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="9569:9578" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="9569:9583" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="9569:9590" placeholder="SELECT * FRO... ${$this}" />
+            <marker date="1450254964421" expanded="true" signature="9569:9625" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="9917:9972" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="10180:10235" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="12085:12145" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="14753:14815" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="15166:15231" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="17306:17320" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="17946:17960" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/325d2b12/0f8e57c2-2ef2-493c-8ec2-587aac0d4b00/hire_quote.wp_atq_products">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/atq-admin-style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="334" column="16" selection-start-line="334" selection-start-column="16" selection-end-line="334" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="366" column="40" selection-start-line="366" selection-start-column="40" selection-end-line="366" selection-end-column="40" />
+          <folding>
+            <element signature="e#7#324#0#PHP" expanded="true" />
+            <element signature="n#__construct#0;n#ATQ#0;n#!!top" expanded="true" />
+            <element signature="n#atq_menu#0;n#ATQ#0;n#!!top" expanded="true" />
+            <element signature="n#atq_main#0;n#ATQ#0;n#!!top" expanded="true" />
+            <element signature="n#register_admin_resources#0;n#ATQ#0;n#!!top" expanded="true" />
+            <element signature="n#notify#0;n#ATQ#0;n#!!top" expanded="true" />
+            <element signature="n#add_heading#0;n#ATQ#0;n#!!top" expanded="true" />
+            <element signature="n#del_quote_item#0;n#ATQ#0;n#!!top" expanded="true" />
+            <element signature="n#add_separator#0;n#ATQ#0;n#!!top" expanded="true" />
+            <element signature="n#add_product#0;n#ATQ#0;n#!!top" expanded="true" />
+            <element signature="n#find_products#0;n#ATQ#0;n#!!top" expanded="true" />
+            <element signature="n#install_tables#0;n#ATQ#0;n#!!top" expanded="true" />
+            <marker date="1450257838806" expanded="true" signature="7224:7254" placeholder="..." />
+            <marker date="1450257838806" expanded="true" signature="7945:7995" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="8046:8107" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combo_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="8886:8939" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="9626:9688" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="9975:10040" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11599" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11609" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11617" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11623" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11629" placeholder="SELECT DISTI... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11630" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11684:12284" placeholder="..." />
+            <marker date="1450257838806" expanded="true" signature="11698:11807" placeholder="..." />
+            <marker date="1450257838806" expanded="true" signature="12027:12071" placeholder="..." />
+            <marker date="1450257838806" expanded="true" signature="12147:12160" placeholder="SELECT * FRO... " />
+            <marker date="1450257838806" expanded="true" signature="12147:12161" placeholder="SELECT * FRO... ${$this}" />
+            <marker date="1450257838806" expanded="true" signature="12147:12168" placeholder="SELECT * FRO... ${$this}" />
+            <marker date="1450257838806" expanded="true" signature="12147:12193" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="12147:12198" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="12147:12204" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="12581:12859" placeholder="CREATE TABLE... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="12898:13251" placeholder="CREATE TABLE... ${$this-&gt;staff_member_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="13285:13774" placeholder="CREATE TABLE... ${$this-&gt;clients_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="13811:14166" placeholder="CREATE TABLE... ${$this-&gt;categories_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="14207:14452" placeholder="CREATE TABLE... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="14487:14955" placeholder="CREATE TABLE... ${$this-&gt;products_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="14991:15323" placeholder="CREATE TABLE... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="15347:15765" placeholder="CREATE TABLE... ${$this-&gt;quotes_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="15794:16422" placeholder="CREATE TABLE... ${$this-&gt;quote_items_tbl}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/325d2b12/0f8e57c2-2ef2-493c-8ec2-587aac0d4b00/hire_quote.wp_atq_categories_relation">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f8e57c2-2ef2-493c-8ec2-587aac0d4b00/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="124" selection-start-line="0" selection-start-column="124" selection-end-line="0" selection-end-column="124" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/atq-script-admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="239" column="41" selection-start-line="239" selection-start-column="41" selection-end-line="239" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quotes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#__construct#0;n#quotes#0;n#!!top" expanded="true" />
             <element signature="n#init#0;n#quotes#0;n#!!top" expanded="true" />
             <element signature="n#save#0;n#quotes#0;n#!!top" expanded="true" />
             <element signature="n#del#0;n#quotes#0;n#!!top" expanded="true" />
-            <marker date="1450099074589" expanded="true" signature="857:1140" placeholder="SELECT qt.*,... ${$this-&gt;quotes_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="2959:3008" placeholder="SELECT * FRO... ${$this-&gt;quotes_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="3075:3126" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="5933:5947" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="8953:8967" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="9569:9578" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="9569:9583" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="9569:9590" placeholder="SELECT * FRO... ${$this}" />
-            <marker date="1450099074589" expanded="true" signature="9569:9625" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="9917:9972" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="10180:10235" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="12071:12131" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="14739:14801" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="15152:15217" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="17292:17306" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="17932:17946" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="857:1140" placeholder="SELECT qt.*,... ${$this-&gt;quotes_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="2959:3008" placeholder="SELECT * FRO... ${$this-&gt;quotes_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="3075:3126" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="5933:5947" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="8953:8967" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="9569:9578" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="9569:9583" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="9569:9590" placeholder="SELECT * FRO... ${$this}" />
+            <marker date="1450254964421" expanded="true" signature="9569:9625" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="9917:9972" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="10180:10235" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="12085:12145" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="14753:14815" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="15166:15231" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="17306:17320" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="17946:17960" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
           </folding>
         </state>
       </provider>
@@ -686,37 +902,38 @@
             <element signature="n#del_quote_item#0;n#ATQ#0;n#!!top" expanded="true" />
             <element signature="n#add_separator#0;n#ATQ#0;n#!!top" expanded="true" />
             <element signature="n#add_product#0;n#ATQ#0;n#!!top" expanded="true" />
+            <element signature="n#find_products#0;n#ATQ#0;n#!!top" expanded="true" />
             <element signature="n#install_tables#0;n#ATQ#0;n#!!top" expanded="true" />
-            <marker date="1450098669083" expanded="true" signature="7131:7161" placeholder="..." />
-            <marker date="1450098669083" expanded="true" signature="7852:7902" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="7953:8014" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combo_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="8793:8846" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="9533:9595" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="9882:9947" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="11388:11540" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="11388:11550" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="11388:11558" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="11388:11564" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="11388:11570" placeholder="SELECT DISTI... ${$this-&gt;categories_relation_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="11388:11571" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="11625:12201" placeholder="..." />
-            <marker date="1450098669083" expanded="true" signature="11639:11724" placeholder="..." />
-            <marker date="1450098669083" expanded="true" signature="11944:11988" placeholder="..." />
-            <marker date="1450098669083" expanded="true" signature="12064:12077" placeholder="SELECT * FRO... " />
-            <marker date="1450098669083" expanded="true" signature="12064:12078" placeholder="SELECT * FRO... ${$this}" />
-            <marker date="1450098669083" expanded="true" signature="12064:12085" placeholder="SELECT * FRO... ${$this}" />
-            <marker date="1450098669083" expanded="true" signature="12064:12110" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="12064:12115" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="12064:12121" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="12342:12620" placeholder="CREATE TABLE... ${$this-&gt;fabrics_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="12659:13012" placeholder="CREATE TABLE... ${$this-&gt;staff_member_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="13046:13535" placeholder="CREATE TABLE... ${$this-&gt;clients_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="13572:13927" placeholder="CREATE TABLE... ${$this-&gt;categories_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="13968:14213" placeholder="CREATE TABLE... ${$this-&gt;categories_relation_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="14248:14716" placeholder="CREATE TABLE... ${$this-&gt;products_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="14752:15049" placeholder="CREATE TABLE... ${$this-&gt;products_fp_combos_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="15073:15491" placeholder="CREATE TABLE... ${$this-&gt;quotes_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="15520:16148" placeholder="CREATE TABLE... ${$this-&gt;quote_items_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="7224:7254" placeholder="..." />
+            <marker date="1450257838806" expanded="true" signature="7945:7995" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="8046:8107" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combo_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="8886:8939" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="9626:9688" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="9975:10040" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11599" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11609" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11617" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11623" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11629" placeholder="SELECT DISTI... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11630" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11684:12284" placeholder="..." />
+            <marker date="1450257838806" expanded="true" signature="11698:11807" placeholder="..." />
+            <marker date="1450257838806" expanded="true" signature="12027:12071" placeholder="..." />
+            <marker date="1450257838806" expanded="true" signature="12147:12160" placeholder="SELECT * FRO... " />
+            <marker date="1450257838806" expanded="true" signature="12147:12161" placeholder="SELECT * FRO... ${$this}" />
+            <marker date="1450257838806" expanded="true" signature="12147:12168" placeholder="SELECT * FRO... ${$this}" />
+            <marker date="1450257838806" expanded="true" signature="12147:12193" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="12147:12198" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="12147:12204" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="12581:12859" placeholder="CREATE TABLE... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="12898:13251" placeholder="CREATE TABLE... ${$this-&gt;staff_member_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="13285:13774" placeholder="CREATE TABLE... ${$this-&gt;clients_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="13811:14166" placeholder="CREATE TABLE... ${$this-&gt;categories_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="14207:14452" placeholder="CREATE TABLE... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="14487:14955" placeholder="CREATE TABLE... ${$this-&gt;products_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="14991:15323" placeholder="CREATE TABLE... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="15347:15765" placeholder="CREATE TABLE... ${$this-&gt;quotes_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="15794:16422" placeholder="CREATE TABLE... ${$this-&gt;quote_items_tbl}" />
           </folding>
         </state>
       </provider>
@@ -730,7 +947,6 @@
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -738,7 +954,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="124" selection-start-line="0" selection-start-column="124" selection-end-line="0" selection-end-column="124" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -754,25 +969,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1449998473975" expanded="true" signature="3414:3428" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
-            <marker date="1449998473975" expanded="true" signature="4844:4894" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
-            <marker date="1449998473975" expanded="true" signature="5911:5973" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
-            <marker date="1449998473975" expanded="true" signature="6201:6265" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/images/AT787-251x300.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/products.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.031021899">
-          <caret line="131" column="20" selection-start-line="131" selection-start-column="20" selection-end-line="131" selection-end-column="20" />
-        </state>
       </provider>
     </entry>
     <entry file="uml://DATABASE/98570f37-72d9-4d41-b9f2-b39993baf452">
@@ -815,12 +1017,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.124087594">
           <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
-          <folding>
-            <marker date="1449998473975" expanded="true" signature="3414:3428" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
-            <marker date="1449998473975" expanded="true" signature="4844:4894" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
-            <marker date="1449998473975" expanded="true" signature="5911:5973" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
-            <marker date="1449998473975" expanded="true" signature="6201:6265" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -835,19 +1031,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6086176">
           <caret line="54" column="42" selection-start-line="54" selection-start-column="42" selection-end-line="54" selection-end-column="42" />
-          <folding>
-            <element signature="n#__construct#0;n#categories#0;n#!!top" expanded="true" />
-            <element signature="n#form#0;n#categories#0;n#!!top" expanded="true" />
-            <element signature="n#cat_order#0;n#categories#0;n#!!top" expanded="true" />
-            <element signature="n#del#0;n#categories#0;n#!!top" expanded="true" />
-            <marker date="1450024296013" expanded="true" signature="1197:1276" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450024296013" expanded="true" signature="3641:3696" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450024296013" expanded="true" signature="6281:6336" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450024296013" expanded="true" signature="9864:9915" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450024296013" expanded="true" signature="11494:11550" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450024296013" expanded="true" signature="11920:11975" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450024296013" expanded="true" signature="12304:12359" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -855,15 +1038,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4578097">
           <caret line="128" column="60" selection-start-line="128" selection-start-column="51" selection-end-line="128" selection-end-column="60" />
-          <folding>
-            <element signature="n#__construct#0;n#fabrics#0;n#!!top" expanded="true" />
-            <element signature="n#init#0;n#fabrics#0;n#!!top" expanded="true" />
-            <element signature="e#2801#2828#0#HTML" expanded="true" />
-            <element signature="n#save#0;n#fabrics#0;n#!!top" expanded="true" />
-            <element signature="n#del#0;n#fabrics#0;n#!!top" expanded="true" />
-            <marker date="1448975927158" expanded="true" signature="929:943" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
-            <marker date="1448975927158" expanded="true" signature="3216:3264" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -871,14 +1045,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.97084045">
           <caret line="93" column="5" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/atq-admin-style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="334" column="16" selection-start-line="334" selection-start-column="16" selection-end-line="334" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -902,6 +1068,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="dbDummy://dbtable:/325d2b12/0f8e57c2-2ef2-493c-8ec2-587aac0d4b00/hire_quote.wp_atq_products">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -914,14 +1087,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/atq-script-admin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="239" column="41" selection-start-line="239" selection-start-column="41" selection-end-line="239" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/325d2b12/0f8e57c2-2ef2-493c-8ec2-587aac0d4b00/hire_quote.wp_atq_categories_relation">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -931,22 +1096,131 @@
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0f8e57c2-2ef2-493c-8ec2-587aac0d4b00/console.sql">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="35" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/atq-admin-style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="10.175628">
+          <caret line="334" column="16" selection-start-line="334" selection-start-column="16" selection-end-line="334" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csv_products_import.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="124" selection-start-line="0" selection-start-column="124" selection-end-line="0" selection-end-column="124" />
+          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding>
+            <element signature="n#__construct#0;n#csv_products_import#0;n#!!top" expanded="true" />
+            <element signature="n#init#0;n#csv_products_import#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/products_fabric_price_combo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1272402">
+          <caret line="37" column="40" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/products.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.8333333">
+          <caret line="90" column="107" selection-start-line="90" selection-start-column="107" selection-end-line="90" selection-end-column="107" />
+          <folding>
+            <element signature="n#__construct#0;n#products#0;n#!!top" expanded="true" />
+            <element signature="n#form#0;n#products#0;n#!!top" expanded="true" />
+            <element signature="n#save#0;n#products#0;n#!!top" expanded="true" />
+            <element signature="n#del#0;n#products#0;n#!!top" expanded="true" />
+            <marker date="1450191322466" expanded="true" signature="926:940" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="1423:1484" placeholder="SELECT * FRO... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="1702:1753" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="2028:2090" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="2315:2371" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="2315:2382" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="3409:3459" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="5545:5601" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="5715:5803" placeholder="SELECT * FRO... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="6029:6084" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="6192:6280" placeholder="SELECT * FRO... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="6515:6570" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="6696:6784" placeholder="SELECT * FRO... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="7535:7597" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="7894:7908" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450191322466" expanded="true" signature="10094:10108" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/csv_fabric_price_combos_import.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.115385">
+          <caret line="62" column="27" selection-start-line="62" selection-start-column="27" selection-end-line="62" selection-end-column="27" />
+          <folding>
+            <element signature="n#__construct#0;n#csv_fabric_price_combos_import#0;n#!!top" expanded="true" />
+            <element signature="n#init#0;n#csv_fabric_price_combos_import#0;n#!!top" expanded="true" />
+            <marker date="1450197049532" expanded="true" signature="1888:1902" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450197049532" expanded="true" signature="1888:1937" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450197049532" expanded="true" signature="1888:1938" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450197049532" expanded="true" signature="2020:2033" placeholder="SELECT * FRO... " />
+            <marker date="1450197049532" expanded="true" signature="2020:2034" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450197049532" expanded="true" signature="2020:2041" placeholder="SELECT * FRO... ${$this}" />
+            <marker date="1450197049532" expanded="true" signature="2020:2082" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quotes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.115385">
+          <caret line="301" column="65" selection-start-line="301" selection-start-column="65" selection-end-line="301" selection-end-column="78" />
+          <folding>
+            <element signature="n#__construct#0;n#quotes#0;n#!!top" expanded="true" />
+            <element signature="n#init#0;n#quotes#0;n#!!top" expanded="true" />
+            <element signature="n#save#0;n#quotes#0;n#!!top" expanded="true" />
+            <element signature="n#del#0;n#quotes#0;n#!!top" expanded="true" />
+            <marker date="1450254964421" expanded="true" signature="857:1140" placeholder="SELECT qt.*,... ${$this-&gt;quotes_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="2959:3008" placeholder="SELECT * FRO... ${$this-&gt;quotes_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="3075:3126" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="5933:5947" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="8953:8967" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="9569:9578" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="9569:9583" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="9569:9590" placeholder="SELECT * FRO... ${$this}" />
+            <marker date="1450254964421" expanded="true" signature="9569:9625" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="9917:9972" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="10180:10235" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="12085:12145" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="14753:14815" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="15166:15231" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="17306:17320" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
+            <marker date="1450254964421" expanded="true" signature="17946:17960" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/atq-script-admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="263" column="21" selection-start-line="263" selection-start-column="21" selection-end-line="263" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="366" column="40" selection-start-line="366" selection-start-column="40" selection-end-line="366" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.45519713">
+          <caret line="385" column="18" selection-start-line="385" selection-start-column="18" selection-end-line="385" selection-end-column="18" />
           <folding>
             <element signature="e#7#324#0#PHP" expanded="true" />
             <element signature="n#__construct#0;n#ATQ#0;n#!!top" expanded="true" />
@@ -958,75 +1232,39 @@
             <element signature="n#del_quote_item#0;n#ATQ#0;n#!!top" expanded="true" />
             <element signature="n#add_separator#0;n#ATQ#0;n#!!top" expanded="true" />
             <element signature="n#add_product#0;n#ATQ#0;n#!!top" expanded="true" />
+            <element signature="n#find_products#0;n#ATQ#0;n#!!top" expanded="true" />
             <element signature="n#install_tables#0;n#ATQ#0;n#!!top" expanded="true" />
-            <marker date="1450098669083" expanded="true" signature="7131:7161" placeholder="..." />
-            <marker date="1450098669083" expanded="true" signature="7852:7902" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="7953:8014" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combo_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="8793:8846" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="9533:9595" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="9882:9947" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="11388:11540" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="11388:11550" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="11388:11558" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="11388:11564" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="11388:11570" placeholder="SELECT DISTI... ${$this-&gt;categories_relation_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="11388:11571" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="11625:12201" placeholder="..." />
-            <marker date="1450098669083" expanded="true" signature="11639:11724" placeholder="..." />
-            <marker date="1450098669083" expanded="true" signature="11944:11988" placeholder="..." />
-            <marker date="1450098669083" expanded="true" signature="12064:12077" placeholder="SELECT * FRO... " />
-            <marker date="1450098669083" expanded="true" signature="12064:12078" placeholder="SELECT * FRO... ${$this}" />
-            <marker date="1450098669083" expanded="true" signature="12064:12085" placeholder="SELECT * FRO... ${$this}" />
-            <marker date="1450098669083" expanded="true" signature="12064:12110" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="12064:12115" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="12064:12121" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="12342:12620" placeholder="CREATE TABLE... ${$this-&gt;fabrics_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="12659:13012" placeholder="CREATE TABLE... ${$this-&gt;staff_member_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="13046:13535" placeholder="CREATE TABLE... ${$this-&gt;clients_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="13572:13927" placeholder="CREATE TABLE... ${$this-&gt;categories_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="13968:14213" placeholder="CREATE TABLE... ${$this-&gt;categories_relation_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="14248:14716" placeholder="CREATE TABLE... ${$this-&gt;products_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="14752:15049" placeholder="CREATE TABLE... ${$this-&gt;products_fp_combos_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="15073:15491" placeholder="CREATE TABLE... ${$this-&gt;quotes_tbl}" />
-            <marker date="1450098669083" expanded="true" signature="15520:16148" placeholder="CREATE TABLE... ${$this-&gt;quote_items_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="7224:7254" placeholder="..." />
+            <marker date="1450257838806" expanded="true" signature="7945:7995" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="8046:8107" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combo_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="8886:8939" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="9626:9688" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="9975:10040" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11599" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11609" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11617" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11623" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11629" placeholder="SELECT DISTI... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11447:11630" placeholder="SELECT cat.*... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="11684:12284" placeholder="..." />
+            <marker date="1450257838806" expanded="true" signature="11698:11807" placeholder="..." />
+            <marker date="1450257838806" expanded="true" signature="12027:12071" placeholder="..." />
+            <marker date="1450257838806" expanded="true" signature="12147:12160" placeholder="SELECT * FRO... " />
+            <marker date="1450257838806" expanded="true" signature="12147:12161" placeholder="SELECT * FRO... ${$this}" />
+            <marker date="1450257838806" expanded="true" signature="12147:12168" placeholder="SELECT * FRO... ${$this}" />
+            <marker date="1450257838806" expanded="true" signature="12147:12193" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="12147:12198" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="12147:12204" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="12581:12859" placeholder="CREATE TABLE... ${$this-&gt;fabrics_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="12898:13251" placeholder="CREATE TABLE... ${$this-&gt;staff_member_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="13285:13774" placeholder="CREATE TABLE... ${$this-&gt;clients_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="13811:14166" placeholder="CREATE TABLE... ${$this-&gt;categories_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="14207:14452" placeholder="CREATE TABLE... ${$this-&gt;categories_relation_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="14487:14955" placeholder="CREATE TABLE... ${$this-&gt;products_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="14991:15323" placeholder="CREATE TABLE... ${$this-&gt;products_fp_combos_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="15347:15765" placeholder="CREATE TABLE... ${$this-&gt;quotes_tbl}" />
+            <marker date="1450257838806" expanded="true" signature="15794:16422" placeholder="CREATE TABLE... ${$this-&gt;quote_items_tbl}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quotes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.153846">
-          <caret line="291" column="24" selection-start-line="291" selection-start-column="24" selection-end-line="291" selection-end-column="24" />
-          <folding>
-            <element signature="n#__construct#0;n#quotes#0;n#!!top" expanded="true" />
-            <element signature="n#init#0;n#quotes#0;n#!!top" expanded="true" />
-            <element signature="n#save#0;n#quotes#0;n#!!top" expanded="true" />
-            <element signature="n#del#0;n#quotes#0;n#!!top" expanded="true" />
-            <marker date="1450099074589" expanded="true" signature="857:1140" placeholder="SELECT qt.*,... ${$this-&gt;quotes_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="2959:3008" placeholder="SELECT * FRO... ${$this-&gt;quotes_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="3075:3126" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="5933:5947" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="8953:8967" placeholder="SELECT * FRO... ${$this-&gt;products_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="9569:9578" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="9569:9583" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="9569:9590" placeholder="SELECT * FRO... ${$this}" />
-            <marker date="1450099074589" expanded="true" signature="9569:9625" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="9917:9972" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="10180:10235" placeholder="SELECT * FRO... ${$this-&gt;categories_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="12071:12131" placeholder="SELECT * FRO... ${$this-&gt;quote_items_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="14739:14801" placeholder="SELECT * FRO... ${$this-&gt;products_fp_combos_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="15152:15217" placeholder="SELECT * FRO... ${$this-&gt;fabrics_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="17292:17306" placeholder="SELECT * FRO... ${$this-&gt;staff_member_tbl}" />
-            <marker date="1450099074589" expanded="true" signature="17932:17946" placeholder="SELECT * FRO... ${$this-&gt;clients_tbl}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>

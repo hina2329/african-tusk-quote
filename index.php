@@ -68,8 +68,11 @@ class ATQ {
 		// Add product item action
 		add_action( 'wp_ajax_add_prod', array( $this, 'add_product' ) );
 
-		//Add product item through Categories
+		// Find products in selective categories
 		add_action( 'wp_ajax_find_prod', array( $this, 'find_products' ) );
+
+		// Add selective products to quote
+		add_action( 'wp_ajax_add_sel_prod', array( $this, 'selective_products' ) );
 
 		// Allow redirection
 		ob_start();
@@ -101,7 +104,7 @@ class ATQ {
 			$this,
 			'atq_main'
 		) );
-		add_submenu_page( 'quotes', 'CSV Fabric Price Combos Import', 'CSV Fabric Price Combos Import', 'edit_pages', 'csv_fabric_price_combos_import', array(
+		add_submenu_page( 'quotes', 'CSV Fabric Import', 'CSV Fabric Import', 'edit_pages', 'csv_fabric_price_combos_import', array(
 			$this,
 			'atq_main'
 		) );
@@ -319,7 +322,7 @@ class ATQ {
 		echo '</td>';
 
 		echo '<td class="actions">';
-		echo '<a href="#" data-item-id="' . $item_id . '" data-quote-id="' . $qoute_id . '" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?);"></a>';
+		echo '<a href="#" data-item-id="' . $item_id . '" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?);"></a>';
 		echo '</td>';
 		echo '</tr>';
 		wp_die();
@@ -345,7 +348,9 @@ class ATQ {
 				echo '<tr>';
 
 				echo '<td>
-						<input type="checkbox" name="prod_id[]" value="prod[' . $cat->prod_id . ']">
+
+						<input type="checkbox" class="selective-prod" name="prod_id" value="' . $cat->prod_id . '">
+
 					</td>';
 
 				echo '<td>';
@@ -374,6 +379,17 @@ class ATQ {
 		}
 		wp_die();
 	}
+
+	// Add selective products to quote
+	public function selective_products() {
+
+		$ids = filter_input(INPUT_POST, 'prod_ids');
+
+		echo $ids;
+
+		wp_die();
+	}
+
 
 	// Tables queries for database
 	public function install_tables() {
@@ -446,6 +462,7 @@ class ATQ {
 		$products_fp_combos_table = "CREATE TABLE $this->products_fp_combos_tbl(
         combo_id INT(9) NOT NULL AUTO_INCREMENT,
         combo_pid INT(9) NOT NULL,
+        combo_fid INT(9) NOT NULL,
         combo_code VARCHAR(50) NOT NULL,
         combo_price VARCHAR(50) NOT NULL,
         PRIMARY KEY(combo_id)
