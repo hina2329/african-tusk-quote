@@ -371,7 +371,7 @@ class ATQ {
 				echo '</td>';
 
 				echo '<td class="actions">';
-				$cat_name = $this->wpdb->get_row("SELECT * FROM $this->categories_tbl WHERE cat_id = $cat->cat_id");
+				$cat_name = $this->wpdb->get_row( "SELECT * FROM $this->categories_tbl WHERE cat_id = $cat->cat_id" );
 				echo $cat_name->cat_name;
 				echo '</td>';
 
@@ -386,98 +386,96 @@ class ATQ {
 
 		$quote_id = filter_input( INPUT_POST, 'qid' );
 
-		$ids_arr = filter_input(INPUT_POST, 'prod_ids');
+		$ids_arr = filter_input( INPUT_POST, 'prod_ids' );
 
-		$ids = explode('&', $ids_arr);
+		$ids = explode( '&', $ids_arr );
 
-		foreach ($ids as $prod_id) {
+		foreach ( $ids as $prod_id ) {
 
-			list($key, $id) = explode('=', $prod_id);
+			list( $key, $id ) = explode( '=', $prod_id );
 			echo $id;
 			// Get product data of db
-		$product = $this->wpdb->get_row( "SELECT * FROM $this->products_tbl WHERE prod_id = $id" );
-		
+			$product = $this->wpdb->get_row( "SELECT * FROM $this->products_tbl WHERE prod_id = $id" );
 
 
-		// Save existing product data into wp_atq_quote_items table
-		$product_data = array(
-			'item_qid'    => $quote_id,
-			'item_pid'    => $id,
-			'item_code'   => $product->prod_code,
-			'item_images' => $product->prod_images,
-			'item_name'   => $product->prod_name,
-			'item_desc'   => $product->prod_desc,
-			'item_cat'    => $product->prod_cat
-		);
+			// Save existing product data into wp_atq_quote_items table
+			$product_data = array(
+				'item_qid'    => $quote_id,
+				'item_pid'    => $id,
+				'item_code'   => $product->prod_code,
+				'item_images' => $product->prod_images,
+				'item_name'   => $product->prod_name,
+				'item_desc'   => $product->prod_desc,
+				'item_cat'    => $product->prod_cat
+			);
 
-		$this->wpdb->insert( $this->quote_items_tbl, $product_data );
-		$item_id = $this->wpdb->insert_id;
-		$images      = unserialize( $product->prod_images );
-		$textarea_id = 'desc' . $product->prod_id;
-		echo '<tr>';
-		echo '<td>';
+			$this->wpdb->insert( $this->quote_items_tbl, $product_data );
+			$item_id     = $this->wpdb->insert_id;
+			$images      = unserialize( $product->prod_images );
+			$textarea_id = 'desc' . $product->prod_id;
+			echo '<tr>';
+			echo '<td>';
 
-		if ( $images ) {
-			foreach ( $images as $image ) {
-				echo '<img src="' . $image . '" alt="" width="auto" height="150"><br>';
+			if ( $images ) {
+				foreach ( $images as $image ) {
+					echo '<img src="' . $image . '" alt="" width="auto" height="150"><br>';
+				}
 			}
+			$item = $this->wpdb->get_row( "SELECT * FROM $this->quote_items_tbl WHERE item_id = $item_id" );
+			echo '<input type="text" name="item[' . $item_id . '][name]" value=" ' . $product->prod_name . '">';
+			echo '</td>';
+			echo '<td>';
+
+
+			echo '<textarea name="item[' . $item_id . '][desc]" rows="10">' . $product->prod_desc . '</textarea>';
+
+			echo '</td>';
+			echo '<td>';
+
+
+			echo '<select name="item[' . $item_id . '][fab]" id="fab_type">';
+			echo '<option value="">Please Select...</option>';
+
+			//getting fabric suffix
+			$prod_fps = $this->wpdb->get_results( "SELECT * FROM $this->products_fp_combos_tbl WHERE combo_pid = $id" );
+			foreach ( $prod_fps as $prod_fp ) {
+
+				$combo_code = $prod_fp->combo_code;
+				//breaking rows into $prod_code & $fab_suffix
+				list( $prod_code, $fab_suffix ) = explode( '-', $combo_code );
+				$fab_suffix;
+
+				//getting fabric names
+				$fab_type = $this->wpdb->get_row( "SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_suffix'" );
+
+				echo '<option value="' . $fab_type->fab_name . '" ';
+
+				selected( $fab_type->fab_name );
+
+				echo '>' . $fab_type->fab_name . '</option>';
+			}
+			echo '</select>';
+			echo '</td>';
+			echo '<td>';
+			echo '<input type="text" name="item[' . $item_id . '][qty]" value="' . $item->item_qty . '" class="x-small-text item-qty">';
+			echo '</td>';
+			echo '<td>';
+			echo 'R <input type="text" name="item[' . $item_id . '][unit_p]" value="' . $item->item_price . '" class="x-small-text unit-price">';
+			echo '</td>';
+			echo '<td>';
+			echo 'R <input type="text" name="total_p" value="" class="x-small-text sub-total">';
+			echo '</td>';
+			echo '<td>';
+			echo '<input type="text" name="item[' . $item_id . '][order]"  value="' . $item->item_order . '" style="width:30px; text-align: center;">';
+			echo '</td>';
+
+			echo '<td class="actions">';
+			echo '<a href="#" data-item-id="' . $item_id . '" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?);"></a>';
+			echo '</td>';
+			echo '</tr>';
+
+
 		}
-		$item = $this->wpdb->get_row( "SELECT * FROM $this->quote_items_tbl WHERE item_id = $item_id" );
-		echo '<input type="text" name="item[' . $item_id . '][name]" value=" ' . $product->prod_name . '">';
-		echo '</td>';
-		echo '<td>';
-
-		
-
-		echo '<textarea name="item[' . $item_id . '][desc]" rows="10">' . $product->prod_desc . '</textarea>';
-
-		echo '</td>';
-		echo '<td>';
-
-
-		echo '<select name="item[' . $item_id . '][fab]" id="fab_type">';
-		echo '<option value="">Please Select...</option>';
-
-		//getting fabric suffix
-		$prod_fps = $this->wpdb->get_results( "SELECT * FROM $this->products_fp_combos_tbl WHERE combo_pid = $id" );
-		foreach ( $prod_fps as $prod_fp ) {
-
-			$combo_code = $prod_fp->combo_code;
-			//breaking rows into $prod_code & $fab_suffix
-			list( $prod_code, $fab_suffix ) = explode( '-', $combo_code );
-			$fab_suffix;
-
-			//getting fabric names
-			$fab_type = $this->wpdb->get_row( "SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_suffix'" );
-
-			echo '<option value="' . $fab_type->fab_name . '" ';
-
-			selected( $fab_type->fab_name );
-
-			echo '>' . $fab_type->fab_name . '</option>';
-		}
-		echo '</select>';
-		echo '</td>';
-		echo '<td>';
-		echo '<input type="text" name="item[' . $item_id . '][qty]" value="' . $item->item_qty . '" class="x-small-text item-qty">';
-		echo '</td>';
-		echo '<td>';
-		echo 'R <input type="text" name="item[' . $item_id . '][unit_p]" value="' . $item->item_price . '" class="x-small-text unit-price">';
-		echo '</td>';
-		echo '<td>';
-		echo 'R <input type="text" name="total_p" value="" class="x-small-text sub-total">';
-		echo '</td>';
-		echo '<td>';
-		echo '<input type="text" name="item[' . $item_id . '][order]"  value="' . $item->item_order . '" style="width:30px; text-align: center;">';
-		echo '</td>';
-
-		echo '<td class="actions">';
-		echo '<a href="#" data-item-id="' . $item_id . '" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?);"></a>';
-		echo '</td>';
-		echo '</tr>';
-		
-	
-	}
 
 		wp_die();
 	}
