@@ -251,15 +251,25 @@ jQuery(document).ready(function ($) {
     // Add products from categories to quote
     $('.add-selective').click(function () {
 
+        var quote_id = $('.quote-id').val();
+
         var ids = $('.selective-prod:checked').serialize();
+        
 
         var data = {
             action: 'add_sel_prod',
-            prod_ids: ids
+            prod_ids: ids,
+            qid: quote_id
+
         };
 
-        $.post(ajaxurl, data, function(result){
-            alert(result);
+         $('#update-msg').show();
+
+        $.post(ajaxurl, data, function (result) {
+            $('#the-list').prepend(result);
+            $('#update-msg').hide();
+
+           
         });
 
         return false;
