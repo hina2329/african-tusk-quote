@@ -66,19 +66,24 @@ class csv_fabric_price_combos_import extends ATQ {
 				$fab = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$rt_code'");
 
 				// Check if product have code
-				if ($prod->prod_code) {
+				if ($rt_code) {
 					$code_full = $prod->prod_code . '-' . $rt_code;
+					$fid = $fab->fab_id;
 				} else {
-					$code_full = $code;
+					$code_full = $prod->prod_code;
+					$fid = null;
 				}
 
 				// Prep data to insert
 				$data = array(
 					'combo_pid'  => $id,
-					'combo_fid'  => $fab->fab_id,
+					'combo_fid'  => $fid,
 					'combo_code' => $code_full,
 				);
 
+				/*echo '<pre>';
+				print_r($data);
+				echo '<pre>';*/
 
 				$this->wpdb->insert( $this->products_fp_combos_tbl, $data );
 			}

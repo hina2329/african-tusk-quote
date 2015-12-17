@@ -552,7 +552,7 @@ class ATQ {
 		$products_fp_combos_table = "CREATE TABLE $this->products_fp_combos_tbl(
         combo_id INT(9) NOT NULL AUTO_INCREMENT,
         combo_pid INT(9) NOT NULL,
-        combo_fid INT(9) NOT NULL,
+        combo_fid INT(9) NULL,
         combo_code VARCHAR(50) NOT NULL,
         combo_price VARCHAR(50) NOT NULL,
         PRIMARY KEY(combo_id)
