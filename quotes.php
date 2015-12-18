@@ -413,7 +413,7 @@ class quotes extends ATQ {
 
 												echo '<option value="' . $fab_type->fab_name . '" ';
 
-												selected( $fab_type->fab_name );
+												selected( $fab_type->fab_name, $item->item_fab );
 
 												echo '>' . $fab_type->fab_name . '</option>';
 											}

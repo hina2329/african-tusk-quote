@@ -15,6 +15,7 @@ class categories extends ATQ {
 
         <?php $this->notify('Category'); ?>
 
+
         <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=cat_order'); ?>">
 
             <table class="wp-list-table widefat striped ">
