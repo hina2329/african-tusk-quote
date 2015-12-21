@@ -323,8 +323,21 @@ class quotes extends ATQ {
 						</thead>
 
 						<tfoot>
-						<tr>
-							<th style="text-align: right;" colspan="8">Total R <input type="text" class="small-text">
+						<?php 
+						 $gtotals = $this->wpdb->get_results("SELECT * FROM $this->quote_items_tbl where item_qid = $quote->quote_id");
+                          foreach($gtotals as $gtotal) {
+                          	$qty = $gtotal->item_qty;
+                          	$unit_p = $gtotal->item_price;
+                           	$total = $qty * $unit_p;
+                           	   $grand_total+= $total; 
+                         
+
+
+                          }
+                         
+						?>
+						<tr class="grand">
+							<th style="text-align: right;" colspan="8">Total R <input type="text" value="<?php echo $grand_total; ?>" class="small-text grand-total">
 							</th>
 						</tr>
 						</tfoot>
@@ -396,7 +409,7 @@ class quotes extends ATQ {
 										          rows="10"><?php echo $item->item_desc; ?></textarea>
 									</td>
 									<td>
-										<select name="item[<?php echo $item->item_id; ?>][fab]" id="fab_type">
+										<select name="item[<?php echo $item->item_id; ?>][fab]" class="fabric-type">
 											<option value="">Please Select...</option>
 											<?php
 											//getting fabric suffix
@@ -411,9 +424,9 @@ class quotes extends ATQ {
 												//getting fabric names
 												$fab_type = $this->wpdb->get_row( "SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_suffix'" );
 
-												echo '<option value="' . $fab_type->fab_name . '" ';
+												echo '<option value="' . $fab_type->fab_id . '" data-fab-price="'. $prod_fp->combo_price .'"';
 
-												selected( $fab_type->fab_name );
+												selected( $fab_type->fab_id, $item->item_fab );
 
 												echo '>' . $fab_type->fab_name . '</option>';
 											}
@@ -426,11 +439,11 @@ class quotes extends ATQ {
 										       value="<?php echo $item->item_qty; ?>" class="x-small-text item-qty">
 									</td>
 									<td>
-										R <input type="text" name="item[<?php echo $item->item_id; ?>][unit_p]""
+										R <input type="text" name="item[<?php echo $item->item_id; ?>][unit_p]"
 										value="<?php echo $item->item_price; ?>" class="x-small-text unit-price">
 									</td>
 									<td>
-										R <input type="text" name="total_p" value="" class="x-small-text sub-total">
+										R <input type="text" name="total_p" value="<?php echo  $item->item_qty*$item->item_price; ?>" class="x-small-text sub-total">
 									</td>
 									<td>
 										<input type="text" name="item[<?php echo $item->item_id; ?>][order]"

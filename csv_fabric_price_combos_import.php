@@ -56,7 +56,7 @@ class csv_fabric_price_combos_import extends ATQ {
 				// Assign variables to each column value
 				list ( $id, $code ) = explode( ';', $file_content );
 
-				// Trim that F***ING break >:(
+				// Trim that break >:(
 				$rt_code = rtrim($code);
 
 				// Get product info
