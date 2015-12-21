@@ -121,10 +121,9 @@ jQuery(document).ready(function ($) {
 
         return false;
     });
-
     // Quote items calculation
-    $('.fabric-type').on('change', function () {
-        var fab = $(this).val();
+    $('.fabric-type').live('change', function () {
+        var fab = $(this).find(':selected').data('fab-price');
         var qty = $(this).parents('tr').find('.item-qty').val();
         var colors = $('option:selected', this).data('fab-id');
         $(this).parents('tr').find('.unit-price').val(fab);
@@ -132,12 +131,36 @@ jQuery(document).ready(function ($) {
         $(this).parents('tr').find('.sub-total').val(qty * unit);
         $(this).parents('tr').find('.item-fab-colors').hide();
         $(this).parents('tr').find(colors).show();
+
+        // Grand total
+        grand_total();
+        
     });
-    $('.item-qty').on('keyup', function () {
+    $('.item-qty').live('keyup', function () {
         var qty = $(this).val();
         var unit = $(this).parents('tr').find('.unit-price').val();
         $(this).parents('tr').find('.sub-total').val(qty * unit);
+
+        // Grand total
+        grand_total();
     });
+
+   // Grand Total
+   function grand_total() {
+    // Update grand total
+        var grand_total = 0;
+
+        $('.sub-total').each(function() {
+            grand_total += Number($(this).val()) ;
+        });
+
+        $('.grand-total').val(grand_total);
+   }
+  
+ 
+
+ 
+    
 
     // Add heading quote
     $('.add-heading').click(function () {
@@ -163,7 +186,7 @@ jQuery(document).ready(function ($) {
     $('.del-item-row').live('click', function () {
         var quote_id = $(this).data('quote-id');
         var item_id = $(this).data('item-id');
-
+        
         var data = {
             action: 'del_item',
             qid: quote_id,

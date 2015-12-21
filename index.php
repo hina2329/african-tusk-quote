@@ -296,7 +296,7 @@ class ATQ
         echo '<td>';
 
 
-        echo '<select name="item[' . $item_id . '][fab]" id="fab_type">';
+        echo '<select name="item[' . $item_id . '][fab]" class="fabric-type">';
         echo '<option value="">Please Select...</option>';
 
 //getting fabric suffix
@@ -311,9 +311,8 @@ class ATQ
 //getting fabric names
             $fab_type = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_suffix'");
 
-            echo '<option value="' . $fab_type->fab_name . '" ';
-
-            selected($fab_type->fab_name);
+             echo '<option value="' . $fab_type->fab_id . '" data-fab-price="'. $prod_fp->combo_price .'"';
+            selected( $fab_type->fab_id, $item->item_fab );
 
             echo '>' . $fab_type->fab_name . '</option>';
         }
@@ -333,7 +332,7 @@ class ATQ
         echo '</td>';
 
         echo '<td class="actions">';
-        echo '<a href="#" data-item-id="' . $item_id . '" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?);"></a>';
+        echo '<a href="#" data-item-id="' . $item_id . '" data-quote-id="' . $quote_id . '" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?);"></a>';
         echo '</td>';
         echo '</tr>';
         wp_die();
@@ -392,6 +391,7 @@ class ATQ
         wp_die();
     }
 
+
 // Add selective products to quote
     public function selective_products()
     {
@@ -400,218 +400,218 @@ class ATQ
 
         $ids_arr = filter_input(INPUT_POST, 'prod_ids');
 
-        $ids = explode('&', $ids_arr);
+		$ids = explode( '&', $ids_arr );
 
-        foreach ($ids as $prod_id) {
+		foreach ( $ids as $prod_id ) {
 
-            list($key, $id) = explode('=', $prod_id);
-            echo $id;
-// Get product data of db
-            $product = $this->wpdb->get_row("SELECT * FROM $this->products_tbl WHERE prod_id = $id");
-
-
-// Save existing product data into wp_atq_quote_items table
-            $product_data = array(
-                'item_qid' => $quote_id,
-                'item_pid' => $id,
-                'item_code' => $product->prod_code,
-                'item_images' => $product->prod_images,
-                'item_name' => $product->prod_name,
-                'item_desc' => $product->prod_desc,
-                'item_cat' => $product->prod_cat
-            );
-
-            $this->wpdb->insert($this->quote_items_tbl, $product_data);
-            $item_id = $this->wpdb->insert_id;
-            $images = unserialize($product->prod_images);
-            $textarea_id = 'desc' . $product->prod_id;
-            echo '<tr>';
-            echo '<td>';
-
-            if ($images) {
-                foreach ($images as $image) {
-                    echo '<img src="' . $image . '" alt="" width="auto" height="150"><br>';
-                }
-            }
-            $item = $this->wpdb->get_row("SELECT * FROM $this->quote_items_tbl WHERE item_id = $item_id");
-            echo '<input type="text" name="item[' . $item_id . '][name]" value=" ' . $product->prod_name . '">';
-            echo '</td>';
-            echo '<td>';
+			list( $key, $id ) = explode( '=', $prod_id );
+			echo $id;
+			// Get product data of db
+			$product = $this->wpdb->get_row( "SELECT * FROM $this->products_tbl WHERE prod_id = $id" );
 
 
-            echo '<textarea name="item[' . $item_id . '][desc]" rows="10">' . $product->prod_desc . '</textarea>';
+			// Save existing product data into wp_atq_quote_items table
+			$product_data = array(
+				'item_qid'    => $quote_id,
+				'item_pid'    => $id,
+				'item_code'   => $product->prod_code,
+				'item_images' => $product->prod_images,
+				'item_name'   => $product->prod_name,
+				'item_desc'   => $product->prod_desc,
+				'item_cat'    => $product->prod_cat
+			);
 
-            echo '</td>';
-            echo '<td>';
+			$this->wpdb->insert( $this->quote_items_tbl, $product_data );
+			$item_id     = $this->wpdb->insert_id;
+			$images      = unserialize( $product->prod_images );
+			$textarea_id = 'desc' . $product->prod_id;
+			echo '<tr>';
+			echo '<td>';
 
-
-            echo '<select name="item[' . $item_id . '][fab]" id="fab_type">';
-            echo '<option value="">Please Select...</option>';
-
-//getting fabric suffix
-            $prod_fps = $this->wpdb->get_results("SELECT * FROM $this->products_fp_combos_tbl WHERE combo_pid = $id");
-            foreach ($prod_fps as $prod_fp) {
-
-                $combo_code = $prod_fp->combo_code;
-//breaking rows into $prod_code & $fab_suffix
-                list($prod_code, $fab_suffix) = explode('-', $combo_code);
-                $fab_suffix;
-
-//getting fabric names
-                $fab_type = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_suffix'");
-
-                echo '<option value="' . $fab_type->fab_name . '" ';
-
-                selected($fab_type->fab_name);
-
-                echo '>' . $fab_type->fab_name . '</option>';
-            }
-            echo '</select>';
-            echo '</td>';
-            echo '<td>';
-            echo '<input type="text" name="item[' . $item_id . '][qty]" value="' . $item->item_qty . '" class="x-small-text item-qty">';
-            echo '</td>';
-            echo '<td>';
-            echo 'R <input type="text" name="item[' . $item_id . '][unit_p]" value="' . $item->item_price . '" class="x-small-text unit-price">';
-            echo '</td>';
-            echo '<td>';
-            echo 'R <input type="text" name="total_p" value="" class="x-small-text sub-total">';
-            echo '</td>';
-            echo '<td>';
-            echo '<input type="text" name="item[' . $item_id . '][order]"  value="' . $item->item_order . '" style="width:30px; text-align: center;">';
-            echo '</td>';
-
-            echo '<td class="actions">';
-            echo '<a href="#" data-item-id="' . $item_id . '" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?);"></a>';
-            echo '</td>';
-            echo '</tr>';
+			if ( $images ) {
+				foreach ( $images as $image ) {
+					echo '<img src="' . $image . '" alt="" width="auto" height="150"><br>';
+				}
+			}
+			$item = $this->wpdb->get_row( "SELECT * FROM $this->quote_items_tbl WHERE item_id = $item_id" );
+			echo '<input type="text" name="item[' . $item_id . '][name]" value=" ' . $product->prod_name . '">';
+			echo '</td>';
+			echo '<td>';
 
 
-        }
+			echo '<textarea name="item[' . $item_id . '][desc]" rows="10">' . $product->prod_desc . '</textarea>';
 
-        wp_die();
-    }
-
-
-// Tables queries for database
-    public function install_tables()
-    {
-
-// Queries to create tables
-        $fabrics_table = "CREATE TABLE $this->fabrics_tbl (
-fab_id INT(5) NOT NULL AUTO_INCREMENT,
-fab_name VARCHAR(100) NOT NULL,
-fab_suffix VARCHAR(100) NULL,
-fab_colors LONGTEXT NULL,
-PRIMARY KEY (fab_id)
-) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
-";
-
-        $staff_member_table = "CREATE TABLE $this->staff_member_tbl (
-staff_id INT(5) NOT NULL AUTO_INCREMENT,
-staff_name VARCHAR(100) NOT NULL,
-staff_email VARCHAR(100) NOT NULL,
-staff_position VARCHAR(100) NOT NULL,
-staff_contactno VARCHAR(100) NOT NULL,
-PRIMARY KEY (staff_id)
-) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
-";
-
-        $clients_table = "CREATE TABLE $this->clients_tbl (
-client_id INT(5) NOT NULL AUTO_INCREMENT,
-client_fname VARCHAR(100) NOT NULL,
-client_lname VARCHAR(100) NOT NULL,
-client_email VARCHAR(100) NOT NULL,
-client_email_2 VARCHAR(100) NULL,
-client_contactno VARCHAR(100) NOT NULL,
-client_cellno VARCHAR(100) NOT NULL,
-client_companyname VARCHAR(100) NOT NULL,
-PRIMARY KEY (client_id)
-) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
-";
-
-        $categories_table = "CREATE TABLE $this->categories_tbl (
-cat_id INT(5) NOT NULL AUTO_INCREMENT,
-cat_name VARCHAR(100) NOT NULL,
-cat_desc VARCHAR(500) NULL,
-cat_image VARCHAR(255) NULL,
-cat_parent INT(3) DEFAULT 0,
-cat_order INT(2) DEFAULT 0,
-PRIMARY KEY (cat_id)
-) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
-";
-
-        $categories_rel_table = "CREATE TABLE $this->categories_relation_tbl (
-rel_id INT(5) NOT NULL AUTO_INCREMENT,
-prod_id INT(5) DEFAULT 0,
-cat_id INT(5) DEFAULT 0,
-PRIMARY KEY (rel_id)
-) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
-";
-
-        $products_table = "CREATE TABLE $this->products_tbl(
-prod_id INT(5) NOT NULL AUTO_INCREMENT,
-prod_name VARCHAR(100) NOT NULL,
-prod_desc LONGTEXT NULL,
-prod_images LONGTEXT NULL,
-prod_code VARCHAR(100) NOT NULL,
-prod_size VARCHAR(100) NULL,
-prod_seller TINYINT DEFAULT 0,
-prod_sale TINYINT DEFAULT 0,
-prod_new TINYINT DEFAULT 0,
-PRIMARY KEY(prod_id)
-) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
-
-        $products_fp_combos_table = "CREATE TABLE $this->products_fp_combos_tbl(
-combo_id INT(9) NOT NULL AUTO_INCREMENT,
-combo_pid INT(9) NOT NULL,
-combo_fid INT(9) NOT NULL,
-combo_code VARCHAR(50) NOT NULL,
-combo_price VARCHAR(50) NOT NULL,
-PRIMARY KEY(combo_id)
-) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
-
-        $quotes_table = "CREATE TABLE $this->quotes_tbl(
-quote_id INT(5) NOT NULL AUTO_INCREMENT,
-quote_staff VARCHAR(100) NOT NULL,
-quote_client VARCHAR(100) NOT NULL,
-quote_subject VARCHAR(100) NOT NULL,
-quote_comment LONGTEXT NOT NULL,
-quote_date TIMESTAMP NOT NULL,
-quote_status INT(1) DEFAULT 0,
-PRIMARY KEY(quote_id)
-) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
-
-        $quote_items_table = "CREATE TABLE $this->quote_items_tbl(
-item_id INT(5) NOT NULL AUTO_INCREMENT,
-item_qid VARCHAR(100) NULL,
-item_pid VARCHAR(100) NULL,
-item_code VARCHAR(100) NULL,
-item_fab VARCHAR(100) NULL,
-item_images LONGTEXT NULL,
-item_name VARCHAR(100) NULL,
-item_desc LONGTEXT NULL,
-item_cat LONGTEXT NULL,
-item_qty INT(3) DEFAULT 1,
-item_price VARCHAR(100) NULL,
-item_order INT(2) DEFAULT 0,
-heading VARCHAR(255) NULL,
-sep TINYINT DEFAULT 0,
-PRIMARY KEY(item_id)
-) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
+			echo '</td>';
+			echo '<td>';
 
 
-        require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-        dbDelta($fabrics_table);
-        dbDelta($staff_member_table);
-        dbDelta($clients_table);
-        dbDelta($categories_table);
-        dbDelta($categories_rel_table);
-        dbDelta($products_table);
-        dbDelta($products_fp_combos_table);
-        dbDelta($quotes_table);
-        dbDelta($quote_items_table);
-    }
+			echo '<select name="item[' . $item_id . '][fab]" class="fabric-type">';
+			echo '<option value="">Please Select...</option>';
+
+			//getting fabric suffix
+			$prod_fps = $this->wpdb->get_results( "SELECT * FROM $this->products_fp_combos_tbl WHERE combo_pid = $id" );
+			foreach ( $prod_fps as $prod_fp ) {
+
+				$combo_code = $prod_fp->combo_code;
+				//breaking rows into $prod_code & $fab_suffix
+				list( $prod_code, $fab_suffix ) = explode( '-', $combo_code );
+				$fab_suffix;
+
+				//getting fabric names
+				$fab_type = $this->wpdb->get_row( "SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_suffix'" );
+
+				 echo '<option value="' . $fab_type->fab_id . '" data-fab-price="'. $prod_fp->combo_price .'"';
+
+				selected( $fab_type->fab_id, $item->item_fab );
+
+				echo '>' . $fab_type->fab_name . '</option>';
+			}
+			echo '</select>';
+			echo '</td>';
+			echo '<td>';
+			echo '<input type="text" name="item[' . $item_id . '][qty]" value="' . $item->item_qty . '" class="x-small-text item-qty">';
+			echo '</td>';
+			echo '<td>';
+			echo 'R <input type="text" name="item[' . $item_id . '][unit_p]" value="' . $item->item_price . '" class="x-small-text unit-price">';
+			echo '</td>';
+			echo '<td>';
+			echo 'R <input type="text" name="total_p" value="" class="x-small-text sub-total">';
+			echo '</td>';
+			echo '<td>';
+			echo '<input type="text" name="item[' . $item_id . '][order]"  value="' . $item->item_order . '" style="width:30px; text-align: center;">';
+			echo '</td>';
+
+			echo '<td class="actions">';
+            $sub_total = $item->item_qty * $item->item_price;
+			echo '<a href="#" data-item-id="' . $item_id . '" data-quote-id="' . $quote_id. '" data-sub-total ="' .$sub_total. '" class="dashicons-before dashicons-trash del-item-row" title="Delete" onclick="return confirm(Are you sure you want to delete this?);"></a>';
+			echo '</td>';
+			echo '</tr>';
+
+
+		}
+
+		wp_die();
+	}
+
+
+	// Tables queries for database
+	public function install_tables() {
+
+		// Queries to create tables
+		$fabrics_table = "CREATE TABLE $this->fabrics_tbl (
+        fab_id INT(5) NOT NULL AUTO_INCREMENT,
+        fab_name VARCHAR(100) NOT NULL,
+        fab_suffix VARCHAR(100) NULL,
+        fab_colors LONGTEXT NULL,
+        PRIMARY KEY (fab_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
+        ";
+
+		$staff_member_table = "CREATE TABLE $this->staff_member_tbl (
+        staff_id INT(5) NOT NULL AUTO_INCREMENT,
+        staff_name VARCHAR(100) NOT NULL,
+        staff_email VARCHAR(100) NOT NULL,
+        staff_position VARCHAR(100) NOT NULL,
+        staff_contactno VARCHAR(100) NOT NULL,
+        PRIMARY KEY (staff_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
+        ";
+
+		$clients_table = "CREATE TABLE $this->clients_tbl (
+        client_id INT(5) NOT NULL AUTO_INCREMENT,
+        client_fname VARCHAR(100) NOT NULL,
+        client_lname VARCHAR(100) NOT NULL,
+        client_email VARCHAR(100) NOT NULL,
+        client_email_2 VARCHAR(100) NULL,
+        client_contactno VARCHAR(100) NOT NULL,
+        client_cellno VARCHAR(100) NOT NULL,
+        client_companyname VARCHAR(100) NOT NULL,
+        PRIMARY KEY (client_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
+        ";
+
+		$categories_table = "CREATE TABLE $this->categories_tbl (
+        cat_id INT(5) NOT NULL AUTO_INCREMENT,
+        cat_name VARCHAR(100) NOT NULL,
+        cat_desc VARCHAR(500) NULL,
+        cat_image VARCHAR(255) NULL,
+        cat_parent INT(3) DEFAULT 0,
+        cat_order INT(2) DEFAULT 0,
+        PRIMARY KEY (cat_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
+        ";
+
+		$categories_rel_table = "CREATE TABLE $this->categories_relation_tbl (
+        rel_id INT(5) NOT NULL AUTO_INCREMENT,
+        prod_id INT(5) DEFAULT 0,
+        cat_id INT(5) DEFAULT 0,
+        PRIMARY KEY (rel_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';
+        ";
+
+		$products_table = "CREATE TABLE $this->products_tbl(
+        prod_id INT(5) NOT NULL AUTO_INCREMENT,
+        prod_name VARCHAR(100) NOT NULL,
+        prod_desc LONGTEXT NULL,
+        prod_images LONGTEXT NULL,
+        prod_code VARCHAR(100) NOT NULL,  
+        prod_size VARCHAR(100) NULL,
+        prod_seller TINYINT DEFAULT 0,
+        prod_sale TINYINT DEFAULT 0,
+        prod_new TINYINT DEFAULT 0,
+        PRIMARY KEY(prod_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
+
+		$products_fp_combos_table = "CREATE TABLE $this->products_fp_combos_tbl(
+        combo_id INT(9) NOT NULL AUTO_INCREMENT,
+        combo_pid INT(9) NOT NULL,
+        combo_fid INT(9) NULL,
+        combo_code VARCHAR(50) NOT NULL,
+        combo_price VARCHAR(50) NOT NULL,
+        PRIMARY KEY(combo_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
+
+		$quotes_table = "CREATE TABLE $this->quotes_tbl(
+        quote_id INT(5) NOT NULL AUTO_INCREMENT,
+        quote_staff VARCHAR(100) NOT NULL,
+        quote_client VARCHAR(100) NOT NULL,
+        quote_subject VARCHAR(100) NOT NULL,
+        quote_comment LONGTEXT NOT NULL,
+        quote_date TIMESTAMP NOT NULL,
+        quote_status INT(1) DEFAULT 0,
+        PRIMARY KEY(quote_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
+
+		$quote_items_table = "CREATE TABLE $this->quote_items_tbl(
+        item_id INT(5) NOT NULL AUTO_INCREMENT,
+        item_qid VARCHAR(100) NULL,
+        item_pid VARCHAR(100) NULL,
+        item_code VARCHAR(100) NULL,
+        item_fab VARCHAR(100) NULL,
+        item_images LONGTEXT NULL,
+        item_name VARCHAR(100) NULL,
+        item_desc LONGTEXT NULL,
+        item_cat LONGTEXT NULL,
+        item_qty INT(3) DEFAULT 1,
+        item_price VARCHAR(100) NULL,
+        item_order INT(2) DEFAULT 0,
+        heading VARCHAR(255) NULL,
+        sep TINYINT DEFAULT 0,
+        PRIMARY KEY(item_id)
+        ) COLLATE = 'utf8_general_ci', ENGINE = 'InnoDB';";
+
+
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+		dbDelta( $fabrics_table );
+		dbDelta( $staff_member_table );
+		dbDelta( $clients_table );
+		dbDelta( $categories_table );
+		dbDelta( $categories_rel_table );
+		dbDelta( $products_table );
+		dbDelta( $products_fp_combos_table );
+		dbDelta( $quotes_table );
+		dbDelta( $quote_items_table );
+	}
 
 }
 
