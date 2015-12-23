@@ -1,6 +1,7 @@
 <?php
-
-//CVS fabric price class
+/**
+ * CVS fabric price class
+ */
 class csv_fabric_price_combos_import extends ATQ {
 	//Controller
 	public function __construct() {

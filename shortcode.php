@@ -2,7 +2,8 @@
 
 // Shortcode Class
 
-class atq_shortcode {
+class atq_shortcode
+{
 
     protected $wpdb;
     protected $staff_member_tbl;
@@ -16,7 +17,8 @@ class atq_shortcode {
     protected $quote_items_tbl;
 
     // Constructor
-    public function __construct() {
+    public function __construct()
+    {
 
         // Globalizing $wpdb variable
         global $wpdb;
@@ -47,17 +49,24 @@ class atq_shortcode {
 
         // Register ajax
         add_action('wp_ajax_nopriv_atq_load_product', array($this, 'load_product'));
+
+        // Sessions
+        add_action('init', array($this, 'atq_session_start'), 1);
+        add_action('wp_ajax_set_session', array($this, 'atq_session'));
+        add_action('wp_ajax_nopriv_set_session', array($this, 'atq_session'));
     }
 
     // Registering plugin front end resources
-    public function register_frontend_resources() {
+    public function register_frontend_resources()
+    {
         // Stylesheet
         wp_register_style('atq-style', plugins_url('african-tusk-quote/css/atq-style.css'));
         wp_enqueue_style('atq-style');
     }
 
     // jQuery for ajax product popup loader
-    public function atq_jquery() {
+    public function atq_jquery()
+    {
         ?>
         <script type="text/javascript">
             jQuery(document).ready(function ($) {
@@ -89,12 +98,44 @@ class atq_shortcode {
                     return false;
                 });
 
+                // Add to quote
+                $('.fab-color').live('change', function () {
+                    var color = $(this).val();
+                    $('.add-to-quote').attr('data-fabric-color', color);
+                });
+
+                $('.add-to-quote').live('click', function () {
+                    var id = $(this).data('product-id');
+                    var fid = $(this).data('fabric-id');
+                    var color = $(this).data('fabric-color');
+
+                    $('.atq-cart-success').fadeIn();
+
+                    var data = {
+                        action: 'set_session',
+                        id: id,
+                        fid: fid,
+                        color: color
+                    };
+
+                    $.post('<?php echo admin_url('admin-ajax.php'); ?>', data, function (result) {
+                        $('.atq-cart-success').fadeOut();
+                    });
+
+                });
+
+
             });
-        </script>        
+        </script>
         <?php
     }
 
-    public function atq_code() {
+    public function atq_code()
+    {
+        echo session_name() . ' = ' . session_id();
+        echo '<pre>';
+        print_r($_SESSION['atq_cart']);
+        echo '</pre>';
         ?>
 
         <div id="atq-products">
@@ -109,8 +150,10 @@ class atq_shortcode {
                     ?>
                     <li>
                         <a href="#" data-product-id="<?php echo $product->prod_id; ?>" class="product-link">
-                            <div class="atq-product-title"><strong><?php echo $product->prod_code; ?></strong> - <?php echo $product->prod_name; ?></div>
-                            <div class="atq-product-image"><img src="<?php echo $images[0]; ?>" width="100%" height="auto"></div>
+                            <div class="atq-product-title"><strong><?php echo $product->prod_code; ?></strong>
+                                - <?php echo $product->prod_name; ?></div>
+                            <div class="atq-product-image"><img src="<?php echo $images[0]; ?>" width="100%"
+                                                                height="auto"></div>
                         </a>
                     </li>
                 <?php }
@@ -126,13 +169,15 @@ class atq_shortcode {
                 </div>
             </div>
         </div>
+        <div class="atq-cart-success">Product adding to cart... Please wait!</div>
         <div class="atq-overlay"></div>
 
         <?php
     }
 
     // Ajax call
-    public function load_product() {
+    public function load_product()
+    {
 
         $pid = filter_input(INPUT_POST, 'prod_id');
         //Get Products
@@ -146,11 +191,11 @@ class atq_shortcode {
 
                     if ($image_id == 0) {
                         ?>
-                        <img src="<?php echo $image; ?>" >
+                        <img src="<?php echo $image; ?>">
                         <?php
                     } else {
                         ?>
-                        <img src="<?php echo $image; ?>" width="80px;" >
+                        <img src="<?php echo $image; ?>" width="80px;">
                     <?php } ?>
 
                     <?php
@@ -173,24 +218,31 @@ class atq_shortcode {
                 $fab_code = $fab_combo->combo_code;
                 list($code, $fab_suffix) = explode('-', $fab_code);
                 $fab_name = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_suffix ='$fab_suffix'");
-                ?>  
+                ?>
                 <div class="atq-fabric">
                     <span style="float: left;"><?php echo $fab_name->fab_name; ?></span>
                     <span style="float: right;">
-                        <select>
+                        <select class="fab-color">
                             <option>Select a Colour</option>
                             <?php
                             $fab_colors = unserialize($fab_name->fab_colors);
                             foreach ($fab_colors as $fab_color) {
                                 ?>
-                                <option value="<?php echo $fab_color['fab_color']; ?>" <?php selected($fab_color['fab_color']); ?>>
+                                <option
+                                    value="<?php echo $fab_color['fab_color']; ?>" <?php selected($fab_color['fab_color']); ?>>
                                     <?php echo $fab_color['fab_color']; ?></option>
                                 <?php
                             }
                             ?>
 
                         </select>
-                        <button class="">Add to Quote</button>
+                        <button
+                            class="add-to-quote"
+                            data-product-id="<?php echo $product->prod_id; ?>"
+                            data-fabric-id="<?php echo $fab_combo->combo_fid; ?>"
+                            data-fabric-color="">
+                            Add to Quote
+                        </button>
                     </span>
                 </div>
                 <div class="atq-item-colors">
@@ -198,7 +250,7 @@ class atq_shortcode {
                     $fab_colors = unserialize($fab_name->fab_colors);
                     foreach ($fab_colors as $fab_id => $fab_color) {
                         ?>
-                        <img src="<?php echo $fab_color['fab_img']; ?>" width="30px;" >
+                        <img src="<?php echo $fab_color['fab_img']; ?>" width="30px;">
                         <?php
                     }
                     ?>
@@ -214,5 +266,25 @@ class atq_shortcode {
         <?php
         wp_die();
     }
+
+    // Setting session
+    public function atq_session_start()
+    {
+        if (!session_id()) {
+            session_start();
+        }
+    }
+
+    public function atq_session()
+    {
+        $id = filter_input(INPUT_POST, 'id');
+        $fid = filter_input(INPUT_POST, 'fid');
+        $color = filter_input(INPUT_POST, 'color');
+
+        $_SESSION['atq_cart'][$id][$fid] = $color;
+
+        wp_die();
+    }
+
 
 }
