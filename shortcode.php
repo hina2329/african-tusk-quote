@@ -33,8 +33,11 @@ class atq_shortcode {
         $this->quotes_tbl = $this->wpdb->prefix . 'atq_quotes';
         $this->quote_items_tbl = $this->wpdb->prefix . 'atq_quote_items';
 
-        // Add shortcode
+        // Add prduct shortcode
         add_shortcode('atq', array($this, 'atq_code'));
+
+        // Add quote form shortcode
+        add_shortcode('atq-quote-form', array($this, 'atq_quote_form'));
 
         // Loading plugin resources for front end
         add_action('wp_head', array($this, 'register_frontend_resources'));
@@ -213,6 +216,50 @@ class atq_shortcode {
 
         <?php
         wp_die();
+    }
+
+
+    // Qoute form
+    public function atq_quote_form() {
+        ?>
+        <div id="atq-quote-form">
+            <form>
+                <label>Contact Person</label>
+                <input type="text" name="contact_person" id="contact_person">
+                <label>Company Name</label>
+                <input type="text" name="company_name" id="company_name">
+                <label>Contact Name</label>
+                <input type="text" name="contact_number" id="contact_number">
+                <label>Email Address</label>
+                <input type="email" name="email_address" id="email_address">
+                <label>Confirm Email</label>
+                <input type="email" name="confirm_email" id="confirm_email">
+                <label>Comments - What garments are you looking for:</label>
+                <textarea name="comments" id="comments"></textarea>
+                <small>Ctrl and Click to select multiple Catalogues</small>
+                <br>
+                <label>What Catalogue would you like?</label>
+                <select multiple="mutiple" name="catalogue" id="catalogue">
+                    <option>Core Range Catalogue</option>
+                  <option>Corporate & Hotel Core Range</option>
+                    <option>Curio Shop Suggested Items</option>
+                    <option>Stock Core Range</option>
+                    <option>eChef</option>
+                </select>
+                <label>How did you learn about African Tusk Clothing and eChef initially?</label>
+                <select name=""  id="">
+                    <option value="">Please Select</option>
+                    <option value="Via our website">Via our website.</option>
+                    <option value="Responded to an advert">Responded to an advert.</option>
+                    <option value="Contacted directly by our sales team">Contacted directly by our sales team.</option>
+                </select>
+                <br><br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <?php 
+       
     }
 
 }
