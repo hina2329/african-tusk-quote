@@ -196,6 +196,12 @@ jQuery(document).ready(function ($) {
 
         $.post(ajaxurl, data);
 
+        var sub_total = $(this).parents('tr').find('.sub-total').val();
+        var grand_total = $('.grand-total').val();
+
+        $('.grand-total').val(grand_total - sub_total);
+
+
 
         $(this).parents('tr').remove();
 

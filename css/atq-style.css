@@ -190,3 +190,55 @@
     color: #000;
     font-weight: bold;
 }
+
+#atq-quote-form p {
+    clear: both;
+}
+
+#atq-quote-form label {
+    width: 150px;
+    display: block;
+    float: left;
+    font-size: 14px;
+}
+
+#atq-quote-form select {
+    width: 400px;
+    float: left;
+    font-size: 14px;
+    margin: 0 0 15px 0;
+}
+
+#atq-quote-form input[type=text],
+#atq-quote-form input[type=email],
+#atq-quote-form textarea {
+    width: 400px;
+    float: left;
+    font-size: 14px;
+    margin: 0 0 15px 0;
+}
+
+#atq-quote-form textarea {
+    height: 150px;
+}
+
+#atq-quote-form input[type=submit] {
+    line-height: 10px;
+    font-size: 14px;
+    margin-top: 60px;
+    margin-right: 78px;
+}
+
+#atq-quote-form small {
+    padding-left: 150px;
+    font-size: 10px;
+}
+.atq-quote-cart {
+    font-size: 14px;
+    margin: 0 0 40px;
+}
+.atq-quote-cart thead td {
+    font-weight: bold;
+    color: #fff;
+    background: #000;
+}

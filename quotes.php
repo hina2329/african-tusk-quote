@@ -96,7 +96,7 @@ class quotes extends ATQ {
 
 		$this->notify( 'Quote' );
 
-		echo isset( $id ) ? '<a href="#" class="send-quote button-primary">SEND QUOTE</a>' : '';
+		echo isset( $id ) ? '<a href="'.plugins_url( "african-tusk-quote/send_quote.php?id=$id").'" class="send-quote button-primary">SEND QUOTE</a>' : '';
 		?>
 
 		<h1><?php echo isset( $id ) ? 'Edit Quote' : 'Add New Quote'; ?></h1>

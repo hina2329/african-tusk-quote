@@ -35,8 +35,11 @@ class atq_shortcode
         $this->quotes_tbl = $this->wpdb->prefix . 'atq_quotes';
         $this->quote_items_tbl = $this->wpdb->prefix . 'atq_quote_items';
 
-        // Add shortcode
+        // Add product shortcode
         add_shortcode('atq', array($this, 'atq_code'));
+
+        // Add quote form shortcode
+        add_shortcode('atq-quote-form', array($this, 'atq_quote_form'));
 
         // Loading plugin resources for front end
         add_action('wp_head', array($this, 'register_frontend_resources'));
@@ -101,7 +104,7 @@ class atq_shortcode
                 // Add to quote
                 $('.fab-color').live('change', function () {
                     var color = $(this).val();
-                    $('.add-to-quote').attr('data-fabric-color', color);
+                    $(this).parent().find('.add-to-quote').attr('data-fabric-color', color);
                 });
 
                 $('.add-to-quote').live('click', function () {
@@ -132,10 +135,6 @@ class atq_shortcode
 
     public function atq_code()
     {
-        echo session_name() . ' = ' . session_id();
-        echo '<pre>';
-        print_r($_SESSION['atq_cart']);
-        echo '</pre>';
         ?>
 
         <div id="atq-products">
@@ -281,10 +280,136 @@ class atq_shortcode
         $fid = filter_input(INPUT_POST, 'fid');
         $color = filter_input(INPUT_POST, 'color');
 
-        $_SESSION['atq_cart'][$id][$fid] = $color;
+        $_SESSION['atq_cart'][] = [
+            'id' => $id,
+            'fid' => $fid,
+            'color' => $color
+        ];
 
         wp_die();
     }
 
+
+    // Qoute form
+    public function atq_quote_form()
+    {
+        ?>
+        <div id="atq-quote-form">
+            <form method="post" action="">
+
+                <?php if ($_SESSION['atq_cart']) { ?>
+
+                    <div class="atq-quote-cart">
+                        <h4>Quote Cart:</h4>
+                        <table>
+                            <thead>
+                            <tr>
+                                <td width="5%">#</td>
+                                <td width="55%">Name</td>
+                                <td width="15%">Fabric</td>
+                                <td width="15%">Color</td>
+                                <td width="10%">Price</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            $i = 0;
+                            foreach ($_SESSION['atq_cart'] as $cart) {
+                                $i++;
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $i; ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $id = $cart['id'];
+                                        $product = $this->wpdb->get_row("SELECT * FROM $this->products_tbl WHERE prod_id = $id");
+                                        echo $product->prod_name;
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $fid = $cart['fid'];
+                                        $fabric = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_id = $fid");
+                                        echo $fabric->fab_name;
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cart['color']; ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $fid = $cart['fid'];
+                                        $fabric_combo = $this->wpdb->get_row("SELECT * FROM $this->products_fp_combos_tbl WHERE combo_id = $fid");
+                                        echo $fabric_combo->combo_price;
+                                        ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+                <?php } ?>
+
+                <p>
+                    <label>First Name <span class="required">*</span></span></label>
+                    <input type="text" name="first_name" id="first_name" required>
+                </p>
+                <p>
+                    <label>Last Name <span class="required">*</span></label>
+                    <input type="text" name="last_name" id="last_name" required>
+                </p>
+                <p>
+                    <label>Company Name <span class="required">*</span></label>
+                    <input type="text" name="company_name" id="company_name" required>
+                </p>
+                <p>
+                    <label>Cell Number <span class="required">*</span></label>
+                    <input type="text" name="cell_number" id="cell_number" required>
+                </p>
+                <p>
+                    <label>Contact Number <span class="required">*</span></label>
+                    <input type="text" name="contact_number" id="contact_number" required>
+                </p>
+                <p>
+                    <label>Email Address <span class="required">*</span></label>
+                    <input type="email" name="email_address" id="email_address" required>
+                </p>
+                <p>
+                    <label>Comments - What garments are you looking for:</label>
+                    <textarea name="comments" id="comments"></textarea>
+                </p>
+                <p>
+                    <label>What Catalogue would you like?</label>
+                    <select multiple="mutiple" name="catalogue" id="catalogue">
+                        <option>Core Range Catalogue</option>
+                        <option>Corporate & Hotel Core Range</option>
+                        <option>Curio Shop Suggested Items</option>
+                        <option>Stock Core Range</option>
+                        <option>eChef</option>
+                    </select>
+                </p>
+                <p>
+                    <label>How did you learn about African Tusk Clothing and eChef initially?</label>
+                    <select name="" id="">
+                        <option value="">Please Select</option>
+                        <option value="Via our website">Via our website.</option>
+                        <option value="Responded to an advert">Responded to an advert.</option>
+                        <option value="Contacted directly by our sales team">Contacted directly by our sales team.
+                        </option>
+                    </select>
+                </p>
+
+                <p>
+                    <input type="submit" value="Submit">
+                </p>
+            </form>
+        </div>
+
+        <?php
+
+    }
 
 }
