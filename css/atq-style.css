@@ -176,19 +176,21 @@
 
 .atq-cart-success {
     position: fixed;
-    width: 300px;
+    width: 420px;
     text-align: center;
-    line-height: 35px;
-    background: #ffff00;
+    line-height: 26px;
+    background: #fff;
     border-radius: 7px;
     top: 50%;
     left: 50%;
-    margin: -17px 0 0 -150px;
+    margin: -17px 0 0 -210px;
     z-index: 3000;
-    border: #000 4px solid;
+    border: #8bbe00  4px solid;
     display: none;
-    color: #000;
-    font-weight: bold;
+    color: #8bbe00 ;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 20px 0;
 }
 
 #atq-quote-form p {
@@ -241,4 +243,23 @@
     font-weight: bold;
     color: #fff;
     background: #000;
+}
+.atq-pager {
+    text-align: center;
+    padding: 20px 0;
+    clear: both;
+}
+
+.atq-pager a {
+    display: inline-block;
+    line-height: 30px;
+    width: 30px;
+    background: #fff;
+    border: #CCC 1px solid;
+    text-decoration: none;
+    margin: 5px 5px;
+}
+.atq-pager a:hover, a.active-page {
+    background: #CCC;
+    color: #fff;
 }

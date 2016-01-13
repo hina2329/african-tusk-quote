@@ -97,6 +97,7 @@ class quotes extends ATQ {
 		$this->notify( 'Quote' );
 
 		echo isset( $id ) ? '<a href="'.plugins_url( "african-tusk-quote/send_quote.php?id=$id").'" class="send-quote button-primary">SEND QUOTE</a>' : '';
+
 		?>
 
 		<h1><?php echo isset( $id ) ? 'Edit Quote' : 'Add New Quote'; ?></h1>
@@ -433,6 +434,39 @@ class quotes extends ATQ {
 											?>
 
 										</select>
+										<?php
+
+										foreach ( $prod_fps as $prod_fp ) {
+
+											$combo_code = $prod_fp->combo_code;
+												//breaking rows into $prod_code & $fab_suffix
+												list( $prod_code, $fab_suffix ) = explode( '-', $combo_code );
+												$fab_suffix;
+
+											$fab_type = $this->wpdb->get_row( "SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_suffix'" );
+
+											
+											
+											if ($fab_type->fab_id == $item->item_fab) {
+												echo '<select name="item['.$item->item_id.'][fab_item_color]" class="item-fab-colors" id="color-set-'. $fab_type->fab_id .'" multiple>';
+											} else {
+												echo '<select name="item['.$item->item_id.'][fab_item_color]" class="item-fab-colors" id="color-set-'. $fab_type->fab_id .'" style="display:none;" multiple>';
+											}
+
+											
+
+												$colors = unserialize($fab_type->fab_colors);
+
+												$color_count = count($colors);
+                                              for ($i = 0; $i < $color_count; $i++) {
+                                               echo '<option value ="'.$colors[$i]['fab_color'].'"'; 
+                                               selected($colors[$i]['fab_color'] ,$item->item_fab_color);
+                                              echo  '>' . $colors[$i]['fab_color'] . '</option>';
+                                				}
+                                			echo '</select>';
+										}
+										?>
+
 									</td>
 									<td>
 										<input type="text" name="item[<?php echo $item->item_id; ?>][qty]"
@@ -671,6 +705,7 @@ class quotes extends ATQ {
 					'item_name'  => $quote_item_arr['name'],
 					'item_desc'  => $quote_item_arr['desc'],
 					'item_fab'   => $quote_item_arr['fab'],
+					'item_fab_color' => $quote_item_arr['fab_item_color'],
 					'item_qty'   => $quote_item_arr['qty'],
 					'item_price' => $quote_item_arr['unit_p'],
 					'item_order' => $quote_item_arr['order']

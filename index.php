@@ -316,6 +316,28 @@ class ATQ
             echo '>' . $fab_type->fab_name . '</option>';
         }
         echo '</select>';
+        foreach ( $prod_fps as $prod_fp ) {
+
+             $combo_code = $prod_fp->combo_code;
+            //breaking rows into $prod_code & $fab_suffix
+            list( $prod_code, $fab_suffix ) = explode( '-', $combo_code );
+              $fab_suffix;
+
+         $fab_type = $this->wpdb->get_row( "SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_suffix'" );
+
+         echo '<select  name = "item['.$item_id.'][fab_item_color]" class="item-fab-colors" id="color-set-'. $fab_type->fab_id .'" style="display:none;" multiple>';
+
+             $colors = unserialize($fab_type->fab_colors);
+
+             $color_count = count($colors);
+            for ($i = 0; $i < $color_count; $i++) {
+             echo '<option value ="'.$colors[$i]['fab_color'].'"'; 
+                 selected($colors[$i]['fab_color'] ,$item->item_fab_color);
+             echo  '>' . $colors[$i]['fab_color'] . '</option>';
+              }
+          echo '</select>';
+      }
+       
         echo '</td>';
         echo '<td>';
         echo '<input type="text" name="item[' . $item_id . '][qty]" value="' . $item->item_qty . '" class="x-small-text item-qty">';
@@ -466,6 +488,27 @@ class ATQ
                 echo '>' . $fab_type->fab_name . '</option>';
             }
             echo '</select>';
+            foreach ( $prod_fps as $prod_fp ) {
+
+             $combo_code = $prod_fp->combo_code;
+            //breaking rows into $prod_code & $fab_suffix
+            list( $prod_code, $fab_suffix ) = explode( '-', $combo_code );
+              $fab_suffix;
+
+         $fab_type = $this->wpdb->get_row( "SELECT * FROM $this->fabrics_tbl WHERE fab_suffix = '$fab_suffix'" );
+
+         echo '<select  name = "item['.$item_id.'][fab_item_color]" class="item-fab-colors" id="color-set-'. $fab_type->fab_id .'" style="display:none;" multiple>';
+
+             $colors = unserialize($fab_type->fab_colors);
+
+             $color_count = count($colors);
+            for ($i = 0; $i < $color_count; $i++) {
+             echo '<option value ="'.$colors[$i]['fab_color'].'"'; 
+                 selected($colors[$i]['fab_color'] ,$item->item_fab_color);
+             echo  '>' . $colors[$i]['fab_color'] . '</option>';
+              }
+          echo '</select>';
+      }
             echo '</td>';
             echo '<td>';
             echo '<input type="text" name="item[' . $item_id . '][qty]" value="' . $item->item_qty . '" class="x-small-text item-qty">';

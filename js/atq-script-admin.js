@@ -125,12 +125,12 @@ jQuery(document).ready(function ($) {
     $('.fabric-type').live('change', function () {
         var fab = $(this).find(':selected').data('fab-price');
         var qty = $(this).parents('tr').find('.item-qty').val();
-        var colors = $('option:selected', this).data('fab-id');
+        var colors = $('option:selected', this).val();
         $(this).parents('tr').find('.unit-price').val(fab);
         var unit = $(this).parents('tr').find('.unit-price').val();
         $(this).parents('tr').find('.sub-total').val(qty * unit);
         $(this).parents('tr').find('.item-fab-colors').hide();
-        $(this).parents('tr').find(colors).show();
+        $(this).parents('tr').find('#color-set-' + colors).show();
 
         // Grand total
         grand_total();

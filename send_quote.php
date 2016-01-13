@@ -1,5 +1,7 @@
 <?php
 
+require_once '../../../wp-config.php';
+
 // Send Quote Class
 class send_quote {
 
@@ -22,7 +24,23 @@ class send_quote {
 		//Globalizing $wpdb variable
         global $wpdb;
         $this->wpdb = $wpdb;
+        //table names
         $this->staff_member_tbl = $this->wpdb->prefix . 'atq_staff_member';
+        $this->fabrics_tbl = $this->wpdb->prefix . 'atq_fabrics';
+        $this->clients_tbl = $this->wpdb->prefix . 'atq_clients';
+        $this->categories_tbl = $this->wpdb->prefix . 'atq_categories';
+        $this->categories_relation_tbl = $this->wpdb->prefix . 'atq_categories_relation';
+        $this->products_tbl = $this->wpdb->prefix . 'atq_products';
+        $this->products_fp_combos_tbl = $this->wpdb->prefix . 'atq_products_fp_combos';
+        $this->quotes_tbl = $this->wpdb->prefix . 'atq_quotes';
+        $this->quote_items_tbl = $this->wpdb->prefix . 'atq_quote_items';
+
+
+        $headers = 'From: My Name <hina.6637@gmail.com>' . "\r\n";
+        wp_mail( 'misbah.anwar@rocketmail.com', 'Get The Subject FROM QUOTE', 'Message', $headers, );
+
+        echo 'MAIL SENT';
+
 
 
 	}
@@ -42,60 +60,71 @@ class send_quote {
 			<p>We pride ourselves on our high standards of service excellence and top quality garments which we have been manufacturing and supplying to the hotel and lodge industry for past 24 years! Thank you for
 				requesting a quote.</p></td>
 			</tr>
+			<?php
+			// Get products
+				 $id = filter_input(INPUT_GET, 'id'); 
+				$products = $this->wpdb->get_results("SELECT * FROM $this->quote_items_tbl WHERE item_qid = $id");
+			    $quote = $this->wpdb->get_row("SELECT * FROM $this->quotes_tbl WHERE quote_id = $id");
+			    $client = $this->wpdb->get_row("SELECT * FROM $this->clients_tbl WHERE client_id= $quote->quote_client");
+			    $staff = $this->wpdb->get_row("SELECT * FROM $this->staff_member_tbl WHERE staff_id= $quote->quote_staff");
+
+              foreach ($products as $product) {
+              	$fab = $this->wpdb->get_row("SELECT * FROM $this->fabrics_tbl WHERE fab_id = $product->item_fab");
+              	$images = unserialize($product->item_images);
+              
+				?>
 			<tr>
 				<td with="157" style="background:#ffff; border:1px solid #ccc; padding: 5px; text-align:center;">
-					<img src="images/img1.jpg"  width="153">
+				<?php
+            if ($images) {
+                foreach ($images as $image_id => $image) {
+
+                    if ($image_id == 0) {
+                        ?>
+                        <img src="<?php echo $image; ?>"  width="153">
+                        <?php
+                    }
+                }
+            }
+                    ?>
+					
 				</td>
+				
 				<td style="background:#f5f3e6; vertical-align:top; padding:10px;">
-					<h2 style="font-size:15px">AT006B / LDS 3/4 SLEEVE REGULAR SHIRT</h2>
-					<li style="font-size:11px">3/4 SLEEVE WITH V CUFF</li>
-					<li style="font-size:11px">REGULAR LENGTH</li>
-					<li style="font-size:11px">FRONT AND BACK DARTS</li>
-					<li style="font-size:11px">SIDE SLITS</li>
-					<li style="font-size:11px">OPTIONAL POCKETS</li>
-					<p>Fabric: Polycotton Basic</p>
-					<p>Colour: Cerise </p>
-					<p>Quantity: 1</p>
-					<div style="float:left">Unit Price: R198.47</div>
+					<h2 style="font-size:15px"><?php echo $product->item_name; ?></h2>
+					<?php echo $product->item_desc; ?>
+					<p>Fabric:<?php echo $fab->fab_name; ?></p>
+					<p>Colour:<?php echo $product->item_fab_color;?> </p>
+					<p>Quantity:<?php echo $product->item_qty; ?></p>
+					<div style="float:left">Unit Price:R<?php echo $product->item_price; ?></div>
 					<div style="float:right">
-						<h3>R198.47</h3>
+					<?php 
+					$total = $product->item_qty * $product->item_price;
+					$grand_total+= $total;
+					?>
+						<h3>R<?php echo $total; ?></h3>
 					</div>
 				</td>
 			</tr>
-			<tr>
-				<td with="157" style="background:#ffff; border:1px solid #ccc; padding: 5px; text-align:center;">
-					<img src="images/img2.jpg"  width="153">
-				</td>
-				<td style="background:#f5f3e6; vertical-align:top; padding:10px;">
-					<h2 style="font-size:15px">AT006B / LDS 3/4 SLEEVE REGULAR SHIRT</h2>
-					<li style="font-size:11px">3/4 SLEEVE WITH V CUFF</li>
-					<li style="font-size:11px">REGULAR LENGTH</li>
-					<li style="font-size:11px">FRONT AND BACK DARTS</li>
-					<li style="font-size:11px">SIDE SLITS</li>
-					<li style="font-size:11px">OPTIONAL POCKETS</li>
-					<p>Fabric: Polycotton Basic</p>
-					<p>Colour: Cerise </p>
-					<p>Quantity: 1</p>
-					<div style="float:left">Unit Price: R198.47</div>
-					<div style="float:right">
-						<h3>R198.47</h3>
-					</div>
-				</td>
-			</tr>
+			<?php
+			}
+			?>
 
 			<tr>
 				<td align="right" colspan="3" style="border:1px solid #ccc; padding:10px;">
-					<h3>Total   R 442.28</h3>
+					<h3>Total   R<?php echo $grand_total; ?></h3>
 				</td>
 			</tr>
 			<tr>
 				<td  colspan="3" style="border:1px solid #ccc; padding:10px;">
 					<h3>Comments:</h3>
 					<p>
-						This is a test
+						<?php echo $quote->quote_comment; ?>
 						<br>
+
 						<br>
-						Tasha 
+						<?php echo $client->client_fname; ?>
+						
 					</p>
 					<p>
 						<strong>Many thanks for your request for a quotation. Please take note of the following.</strong>
@@ -117,37 +146,22 @@ class send_quote {
 							<tr>
 								<td width="22%">
 									<h5 style="margin:0;">
-										Agent Delails:
+										Staff Delails:
 									</h5>
-									Full Name:<br>
-									Landline Number:<br>
+									Full Name: <br>
 									Cell Number:<br>
 									Email Address:
 
 								</td>
 								<td width="22%">
 								<br>
-									Dean Byram <br>
-									+27 (0) 44 343 1021<br>
-									083 261 4947<br>
-									<a href="#">dean@africantusk.co.za</a><br>
+									<?php echo $staff->staff_name; ?> <br>
+									<?php echo $staff->staff_contactno; ?><br>
+									<a href="mailto:<?php echo $staff->staff_email; ?>"><?php echo $staff->staff_email; ?></a><br>
 								</td>
-								<td width="22%">
-									<h5 style="margin:0;">
-										Contact Details:
-									</h5>
-									Full Name:<br>
-									Company Name:<br>
-									Contact Number:<br>
-									Email Address:
-								</td>
-								<td width="22%">
-								<br>
-									Dean<br>
-									ATC Test<br>
-									<br>
-									<a href="#">dean@africantusk.co.za</a><br>
-								</td>
+								<td width="22%"></td>
+								<td width="22%"></td>
+								
 							</tr>
 						</table>
 					<?php
@@ -156,7 +170,6 @@ class send_quote {
   }
 }
 
-$send_quote = new send_quote;
-$send_quote ->html_templete();
+new send_quote;
 
 	
