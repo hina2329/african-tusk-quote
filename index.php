@@ -26,6 +26,7 @@ class ATQ
     protected $quotes_tbl;
     protected $quote_items_tbl;
     protected $ajax_handler;
+    public $setting;
 
     public function __construct()
     {
@@ -33,6 +34,10 @@ class ATQ
         // Globalizing $wpdb variable
         global $wpdb;
         $this->wpdb = $wpdb;
+
+        // Getting plugin settings
+        $this->setting = (object) get_option('atq_settings');
+
 
         // User HTTP request for class
         $this->page = filter_input(INPUT_GET, 'page');
@@ -74,9 +79,16 @@ class ATQ
 
         // Add selective products to quote
         add_action('wp_ajax_add_sel_prod', array($this, 'selective_products'));
+        
+        // Registering plugin's settings
+        add_action('admin_init', array($this, 'register_plugin_settings'));
 
         // Allow redirection
         ob_start();
+    }
+    // Register plugin's settings
+    public function register_plugin_settings() {
+        register_setting('atq_settings', 'atq_settings');
     }
 
     // WP Menu
@@ -110,6 +122,7 @@ class ATQ
             $this,
             'atq_main'
         ));
+        add_submenu_page('quotes', 'Settings', 'Settings', 'edit_pages', 'settings', array($this,'atq_main'));
     }
 
 // Main Page

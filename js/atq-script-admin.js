@@ -134,7 +134,7 @@ jQuery(document).ready(function ($) {
 
         // Grand total
         grand_total();
-        
+
     });
     $('.item-qty').live('keyup', function () {
         var qty = $(this).val();
@@ -145,22 +145,18 @@ jQuery(document).ready(function ($) {
         grand_total();
     });
 
-   // Grand Total
-   function grand_total() {
-    // Update grand total
+    // Grand Total
+    function grand_total() {
+        // Update grand total
         var grand_total = 0;
 
-        $('.sub-total').each(function() {
-            grand_total += Number($(this).val()) ;
+        $('.sub-total').each(function () {
+            grand_total += Number($(this).val());
         });
 
         $('.grand-total').val(grand_total);
-   }
-  
- 
+    }
 
- 
-    
 
     // Add heading quote
     $('.add-heading').click(function () {
@@ -186,7 +182,7 @@ jQuery(document).ready(function ($) {
     $('.del-item-row').live('click', function () {
         var quote_id = $(this).data('quote-id');
         var item_id = $(this).data('item-id');
-        
+
         var data = {
             action: 'del_item',
             qid: quote_id,
@@ -200,7 +196,6 @@ jQuery(document).ready(function ($) {
         var grand_total = $('.grand-total').val();
 
         $('.grand-total').val(grand_total - sub_total);
-
 
 
         $(this).parents('tr').remove();
@@ -283,7 +278,7 @@ jQuery(document).ready(function ($) {
         var quote_id = $('.quote-id').val();
 
         var ids = $('.selective-prod:checked').serialize();
-        
+
 
         var data = {
             action: 'add_sel_prod',
@@ -292,16 +287,73 @@ jQuery(document).ready(function ($) {
 
         };
 
-         $('#update-msg').show();
+        $('#update-msg').show();
 
         $.post(ajaxurl, data, function (result) {
             $('#the-list').prepend(result);
             $('#update-msg').hide();
 
-           
+
         });
 
         return false;
     });
+
+    // If changes in client section were made
+    var client_change = 'saved';
+
+    $('.client_save_ctrl input').change(function () {
+        client_change = 'unsaved';
+    });
+
+    $(document).click(function () {
+        if (client_change == 'unsaved') {
+            alert('You have unsaved changes in client section. Please update that section before continuing!');
+        }
+    });
+    $('.client_save_ctrl').click(function (e) {
+        if (client_change == 'unsaved') {
+            e.stopPropagation();
+        }
+    });
+
+
+    // If changes in subject section were made
+    var subject_change = 'saved';
+
+    $('.subject_save_ctrl input').change(function () {
+        subject_change = 'unsaved';
+    });
+
+    $(document).click(function () {
+        if (subject_change == 'unsaved') {
+            alert('You have unsaved changes in subject section. Please update that section before continuing!');
+        }
+    });
+    $('.subject_save_ctrl').click(function (e) {
+        if (subject_change == 'unsaved') {
+            e.stopPropagation();
+        }
+    });
+
+
+    // If changes in member section were made
+    var member_change = 'saved';
+
+    $('.member_save_ctrl select').change(function () {
+        member_change = 'unsaved';
+    });
+
+    $(document).click(function () {
+        if (member_change == 'unsaved') {
+            alert('You have unsaved changes in member section. Please update that section before continuing!');
+        }
+    });
+    $('.member_save_ctrl').click(function (e) {
+        if (member_change == 'unsaved') {
+            e.stopPropagation();
+        }
+    });
+
 
 });

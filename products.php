@@ -14,9 +14,19 @@ class products extends ATQ {
 	 *
 	 */
 	public function init() {
-		?>
+		
 
-		<h1><?php echo get_admin_page_title(); ?> <a
+		
+				$search = filter_input(INPUT_POST, 's');
+        ?>
+        <h1>
+            <form method="post" action="<?php echo admin_url('admin.php?page=' . $this->page . '&action=init&search=true'); ?>" class="search-box">
+                <label class="screen-reader-text" for="search-input">Search Clients:</label>
+                <input type="search" id="search-input" name="s" value="">
+                <input type="submit" id="search-submit" class="button" value="Search Products">
+                <a class="button button-primary" href="<?php echo admin_url('admin.php?page=' . $this->page . '&action=init'); ?>">Reset Search</a>
+            </form>
+            <?php echo get_admin_page_title(); ?> <a
 				href="<?php echo admin_url( 'admin.php?page=' . $this->page . '&action=form' ); ?>"
 				class="page-title-action">Add New Product</a></h1>
 
@@ -37,8 +47,13 @@ class products extends ATQ {
 
 			<?php
 			// Getting products & categories & fabric types
+			 // Getting clients
+                if (isset($search)) {
+                    $results = $this->wpdb->get_results("SELECT * FROM $this->products_tbl WHERE prod_name LIKE '%$search%' ");
+                } else {
 
 			$results = $this->wpdb->get_results( "SELECT * FROM $this->products_tbl" );
+		}
 
 
 			if ( $results ) {
@@ -134,7 +149,7 @@ class products extends ATQ {
 		$id  = filter_input( INPUT_GET, 'id' );
 		$row = $this->wpdb->get_row( "SELECT * FROM $this->products_tbl WHERE prod_id = $id" );
 		?>
-		<div class="col-left">
+		<div class="full-width">
 			<h1><?php echo isset( $id ) ? 'Edit Product' : 'Add New Product'; ?></h1>
 			<form method="post" action="<?php echo admin_url( 'admin.php?page=' . $this->page . '&action=save' ); ?>">
 				<input type="hidden" name="prod_id" value="<?php echo $id; ?>">

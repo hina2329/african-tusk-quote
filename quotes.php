@@ -116,6 +116,7 @@ class quotes extends ATQ {
 				<fieldset>
 					<Legend>Client</legend>
 					<form method="post"
+						  class="client_save_ctrl"
 					      action="<?php echo admin_url( 'admin.php?page=' . $this->page . '&action=save&update=client' ); ?>">
 						<input type="hidden" name="quote_id" value="<?php echo $quote->quote_id; ?>">
 						<input type="hidden" name="quote_client" value="<?php echo $quote->quote_client; ?>">
@@ -161,6 +162,7 @@ class quotes extends ATQ {
 				<fieldset>
 					<Legend>Member</legend>
 					<form method="post"
+						  class="member_save_ctrl"
 					      action="<?php echo admin_url( 'admin.php?page=' . $this->page . '&action=save&update=member' ); ?>">
 						<input type="hidden" name="quote_id" value="<?php echo $quote->quote_id; ?>">
 						<input type="hidden" name="quote_staff" value="<?php echo $quote->quote_staff; ?>">
@@ -191,6 +193,7 @@ class quotes extends ATQ {
 				<fieldset>
 					<Legend>Subject</legend>
 					<form method="post"
+						  class="subject_save_ctrl"
 					      action="<?php echo admin_url( 'admin.php?page=' . $this->page . '&action=save&update=subject' ); ?>">
 						<input type="hidden" name="quote_id" value="<?php echo $quote->quote_id; ?>">
 						<div class="form-field">

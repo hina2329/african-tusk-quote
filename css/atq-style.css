@@ -185,9 +185,9 @@
     left: 50%;
     margin: -17px 0 0 -210px;
     z-index: 3000;
-    border: #8bbe00  4px solid;
+    border: #8bbe00 4px solid;
     display: none;
-    color: #8bbe00 ;
+    color: #8bbe00;
     font-size: 16px;
     text-transform: uppercase;
     padding: 20px 0;
@@ -235,15 +235,18 @@
     padding-left: 150px;
     font-size: 10px;
 }
+
 .atq-quote-cart {
     font-size: 14px;
     margin: 0 0 40px;
 }
+
 .atq-quote-cart thead td {
     font-weight: bold;
     color: #fff;
     background: #000;
 }
+
 .atq-pager {
     text-align: center;
     padding: 20px 0;
@@ -259,7 +262,60 @@
     text-decoration: none;
     margin: 5px 5px;
 }
+
 .atq-pager a:hover, a.active-page {
     background: #CCC;
     color: #fff;
+}
+
+#cat-list ul {
+    margin: 0 0 0 18px;
+    list-style: none;
+}
+
+#cat-list ul li {
+
+}
+
+#cat-list ul li a {
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #ccc;
+}
+
+.multi-fields.screen-reader-text {
+    padding: 0;
+    border: 0;
+}
+
+.search-box {
+    float: right;
+    padding: 0;
+    border: 0;
+
+}
+
+#atq-quote-search {
+    margin-left: 235px;
+    display: block;
+    font-size: 14px;
+}
+
+#atq-quote-search input[type=search] {
+    width: 200px;
+    font-size: 14px;
+    margin: 0 0 15px 0;
+}
+
+#atq-quote-search input[type=submit] {
+    line-height: 10px;
+    font-size: 14px;
+}
+
+.atq_captcha_img {
+    float: left;
+    margin: 0 10px 0 0;
+}
+#atq_captcha_validation {
+    width: 100px !important;
 }

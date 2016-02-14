@@ -49,6 +49,10 @@
     width: 35%;
     float: left;
 }
+#atq-wrap .full-width {
+    width: 100%;
+    float: left;
+}
 
 #atq-wrap .col-right {
     width: 63%;

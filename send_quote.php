@@ -35,17 +35,29 @@ class send_quote {
         $this->quotes_tbl = $this->wpdb->prefix . 'atq_quotes';
         $this->quote_items_tbl = $this->wpdb->prefix . 'atq_quote_items';
 
+		$id = filter_input(INPUT_GET, 'id');
 
-        $headers = 'From: My Name <hina.6637@gmail.com>' . "\r\n";
-        wp_mail( 'misbah.anwar@rocketmail.com', 'Get The Subject FROM QUOTE', 'Message', $headers, );
+		$this->wpdb->update($this->quotes_tbl, array('quote_status' => 1), array('quote_id' => $id));
 
-        echo 'MAIL SENT';
+
+		//$headers = 'From: My Name <hina.6637@gmail.com>' . "\r\n";
+        wp_mail( 'hina.6637@gmail.com', 'Get The Subject FROM QUOTE', 'Message' );
+
+        //echo 'MAIL SENT';
+        wp_redirect( admin_url( 'admin.php?page=' . quotes . '&update=sent' ) );
+
+
 
 
 
 	}
 
 	public function html_templete() {
+
+  // Getting plugin settings
+        $this->setting = (object) get_option('atq_settings');
+
+
 	?>
   
     
@@ -57,12 +69,26 @@ class send_quote {
 	</tr>
 	<tr>
 		<td style="background:#e3e2d6; padding: 10px;" colspan="2"> 
-			<p>We pride ourselves on our high standards of service excellence and top quality garments which we have been manufacturing and supplying to the hotel and lodge industry for past 24 years! Thank you for
-				requesting a quote.</p></td>
+			<p><?php echo $this->setting->atq_header; ?></p></td>
 			</tr>
 			<?php
-			// Get products
-				 $id = filter_input(INPUT_GET, 'id'); 
+			
+		    $id = filter_input(INPUT_GET, 'id'); 
+			if(isset($id)){
+			$status_data = array(
+				'quote_status' => '1'
+			);
+
+			$status_id = array(
+				'quote_id' => $id
+			);
+
+			// Update status
+			$this->wpdb->update( $this->quotes_tbl, $status_data, $status_id );
+		}
+		   
+
+                // Get products
 				$products = $this->wpdb->get_results("SELECT * FROM $this->quote_items_tbl WHERE item_qid = $id");
 			    $quote = $this->wpdb->get_row("SELECT * FROM $this->quotes_tbl WHERE quote_id = $id");
 			    $client = $this->wpdb->get_row("SELECT * FROM $this->clients_tbl WHERE client_id= $quote->quote_client");
@@ -127,21 +153,8 @@ class send_quote {
 						
 					</p>
 					<p>
-						<strong>Many thanks for your request for a quotation. Please take note of the following.</strong>
-					</p>
-					<p>
-						<p>Our delivery time is between 3-6 weeks from the time you place your order, style dependant and once proof of payment has been received. We require full prepayment on all orders. All pricing excludes VAT and freight and is valid for 30 days. Orders are sent without insurance and at the clients risk. Please request insurance if you require.</p>
-						<p>Stock AS, AX and EP coded items carry no minimum order requirement. Manufactured AT and EC coded garments carry a minimum order quantity of 10 units per style ordered across the sizes (eg 5 x 32″/3 x 34″/2 x 36″). There is a ‘rise-per-size’ cost of 10% for larger sizes onto prices as quoted.</p>
-						<p>Should you require less than 10 units on the AT or EC garments, there is a minimum order surcharge of R30.00 per garment on all garments except jackets which is R50.00 per garment. There is a surcharge of R130 on shoe orders of less than 10 pairs.</p>
-						<p>Please note that all shoe quotes and delivery dates are subject to availability of stock and price confirmation at the time of placing the order and a sample must please be ordered before placing your main order as we have a non-returns policy on all shoes. </p>
-						<ul>
-							<li>No returns on correctly supplied items</li>
-							<li>Sizing advice is offered by our sales staff but the ultimate responsibility remains with the client</li>
-							<li>We can send you samples to try on to confirm your sizing – please request these</li>
-							<li>Conti suits: order by jacket size and the pants are matched 2 sizes smaller automatically – please ask us for samples to fir for sizing – unfortunately no sizing returns</li>
-							<li>Shoes: please order sizes you wish to try on as no swaps or returns will be accepted</li>
-						</ul>
-						<p>Assuring you of our prompt, personal and professional attention at all times.</p>
+					<?php echo $this->setting->atq_footer; ?>
+						</p>
 						<table cellspacing="0" cellpadding="0" width="100%" style="font-size:14px;">
 							<tr>
 								<td width="22%">
@@ -170,6 +183,8 @@ class send_quote {
   }
 }
 
-new send_quote;
+$send = new send_quote;
+//$send->html_templete();
+
 
 	
